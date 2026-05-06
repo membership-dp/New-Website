@@ -68,7 +68,7 @@ function MembershipPage({ onNav }) {
       {/* INTRO */}
       <section className="section surface-bone">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 96, alignItems: 'flex-start' }}>
+          <div className="lede-page-grid">
             <Reveal>
               <div className="eyebrow-rule">An Invitation</div>
             </Reveal>
@@ -99,7 +99,7 @@ function MembershipPage({ onNav }) {
           <Reveal>
             <div className="eyebrow-rule" style={{ marginBottom: 40 }}>What Membership Offers</div>
           </Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 64 }}>
+          <div className="three-up three-up-tight">
             {[
               { title: 'Golf', body: 'A Jack Nicklaus Signature course played without tee times. Performance-driven practice, Top 100 instruction, brand-agnostic club fitting.' },
               { title: 'Racquets', body: 'Four Har-Tru tennis courts, two pickleball courts, and two padel courts. Weekly clinics, mixers, and Glow Padel evenings.' },
@@ -182,7 +182,7 @@ function MembershipPage({ onNav }) {
       {/* INQUIRY FORM */}
       <section className="section surface-navy" id="inquiry">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 96, alignItems: 'flex-start' }}>
+          <div className="inquiry-page-grid">
             <Reveal>
               <div className="eyebrow-rule" style={{ marginBottom: 24, color: 'rgba(245,241,232,0.78)' }}>
                 Membership Inquiry
@@ -232,10 +232,7 @@ function MembershipPage({ onNav }) {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{
-                  display: 'grid', gap: 32,
-                  gridTemplateColumns: '1fr 1fr',
-                }}>
+                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="inquiry-form">
                   <FormField label="First Name" value={data.firstName} onChange={set('firstName')} required />
                   <FormField label="Last Name" value={data.lastName} onChange={set('lastName')} required />
                   <FormField label="Email" type="email" value={data.email} onChange={set('email')} required />

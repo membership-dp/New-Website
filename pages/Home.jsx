@@ -35,7 +35,7 @@ function HomePage({ onNav }) {
             </div>
           </div>
         </div>
-        <div style={{
+        <div className="scroll-indicator" style={{
           position: 'absolute', bottom: 24, right: 'var(--gutter)',
           font: '500 10px/1 var(--font-body)',
           letterSpacing: '0.36em', textTransform: 'uppercase',
@@ -72,10 +72,7 @@ function HomePage({ onNav }) {
             </h2>
           </Reveal>
 
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 40, marginTop: 80,
-          }}>
+          <div className="three-up" style={{ marginTop: 80 }}>
             {[
               { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: '7,300 yards of unhurried play. No tee times. A 12,000 sq ft putting green and a two-acre short game complex.', target: 'golf' },
               { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Eight courts woven through landscaped walkways — a racquet culture that lives from first serve to glow-padel sunset.', target: 'racquets' },

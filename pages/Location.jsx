@@ -25,7 +25,7 @@ function LocationPage({ onNav }) {
       {/* INTRO LEDE */}
       <section className="section surface-bone">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 96, alignItems: 'flex-start' }}>
+          <div className="lede-page-grid">
             <Reveal>
               <div className="eyebrow-rule">A Rare Position</div>
             </Reveal>
@@ -54,22 +54,14 @@ function LocationPage({ onNav }) {
       <Reveal as="section" className="section-tight surface-bone-95">
         <div className="container">
           <div className="eyebrow-rule" style={{ marginBottom: 40 }}>From the Clubhouse</div>
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-            borderTop: '1px solid var(--color-mist)',
-            borderBottom: '1px solid var(--color-mist)',
-          }}>
+          <div className="four-up-strip">
             {[
               { time: '8', unit: 'min', dest: 'Worth Avenue' },
               { time: '10', unit: 'min', dest: 'Palm Beach Island' },
               { time: '12', unit: 'min', dest: 'PBI Airport' },
               { time: '20', unit: 'min', dest: 'Private Aviation' },
-            ].map((d, i, arr) => (
-              <div key={d.dest} style={{
-                padding: '48px 28px',
-                borderRight: i === arr.length - 1 ? 0 : '1px solid var(--color-mist)',
-                display: 'flex', flexDirection: 'column', gap: 12,
-              }}>
+            ].map((d) => (
+              <div key={d.dest} className="four-up-cell">
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
                   <span className="stat-num" style={{ fontSize: 64 }}>{d.time}</span>
                   <span style={{

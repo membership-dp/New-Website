@@ -45,7 +45,7 @@ function GolfPage({ onNav }) {
       {/* INTRO LEDE */}
       <section className="section surface-bone">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 96, alignItems: 'flex-start' }}>
+          <div className="lede-page-grid">
             <Reveal>
               <div className="eyebrow-rule">A Nicklaus Signature</div>
             </Reveal>

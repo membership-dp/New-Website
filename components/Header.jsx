@@ -3,12 +3,25 @@ const { useState: useHeaderState, useEffect: useHeaderEffect } = React;
 
 function Header({ route, onNav, lightOnTop = true }) {
   const [scrolled, setScrolled] = useHeaderState(false);
+  const [menuOpen, setMenuOpen] = useHeaderState(false);
+
   useHeaderEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open.
+  useHeaderEffect(() => {
+    if (menuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
+      window.addEventListener('keydown', onKey);
+      return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
+    }
+  }, [menuOpen]);
 
   const cls = [
     'site-header',
@@ -25,29 +38,67 @@ function Header({ route, onNav, lightOnTop = true }) {
     { id: 'membership', label: 'Membership' },
   ];
 
+  const goTo = (id) => { setMenuOpen(false); onNav(id); };
+
   return (
     <header className={cls}>
-      <a onClick={() => onNav('home')} style={{
+      <a onClick={() => goTo('home')} style={{
         display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
         textDecoration: 'none', color: 'inherit',
       }}>
-        <img src="assets/logo-emblem-color.png" style={{ height: 44, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="" />
-        <img src="assets/wordmark-navy.png" style={{ height: 13, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
+        <img src="assets/logo-emblem-color.png" className="site-header-logo"
+          style={{ height: 44, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="" />
+        <img src="assets/wordmark-navy.png" className="site-header-wordmark"
+          style={{ height: 13, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
       </a>
-      <nav style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 40 }}>
+
+      {/* Desktop nav */}
+      <nav className="site-header-nav-desktop" style={{ marginLeft: 'auto', alignItems: 'center', gap: 40 }}>
         {navItems.map((it) => (
           <a key={it.id}
              className={`nav-link ${route === it.id ? 'is-active' : ''}`}
-             onClick={() => onNav(it.id)}>
+             onClick={() => goTo(it.id)}>
             {it.label}
           </a>
         ))}
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
-           onClick={() => onNav('login')}>
+           onClick={() => goTo('login')}>
           Member Login
         </a>
       </nav>
+
+      {/* Mobile hamburger */}
+      <button
+        className="site-header-toggle"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={menuOpen}
+      >
+        <span className={`hamburger-icon ${menuOpen ? 'is-open' : ''}`}>
+          <span /><span /><span />
+        </span>
+      </button>
+
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="site-header-menu" onClick={() => setMenuOpen(false)}>
+          <div className="site-header-menu-inner" onClick={(e) => e.stopPropagation()}>
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+              {[{ id: 'home', label: 'Home' }, ...navItems].map((it) => (
+                <a key={it.id}
+                   className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
+                   onClick={() => goTo(it.id)}>
+                  {it.label}
+                </a>
+              ))}
+              <a className="mobile-nav-link mobile-nav-login" onClick={() => goTo('login')}>
+                Member Login
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

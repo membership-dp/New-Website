@@ -21,12 +21,7 @@ function Footer({ onNav }) {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1.4fr 1fr 1fr 1.2fr',
-          gap: 64,
-          alignItems: 'flex-start',
-        }}>
+        <div className="site-footer-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <img src="assets/logo-emblem-white.png" style={{ height: 72, width: 'auto', objectFit: 'contain', alignSelf: 'flex-start' }} alt="" />
             <div style={{
@@ -93,15 +88,7 @@ function Footer({ onNav }) {
           </div>
         </div>
 
-        <div style={{
-          marginTop: 80, paddingTop: 28,
-          borderTop: '1px solid rgba(245,241,232,0.16)',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          font: '400 12px/1.4 var(--font-body)',
-          color: 'rgba(245,241,232,0.45)',
-          letterSpacing: '0.04em',
-          flexWrap: 'wrap', gap: 16,
-        }}>
+        <div className="site-footer-bottom">
           <div>© 2026 Dutchman's Pipe Club. All Rights Reserved.</div>
           <div style={{ display: 'flex', gap: 28 }}>
             <a style={{ color: 'inherit', textDecoration: 'none' }}>Privacy</a>
