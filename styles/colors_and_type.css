@@ -1,0 +1,187 @@
+/* ============================================================
+   Dutchman's Pipe Club — Foundations
+   Import on every page that uses brand styles.
+   ============================================================ */
+
+/* ---- Display: Cormorant Garamond (substitute for Artifex Hand CF Heavy) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---------- COLORS ---------- */
+
+  /* Brand */
+  --color-club-navy:       #1B2F44;  /* primary */
+  --color-pennant-yellow:  #E8DA70;  /* accent (use sparingly) */
+  --color-bone:            #F5F1E8;  /* warm paper background */
+  --color-ink:             #0E1A28;  /* deepest text on bone */
+  --color-mist:            #C9D2DA;  /* borders, dividers */
+  --color-white:           #FFFFFF;
+
+  /* Tints (derived) */
+  --color-navy-90:         #2C3F53;
+  --color-navy-70:         #4F6373;
+  --color-navy-40:         #97A4B0;
+  --color-navy-10:         #E5E9ED;
+  --color-yellow-soft:     #F5EDA8;  /* hover wash */
+  --color-bone-95:         #EFEAE0;
+  --color-bone-90:         #E8E1D2;
+
+  /* Semantic — light mode default */
+  --bg:                    var(--color-bone);
+  --bg-elevated:           var(--color-white);
+  --bg-inverse:            var(--color-club-navy);
+  --bg-scrim:              rgba(15, 25, 40, 0.6);
+
+  --fg:                    var(--color-ink);
+  --fg-muted:              var(--color-navy-70);
+  --fg-subtle:             var(--color-navy-40);
+  --fg-inverse:            var(--color-bone);
+  --fg-on-photo:           var(--color-white);
+
+  --accent:                var(--color-pennant-yellow);
+  --border:                var(--color-mist);
+  --border-strong:         var(--color-navy-70);
+
+  /* Status (used rarely; club voice avoids alerts) */
+  --color-success:         #4F7A4D;
+  --color-error:           #8B3A2F;
+
+  /* ---------- TYPE FACES ---------- */
+  --font-display:  'Cormorant Garamond', 'Artifex Hand CF', 'Adobe Caslon Pro', Georgia, serif;
+  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:     'SFMono-Regular', ui-monospace, 'Menlo', 'Consolas', monospace;
+
+  /* ---------- TYPE SCALE (px / line-height / weight / tracking) ---------- */
+  /* Display — Cormorant Garamond, very tight tracking */
+  --type-display-xl:    700 88px/1.05 var(--font-display); /* hero */
+  --type-display-lg:    700 64px/1.08 var(--font-display);
+  --type-display-md:    600 48px/1.12 var(--font-display);
+  --type-display-sm:    600 36px/1.18 var(--font-display);
+
+  /* Editorial body — Inter */
+  --type-lede:          400 22px/1.55 var(--font-body);   /* large intro paragraph */
+  --type-body:          400 17px/1.6  var(--font-body);
+  --type-body-sm:       400 15px/1.55 var(--font-body);
+  --type-caption:       400 13px/1.5  var(--font-body);
+
+  /* UI labels */
+  --type-eyebrow:       500 12px/1.4  var(--font-body);   /* USE ALL-CAPS + 0.18em tracking */
+  --type-button:        500 14px/1    var(--font-body);
+  --type-nav:           500 13px/1    var(--font-body);   /* ALL-CAPS, tracked */
+
+  /* Tracking helpers */
+  --tracking-display:   -0.02em;
+  --tracking-body:       0;
+  --tracking-eyebrow:    0.18em;
+  --tracking-nav:        0.22em;
+
+  /* ---------- SPACING (8pt grid) ---------- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10: 120px;
+  --space-section: 120px;
+
+  /* ---------- RADII ---------- */
+  --radius-button:  2px;
+  --radius-input:   2px;
+  --radius-card:    4px;
+  --radius-pill:    999px;
+
+  /* ---------- SHADOWS (flat, not puffy) ---------- */
+  --shadow-card:     0 1px 2px rgba(15, 25, 40, 0.08), 0 8px 24px -8px rgba(15, 25, 40, 0.12);
+  --shadow-elevated: 0 24px 48px -16px rgba(15, 25, 40, 0.35);
+  --shadow-inset:    inset 0 0 0 1px var(--border);
+
+  /* ---------- MOTION ---------- */
+  --ease-club:       cubic-bezier(0.2, 0.7, 0.2, 1);  /* gentle out */
+  --ease-club-in:    cubic-bezier(0.4, 0, 0.6, 1);
+  --duration-quick:  180ms;
+  --duration-base:   320ms;
+  --duration-slow:   700ms;
+  --duration-page:   900ms;
+
+  /* ---------- LAYOUT ---------- */
+  --max-content:     1280px;
+  --max-prose:       62ch;
+  --gutter:          64px;
+  --gutter-mobile:   24px;
+  --header-height:   80px;
+
+  /* ---------- PROTECTION GRADIENT (for type over photo) ---------- */
+  --photo-scrim: linear-gradient(
+      to bottom,
+      rgba(15, 25, 40, 0)   0%,
+      rgba(15, 25, 40, 0.55) 60%,
+      rgba(15, 25, 40, 0.85) 100%
+  );
+}
+
+/* Dark surface defaults (for navy-bg sections) */
+.surface-navy {
+  --bg:     var(--color-club-navy);
+  --bg-elevated: var(--color-navy-90);
+  --fg:     var(--color-bone);
+  --fg-muted: rgba(245, 241, 232, 0.72);
+  --fg-subtle: rgba(245, 241, 232, 0.5);
+  --border: rgba(245, 241, 232, 0.16);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ============================================================
+   Semantic element bindings — opt-in via .dp-prose or scoped use
+   ============================================================ */
+
+.dp-prose, .dp-text {
+  font: var(--type-body);
+  color: var(--fg);
+  letter-spacing: var(--tracking-body);
+  text-wrap: pretty;
+}
+
+.dp-h1, h1.dp { font: var(--type-display-xl); letter-spacing: var(--tracking-display); color: var(--fg); margin: 0; text-wrap: balance; }
+.dp-h2, h2.dp { font: var(--type-display-lg); letter-spacing: var(--tracking-display); color: var(--fg); margin: 0; text-wrap: balance; }
+.dp-h3, h3.dp { font: var(--type-display-md); letter-spacing: var(--tracking-display); color: var(--fg); margin: 0; text-wrap: balance; }
+.dp-h4, h4.dp { font: var(--type-display-sm); letter-spacing: var(--tracking-display); color: var(--fg); margin: 0; text-wrap: balance; }
+
+.dp-lede   { font: var(--type-lede);    color: var(--fg-muted); max-width: var(--max-prose); }
+.dp-body   { font: var(--type-body);    color: var(--fg); }
+.dp-small  { font: var(--type-body-sm); color: var(--fg-muted); }
+.dp-caption{ font: var(--type-caption); color: var(--fg-subtle); }
+
+.dp-eyebrow {
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--fg-muted);
+}
+.dp-nav {
+  font: var(--type-nav);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-nav);
+  color: var(--fg);
+}
+
+/* Link affordance — underline grows from left on hover */
+.dp-link {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration-base) var(--ease-club);
+  padding-bottom: 2px;
+}
+.dp-link:hover { background-size: 100% 1px; }
+
+/* Reset baseline for these to behave nicely in pages */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body.dp-page { background: var(--bg); color: var(--fg); font: var(--type-body); margin: 0; }

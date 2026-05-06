@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Claude tooling
+.claude/
+
+# Raw photography source (6.2GB — too large for Git, kept locally)
+Dutchman's Pipe Club Photography/
+
+# Original design handoff bundle (regenerable from claude.ai/design)
+Dutchman's Pipe Club Website-handoff.zip
+
+# Backup of original Unsplash placeholders (kept locally for revert only)
+assets/placeholders-original/

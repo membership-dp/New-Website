@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dutchman's Pipe Club</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="assets/logo-emblem-color.png">
+  <link rel="stylesheet" href="styles/colors_and_type.css">
+  <link rel="stylesheet" href="styles/site.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- Shared components -->
+  <script type="text/babel" src="components/Reveal.jsx"></script>
+  <script type="text/babel" src="components/Header.jsx"></script>
+  <script type="text/babel" src="components/Footer.jsx"></script>
+  <script type="text/babel" src="components/Splash.jsx"></script>
+
+  <!-- Pages -->
+  <script type="text/babel" src="pages/Home.jsx"></script>
+  <script type="text/babel" src="pages/Golf.jsx"></script>
+  <script type="text/babel" src="pages/Racquets.jsx"></script>
+  <script type="text/babel" src="pages/Location.jsx"></script>
+  <script type="text/babel" src="pages/Membership.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function App() {
+      // Stage: 'splash' or 'site'. Persist past entry so refresh keeps you in.
+      const [stage, setStage] = useState(() => {
+        try { return sessionStorage.getItem('dp-stage') || 'splash'; }
+        catch (e) { return 'splash'; }
+      });
+      const [route, setRoute] = useState(() => {
+        try { return sessionStorage.getItem('dp-route') || 'home'; }
+        catch (e) { return 'home'; }
+      });
+      const [loginOpen, setLoginOpen] = useState(false);
+
+      useEffect(() => {
+        try { sessionStorage.setItem('dp-stage', stage); } catch (e) {}
+      }, [stage]);
+      useEffect(() => {
+        try { sessionStorage.setItem('dp-route', route); } catch (e) {}
+      }, [route]);
+
+      const enter = () => { setStage('site'); setRoute('home'); window.scrollTo(0, 0); };
+
+      const onNav = (where) => {
+        if (where === 'login') { setLoginOpen(true); return; }
+        setRoute(where);
+        window.scrollTo(0, 0);
+      };
+
+      if (stage === 'splash') return <Splash onEnter={enter} />;
+
+      // Each page sets dark/light header behavior — they all start with full-bleed photo,
+      // so light header on top is correct for every route.
+      const lightOnTop = true;
+
+      return (
+        <div data-screen-label={`${route}`}>
+          <Header route={route} onNav={onNav} lightOnTop={lightOnTop} />
+          <main>
+            {route === 'home' && <HomePage onNav={onNav} />}
+            {route === 'golf' && <GolfPage onNav={onNav} />}
+            {route === 'racquets' && <RacquetsPage onNav={onNav} />}
+            {route === 'location' && <LocationPage onNav={onNav} />}
+            {route === 'membership' && <MembershipPage onNav={onNav} />}
+          </main>
+          <Footer onNav={onNav} />
+
+          {loginOpen && <LoginPanel onClose={() => setLoginOpen(false)} />}
+        </div>
+      );
+    }
+
+    function LoginPanel({ onClose }) {
+      useEffect(() => {
+        const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+      }, []);
+
+      return (
+        <div onClick={onClose} style={{
+          position: 'fixed', inset: 0, zIndex: 100,
+          background: 'rgba(15,25,40,0.6)',
+          display: 'flex', justifyContent: 'flex-end',
+          animation: 'fadeIn 320ms var(--ease-club)',
+        }}>
+          <div onClick={(e) => e.stopPropagation()} style={{
+            width: 'min(480px, 100%)',
+            background: 'var(--color-bone)',
+            padding: '56px 48px',
+            display: 'flex', flexDirection: 'column', gap: 24,
+            animation: 'slideIn 420ms var(--ease-club)',
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <img src="assets/logo-emblem-color.png" style={{ height: 48 }} alt="" />
+              <button onClick={onClose} style={{
+                background: 'transparent', border: 0, cursor: 'pointer',
+                font: '400 24px/1 var(--font-body)', color: 'var(--color-club-navy)',
+              }}>×</button>
+            </div>
+            <div className="eyebrow-rule" style={{ marginTop: 16 }}>Member Portal</div>
+            <h2 className="display-sm" style={{ color: 'var(--color-club-navy)' }}>
+              Welcome back.
+            </h2>
+            <form onSubmit={(e) => e.preventDefault()} style={{ display: 'grid', gap: 28, marginTop: 16 }}>
+              <label>
+                <span className="field-label">Member Number or Email</span>
+                <input className="field-input" />
+              </label>
+              <label>
+                <span className="field-label">Password</span>
+                <input type="password" className="field-input" />
+              </label>
+              <button className="btn btn-primary" type="submit" style={{ marginTop: 12, justifyContent: 'center' }}>
+                Sign In
+              </button>
+            </form>
+            <a style={{
+              font: '400 14px/1.4 var(--font-body)',
+              color: 'var(--color-navy-70)',
+              textDecoration: 'underline',
+              alignSelf: 'flex-start', cursor: 'pointer',
+            }}>
+              Forgot password?
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+  </script>
+
+  <style>
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  </style>
+</body>
+</html>
