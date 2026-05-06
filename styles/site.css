@@ -60,27 +60,47 @@ img { display: block; max-width: 100%; }
   text-decoration: none;
   cursor: pointer;
   border-radius: var(--radius-button);
-  transition: all 280ms var(--ease-club);
+  transition: background 280ms var(--ease-club),
+              color 280ms var(--ease-club),
+              border-color 280ms var(--ease-club),
+              transform 280ms var(--ease-club),
+              box-shadow 280ms var(--ease-club);
   border: 1px solid transparent;
   padding: 16px 32px;
+  will-change: transform;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); transition-duration: 120ms; }
+.btn img { transition: transform 320ms var(--ease-club); }
+.btn:hover img { transform: translateX(4px); }
 .btn-primary {
   background: var(--color-club-navy);
   color: var(--color-bone);
 }
-.btn-primary:hover { background: var(--color-ink); }
+.btn-primary:hover {
+  background: var(--color-ink);
+  box-shadow: 0 12px 28px -12px rgba(15, 25, 40, 0.55);
+}
 .btn-ghost {
   background: transparent;
   color: var(--color-club-navy);
   border-color: var(--color-club-navy);
 }
-.btn-ghost:hover { border-color: var(--color-pennant-yellow); color: var(--color-club-navy); }
+.btn-ghost:hover {
+  border-color: var(--color-pennant-yellow);
+  color: var(--color-club-navy);
+  box-shadow: 0 8px 24px -12px rgba(15, 25, 40, 0.35);
+}
 .btn-ghost-light {
   background: transparent;
   color: var(--color-bone);
   border-color: rgba(245,241,232,0.5);
 }
-.btn-ghost-light:hover { border-color: var(--color-pennant-yellow); color: var(--color-pennant-yellow); }
+.btn-ghost-light:hover {
+  border-color: var(--color-pennant-yellow);
+  color: var(--color-pennant-yellow);
+  box-shadow: 0 8px 24px -12px rgba(232, 218, 112, 0.35);
+}
 
 /* --- Arrow link --- */
 .arrow-link {
@@ -94,10 +114,14 @@ img { display: block; max-width: 100%; }
   color: inherit;
   padding-bottom: 8px;
   border-bottom: 1px solid currentColor;
-  transition: gap 280ms var(--ease-club);
+  transition: gap 280ms var(--ease-club), color 280ms var(--ease-club);
+}
+.arrow-link img {
+  height: 9px;
+  transition: transform 320ms var(--ease-club);
 }
 .arrow-link:hover { gap: 18px; }
-.arrow-link img { height: 9px; }
+.arrow-link:hover img { transform: translateX(4px); }
 
 /* --- Section spacing --- */
 .section { padding: var(--space-section) var(--gutter); }
@@ -138,14 +162,25 @@ img { display: block; max-width: 100%; }
 .photo-frame {
   overflow: hidden;
   border-radius: var(--radius-card);
+  position: relative;
 }
 .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1200ms var(--ease-club);
+  transition: transform 1200ms var(--ease-club), filter 600ms var(--ease-club);
 }
-.photo-frame:hover img { transform: scale(1.04); }
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,25,40,0) 60%, rgba(15,25,40,0.18));
+  opacity: 0;
+  transition: opacity 480ms var(--ease-club);
+  pointer-events: none;
+}
+.photo-frame:hover img { transform: scale(1.04); filter: saturate(1.05); }
+.photo-frame:hover::after { opacity: 1; }
 
 /* --- Photo scrim --- */
 .photo-scrim {
@@ -314,6 +349,10 @@ img { display: block; max-width: 100%; }
   color: var(--color-navy-70);
   margin-bottom: 10px;
 }
+/* Wrap input + animated underline. The visible bottom-border is on .field-input;
+   .field-input::after isn't possible on inputs, so we use a label-level pseudo
+   accent via a wrapping label.field-wrap when present, and otherwise rely on
+   the input's own border. */
 .field-input {
   width: 100%;
   border: 0;
@@ -325,9 +364,29 @@ img { display: block; max-width: 100%; }
   outline: none;
   border-radius: 0;
   transition: border-color 200ms var(--ease-club);
+  position: relative;
 }
 .field-input:focus { border-bottom-color: var(--color-club-navy); }
-.field-input::placeholder { color: var(--color-navy-40); }
+.field-input::placeholder {
+  color: var(--color-navy-40);
+  transition: opacity 240ms var(--ease-club), transform 240ms var(--ease-club);
+}
+.field-input:focus::placeholder { opacity: 0.4; transform: translateX(2px); }
+
+/* A label wrapping a field can host an animated underline that grows from center
+   on focus-within. Pages keep using <label><span class="field-label" /><input/></label>
+   so applying focus-within styles works without markup changes. */
+label:has(.field-input) { position: relative; display: block; }
+label:has(.field-input)::after {
+  content: "";
+  position: absolute;
+  left: 50%; right: 50%; bottom: 0;
+  height: 1px;
+  background: var(--color-club-navy);
+  transition: left 320ms var(--ease-club), right 320ms var(--ease-club);
+  pointer-events: none;
+}
+label:has(.field-input:focus)::after { left: 0; right: 0; }
 
 /* ============================================================
    Header — desktop nav vs. mobile hamburger
@@ -509,6 +568,138 @@ img { display: block; max-width: 100%; }
   .four-up-cell:nth-child(2n) { border-right: 0; }
   .four-up-cell:nth-child(-n+2) { border-bottom: 1px solid var(--color-mist); }
   .four-up-cell { padding: 32px 20px; }
+}
+
+/* ============================================================
+   Splash gate — staggered intro + exit
+   ============================================================ */
+.splash-root { transition: opacity 600ms var(--ease-club); }
+.splash-root.is-leaving { opacity: 0; pointer-events: none; }
+
+.splash-intro > * {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: splashRise 900ms var(--ease-club) forwards;
+}
+.splash-intro > :nth-child(1) { animation-delay:  120ms; }
+.splash-intro > :nth-child(2) { animation-delay:  320ms; }
+.splash-intro > :nth-child(3) { animation-delay:  500ms; }
+.splash-intro > :nth-child(4) { animation-delay:  720ms; }
+.splash-intro > :nth-child(5) { animation-delay:  920ms; }
+@keyframes splashRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Hero copy stagger — applies to hero text columns
+   ============================================================ */
+.hero-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroRise 900ms var(--ease-club) forwards;
+}
+.hero-stagger > :nth-child(1) { animation-delay: 100ms; }
+.hero-stagger > :nth-child(2) { animation-delay: 240ms; }
+.hero-stagger > :nth-child(3) { animation-delay: 400ms; }
+.hero-stagger > :nth-child(4) { animation-delay: 560ms; }
+.hero-stagger > :nth-child(5) { animation-delay: 720ms; }
+@keyframes heroRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Scroll indicator — gentle vertical breath
+   ============================================================ */
+.scroll-indicator {
+  animation: scrollBreath 2400ms var(--ease-club) infinite;
+}
+@keyframes scrollBreath {
+  0%, 100% { transform: rotate(180deg) translateY(0); opacity: 0.55; }
+  50%      { transform: rotate(180deg) translateY(6px); opacity: 0.9; }
+}
+
+/* ============================================================
+   Footer links — underline grow from left on hover
+   ============================================================ */
+.footer-link {
+  position: relative;
+  display: inline-block;
+  transition: color 240ms var(--ease-club);
+}
+.footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -4px;
+  height: 1px;
+  background: var(--color-pennant-yellow);
+  transition: right 320ms var(--ease-club);
+}
+.footer-link:hover { color: var(--color-bone) !important; }
+.footer-link:hover::after { right: 0; }
+
+/* ============================================================
+   Hamburger / Login close button — refined rotation feel
+   ============================================================ */
+.icon-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: transform 280ms var(--ease-club), color 240ms var(--ease-club);
+}
+.icon-btn:hover { transform: rotate(90deg); color: var(--color-pennant-yellow); }
+
+/* ============================================================
+   Mobile menu — stagger nav links in
+   ============================================================ */
+.site-header-menu-inner nav > * {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: mobileNavIn 420ms var(--ease-club) forwards;
+}
+.site-header-menu-inner nav > :nth-child(1) { animation-delay: 120ms; }
+.site-header-menu-inner nav > :nth-child(2) { animation-delay: 180ms; }
+.site-header-menu-inner nav > :nth-child(3) { animation-delay: 240ms; }
+.site-header-menu-inner nav > :nth-child(4) { animation-delay: 300ms; }
+.site-header-menu-inner nav > :nth-child(5) { animation-delay: 360ms; }
+.site-header-menu-inner nav > :nth-child(6) { animation-delay: 420ms; }
+.site-header-menu-inner nav > :nth-child(7) { animation-delay: 480ms; }
+@keyframes mobileNavIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================================
+   Stat numerals — subtle slide+fade on reveal
+   ============================================================ */
+.reveal .stat-num { transition: transform 900ms var(--ease-club) 80ms; transform: translateY(10px); }
+.reveal.is-visible .stat-num { transform: translateY(0); }
+
+/* ============================================================
+   Page hero — slow drift on backgrounds (works with cover sizing)
+   ============================================================ */
+.page-hero {
+  background-repeat: no-repeat;
+  animation: heroDrift 28s ease-in-out infinite alternate;
+}
+@keyframes heroDrift {
+  from { background-position: 50% 52%; }
+  to   { background-position: 50% 46%; }
+}
+
+/* ============================================================
+   Reduced motion — opt out of anything beyond a quick fade
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .splash-intro > *,
+  .hero-stagger > *,
+  .site-header-menu-inner nav > * { opacity: 1 !important; transform: none !important; }
+  .page-hero { animation: none !important; background-size: cover !important; }
+  .scroll-indicator { animation: none !important; }
 }
 
 /* ============================================================

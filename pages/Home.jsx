@@ -7,7 +7,7 @@ function HomePage({ onNav }) {
         <div className="photo-scrim" />
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>
-            <div style={{ maxWidth: 920 }}>
+            <div className="hero-stagger" style={{ maxWidth: 920 }}>
               <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
                 West Palm Beach &nbsp;·&nbsp; Est. 2024
               </div>
@@ -24,7 +24,7 @@ function HomePage({ onNav }) {
                 of belonging on the edge of Palm Beach.
               </p>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
+            <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
               <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
                 Request Membership
               </a>

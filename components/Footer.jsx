@@ -54,10 +54,11 @@ function Footer({ onNav }) {
                 {col.title}
               </div>
               {col.links.map((l) => (
-                <a key={l.id} onClick={() => onNav(l.id)} style={{
+                <a key={l.id} className="footer-link" onClick={() => onNav(l.id)} style={{
                   font: '400 15px/1.4 var(--font-body)',
                   color: 'rgba(245,241,232,0.78)',
                   textDecoration: 'none', cursor: 'pointer',
+                  alignSelf: 'flex-start',
                 }}>
                   {l.label}
                 </a>
@@ -79,10 +80,10 @@ function Footer({ onNav }) {
               1900 Banyan Club Road<br/>
               West Palm Beach, FL 33401
             </div>
-            <a href="tel:+17726333815" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none' }}>
+            <a href="tel:+17726333815" className="footer-link" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none', alignSelf: 'flex-start' }}>
               +1 772 633 3815
             </a>
-            <a href="mailto:Membership@dutchmanspipeclub.com" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none' }}>
+            <a href="mailto:Membership@dutchmanspipeclub.com" className="footer-link" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none', alignSelf: 'flex-start' }}>
               Membership@dutchmanspipeclub.com
             </a>
           </div>
@@ -91,9 +92,9 @@ function Footer({ onNav }) {
         <div className="site-footer-bottom">
           <div>© 2026 Dutchman's Pipe Club. All Rights Reserved.</div>
           <div style={{ display: 'flex', gap: 28 }}>
-            <a style={{ color: 'inherit', textDecoration: 'none' }}>Privacy</a>
-            <a style={{ color: 'inherit', textDecoration: 'none' }}>Terms</a>
-            <a style={{ color: 'inherit', textDecoration: 'none' }}>Press</a>
+            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Privacy</a>
+            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Terms</a>
+            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Press</a>
           </div>
         </div>
       </div>

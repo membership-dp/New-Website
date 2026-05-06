@@ -1,7 +1,20 @@
-// Splash.jsx — invitation gate
+// Splash.jsx — invitation gate with staggered intro + smooth exit
+const { useState: useSplashState } = React;
+
 function Splash({ onEnter }) {
+  const [leaving, setLeaving] = useSplashState(false);
+
+  const handleEnter = () => {
+    if (leaving) return;
+    const prefersReduced = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { onEnter(); return; }
+    setLeaving(true);
+    setTimeout(onEnter, 520);
+  };
+
   return (
-    <section style={{
+    <section className={`splash-root ${leaving ? 'is-leaving' : ''}`} style={{
       position: 'relative',
       minHeight: '100vh',
       backgroundImage: `url('assets/hero-sunset.jpg')`,
@@ -16,7 +29,7 @@ function Splash({ onEnter }) {
         position: 'absolute', inset: 0,
         background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.78))',
       }} />
-      <div style={{
+      <div className="splash-intro" style={{
         position: 'relative',
         width: '100%',
         maxWidth: 720,
@@ -45,11 +58,10 @@ function Splash({ onEnter }) {
         }}>
           A private golf and racquets sanctuary in West Palm Beach.
         </div>
-        <div style={{ marginTop: 56 }}>
-          <button onClick={onEnter} className="btn btn-ghost-light" style={{
+        <div style={{ marginTop: 56, display: 'flex', justifyContent: 'center' }}>
+          <button onClick={handleEnter} className="btn btn-ghost-light" style={{
             padding: '14px 26px',
             gap: 10,
-            justifyContent: 'center',
           }}>
             Enter
             <img src="assets/arrow-link.png" style={{

@@ -47,7 +47,7 @@ function MembershipPage({ onNav }) {
       {/* HERO */}
       <section className="page-hero page-hero-short" style={{ backgroundImage: `url('assets/hero-clubhouse.jpg')` }}>
         <div className="photo-scrim" />
-        <div className="page-hero-inner">
+        <div className="page-hero-inner hero-stagger">
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
             Membership
           </div>
