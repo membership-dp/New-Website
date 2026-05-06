@@ -36,17 +36,18 @@ function Splash({ onEnter }) {
         }}>
           A private golf and racquets sanctuary in West Palm Beach.
         </div>
-        <div style={{ marginTop: 64, display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <button onClick={onEnter} className="btn btn-ghost-light" style={{
-            margin: 0,
-            padding: '20px 56px',
-            letterSpacing: '0.32em',
-            minWidth: 220,
-            justifyContent: 'center',
-          }}>
-            Enter
-          </button>
-        </div>
+        <button onClick={onEnter} className="btn btn-ghost-light" style={{
+          marginTop: 64,
+          padding: '18px 44px',
+          gap: 16,
+        }}>
+          Enter
+          <img src="assets/arrow-link.png" style={{
+            height: 12,
+            filter: 'brightness(0) invert(1)',
+            transition: 'transform 280ms var(--ease-club)',
+          }} alt="" />
+        </button>
       </div>
     </section>
   );
