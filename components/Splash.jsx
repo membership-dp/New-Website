@@ -29,7 +29,7 @@ function Splash({ onEnter }) {
         position: 'absolute', inset: 0,
         background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.78))',
       }} />
-      <div className="splash-intro" style={{
+      <div className="splash-intro splash-stage" style={{
         position: 'relative',
         width: '100%',
         maxWidth: 720,
@@ -60,14 +60,14 @@ function Splash({ onEnter }) {
         </div>
         <div style={{ marginTop: 56, display: 'flex', justifyContent: 'center' }}>
           <button onClick={handleEnter} className="btn btn-ghost-light" style={{
-            padding: '14px 26px',
-            gap: 10,
+            padding: '14px 28px',
+            gap: 14,
+            justifyContent: 'center',
           }}>
             Enter
-            <img src="assets/arrow-link.png" style={{
-              height: 10,
-              filter: 'brightness(0) invert(1)',
-            }} alt="" />
+            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0 5h16M12 1l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" strokeLinejoin="miter" fill="none"/>
+            </svg>
           </button>
         </div>
       </div>
