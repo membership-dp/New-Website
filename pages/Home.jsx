@@ -71,6 +71,7 @@ function HomePage({ onNav }) {
               }}>
                 Play. Train. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>Belong.</em>
               </div>
+              <span className="brush-stroke" />
             </Reveal>
             <Reveal delay={120}>
               <p style={{
@@ -221,6 +222,7 @@ function HomePage({ onNav }) {
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             A private world, by invitation.
           </h2>
+          <span className="brush-stroke center" />
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.8)',

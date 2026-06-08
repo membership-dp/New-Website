@@ -62,6 +62,7 @@ function MembershipPage({ onNav }) {
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
             By invitation. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>By design.</em>
           </h1>
+          <span className="brush-stroke" style={{ opacity: 0.9, transform: 'none' }} />
           <p style={{
             font: '400 22px/1.5 var(--font-body)',
             color: 'rgba(245,241,232,0.84)',

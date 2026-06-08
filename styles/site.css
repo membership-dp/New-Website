@@ -271,6 +271,37 @@ img { display: block; max-width: 100%; }
 .callout.is-in .callout-img-sm { opacity: 1; transform: translateY(0); }
 
 /* ============================================================
+   Brush-stroke heading accent — painterly underline drop under
+   major section headings (Hideaway-style). Inherits text color
+   via currentColor so each placement can set its own tint.
+   ============================================================ */
+.brush-stroke {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: 18px;
+  margin-top: 22px;
+  color: var(--color-pennant-yellow);
+  -webkit-mask-image: url('/assets/brush-stroke.svg');
+          mask-image: url('/assets/brush-stroke.svg');
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  background-color: currentColor;
+  /* gently fades + slides in when the InView parent flips to is-in */
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 900ms var(--ease-club), transform 900ms var(--ease-club);
+}
+.is-in .brush-stroke,
+.reveal.is-visible .brush-stroke { opacity: 0.9; transform: translateX(0); }
+.brush-stroke.center { margin-left: auto; margin-right: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .brush-stroke { opacity: 0.9; transform: none; transition: none; }
+}
+
+/* ============================================================
    Brush-edge frame — painterly torn-paper mask applied to "hero"
    imagery (full-bleed parallax backgrounds + large LayeredCallout
    photos). Mask scales to any aspect ratio.
