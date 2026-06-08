@@ -123,6 +123,18 @@ img { display: block; max-width: 100%; }
 .arrow-link:hover { gap: 18px; }
 .arrow-link:hover img { transform: translateX(4px); }
 
+/* Landing arrow — a gentle, living horizontal nudge (per meeting: animate
+   directional arrows on the landing page). Pauses on hover; off for reduced-motion. */
+.arrow-link-bob img { animation: arrowBob 2.4s var(--ease-club) infinite; }
+.arrow-link-bob:hover img { animation: none; }
+@keyframes arrowBob {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrow-link-bob img { animation: none; }
+}
+
 /* --- Section spacing --- */
 .section { padding: var(--space-section) var(--gutter); }
 .section-tight { padding: 80px var(--gutter); }
@@ -181,6 +193,121 @@ img { display: block; max-width: 100%; }
 }
 .photo-frame:hover img { transform: scale(1.04); filter: saturate(1.05); }
 .photo-frame:hover::after { opacity: 1; }
+
+/* ============================================================
+   Brand motif — recolorable SVG silhouette (grass / pipe-plant).
+   Used as the soft "artsy" graphic layered BEHIND photo callouts,
+   the way the reference site uses its brush stroke.
+   Set --motif to the svg url; color drives the tint.
+   ============================================================ */
+.motif {
+  background-color: currentColor;
+  -webkit-mask-image: var(--motif);
+          mask-image: var(--motif);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center bottom;
+          mask-position: center bottom;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+}
+
+/* ============================================================
+   Layered photo callout — the signature module.
+   Big photo + a smaller photo offset over its corner in a white
+   matte, with the brand motif behind. On scroll-in (.is-in) the
+   small photo slides up, an accent rule draws, and the motif rises.
+   .flipped mirrors it so consecutive sections never repeat.
+   ============================================================ */
+.callout { position: relative; padding: 32px 0; }
+.callout-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 88px;
+  align-items: center;
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+.callout.flipped .callout-inner { grid-template-columns: 0.92fr 1.08fr; }
+.callout-media { order: 1; }
+.callout-text  { order: 2; }
+.callout.flipped .callout-media { order: 2; }
+.callout.flipped .callout-text  { order: 1; }
+
+/* Media: large image + offset small matted image */
+.callout-media { position: relative; }
+.callout-img-lg {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 4 / 3;
+}
+.callout-img-lg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1400ms var(--ease-club);
+}
+.callout:hover .callout-img-lg img { transform: scale(1.04); }
+
+.callout-img-sm {
+  position: absolute;
+  z-index: 3;
+  right: -40px; bottom: -52px;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  padding: 12px;                 /* white matte border */
+  background: var(--color-white);
+  box-shadow: var(--shadow-elevated);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(52px);
+  transition: transform 1100ms var(--ease-club) 150ms, opacity 900ms var(--ease-club) 150ms;
+}
+.callout.flipped .callout-img-sm { right: auto; left: -40px; }
+.callout-img-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.callout.is-in .callout-img-sm { opacity: 1; transform: translateY(0); }
+
+/* Brand motif behind the media */
+.callout-bg {
+  position: absolute;
+  z-index: 0;
+  left: -6%; right: -6%; bottom: -10%;
+  height: 78%;
+  color: rgba(27, 47, 68, 0.12);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(46px);
+  transition: opacity 1500ms var(--ease-club), transform 1600ms var(--ease-club);
+}
+.surface-navy .callout-bg { color: rgba(245, 241, 232, 0.12); }
+.callout.is-in .callout-bg { opacity: 1; transform: translateY(0); }
+
+/* Text column: an accent rule that draws on scroll-in */
+.callout-rule {
+  width: 1px;
+  height: 0;
+  background: var(--color-pennant-yellow);
+  margin-bottom: 28px;
+  transition: height 1300ms var(--ease-club) 250ms;
+}
+.callout.is-in .callout-rule { height: 64px; }
+
+@media (max-width: 960px) {
+  .callout-inner,
+  .callout.flipped .callout-inner { grid-template-columns: 1fr; gap: 24px; }
+  .callout-media, .callout-text,
+  .callout.flipped .callout-media, .callout.flipped .callout-text { order: 0; }
+  .callout-img-sm { width: 56%; right: 12px; bottom: -36px; }
+  .callout.flipped .callout-img-sm { left: auto; right: 12px; }
+  .callout-text { padding-top: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .callout-img-sm, .callout-bg { opacity: 1; transform: none; transition: none; }
+  .callout-rule { height: 64px; transition: none; }
+}
 
 /* --- Photo scrim --- */
 .photo-scrim {
@@ -526,6 +653,99 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 .four-up-cell:last-child { border-right: 0; }
 
 /* ============================================================
+   Three-panel slideshow (Location)
+   ============================================================ */
+.threepanel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.tp-cell {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.tp-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  animation: tpFade 800ms var(--ease-club);
+}
+@keyframes tpFade { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
+.tp-caption {
+  position: absolute;
+  left: 16px; bottom: 14px;
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-bone);
+  text-shadow: 0 1px 8px rgba(15,25,40,0.6);
+}
+.threepanel-nav {
+  display: flex; gap: 12px; justify-content: flex-end;
+  margin-top: 20px;
+}
+.threepanel-nav button {
+  width: 46px; height: 46px;
+  border: 1px solid var(--color-mist);
+  background: transparent;
+  color: var(--color-club-navy);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 240ms var(--ease-club);
+}
+.threepanel-nav button:hover { border-color: var(--color-club-navy); background: var(--color-club-navy); color: var(--color-bone); }
+
+/* ============================================================
+   Instagram strip (homepage widget placeholder)
+   ============================================================ */
+.ig-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+}
+.ig-handle {
+  font: 500 13px/1 var(--font-body);
+  letter-spacing: 0.12em;
+  color: var(--color-club-navy);
+  text-decoration: none;
+}
+.ig-handle:hover { color: var(--color-navy-70); }
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.ig-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 2px;
+  display: block;
+}
+.ig-tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 800ms var(--ease-club), opacity 240ms var(--ease-club);
+}
+.ig-tile:hover img { transform: scale(1.06); opacity: 0.85; }
+
+/* ============================================================
+   Splash — staged fade-in (logo fades first, per meeting)
+   ============================================================ */
+.splash-stage > * {
+  opacity: 0;
+  animation: splashRise 900ms var(--ease-club) forwards;
+}
+.splash-stage > *:nth-child(1) { animation-delay: 120ms; animation-duration: 1100ms; }
+.splash-stage > *:nth-child(2) { animation-delay: 360ms; }
+.splash-stage > *:nth-child(3) { animation-delay: 480ms; }
+.splash-stage > *:nth-child(4) { animation-delay: 600ms; }
+.splash-stage > *:nth-child(5) { animation-delay: 760ms; }
+@keyframes splashRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .splash-stage > * { opacity: 1; animation: none; }
+}
+
+/* ============================================================
    Responsive — tablet
    ============================================================ */
 @media (max-width: 960px) {
@@ -738,4 +958,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 
   /* Scroll indicator is desktop ornamentation — hide on phones */
   .scroll-indicator { display: none; }
+
+  /* Instagram grid: 6 → 3 across on phones */
+  .ig-grid { grid-template-columns: repeat(3, 1fr); }
 }

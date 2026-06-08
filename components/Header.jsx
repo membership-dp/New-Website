@@ -35,6 +35,7 @@ function Header({ route, onNav, lightOnTop = true }) {
     { id: 'golf', label: 'Golf' },
     { id: 'racquets', label: 'Racquets' },
     { id: 'location', label: 'Location' },
+    { id: 'news', label: 'In the News' },
     { id: 'membership', label: 'Membership' },
   ];
 

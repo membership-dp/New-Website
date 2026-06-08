@@ -41,28 +41,16 @@ function RacquetsPage({ onNav }) {
         </div>
       </Reveal>
 
-      {/* THE COURTS — editorial */}
+      {/* THE COURTS — layered callout */}
       <section className="section surface-bone">
-        <div className="container">
-          <div className="editorial">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/padel-action.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24 }}>The Courts</div>
-              <h2 className="display-md" style={{ color: 'var(--color-club-navy)' }}>
-                Open. Intentional. Alive with play.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                Four Har-Tru tennis courts, two pickleball courts, and two padel courts
-                set the stage for a racquet program that feels active from first serve
-                to sunset — competitive when it needs to be, relaxed when it should be.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          eyebrow="The Courts"
+          title="Open. Intentional. Alive with play."
+          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset — competitive when it needs to be, relaxed when it should be."
+          lgImg="assets/padel-action.jpg"
+          smImg="assets/tennis-serve.jpg"
+          motif="grass"
+        />
       </section>
 
       {/* PADEL — full bleed */}
@@ -93,60 +81,32 @@ function RacquetsPage({ onNav }) {
         </Reveal>
       </section>
 
-      {/* PROGRAMMING — navy */}
+      {/* PROGRAMMING — navy, flipped */}
       <section className="section surface-navy">
-        <div className="container">
-          <div className="editorial editorial-reverse">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/tennis-serve.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24, color: 'rgba(245,241,232,0.78)' }}>
-                Programming & Member Experience
-              </div>
-              <h2 className="display-md" style={{ color: 'var(--color-bone)' }}>
-                A racquet calendar built for every level, year-round.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'rgba(245,241,232,0.78)' }}>
-                Whether joining a weekly clinic, scheduling a private lesson with our
-                certified professionals, or stepping onto the court for Glow Padel after
-                sunset, members transition effortlessly between skill development and
-                social competition.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          flipped dark
+          eyebrow="Programming & Member Experience"
+          title="A racquet calendar built for every level, year-round."
+          body="Whether joining a weekly clinic, scheduling a private lesson with our certified professionals, or stepping onto the court for Glow Padel after sunset, members transition effortlessly between skill development and social competition."
+          lgImg="assets/tennis-serve.jpg"
+          smImg="assets/padel-skyline.jpg"
+          motif="grass"
+        />
       </section>
 
-      {/* BEYOND THE BASELINE */}
+      {/* BEYOND THE BASELINE — layered callout */}
       <section className="section surface-white">
-        <div className="container">
-          <div className="editorial">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/tennis-veranda.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Beyond the Baseline</div>
-              <h2 className="display-md" style={{ color: 'var(--color-club-navy)' }}>
-                The veranda extends the experience.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                All eight courts are thoughtfully intertwined by lush, landscaped
-                walkways. Comfortable viewing areas are placed throughout, allowing
-                members to gather courtside with ease.
-              </p>
-              <p className="body-text" style={{ marginTop: 20, color: 'var(--color-navy-70)' }}>
-                Following play, chilled towels are offered as a quiet luxury, and
-                post-match smoothies extend the experience naturally into the pavilion.
-                Time on court transitions into time together.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          eyebrow="Beyond the Baseline"
+          title="The veranda extends the experience."
+          body={[
+            'All eight courts are thoughtfully intertwined by lush, landscaped walkways. Comfortable viewing areas are placed throughout, allowing members to gather courtside with ease.',
+            'Following play, chilled towels are offered as a quiet luxury, and post-match smoothies extend the experience naturally into the pavilion. Time on court transitions into time together.',
+          ]}
+          lgImg="assets/tennis-veranda.jpg"
+          smImg="assets/hero-tennis.jpg"
+          motif="pipe"
+        />
       </section>
 
       {/* CTA */}

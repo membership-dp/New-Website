@@ -7,6 +7,7 @@ function Footer({ onNav }) {
         { label: 'Golf', id: 'golf' },
         { label: 'Racquet Sports', id: 'racquets' },
         { label: 'Location', id: 'location' },
+        { label: 'In the News', id: 'news' },
       ],
     },
     {
@@ -40,6 +41,12 @@ function Footer({ onNav }) {
               An invitation-only private club in West Palm Beach.
               Play. Train. Belong.
             </div>
+            {/* Secondary emblem — Dutchman's pipe-plant motif */}
+            <div className="motif" aria-hidden="true" style={{
+              '--motif': "url('/assets/motif-pipe.svg')",
+              width: 64, height: 78, marginTop: 8,
+              color: 'rgba(232,218,112,0.55)',
+            }} />
           </div>
 
           {cols.map((col) => (

@@ -91,92 +91,47 @@ function GolfPage({ onNav }) {
         </Reveal>
       </section>
 
-      {/* PRACTICE & PERFORMANCE — editorial */}
+      {/* PRACTICE & PERFORMANCE — layered callout */}
       <section className="section surface-white">
-        <div className="container">
-          <div className="editorial">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/hero-putting.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Practice & Performance</div>
-              <h2 className="display-md" style={{ color: 'var(--color-club-navy)' }}>
-                A practice ground designed for meaningful improvement.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                A 315-yard driving range sets the stage for focused preparation,
-                complemented by a two-acre short game area with multiple greens and
-                bunkers, and a 12,000 square-foot undulating putting green.
-              </p>
-              <p className="body-text" style={{ marginTop: 20, color: 'var(--color-navy-70)' }}>
-                Eight types of premium, brand-agnostic range balls allow distance
-                control, trajectory, and feel to be refined with intention — ensuring
-                preparation translates seamlessly to the course.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          eyebrow="Practice & Performance"
+          title="A practice ground designed for meaningful improvement."
+          body={[
+            'A 315-yard driving range sets the stage for focused preparation, complemented by a two-acre short game area with multiple greens and bunkers, and a 12,000 square-foot undulating putting green.',
+            'Eight types of premium, brand-agnostic range balls allow distance control, trajectory, and feel to be refined with intention — ensuring preparation translates seamlessly to the course.',
+          ]}
+          lgImg="assets/hero-putting.jpg"
+          smImg="assets/hero-green.jpg"
+          motif="grass"
+        />
       </section>
 
-      {/* INSTRUCTION — navy editorial */}
+      {/* INSTRUCTION — navy, flipped */}
       <section className="section surface-navy">
-        <div className="container">
-          <div className="editorial editorial-reverse">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/instruction.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24, color: 'rgba(245,241,232,0.78)' }}>
-                Elite Instruction
-              </div>
-              <h2 className="display-md" style={{ color: 'var(--color-bone)' }}>
-                Led by Top 100 instructors. Rooted in fundamentals.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'rgba(245,241,232,0.78)' }}>
-                Instruction at Dutchman's Pipe is led by nationally recognized
-                professionals, including Golf Magazine Top 100 instructors. Lessons are
-                individualized and rooted in fundamentals, biomechanics, and on-course
-                application.
-              </p>
-              <p className="body-text" style={{ marginTop: 20, color: 'rgba(245,241,232,0.78)' }}>
-                The Club has made a meaningful commitment to women's golf programming.
-                Weekly Ladies Clinics create structured development and camaraderie,
-                while signature events such as the Ladies Member-Member tournament
-                elevate the competitive and social experience alike.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          flipped dark
+          eyebrow="Elite Instruction"
+          title="Led by Top 100 instructors. Rooted in fundamentals."
+          body={[
+            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Lessons are individualized and rooted in fundamentals, biomechanics, and on-course application.",
+            "The Club has made a meaningful commitment to women's golf programming. Weekly Ladies Clinics create structured development and camaraderie, while signature events such as the Ladies Member-Member tournament elevate the competitive and social experience alike.",
+          ]}
+          lgImg="assets/instruction.jpg"
+          smImg="assets/hero-green.jpg"
+          motif="grass"
+        />
       </section>
 
-      {/* CLUB FITTING — editorial */}
+      {/* CLUB FITTING — layered callout */}
       <section className="section surface-bone">
-        <div className="container">
-          <div className="editorial">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/clubfitting.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Club Fitting & Customization</div>
-              <h2 className="display-md" style={{ color: 'var(--color-club-navy)' }}>
-                Performance optimization. Not retail fitting.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                Our club fitting philosophy is entirely brand agnostic. Equipment
-                decisions are driven by performance data — not manufacturer loyalty.
-                Through advanced fitting technology and real-condition testing, members
-                refine every detail of their equipment to match their swing
-                characteristics and playing goals.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          eyebrow="Club Fitting & Customization"
+          title="Performance optimization. Not retail fitting."
+          body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data — not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
+          lgImg="assets/clubfitting.jpg"
+          smImg="assets/hero-putting.jpg"
+          motif="pipe"
+        />
       </section>
 
       {/* CTA */}

@@ -16,17 +16,20 @@
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
   <!-- Shared components -->
-  <script type="text/babel" src="components/Reveal.jsx"></script>
-  <script type="text/babel" src="components/Header.jsx"></script>
-  <script type="text/babel" src="components/Footer.jsx"></script>
-  <script type="text/babel" src="components/Splash.jsx"></script>
+  <script type="text/babel" src="components/Reveal.jsx?v=7"></script>
+  <script type="text/babel" src="components/Motion.jsx?v=7"></script>
+  <script type="text/babel" src="components/Blocks.jsx?v=7"></script>
+  <script type="text/babel" src="components/Header.jsx?v=7"></script>
+  <script type="text/babel" src="components/Footer.jsx?v=7"></script>
+  <script type="text/babel" src="components/Splash.jsx?v=7"></script>
 
   <!-- Pages -->
-  <script type="text/babel" src="pages/Home.jsx"></script>
-  <script type="text/babel" src="pages/Golf.jsx"></script>
-  <script type="text/babel" src="pages/Racquets.jsx"></script>
-  <script type="text/babel" src="pages/Location.jsx"></script>
-  <script type="text/babel" src="pages/Membership.jsx"></script>
+  <script type="text/babel" src="pages/Home.jsx?v=7"></script>
+  <script type="text/babel" src="pages/Golf.jsx?v=7"></script>
+  <script type="text/babel" src="pages/Racquets.jsx?v=7"></script>
+  <script type="text/babel" src="pages/Location.jsx?v=7"></script>
+  <script type="text/babel" src="pages/News.jsx?v=7"></script>
+  <script type="text/babel" src="pages/Membership.jsx?v=7"></script>
 
   <script type="text/babel">
     const { useState, useEffect } = React;
@@ -72,6 +75,7 @@
             {route === 'golf' && <GolfPage onNav={onNav} />}
             {route === 'racquets' && <RacquetsPage onNav={onNav} />}
             {route === 'location' && <LocationPage onNav={onNav} />}
+            {route === 'news' && <NewsPage onNav={onNav} />}
             {route === 'membership' && <MembershipPage onNav={onNav} />}
           </main>
           <Footer onNav={onNav} />

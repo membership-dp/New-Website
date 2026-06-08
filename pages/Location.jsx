@@ -50,6 +50,25 @@ function LocationPage({ onNav }) {
         </div>
       </section>
 
+      {/* THREE-PANEL SLIDESHOW — the setting, cycling */}
+      <section className="section-tight surface-bone">
+        <div className="container">
+          <Reveal>
+            <div className="eyebrow-rule" style={{ marginBottom: 32 }}>The Setting</div>
+            <ThreePanel
+              images={[
+                'assets/hero-palms.jpg', 'assets/hero-clubhouse.jpg', 'assets/course-skyline.jpg',
+                'assets/hero-sunset.jpg', 'assets/hero-villa.jpg', 'assets/hero-fairway.jpg',
+              ]}
+              captions={[
+                'Coastal palms', 'The clubhouse', 'Downtown skyline',
+                'Evening light', 'Private residences', 'Signature fairway',
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* MAP / KEY DESTINATIONS — illustrative diagram */}
       <Reveal as="section" className="section-tight surface-bone-95">
         <div className="container">
@@ -85,62 +104,35 @@ function LocationPage({ onNav }) {
         </div>
       </Reveal>
 
-      {/* ISLAND & WORTH AVENUE — editorial */}
+      {/* ISLAND & WORTH AVENUE — layered callout */}
       <section className="section surface-white">
-        <div className="container">
-          <div className="editorial">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/hero-clubhouse.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24 }}>The Island</div>
-              <h2 className="display-md" style={{ color: 'var(--color-club-navy)' }}>
-                Palm Beach Island & Worth Avenue.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                Just minutes from Palm Beach Island, the Club offers effortless
-                proximity to the boutiques of Worth Avenue, oceanfront dining, private
-                beach clubs, and the architectural charm that defines the island.
-              </p>
-              <p className="body-text" style={{ marginTop: 20, color: 'var(--color-navy-70)' }}>
-                Members move easily between a morning round and an afternoon
-                engagement, never feeling rushed or removed.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          eyebrow="The Island"
+          title="Palm Beach Island & Worth Avenue."
+          body={[
+            'Just minutes from Palm Beach Island, the Club offers effortless proximity to the boutiques of Worth Avenue, oceanfront dining, private beach clubs, and the architectural charm that defines the island.',
+            'Members move easily between a morning round and an afternoon engagement, never feeling rushed or removed.',
+          ]}
+          lgImg="assets/hero-clubhouse.jpg"
+          smImg="assets/hero-palms.jpg"
+          motif="grass"
+        />
       </section>
 
-      {/* AIR ACCESS — navy */}
+      {/* AIR ACCESS — navy, flipped */}
       <section className="section surface-navy">
-        <div className="container">
-          <div className="editorial editorial-reverse">
-            <Reveal>
-              <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                <img src="assets/hero-sunset.jpg" alt="" />
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="eyebrow-rule" style={{ marginBottom: 24, color: 'rgba(245,241,232,0.78)' }}>
-                Air Access
-              </div>
-              <h2 className="display-md" style={{ color: 'var(--color-bone)' }}>
-                Runway to clubhouse — measured in minutes.
-              </h2>
-              <p className="body-text" style={{ marginTop: 28, color: 'rgba(245,241,232,0.78)' }}>
-                Palm Beach International (PBI) is located nearby, providing direct,
-                efficient commercial access for seasonal residents and traveling
-                members.
-              </p>
-              <p className="body-text" style={{ marginTop: 20, color: 'rgba(245,241,232,0.78)' }}>
-                For those arriving by private aviation, multiple executive airports are
-                within close reach, ensuring discreet, streamlined arrivals.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+        <LayeredCallout
+          flipped dark
+          eyebrow="Air Access"
+          title="Runway to clubhouse — measured in minutes."
+          body={[
+            'Palm Beach International (PBI) is located nearby, providing direct, efficient commercial access for seasonal residents and traveling members.',
+            'For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.',
+          ]}
+          lgImg="assets/hero-sunset.jpg"
+          smImg="assets/course-skyline.jpg"
+          motif="grass"
+        />
       </section>
 
       {/* RARE BALANCE quote */}
