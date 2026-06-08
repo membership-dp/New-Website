@@ -39,7 +39,7 @@ function Parallax({ speed = 0.08, children, className, style, ...rest }) {
     };
   }, [speed]);
 
-  return <div ref={ref} className={className} style={style} {...rest}>{children}</div>;
+  return <div ref={ref} className={`parallax ${className || ''}`.trim()} style={style} {...rest}>{children}</div>;
 }
 
 /**

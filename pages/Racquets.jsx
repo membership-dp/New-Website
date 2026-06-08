@@ -93,7 +93,7 @@ function RacquetsPage({ onNav }) {
           body="Whether joining a weekly clinic, scheduling a private lesson with our certified professionals, or stepping onto the court for Glow Padel after sunset, members transition effortlessly between skill development and social competition."
           lgImg="assets/tennis-serve.jpg"
           smImg="assets/padel-skyline.jpg"
-          motif="grass"
+          motif="pipe"
         />
       </section>
 
@@ -108,7 +108,7 @@ function RacquetsPage({ onNav }) {
           ]}
           lgImg="assets/tennis-veranda.jpg"
           smImg="assets/hero-tennis.jpg"
-          motif="pipe"
+          motif="grass"
         />
       </section>
 

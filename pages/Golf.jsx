@@ -124,7 +124,7 @@ function GolfPage({ onNav }) {
           ]}
           lgImg="assets/instruction.jpg"
           smImg="assets/hero-green.jpg"
-          motif="grass"
+          motif="pipe"
         />
       </section>
 
@@ -136,7 +136,7 @@ function GolfPage({ onNav }) {
           body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data — not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
           lgImg="assets/clubfitting.jpg"
           smImg="assets/hero-putting.jpg"
-          motif="pipe"
+          motif="grass"
         />
       </section>
 

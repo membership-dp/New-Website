@@ -79,7 +79,7 @@ function MembershipPage({ onNav }) {
           <LayeredCallout
             lgImg="assets/hero-clubhouse.jpg"
             smImg="assets/hero-villa.jpg"
-            motif="grass"
+            motif="pipe"
             eyebrow="An Invitation"
             title="A club shaped around the lives of its members."
             body={[

@@ -270,6 +270,37 @@ img { display: block; max-width: 100%; }
 .callout-img-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .callout.is-in .callout-img-sm { opacity: 1; transform: translateY(0); }
 
+/* ============================================================
+   Brush-edge frame — painterly torn-paper mask applied to "hero"
+   imagery (full-bleed parallax backgrounds + large LayeredCallout
+   photos). Mask scales to any aspect ratio.
+   ============================================================ */
+.brush-edge {
+  -webkit-mask-image: url('/assets/brush-frame.svg');
+          mask-image: url('/assets/brush-frame.svg');
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+}
+
+/* Apply automatically to: the parallax photo background inside every
+   page-hero + full-bleed-quote, and the large photo in every LayeredCallout. */
+.page-hero .parallax > div,
+.full-bleed-quote .parallax > div,
+.callout-img-lg img {
+  -webkit-mask-image: url('/assets/brush-frame.svg');
+          mask-image: url('/assets/brush-frame.svg');
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+}
+
 /* Brand motif behind the TEXT column (not the photo) — default callout
    has text on the right, so the motif sits on the right half; flipped
    callouts have text on the left, so the motif moves to the left half. */

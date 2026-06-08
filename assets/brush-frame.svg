@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+  <!-- Painterly torn-paper frame mask. White = visible, transparent = clipped.
+       Edge amplitude is intentionally subtle so it reads as "hand-torn" not
+       "novelty wavy frame" — and so it survives preserveAspectRatio="none"
+       at any container aspect ratio. -->
+  <path fill="#fff" d="
+    M 14,10
+    C 60,4 100,14 150,8
+    C 210,2 260,16 320,10
+    C 370,4 430,18 490,8
+    C 540,2 600,16 660,8
+    C 710,4 770,18 830,10
+    C 880,4 940,14 988,8
+    L 992,40
+    C 996,90 988,150 994,210
+    C 996,270 990,330 994,390
+    C 996,450 990,520 988,592
+    C 940,596 880,588 830,594
+    C 770,598 710,584 650,592
+    C 600,596 540,584 480,592
+    C 430,596 370,584 310,592
+    C 250,596 190,588 130,594
+    C 80,596 40,586 12,592
+    L 8,560
+    C 4,500 12,440 6,380
+    C 4,320 12,260 6,200
+    C 4,140 10,80 14,10
+    Z"/>
+</svg>

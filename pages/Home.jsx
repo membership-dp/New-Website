@@ -172,7 +172,7 @@ function HomePage({ onNav }) {
           smImg="assets/padel-action.jpg"
           ctaLabel="Explore the Racquet Club"
           onCta={() => onNav('racquets')}
-          motif="grass"
+          motif="pipe"
         />
       </section>
 
@@ -186,7 +186,7 @@ function HomePage({ onNav }) {
           smImg="assets/hero-villa.jpg"
           ctaLabel="The Setting"
           onCta={() => onNav('location')}
-          motif="pipe"
+          motif="grass"
         />
       </section>
 

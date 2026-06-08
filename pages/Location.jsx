@@ -134,7 +134,7 @@ function LocationPage({ onNav }) {
           ]}
           lgImg="assets/hero-sunset.jpg"
           smImg="assets/course-skyline.jpg"
-          motif="grass"
+          motif="pipe"
         />
       </section>
 
