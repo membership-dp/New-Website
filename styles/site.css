@@ -270,17 +270,26 @@ img { display: block; max-width: 100%; }
 .callout-img-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .callout.is-in .callout-img-sm { opacity: 1; transform: translateY(0); }
 
-/* Brand motif behind the media */
+/* Brand motif behind the TEXT column (not the photo) — default callout
+   has text on the right, so the motif sits on the right half; flipped
+   callouts have text on the left, so the motif moves to the left half. */
 .callout-bg {
   position: absolute;
   z-index: 0;
-  left: -6%; right: -6%; bottom: -10%;
-  height: 78%;
-  color: rgba(27, 47, 68, 0.12);
+  left: 48%; right: -6%; top: 5%; bottom: -8%;
+  color: rgba(27, 47, 68, 0.14);
   pointer-events: none;
   opacity: 0;
   transform: translateY(46px);
   transition: opacity 1500ms var(--ease-club), transform 1600ms var(--ease-club);
+}
+.callout.flipped .callout-bg {
+  left: -6%; right: 48%;
+}
+/* Center the motif behind the text column rather than anchoring it bottom */
+.callout-bg.motif {
+  -webkit-mask-position: center;
+          mask-position: center;
 }
 .surface-navy .callout-bg { color: rgba(245, 241, 232, 0.12); }
 .callout.is-in .callout-bg { opacity: 1; transform: translateY(0); }
@@ -758,6 +767,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .tier-col:last-child { border-bottom: 0; }
   .section { padding: 80px var(--gutter); }
   .display-xl { font-size: 56px; }
+  .tagline-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
 
   .site-header-nav-desktop { display: none; }
   .site-header-toggle {

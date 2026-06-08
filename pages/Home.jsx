@@ -52,20 +52,38 @@ function HomePage({ onNav }) {
         </div>
       </section>
 
-      {/* TAGLINE STRIP */}
-      <Reveal as="section" className="section-tight surface-bone" style={{ borderBottom: '1px solid var(--color-mist)' }}>
-        <div className="container" style={{
-          display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
-          gap: 48, flexWrap: 'wrap',
-        }}>
-          <div className="display-md" style={{ color: 'var(--color-club-navy)', maxWidth: 720 }}>
-            Play. Train. Belong.
-          </div>
-          <div className="body-text" style={{ maxWidth: 460, color: 'var(--color-navy-70)' }}>
-            A private retreat where excellence is the standard and leisure is unhurried.
+      {/* TAGLINE — substantial section, not a strip */}
+      <section className="section surface-bone" style={{ borderBottom: '1px solid var(--color-mist)' }}>
+        <div className="container">
+          <Reveal>
+            <div className="eyebrow-rule" style={{ marginBottom: 40 }}>An Invitation</div>
+          </Reveal>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1.5fr 1fr',
+            gap: 80,
+            alignItems: 'end',
+          }} className="tagline-grid">
+            <Reveal>
+              <div className="display-lg" style={{
+                color: 'var(--color-club-navy)',
+                margin: 0,
+              }}>
+                Play. Train. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>Belong.</em>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <p style={{
+                font: '400 19px/1.6 var(--font-body)',
+                color: 'var(--color-navy-70)',
+                margin: 0,
+              }}>
+                A private retreat where excellence is the standard and leisure is unhurried.
+              </p>
+            </Reveal>
           </div>
         </div>
-      </Reveal>
+      </section>
 
       {/* THE PILLARS — 3-up amenity grid */}
       <section className="section surface-white">
