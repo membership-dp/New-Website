@@ -2,10 +2,13 @@
 function LocationPage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO */}
-      <section className="page-hero page-hero-short" style={{ backgroundImage: `url('assets/hero-palms.jpg')` }}>
-        <div className="photo-scrim" />
-        <div className="page-hero-inner hero-stagger">
+      {/* HERO — parallax drift */}
+      <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
+        <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
+          <div style={{ backgroundImage: `url('assets/hero-palms.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+        </Parallax>
+        <div className="photo-scrim" style={{ zIndex: 1 }} />
+        <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
             The Location
           </div>
@@ -135,13 +138,13 @@ function LocationPage({ onNav }) {
         />
       </section>
 
-      {/* RARE BALANCE quote */}
-      <section className="full-bleed-quote" style={{
-        backgroundImage: `url('assets/hero-fairway.jpg')`,
-        minHeight: '70vh',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.78))' }} />
-        <Reveal style={{ position: 'relative', maxWidth: 1100, textAlign: 'center' }}>
+      {/* RARE BALANCE quote — parallax drift */}
+      <section className="full-bleed-quote" style={{ minHeight: '70vh', overflow: 'hidden' }}>
+        <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
+          <div style={{ backgroundImage: `url('assets/hero-fairway.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+        </Parallax>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.78))' }} />
+        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 1100, textAlign: 'center' }}>
           <div className="eyebrow-rule" style={{
             color: 'rgba(245,241,232,0.85)',
             justifyContent: 'center', marginBottom: 32,

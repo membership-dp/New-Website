@@ -2,10 +2,13 @@
 function RacquetsPage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO */}
-      <section className="page-hero page-hero-short" style={{ backgroundImage: `url('assets/hero-tennis.jpg')` }}>
-        <div className="photo-scrim" />
-        <div className="page-hero-inner hero-stagger">
+      {/* HERO — parallax drift */}
+      <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
+        <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
+          <div style={{ backgroundImage: `url('assets/hero-tennis.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+        </Parallax>
+        <div className="photo-scrim" style={{ zIndex: 1 }} />
+        <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
             The Racquet Pavilion
           </div>
@@ -53,13 +56,13 @@ function RacquetsPage({ onNav }) {
         />
       </section>
 
-      {/* PADEL — full bleed */}
-      <section className="full-bleed-quote" style={{
-        backgroundImage: `url('assets/padel-skyline.jpg')`,
-        minHeight: '75vh',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.75))' }} />
-        <Reveal style={{ position: 'relative', maxWidth: 1000, textAlign: 'center' }}>
+      {/* PADEL — full bleed, parallax drift */}
+      <section className="full-bleed-quote" style={{ minHeight: '75vh', overflow: 'hidden' }}>
+        <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
+          <div style={{ backgroundImage: `url('assets/padel-skyline.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+        </Parallax>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.75))' }} />
+        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 1000, textAlign: 'center' }}>
           <div className="eyebrow-rule" style={{
             color: 'rgba(245,241,232,0.85)',
             justifyContent: 'center', marginBottom: 32,
@@ -109,13 +112,13 @@ function RacquetsPage({ onNav }) {
         />
       </section>
 
-      {/* CTA */}
-      <section className="full-bleed-quote" style={{
-        backgroundImage: `url('assets/hero-fairway.jpg')`,
-        minHeight: '60vh',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
-        <Reveal style={{ position: 'relative', maxWidth: 820, textAlign: 'center' }}>
+      {/* CTA — parallax drift */}
+      <section className="full-bleed-quote" style={{ minHeight: '60vh', overflow: 'hidden' }}>
+        <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
+          <div style={{ backgroundImage: `url('assets/hero-fairway.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+        </Parallax>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
+        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 820, textAlign: 'center' }}>
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             For those who play with intention.
           </h2>

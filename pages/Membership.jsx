@@ -44,10 +44,18 @@ function MembershipPage({ onNav }) {
 
   return (
     <div className="page-shell">
-      {/* HERO */}
-      <section className="page-hero page-hero-short" style={{ backgroundImage: `url('assets/hero-clubhouse.jpg')` }}>
-        <div className="photo-scrim" />
-        <div className="page-hero-inner hero-stagger">
+      {/* HERO — with drifting parallax background */}
+      <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
+        <Parallax speed={0.2} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
+          <div style={{
+            backgroundImage: `url('assets/hero-clubhouse.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%', height: '100%',
+          }} />
+        </Parallax>
+        <div className="photo-scrim" style={{ zIndex: 1 }} />
+        <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
             Membership
           </div>
@@ -65,49 +73,46 @@ function MembershipPage({ onNav }) {
         </div>
       </section>
 
-      {/* INTRO */}
+      {/* INTRO — LayeredCallout signature module */}
       <section className="section surface-bone">
         <div className="container">
-          <div className="lede-page-grid">
-            <Reveal>
-              <div className="eyebrow-rule">An Invitation</div>
-            </Reveal>
-            <Reveal delay={100}>
-              <p style={{
-                font: '400 26px/1.5 var(--font-display)',
-                color: 'var(--color-club-navy)',
-                margin: 0, maxWidth: '40ch',
-                letterSpacing: '-0.005em',
-                fontStyle: 'italic',
-              }}>
-                Dutchman's Pipe is an invitation-only private club for those who expect
-                more from their time — more access, more intention, more connection.
-              </p>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                From golf played without tee times to evenings on the padel courts and
-                a dedicated wellness program, membership is shaped around an engaged
-                Palm Beach lifestyle.
-              </p>
-            </Reveal>
-          </div>
+          <LayeredCallout
+            lgImg="assets/hero-clubhouse.jpg"
+            smImg="assets/hero-villa.jpg"
+            motif="grass"
+            eyebrow="An Invitation"
+            title="A club shaped around the lives of its members."
+            body={[
+              "Dutchman's Pipe is an invitation-only private club for those who expect more from their time — more access, more intention, more connection.",
+              "From golf played without tee times to evenings on the padel courts and a dedicated wellness program, membership is shaped around an engaged Palm Beach lifestyle.",
+            ]}
+          />
         </div>
       </section>
 
-      {/* WHAT MEMBERSHIP OFFERS — three pillars compact */}
-      <section className="section-tight surface-bone-95">
-        <div className="container">
+      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents + motif backdrop */}
+      <section className="section-tight surface-bone-95" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="callout-bg motif" style={{
+          '--motif': `url('/assets/motif-grass.svg')`,
+          position: 'absolute', inset: '0 0 0 60%',
+          opacity: 0.5, pointerEvents: 'none',
+        }} />
+        <div className="container" style={{ position: 'relative' }}>
           <Reveal>
             <div className="eyebrow-rule" style={{ marginBottom: 40 }}>What Membership Offers</div>
           </Reveal>
           <div className="three-up three-up-tight">
             {[
-              { title: 'Golf', body: 'A Jack Nicklaus Signature course played without tee times. Performance-driven practice, Top 100 instruction, brand-agnostic club fitting.' },
-              { title: 'Racquets', body: 'Four Har-Tru tennis courts, two pickleball courts, and two padel courts. Weekly clinics, mixers, and Glow Padel evenings.' },
-              { title: 'Wellness', body: 'Dedicated training spaces, group classes, and personal training — a holistic approach focused on strength, mobility, and long-term vitality.' },
+              { title: 'Golf', img: 'assets/hero-green.jpg', body: 'A Jack Nicklaus Signature course played without tee times. Performance-driven practice, Top 100 instruction, brand-agnostic club fitting.' },
+              { title: 'Racquets', img: 'assets/tennis-serve.jpg', body: 'Four Har-Tru tennis courts, two pickleball courts, and two padel courts. Weekly clinics, mixers, and Glow Padel evenings.' },
+              { title: 'Wellness', img: 'assets/hero-villa.jpg', body: 'Dedicated training spaces, group classes, and personal training — a holistic approach focused on strength, mobility, and long-term vitality.' },
             ].map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
+                <div className="photo-frame" style={{ aspectRatio: '16/10', marginBottom: 24 }}>
+                  <img src={p.img} alt="" />
+                </div>
                 <h3 style={{
-                  font: '500 32px/1.15 var(--font-display)',
+                  font: '500 30px/1.15 var(--font-display)',
                   letterSpacing: '-0.02em',
                   color: 'var(--color-club-navy)',
                   margin: 0,
@@ -117,7 +122,7 @@ function MembershipPage({ onNav }) {
                 <div style={{
                   width: 32, height: 1,
                   background: 'var(--color-pennant-yellow)',
-                  marginTop: 20, marginBottom: 24,
+                  marginTop: 18, marginBottom: 22,
                 }} />
                 <p className="body-text" style={{ color: 'var(--color-navy-70)', margin: 0 }}>
                   {p.body}
