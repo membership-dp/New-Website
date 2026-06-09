@@ -11,11 +11,20 @@
 
   /* Brand */
   --color-club-navy:       #1B2F44;  /* primary */
-  --color-pennant-yellow:  #E8DA70;  /* accent (use sparingly) */
+  --color-pennant-yellow:  #E8DA70;  /* sacred: logo + primary CTA only */
   --color-bone:            #F5F1E8;  /* warm paper background */
   --color-ink:             #0E1A28;  /* deepest text on bone */
   --color-mist:            #C9D2DA;  /* borders, dividers */
   --color-white:           #FFFFFF;
+
+  /* Satin & Sunlight direction (6/9): champagne is the working gold for
+     everything that isn't the logo/CTA — hairlines, engraved caps, folios. */
+  --color-champagne:        #C9A55C;
+  --color-champagne-bright: #E3C98A;  /* hover/highlight state */
+  /* Satin (jewel-box dark chapters) */
+  --color-vault:            #081220;  /* deepest satin fold */
+  --color-satin-mid:        #16293E;
+  --color-satin-ridge:      #2C4763;  /* specular ridge of the fold */
 
   /* Tints (derived) */
   --color-navy-90:         #2C3F53;

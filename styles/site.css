@@ -51,7 +51,7 @@ img { display: block; max-width: 100%; }
   content: "";
   width: 32px;
   height: 1px;
-  background: var(--color-pennant-yellow);
+  background: var(--color-champagne);
 }
 
 /* --- Buttons --- */
@@ -159,11 +159,105 @@ img { display: block; max-width: 100%; }
 }
 .surface-bone-95 { background: var(--color-bone-95); color: var(--color-ink); --frame-color: var(--color-bone-95); }
 
-/* Display */
-.display-xl { font: 500 clamp(56px, 7vw, 104px)/1.02 var(--font-display); letter-spacing: -0.025em; margin: 0; text-wrap: balance; }
-.display-lg { font: 500 clamp(44px, 5vw, 72px)/1.05 var(--font-display); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-.display-md { font: 500 clamp(36px, 3.6vw, 56px)/1.1 var(--font-display); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-.display-sm { font: 500 clamp(28px, 2.4vw, 36px)/1.18 var(--font-display); letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+/* ============================================================
+   Satin & Sunlight — the jewel-box dark chapter. Pure-CSS navy satin:
+   a 115° fold gradient + a specular bloom, so the surface reads as
+   silk, never flat navy. Use sparingly (membership / closing moments).
+   ============================================================ */
+.surface-satin {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 72% 8%, rgba(98, 134, 176, 0.20), transparent 60%),
+    linear-gradient(115deg,
+      var(--color-vault) 0%,
+      var(--color-satin-mid) 38%,
+      var(--color-satin-ridge) 50%,
+      #142639 62%,
+      #060F1B 100%);
+  color: var(--color-bone);
+  --fg: var(--color-bone);
+  --fg-muted: rgba(245, 241, 232, 0.74);
+  --border: rgba(201, 165, 92, 0.25);
+  --frame-color: var(--color-vault);
+}
+/* The Sheen — a diagonal band of light that drifts over the satin as you
+   scroll (wrap in <Parallax> for the scroll-linked travel). */
+.satin-sheen {
+  position: absolute;
+  inset: -30% 0;
+  pointer-events: none;
+  background: linear-gradient(105deg,
+    transparent 42%,
+    rgba(120, 150, 185, 0.14) 50%,
+    transparent 58%);
+}
+.surface-satin > .container,
+.surface-satin > .satin-content { position: relative; z-index: 2; }
+
+/* Foil-framed photos on satin: double champagne frame, like an object
+   set in a vitrine. */
+.surface-satin .callout-img-lg {
+  border: 1px solid rgba(201, 165, 92, 0.55);
+}
+.surface-satin .callout-img-lg::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 165, 92, 0.35);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Chapter folio — "No. II — The Course" section marker with a
+   trailing champagne hairline. The editorial spine of the page.
+   ============================================================ */
+.folio {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  margin-bottom: 56px;
+}
+.folio::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 165, 92, 0.5), transparent);
+}
+.surface-satin .folio { color: var(--color-champagne-bright); }
+
+/* Centered champagne hairline — under centered headlines (satin CTA) */
+.champagne-rule {
+  display: block;
+  width: 96px;
+  height: 1px;
+  margin: 36px auto 0;
+  background: linear-gradient(90deg, transparent, var(--color-champagne) 25% 75%, transparent);
+}
+
+/* Primary CTA on satin — the one sanctioned pennant-yellow moment per page */
+.btn-gold {
+  background: transparent;
+  color: var(--color-pennant-yellow);
+  border-color: rgba(232, 218, 112, 0.6);
+}
+.btn-gold:hover {
+  background: rgba(232, 218, 112, 0.08);
+  border-color: var(--color-pennant-yellow);
+  color: var(--color-pennant-yellow);
+}
+
+/* Display — Satin & Sunlight scale: lighter and smaller than v1 (client
+   note: sizes felt too large); quiet serif does the talking. */
+.display-xl { font: 500 clamp(48px, 6vw, 92px)/1.04 var(--font-display); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.display-lg { font: 500 clamp(36px, 4.2vw, 60px)/1.08 var(--font-display); letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+.display-md { font: 500 clamp(30px, 3vw, 46px)/1.12 var(--font-display); letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+.display-sm { font: 500 clamp(24px, 2vw, 32px)/1.2 var(--font-display); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
 
 .lede { font: 400 clamp(18px, 1.4vw, 22px)/1.55 var(--font-body); color: var(--fg-muted); max-width: 62ch; margin: 0; text-wrap: pretty; }
 .body-text { font: 400 17px/1.7 var(--font-body); color: var(--fg-muted); margin: 0; max-width: 60ch; text-wrap: pretty; }
@@ -357,7 +451,7 @@ img { display: block; max-width: 100%; }
 .callout-rule {
   width: 1px;
   height: 0;
-  background: var(--color-pennant-yellow);
+  background: var(--color-champagne);
   margin-bottom: 28px;
   transition: height 1300ms var(--ease-club) 250ms;
 }
@@ -689,7 +783,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   border-bottom: 1px solid rgba(245,241,232,0.12);
   display: block;
 }
-.mobile-nav-link.is-active { color: var(--color-pennant-yellow); }
+.mobile-nav-link.is-active { color: var(--color-champagne-bright); }
 .mobile-nav-login {
   margin-top: 24px;
   font: 500 13px/1 var(--font-body);
@@ -734,9 +828,9 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   grid-template-columns: 1fr 1fr;
 }
 .inquiry-form .span-2 { grid-column: 1 / -1; }
-/* the appearance:none select strips its native chevron — restore a pennant-yellow one */
+/* the appearance:none select strips its native chevron — restore a champagne one */
 .inquiry-form select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8DA70' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A55C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 2px center;
   background-size: 12px;
@@ -987,7 +1081,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   left: 0; right: 100%;
   bottom: -4px;
   height: 1px;
-  background: var(--color-pennant-yellow);
+  background: var(--color-champagne);
   transition: right 320ms var(--ease-club);
 }
 .footer-link:hover { color: var(--color-bone) !important; }
@@ -1002,7 +1096,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   cursor: pointer;
   transition: transform 280ms var(--ease-club), color 240ms var(--ease-club);
 }
-.icon-btn:hover { transform: rotate(90deg); color: var(--color-pennant-yellow); }
+.icon-btn:hover { transform: rotate(90deg); color: var(--color-champagne-bright); }
 
 /* ============================================================
    Mobile menu — stagger nav links in

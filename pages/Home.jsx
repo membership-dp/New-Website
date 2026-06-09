@@ -68,7 +68,7 @@ function HomePage({ onNav }) {
                 color: 'var(--color-club-navy)',
                 margin: 0,
               }}>
-                Play. Train. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>Belong.</em>
+                Play. Train. <em style={{ fontStyle: 'italic', color: 'var(--color-champagne)' }}>Belong.</em>
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -88,7 +88,7 @@ function HomePage({ onNav }) {
       <section className="section surface-white">
         <div className="container">
           <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 24 }}>The Club</div>
+            <div className="folio">No. I — The Club</div>
             <h2 className="display-lg" style={{ color: 'var(--color-club-navy)', maxWidth: 920 }}>
               A property shaped by three pursuits.
             </h2>
@@ -142,50 +142,56 @@ function HomePage({ onNav }) {
             </div>
             <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
               Here, nature sets the rhythm —<br/>
-              <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>not the tee sheet.</em>
+              <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>not the tee sheet.</em>
             </h2>
           </Reveal>
         </Parallax>
       </section>
 
-      {/* LAYERED CALLOUT — The Course */}
+      {/* CHAPTER II — The Course */}
       <section className="section surface-bone">
+        <div className="container">
+          <Reveal><div className="folio">No. II — The Course</div></Reveal>
+        </div>
         <LayeredCallout
-          eyebrow="The Course"
           title="A test worthy of its design — beautifully playable."
           body="Stretching to 7,300 yards from the championship tees, the Jack Nicklaus Signature course moves through subtle elevation, sculpted bunkering, and natural water features. Every hole reflects thoughtful, refined architecture, with a 75.8 course rating in service of pure golf."
           lgImg="assets/course-skyline.jpg"
           smImg="assets/hero-green.jpg"
           ctaLabel="Explore the Course"
           onCta={() => onNav('golf')}
-          motif="grass"
         />
       </section>
 
-      {/* LAYERED CALLOUT — Racquets (navy, flipped) */}
-      <section className="section surface-navy">
-        <LayeredCallout
-          flipped dark
-          eyebrow="The Racquet Pavilion"
-          title="A racquet culture that lives beyond the baseline."
-          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts, set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
-          lgImg="assets/tennis-serve.jpg"
-          ctaLabel="Explore the Racquet Club"
-          onCta={() => onNav('racquets')}
-          motif="pipe"
-        />
+      {/* CHAPTER III — Racquets (satin chapter, flipped) */}
+      <section className="section surface-satin">
+        <Parallax speed={-0.25} className="satin-sheen" />
+        <div className="satin-content">
+          <div className="container">
+            <Reveal><div className="folio">No. III — The Racquet Pavilion</div></Reveal>
+          </div>
+          <LayeredCallout
+            flipped dark
+            title="A racquet culture that lives beyond the baseline."
+            body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts, set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
+            lgImg="assets/tennis-serve.jpg"
+            ctaLabel="Explore the Racquet Club"
+            onCta={() => onNav('racquets')}
+          />
+        </div>
       </section>
 
-      {/* LAYERED CALLOUT — Location */}
+      {/* CHAPTER IV — Location */}
       <section className="section surface-white">
+        <div className="container">
+          <Reveal><div className="folio">No. IV — The Location</div></Reveal>
+        </div>
         <LayeredCallout
-          eyebrow="The Location"
           title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
           body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International, with discreet access to private aviation. A rare balance of accessibility and separation."
           lgImg="assets/hero-palms.jpg"
           ctaLabel="The Setting"
           onCta={() => onNav('location')}
-          motif="grass"
         />
       </section>
 
@@ -204,33 +210,33 @@ function HomePage({ onNav }) {
         </div>
       </section>
 
-      {/* MEMBERSHIP CTA — closing, West Palm Beach golden-hour wash */}
-      <section className="full-bleed-quote" style={{ minHeight: '70vh', overflow: 'hidden' }}>
-        <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/hero-clubhouse.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        </Parallax>
-        <div className="wpb-sunset" />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.82))' }} />
+      {/* CHAPTER V — MEMBERSHIP CTA: the satin proscenium (jewel-box close) */}
+      <section className="section surface-satin" style={{
+        minHeight: '70dvh',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <Parallax speed={-0.25} className="satin-sheen" />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 880, textAlign: 'center' }}>
           <div className="eyebrow-rule" style={{
-            color: 'rgba(245,241,232,0.85)',
+            color: 'var(--color-champagne-bright)',
             justifyContent: 'center', marginBottom: 32,
           }}>
-            Membership
+            No. V — Membership
           </div>
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             A private world, by invitation.
           </h2>
+          <span className="champagne-rule" />
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.8)',
-            marginTop: 28, maxWidth: 620, marginInline: 'auto',
+            marginTop: 32, maxWidth: 620, marginInline: 'auto',
           }}>
             Membership at Dutchman's Pipe is by invitation. To begin a conversation,
             please introduce yourself.
           </p>
           <div style={{ marginTop: 48 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+            <a onClick={() => onNav('membership')} className="btn btn-gold">
               Request Membership Information
             </a>
           </div>

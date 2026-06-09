@@ -29,7 +29,7 @@ function Footer({ onNav }) {
               font: '500 12px/1 var(--font-body)',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
-              color: 'var(--color-pennant-yellow)',
+              color: 'var(--color-champagne)',
             }}>
               By Invitation Only
             </div>
@@ -49,7 +49,7 @@ function Footer({ onNav }) {
                 font: '500 11px/1 var(--font-body)',
                 letterSpacing: '0.24em',
                 textTransform: 'uppercase',
-                color: 'var(--color-pennant-yellow)',
+                color: 'var(--color-champagne)',
                 marginBottom: 8,
               }}>
                 {col.title}
@@ -72,7 +72,7 @@ function Footer({ onNav }) {
               font: '500 11px/1 var(--font-body)',
               letterSpacing: '0.24em',
               textTransform: 'uppercase',
-              color: 'var(--color-pennant-yellow)',
+              color: 'var(--color-champagne)',
               marginBottom: 8,
             }}>
               Visit

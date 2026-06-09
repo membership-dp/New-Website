@@ -25,7 +25,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
         </div>
         <div className="callout-text">
           <div className="callout-rule" />
-          <div className="eyebrow-rule" style={{ marginBottom: 22, color: dark ? 'rgba(245,241,232,0.78)' : undefined }}>{eyebrow}</div>
+          {eyebrow && <div className="eyebrow-rule" style={{ marginBottom: 22, color: dark ? 'rgba(245,241,232,0.78)' : undefined }}>{eyebrow}</div>}
           <h2 className="display-md" style={{ color: head }}>{title}</h2>
           {Array.isArray(body)
             ? body.map((p, i) => (
@@ -35,7 +35,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
           {ctaLabel && (
             <a onClick={onCta} className="arrow-link" style={{
               marginTop: 34, color: head,
-              borderColor: dark ? 'var(--color-pennant-yellow)' : undefined,
+              borderColor: dark ? 'var(--color-champagne)' : undefined,
             }}>
               {ctaLabel}
               <img src="assets/arrow-link.png" alt="" style={dark ? { filter: 'brightness(0) invert(1)' } : undefined} />
