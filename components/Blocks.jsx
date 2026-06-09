@@ -65,7 +65,7 @@ function ThreePanel({ images = [], interval = 3800, captions = [] }) {
       <div className="threepanel">
         {cols.map((idx, col) => (
           <div className="tp-cell" key={col}>
-            <img key={idx} src={images[idx]} alt="" />
+            <Parallax speed={0.08} className="img-drift"><img key={idx} src={images[idx]} alt="" /></Parallax>
             {captions[idx] && <div className="tp-caption">{captions[idx]}</div>}
           </div>
         ))}

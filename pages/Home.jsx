@@ -107,7 +107,7 @@ function HomePage({ onNav }) {
                   textDecoration: 'none', color: 'inherit',
                 }}>
                   <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                    <img src={it.img} alt="" />
+                    <Parallax speed={0.1} className="img-drift"><img src={it.img} alt="" /></Parallax>
                   </div>
                   <div className="eyebrow-rule" style={{ marginTop: 28 }}>{it.eyebrow}</div>
                   <h3 className="display-sm" style={{ color: 'var(--color-club-navy)', marginTop: 12 }}>
@@ -133,18 +133,20 @@ function HomePage({ onNav }) {
           <img src="assets/hero-fairway.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.45), rgba(15,25,40,0.7))' }} />
-        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 1100, textAlign: 'center' }}>
-          <div className="eyebrow-rule" style={{
-            color: 'rgba(245,241,232,0.85)',
-            justifyContent: 'center', marginBottom: 32,
-          }}>
-            The Atmosphere
-          </div>
-          <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
-            Here, nature sets the rhythm —<br/>
-            <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>not the tee sheet.</em>
-          </h2>
-        </Reveal>
+        <Parallax speed={-0.1} style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+          <Reveal style={{ maxWidth: 1100, marginInline: 'auto', textAlign: 'center' }}>
+            <div className="eyebrow-rule" style={{
+              color: 'rgba(245,241,232,0.85)',
+              justifyContent: 'center', marginBottom: 32,
+            }}>
+              The Atmosphere
+            </div>
+            <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
+              Here, nature sets the rhythm —<br/>
+              <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>not the tee sheet.</em>
+            </h2>
+          </Reveal>
+        </Parallax>
       </section>
 
       {/* LAYERED CALLOUT — The Course */}

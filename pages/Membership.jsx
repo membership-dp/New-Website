@@ -110,7 +110,7 @@ function MembershipPage({ onNav }) {
             ].map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="photo-frame" style={{ aspectRatio: '16/10', marginBottom: 24 }}>
-                  <img src={p.img} alt="" />
+                  <Parallax speed={0.09} className="img-drift"><img src={p.img} alt="" /></Parallax>
                 </div>
                 <h3 style={{
                   font: '500 30px/1.15 var(--font-display)',

@@ -280,12 +280,15 @@ img { display: block; max-width: 100%; }
 }
 /* scroll-linked depth: the photo drifts a few px within its frame as the
    callout passes through the viewport. Overscanned so an edge never shows. */
-.callout-img-drift {
+.callout-img-drift,
+.img-drift {
   position: absolute;
   left: 0; right: 0;
   top: -8%;
   height: 116%;
 }
+/* generic drift wrapper inside any .photo-frame (pillars, three-panel, news) */
+.img-drift img { width: 100%; height: 100%; object-fit: cover; }
 .callout-img-lg img {
   width: 100%; height: 100%;
   object-fit: cover;
