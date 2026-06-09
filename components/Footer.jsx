@@ -24,7 +24,7 @@ function Footer({ onNav }) {
       <div className="container">
         <div className="site-footer-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            <img src="assets/logo-emblem-white.png" style={{ height: 72, width: 'auto', objectFit: 'contain', alignSelf: 'flex-start' }} alt="" />
+            <img src="assets/logo-emblem-color.png" style={{ height: 72, width: 'auto', objectFit: 'contain', alignSelf: 'flex-start' }} alt="" />
             <div style={{
               font: '500 12px/1 var(--font-body)',
               letterSpacing: '0.32em',

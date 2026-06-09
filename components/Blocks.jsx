@@ -6,9 +6,11 @@ function blockReduced() {
   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/* LayeredCallout — large photo + smaller matted photo over its corner, brand
-   motif behind, scroll-triggered reveals. `flipped` mirrors it; `dark` adapts
-   colors for navy surfaces; `motif` chooses the behind-graphic (grass | pipe). */
+/* LayeredCallout — large photo + (optionally) a smaller matted photo over its
+   corner, brand motif behind, scroll-triggered reveals. Per client (6/9): the
+   double-picture treatment is used sparingly — omit smImg for a single photo.
+   `flipped` mirrors it; `dark` adapts colors for navy surfaces; `motif`
+   chooses the behind-graphic (grass | pipe). */
 function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, flipped, motif = 'grass', dark }) {
   const muted = dark ? 'rgba(245,241,232,0.78)' : 'var(--color-navy-70)';
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
@@ -20,7 +22,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
           <div className="callout-img-lg">
             <Parallax speed={0.12} className="callout-img-drift"><img src={lgImg} alt="" /></Parallax>
           </div>
-          <div className="callout-img-sm"><img src={smImg} alt="" /></div>
+          {smImg && <div className="callout-img-sm"><img src={smImg} alt="" /></div>}
         </div>
         <div className="callout-text">
           <div className="callout-rule" />

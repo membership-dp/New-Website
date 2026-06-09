@@ -84,7 +84,7 @@ function LocationPage({ onNav }) {
             ].map((d) => (
               <div key={d.dest} className="four-up-cell">
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <span className="stat-num" style={{ fontSize: 64 }}><CountUp value={d.time} /></span>
+                  <span className="stat-num" style={{ fontSize: 64 }}>{d.time}</span>
                   <span style={{
                     font: '500 12px/1 var(--font-body)',
                     letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -116,7 +116,6 @@ function LocationPage({ onNav }) {
             'Members move easily between a morning round and an afternoon engagement, never feeling rushed or removed.',
           ]}
           lgImg="assets/hero-clubhouse.jpg"
-          smImg="assets/hero-palms.jpg"
           motif="grass"
         />
       </section>
@@ -132,7 +131,6 @@ function LocationPage({ onNav }) {
             'For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.',
           ]}
           lgImg="assets/hero-sunset.jpg"
-          smImg="assets/course-skyline.jpg"
           motif="pipe"
         />
       </section>

@@ -42,7 +42,9 @@ function Header({ route, onNav, lightOnTop = true }) {
     lightOnTop ? 'is-light' : '',
   ].join(' ');
 
-  const logoFilter = scrolled || !lightOnTop ? 'none' : 'brightness(0) invert(1)';
+  // Branding stays blue/yellow everywhere — no white logo variants (client decision 6/9).
+  // The wordmark alone gets a white treatment over the hero for legibility.
+  const wordmarkFilter = scrolled || !lightOnTop ? 'none' : 'brightness(0) invert(1)';
 
   const navItems = [
     { id: 'golf', label: 'Golf' },
@@ -61,9 +63,9 @@ function Header({ route, onNav, lightOnTop = true }) {
         textDecoration: 'none', color: 'inherit',
       }}>
         <img src="assets/logo-emblem-color.png" className="site-header-logo"
-          style={{ height: 44, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="" />
+          style={{ height: 44 }} alt="" />
         <img src="assets/wordmark-navy.png" className="site-header-wordmark"
-          style={{ height: 13, filter: logoFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
+          style={{ height: 13, filter: wordmarkFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
       </a>
 
       {/* Desktop nav */}

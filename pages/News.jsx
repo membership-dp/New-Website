@@ -58,7 +58,6 @@ function NewsPage({ onNav }) {
           title={featured.title}
           body={featured.excerpt}
           lgImg={featured.img}
-          smImg="assets/hero-sunset.jpg"
           ctaLabel="Read the Story"
           onCta={() => {}}
           motif="grass"

@@ -34,8 +34,6 @@ function Splash({ onEnter }) {
         maxWidth: 720,
         textAlign: 'center',
       }}>
-        <img src="assets/logo-emblem-white.png" className="splash-logo"
-          style={{ height: 120, marginBottom: 56, display: 'inline-block' }} alt="" />
         <div style={{
           font: '500 11px/1 var(--font-body)',
           letterSpacing: '0.36em',

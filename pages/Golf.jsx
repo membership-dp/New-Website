@@ -36,7 +36,7 @@ function GolfPage({ onNav }) {
               { num: '12,000', label: 'Sq ft putting green' },
             ].map((s) => (
               <div key={s.label} className="stat-cell">
-                <div className="stat-num"><CountUp value={s.num} /></div>
+                <div className="stat-num">{s.num}</div>
                 <div className="stat-label">{s.label}</div>
               </div>
             ))}
@@ -106,7 +106,6 @@ function GolfPage({ onNav }) {
             'Eight types of premium, brand-agnostic range balls allow distance control, trajectory, and feel to be refined with intention, ensuring preparation translates seamlessly to the course.',
           ]}
           lgImg="assets/hero-putting.jpg"
-          smImg="assets/hero-green.jpg"
           motif="grass"
         />
       </section>
@@ -122,7 +121,6 @@ function GolfPage({ onNav }) {
             "The Club has made a meaningful commitment to women's golf programming. Weekly Ladies Clinics create structured development and camaraderie, while signature events such as the Ladies Member-Member tournament elevate the competitive and social experience alike.",
           ]}
           lgImg="assets/instruction.jpg"
-          smImg="assets/hero-green.jpg"
           motif="pipe"
         />
       </section>
@@ -134,7 +132,6 @@ function GolfPage({ onNav }) {
           title="Performance optimization. Not retail fitting."
           body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
           lgImg="assets/clubfitting.jpg"
-          smImg="assets/hero-putting.jpg"
           motif="grass"
         />
       </section>

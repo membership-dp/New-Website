@@ -35,7 +35,7 @@ function RacquetsPage({ onNav }) {
               { num: '2', label: 'Pickleball Courts' },
             ].map((s) => (
               <div key={s.label} className="stat-cell">
-                <div className="stat-num"><CountUp value={s.num} /></div>
+                <div className="stat-num">{s.num}</div>
                 <div className="stat-label">{s.label}</div>
               </div>
             ))}
@@ -50,7 +50,6 @@ function RacquetsPage({ onNav }) {
           title="Open. Intentional. Alive with play."
           body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
           lgImg="assets/padel-action.jpg"
-          smImg="assets/tennis-serve.jpg"
           motif="grass"
         />
       </section>
@@ -91,7 +90,6 @@ function RacquetsPage({ onNav }) {
           title="A racquet calendar built for every level, year-round."
           body="Whether joining a weekly clinic, scheduling a private lesson with our certified professionals, or stepping onto the court for Glow Padel after sunset, members transition effortlessly between skill development and social competition."
           lgImg="assets/tennis-serve.jpg"
-          smImg="assets/padel-skyline.jpg"
           motif="pipe"
         />
       </section>
@@ -106,7 +104,6 @@ function RacquetsPage({ onNav }) {
             'Following play, chilled towels are offered as a quiet luxury, and post-match smoothies extend the experience naturally into the pavilion. Time on court transitions into time together.',
           ]}
           lgImg="assets/tennis-veranda.jpg"
-          smImg="assets/hero-tennis.jpg"
           motif="grass"
         />
       </section>
