@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+  <!-- Inverse of brush-frame.svg. Filled area = the "frame" (corners + outer
+       sliver). Cut-out hole in the middle = where the photo shows through.
+       Used as mask-image on a bone-colored ::after overlay so the corners
+       of a parallax photo appear hand-torn against the page background.
+
+       The first sub-path is the outer rectangle (clockwise).
+       The second sub-path is the brush-frame opening (clockwise too — fill-rule
+       evenodd makes it a hole). -->
+  <path fill="#fff" fill-rule="evenodd" d="
+    M 0,0 L 1000,0 L 1000,600 L 0,600 Z
+    M 55,18
+    C 110,4  180,16 250,10
+    C 330,2  410,22 490,12
+    C 570,4  650,22 730,12
+    C 810,5  880,18 935,20
+    C 962,22 978,32 985,52
+    C 992,90 988,170 994,250
+    C 996,330 990,420 992,490
+    C 990,540 984,565 962,572
+    C 920,582 850,572 780,580
+    C 690,588 600,572 510,584
+    C 420,592 330,572 240,584
+    C 160,592 90,580 50,576
+    C 28,572 14,560 10,540
+    C 4,470  14,380 8,300
+    C 4,220  14,140 22,80
+    C 28,42  38,26 55,18 Z"/>
+</svg>

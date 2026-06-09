@@ -1,29 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
-  <!-- Painterly torn-paper frame mask. White = visible, transparent = clipped.
-       Edge amplitude is intentionally subtle so it reads as "hand-torn" not
-       "novelty wavy frame" — and so it survives preserveAspectRatio="none"
-       at any container aspect ratio. -->
+  <!-- Hand-torn / brush-painted frame mask. White = photo visible,
+       transparent = page background shows through. Bigger amplitude than v1
+       (especially at the corners) so it actually reads as a torn edge
+       rather than a slightly wavy rectangle.
+
+       Design notes:
+       • All four corners bow inward 25–40 units → painterly rounded cuts
+       • Top edge: subtle ripple (less amplitude — usually under a header)
+       • Bottom edge: bigger wave amplitude + "drag" at bottom-right
+       • Left/right edges: organic dips that vary in depth
+       • Tiny "paint break" notches at irregular intervals for texture
+  -->
   <path fill="#fff" d="
-    M 14,10
-    C 60,4 100,14 150,8
-    C 210,2 260,16 320,10
-    C 370,4 430,18 490,8
-    C 540,2 600,16 660,8
-    C 710,4 770,18 830,10
-    C 880,4 940,14 988,8
-    L 992,40
-    C 996,90 988,150 994,210
-    C 996,270 990,330 994,390
-    C 996,450 990,520 988,592
-    C 940,596 880,588 830,594
-    C 770,598 710,584 650,592
-    C 600,596 540,584 480,592
-    C 430,596 370,584 310,592
-    C 250,596 190,588 130,594
-    C 80,596 40,586 12,592
-    L 8,560
-    C 4,500 12,440 6,380
-    C 4,320 12,260 6,200
-    C 4,140 10,80 14,10
+    M 55,18
+    C 110,4  180,16 250,10
+    C 330,2  410,22 490,12
+    C 570,4  650,22 730,12
+    C 810,5  880,18 935,20
+    C 962,22 978,32 985,52
+    C 992,90 988,170 994,250
+    C 996,330 990,420 992,490
+    C 990,540 984,565 962,572
+    C 920,582 850,572 780,580
+    C 690,588 600,572 510,584
+    C 420,592 330,572 240,584
+    C 160,592 90,580 50,576
+    C 28,572 14,560 10,540
+    C 4,470  14,380 8,300
+    C 4,220  14,140 22,80
+    C 28,42  38,26 55,18
     Z"/>
 </svg>
