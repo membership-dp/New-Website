@@ -18,11 +18,11 @@ img { display: block; max-width: 100%; }
 /* --- Reveal-on-scroll — content settles + focuses in (not a flat fade) --- */
 .reveal {
   opacity: 0;
-  transform: translateY(22px) scale(0.992);
-  filter: blur(5px);
+  transform: translateY(20px) scale(0.994);
+  filter: blur(3px);
   transition: opacity 900ms var(--ease-club),
               transform 1100ms var(--ease-club),
-              filter 800ms var(--ease-club);
+              filter 700ms var(--ease-club);
   will-change: opacity, transform, filter;
 }
 .reveal.is-visible {
@@ -249,6 +249,25 @@ img { display: block; max-width: 100%; }
 .callout-text  { order: 2; }
 .callout.flipped .callout-media { order: 2; }
 .callout.flipped .callout-text  { order: 1; }
+
+/* Directional reveal — media slides in from the photo side, text from the
+   opposite side, on scroll-in. Composes with the photo's parallax drift
+   (that lives on a child wrapper, so transforms don't collide). */
+.callout-media, .callout-text {
+  opacity: 0;
+  transition: opacity 1000ms var(--ease-club), transform 1100ms var(--ease-club);
+  will-change: opacity, transform;
+}
+.callout-media { transform: translateX(-46px); }
+.callout-text  { transform: translateX(46px); }
+.callout.flipped .callout-media { transform: translateX(46px); }
+.callout.flipped .callout-text  { transform: translateX(-46px); }
+.callout.is-in .callout-media,
+.callout.is-in .callout-text { opacity: 1; transform: none; }
+.callout-text { transition-delay: 120ms; } /* text follows the image in */
+@media (prefers-reduced-motion: reduce) {
+  .callout-media, .callout-text { opacity: 1; transform: none; transition: none; }
+}
 
 /* Media: large image + offset small matted image */
 .callout-media { position: relative; }
@@ -626,12 +645,22 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   padding: 0 var(--gutter);
-  transition: background 320ms var(--ease-club), border-color 320ms var(--ease-club), backdrop-filter 320ms var(--ease-club);
+  transition: background 320ms var(--ease-club),
+              border-color 320ms var(--ease-club),
+              backdrop-filter 320ms var(--ease-club),
+              height 360ms var(--ease-club),
+              transform 460ms var(--ease-club);
 }
 .site-header.is-scrolled {
   background: rgba(245,241,232,0.94);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-mist);
+  height: 64px;                 /* slim once scrolled */
+}
+/* hide on scroll-down, reveal on scroll-up */
+.site-header.is-hidden { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) {
+  .site-header.is-hidden { transform: none; }
 }
 .site-header.is-light { color: var(--color-bone); }
 .site-header.is-scrolled.is-light,

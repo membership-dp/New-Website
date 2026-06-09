@@ -36,7 +36,7 @@ function GolfPage({ onNav }) {
               { num: '12,000', label: 'Sq ft putting green' },
             ].map((s) => (
               <div key={s.label} className="stat-cell">
-                <div className="stat-num">{s.num}</div>
+                <div className="stat-num"><CountUp value={s.num} /></div>
                 <div className="stat-label">{s.label}</div>
               </div>
             ))}

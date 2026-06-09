@@ -84,7 +84,7 @@ function LocationPage({ onNav }) {
             ].map((d) => (
               <div key={d.dest} className="four-up-cell">
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <span className="stat-num" style={{ fontSize: 64 }}>{d.time}</span>
+                  <span className="stat-num" style={{ fontSize: 64 }}><CountUp value={d.time} /></span>
                   <span style={{
                     font: '500 12px/1 var(--font-body)',
                     letterSpacing: '0.22em', textTransform: 'uppercase',

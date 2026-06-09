@@ -107,6 +107,59 @@ function InView({ as: Tag = 'div', className = '', once = true, threshold = 0.18
   );
 }
 
+/**
+ * CountUp — animates a numeral from 0 to its target when it scrolls into view,
+ * preserving the original formatting (thousands commas, decimals, and any
+ * prefix/suffix like "$" or "+"). Reduced-motion shows the final value at once.
+ * Usage: <CountUp value="7,300" />  <CountUp value="75.8" />  <CountUp value="12,000" />
+ */
+function CountUp({ value, duration = 1500, className, style }) {
+  const ref = useMotionRef(null);
+  useMotionEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const str = String(value);
+    const m = str.match(/[\d.,]+/);
+    if (!m) { el.textContent = str; return; }       // nothing numeric — render as-is
+    const numStr = m[0];
+    const pre = str.slice(0, m.index);
+    const post = str.slice(m.index + numStr.length);
+    const hasComma = numStr.includes(',');
+    const decimals = (numStr.split('.')[1] || '').length;
+    const target = parseFloat(numStr.replace(/,/g, ''));
+    const fmt = (n) => {
+      const fixed = n.toFixed(decimals);
+      if (!hasComma) return fixed;
+      const [i, d] = fixed.split('.');
+      const withSep = i.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return d ? `${withSep}.${d}` : withSep;
+    };
+
+    const setFinal = () => { el.textContent = pre + fmt(target) + post; };
+    if (prefersReducedMotion()) { setFinal(); return; }
+
+    el.textContent = pre + fmt(0) + post;
+    let started = false, raf = 0, t0 = 0;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);       // easeOutCubic
+    const tick = (now) => {
+      if (!t0) t0 = now;
+      const p = Math.min((now - t0) / duration, 1);
+      el.textContent = pre + fmt(target * ease(p)) + post;
+      if (p < 1) raf = requestAnimationFrame(tick); else setFinal();
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !started) { started = true; raf = requestAnimationFrame(tick); io.unobserve(el); }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+    const safety = setTimeout(() => { if (!started) setFinal(); }, 2200);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); clearTimeout(safety); };
+  }, [value, duration]);
+  return <span ref={ref} className={className} style={style}>{value}</span>;
+}
+
 window.Parallax = Parallax;
 window.Tilt = Tilt;
 window.InView = InView;
+window.CountUp = CountUp;

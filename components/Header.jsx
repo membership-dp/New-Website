@@ -3,13 +3,25 @@ const { useState: useHeaderState, useEffect: useHeaderEffect } = React;
 
 function Header({ route, onNav, lightOnTop = true }) {
   const [scrolled, setScrolled] = useHeaderState(false);
+  const [hidden, setHidden] = useHeaderState(false);
   const [menuOpen, setMenuOpen] = useHeaderState(false);
 
   useHeaderEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    onScroll();
+    let lastY = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      setScrolled(y > 60);
+      // hide when scrolling down past the hero zone; reveal on scroll up
+      if (y > 140 && y > lastY + 6) setHidden(true);
+      else if (y < lastY - 6 || y <= 140) setHidden(false);
+      lastY = y;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
   // Lock body scroll when mobile menu is open.
@@ -26,6 +38,7 @@ function Header({ route, onNav, lightOnTop = true }) {
   const cls = [
     'site-header',
     scrolled ? 'is-scrolled' : '',
+    hidden && !menuOpen ? 'is-hidden' : '',
     lightOnTop ? 'is-light' : '',
   ].join(' ');
 
