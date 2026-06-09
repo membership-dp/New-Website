@@ -302,27 +302,13 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Brush-edge frame — painterly torn-paper "frame" applied to
-   full-bleed hero imagery. Implemented as a bone-colored overlay
-   shaped like a frame (inverse mask), so it sits on top of the
-   photo+scrim and reveals page background at the painterly corners.
-   This approach is robust to parallax inset (the photo extends
-   beyond the section but the overlay sits at section bounds).
+   Brush-edge frame — painterly torn-paper mask applied to "hero"
+   imagery (full-bleed parallax backgrounds + large LayeredCallout
+   photos). Mask scales to any aspect ratio.
    ============================================================ */
-.page-hero,
-.full-bleed-quote {
-  position: relative; /* anchor the ::after */
-}
-.page-hero::after,
-.full-bleed-quote::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 4;            /* above photo (0), scrim (1), content (2-3) corners */
-  pointer-events: none;  /* never block clicks */
-  background: var(--color-bone);
-  -webkit-mask-image: url('/assets/brush-frame-inverse.svg');
-          mask-image: url('/assets/brush-frame-inverse.svg');
+.brush-edge {
+  -webkit-mask-image: url('/assets/brush-frame.svg');
+          mask-image: url('/assets/brush-frame.svg');
   -webkit-mask-size: 100% 100%;
           mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
@@ -330,7 +316,11 @@ img { display: block; max-width: 100%; }
   -webkit-mask-position: center;
           mask-position: center;
 }
-/* Direct mask on contained callout photos (no parallax inset issue here) */
+
+/* Apply automatically to: the parallax photo background inside every
+   page-hero + full-bleed-quote, and the large photo in every LayeredCallout. */
+.page-hero .parallax > div,
+.full-bleed-quote .parallax > div,
 .callout-img-lg img {
   -webkit-mask-image: url('/assets/brush-frame.svg');
           mask-image: url('/assets/brush-frame.svg');
