@@ -90,14 +90,8 @@ function MembershipPage({ onNav }) {
         </div>
       </section>
 
-      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents + motif backdrop */}
+      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents */}
       <section className="section-tight surface-bone-95" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="callout-bg motif motif-grass" style={{
-          '--motif': `url('/assets/motif-grass.svg?v=15')`,
-          position: 'absolute', inset: 'auto 0 0 60%', height: '70%',
-          maskPosition: 'center bottom', WebkitMaskPosition: 'center bottom',
-          opacity: 0.32, pointerEvents: 'none',
-        }} />
         <div className="container" style={{ position: 'relative' }}>
           <Reveal>
             <div className="eyebrow-rule" style={{ marginBottom: 40 }}>What Membership Offers</div>

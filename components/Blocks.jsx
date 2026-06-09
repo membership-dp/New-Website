@@ -7,16 +7,15 @@ function blockReduced() {
 }
 
 /* LayeredCallout — large photo + (optionally) a smaller matted photo over its
-   corner, brand motif behind, scroll-triggered reveals. Per client (6/9): the
-   double-picture treatment is used sparingly — omit smImg for a single photo.
-   `flipped` mirrors it; `dark` adapts colors for navy surfaces; `motif`
-   chooses the behind-graphic (grass | pipe). */
+   corner, scroll-triggered reveals. Per client (6/9): the double-picture
+   treatment is used sparingly — omit smImg for a single photo. `flipped`
+   mirrors it; `dark` adapts colors for navy surfaces. (`motif` prop is
+   accepted but currently unused — plant backdrops removed per client.) */
 function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, flipped, motif = 'grass', dark }) {
   const muted = dark ? 'rgba(245,241,232,0.78)' : 'var(--color-navy-70)';
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
     <InView className={`callout ${flipped ? 'flipped' : ''}`}>
-      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=15')` }} />
       <div className="callout-inner">
         <div className="callout-media">
           <div className="callout-img-lg">

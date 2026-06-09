@@ -348,41 +348,8 @@ img { display: block; max-width: 100%; }
   .brush-stroke { opacity: 0.92; transform: none; transition: none; }
 }
 
-/* ============================================================
-   Corner flower — a Dutchman's-pipe bloom perched on the corner of
-   feature photos, straddling the edge (half on the photo, half on the
-   page). Drawn in brand navy + pennant yellow (two-tone, so it's a
-   background-image, not a recolorable mask). Mirrors to the opposite
-   corner on flipped callouts so it always leans toward the text.
-   ============================================================ */
-.callout-media::after {
-  content: "";
-  position: absolute;
-  z-index: 4;                       /* above the photo + small matte */
-  width: 104px;
-  height: 104px;
-  top: -34px;
-  right: -30px;
-  pointer-events: none;
-  background-image: url('/assets/flower-corner.svg?v=21');
-  background-size: contain;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 2px 6px rgba(15, 25, 40, 0.18));
-}
-.callout.flipped .callout-media::after {
-  right: auto;
-  left: -30px;
-  transform: scaleX(-1);
-}
-@media (max-width: 960px) {
-  /* photos run near edge-to-edge here — keep the bloom fully on-screen */
-  .callout-media::after { right: -10px; top: -30px; }
-  .callout.flipped .callout-media::after { right: auto; left: -10px; }
-}
-@media (max-width: 600px) {
-  .callout-media::after { width: 72px; height: 72px; top: -22px; right: -6px; }
-  .callout.flipped .callout-media::after { left: -6px; }
-}
+/* (Plant ornaments — corner flower / vines / motif backdrops — removed per
+   client direction 6/9; assets remain in /assets for possible revival.) */
 
 /* ============================================================
    Brush divider — a soft painted rule for section breaks, replacing
