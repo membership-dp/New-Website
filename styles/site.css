@@ -531,6 +531,33 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
+/* ============================================================
+   West Palm Beach golden-hour wash — a slow sunset gradient that
+   drifts across a full-bleed photo via soft-light, evoking dusk
+   over the Intracoastal. Subtle; sits over the photo, under the scrim.
+   ============================================================ */
+.wpb-sunset {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(118deg,
+      rgba(236, 190, 110, 0.55) 0%,
+      rgba(214, 120, 86, 0.42) 30%,
+      rgba(126, 156, 184, 0.28) 60%,
+      rgba(27, 47, 68, 0.5) 100%);
+  background-size: 220% 220%;
+  mix-blend-mode: soft-light;
+  animation: wpbSunsetDrift 28s ease-in-out infinite alternate;
+}
+@keyframes wpbSunsetDrift {
+  from { background-position: 0% 20%; }
+  to   { background-position: 100% 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wpb-sunset { animation: none; }
+}
+
 /* --- Hero (page top) --- */
 .page-hero {
   position: relative;

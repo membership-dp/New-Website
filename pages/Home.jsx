@@ -205,12 +205,13 @@ function HomePage({ onNav }) {
         </div>
       </section>
 
-      {/* MEMBERSHIP CTA — closing, drifting background */}
+      {/* MEMBERSHIP CTA — closing, West Palm Beach golden-hour wash */}
       <section className="full-bleed-quote" style={{ minHeight: '70vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
           <img src="assets/hero-clubhouse.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.85))' }} />
+        <div className="wpb-sunset" />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.82))' }} />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 880, textAlign: 'center' }}>
           <div className="eyebrow-rule" style={{
             color: 'rgba(245,241,232,0.85)',
