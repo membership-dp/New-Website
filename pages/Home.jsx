@@ -171,7 +171,6 @@ function HomePage({ onNav }) {
           title="A racquet culture that lives beyond the baseline."
           body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts, set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
           lgImg="assets/tennis-serve.jpg"
-          smImg="assets/padel-action.jpg"
           ctaLabel="Explore the Racquet Club"
           onCta={() => onNav('racquets')}
           motif="pipe"
@@ -185,7 +184,6 @@ function HomePage({ onNav }) {
           title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
           body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International, with discreet access to private aviation. A rare balance of accessibility and separation."
           lgImg="assets/hero-palms.jpg"
-          smImg="assets/hero-villa.jpg"
           ctaLabel="The Setting"
           onCta={() => onNav('location')}
           motif="grass"

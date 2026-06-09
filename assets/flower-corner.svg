@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104" fill="none">
+  <!-- Dutchman's-pipe bloom perched on a photo corner: tapered navy stem
+       rises from the lower-left anchor; yellow bloom fans toward upper-right. -->
+  <g>
+    <!-- tapered stem: thick at corner, hairline at bloom -->
+    <path fill="#1B2F44" d="M8,100 C24,84 36,72 50,54 C52,51 54,49 56,46
+             C53,50 50,53 47,57 C35,71 25,87 12,102 Z"/>
+    <!-- slim navy leaf off the stem -->
+    <g transform="translate(36,70) rotate(-58) scale(0.4)">
+      <path fill="#1B2F44" fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
+    </g>
+    <!-- bloom fans up-right from the stem tip -->
+    <g transform="translate(58,44) rotate(45)">
+      <path fill="#E8DA70" transform="rotate(-52)" d="M0,0 C-5,-10 -4.5,-26 0,-38 C4.5,-26 5,-10 0,0 Z"/>
+      <path fill="#E8DA70" transform="rotate(-26)" d="M0,0 C-5.5,-11 -5,-29 0,-42 C5,-29 5.5,-11 0,0 Z"/>
+      <path fill="#E8DA70" transform="rotate(0)"   d="M0,0 C-5.5,-12 -5,-31 0,-46 C5,-31 5.5,-12 0,0 Z"/>
+      <path fill="#E8DA70" transform="rotate(26)"  d="M0,0 C-5.5,-11 -5,-29 0,-42 C5,-29 5.5,-11 0,0 Z"/>
+      <path fill="#E8DA70" transform="rotate(52)"  d="M0,0 C-5,-10 -4.5,-26 0,-38 C4.5,-26 5,-10 0,0 Z"/>
+      <!-- navy throat at the fan origin -->
+      <circle cx="0" cy="0" r="3.6" fill="#1B2F44"/>
+    </g>
+  </g>
+</svg>

@@ -103,49 +103,6 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
-/* MarginVine — a refined botanical Aristolochia climber in a section's side
-   gutter. Filled, tapered forms (not pencil-outline). On scroll-in it reveals
-   with a clip-path wipe that grows the vine up from the bottom. side='left'
-   |'right'; honors reduced-motion (appears instantly). */
-function MarginVine({ side = 'left', style }) {
-  const ref = useBlockRef(null);
-  useBlockEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (blockReduced()) { el.classList.add('is-in'); return; }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { el.classList.add('is-in'); io.unobserve(el); } });
-    }, { threshold: 0.12 });
-    io.observe(el);
-    const t = setTimeout(() => el.classList.add('is-in'), 1900); // safety net
-    return () => { clearTimeout(t); io.disconnect(); };
-  }, []);
-  return (
-    <div ref={ref} className={`margin-vine margin-vine-${side}`} aria-hidden="true" style={style}>
-      <svg viewBox="0 0 120 640" fill="none" preserveAspectRatio="xMidYMax meet">
-        <g fill="currentColor">
-          <path d="M58,638 C46,560 70,500 60,430 C52,372 70,312 60,242 C53,186 66,118 57,12 L63,12 C72,118 60,186 66,242 C74,312 60,372 66,430 C74,500 54,560 66,638 Z"/>
-          <g transform="translate(62,452) rotate(-122) scale(0.6)">
-            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
-          </g>
-          <g transform="translate(63,300) rotate(52) scale(0.64)">
-            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
-          </g>
-          <g transform="translate(60,158) rotate(-120) scale(0.52)">
-            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
-          </g>
-          <path d="M58,86 C48,77 50,60 61,55 C70,60 72,75 64,84 C62,87 60,87 58,86 Z"/>
-        </g>
-        <g stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round">
-          <path d="M70,384 C86,380 90,366 79,362 C73,360 71,369 78,371"/>
-          <path d="M52,230 C36,226 32,212 43,208 C49,206 51,215 44,217"/>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
-window.MarginVine = MarginVine;
