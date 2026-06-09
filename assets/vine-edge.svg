@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 120" fill="none">
+  <g stroke="#1B2F44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- trailing horizontal stem -->
+    <path d="M6,74 C70,52 140,92 226,72 C312,52 392,94 470,72 C548,52 618,90 674,70"/>
+    <!-- up leaves (will peek past the photo edge) -->
+    <g transform="translate(96,72) rotate(-8) scale(0.3)">
+      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+      <path d="M0,-8 L0,-96" stroke-width="5"/>
+    </g>
+    <g transform="translate(300,70) rotate(6) scale(0.34)">
+      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+      <path d="M0,-8 L0,-96" stroke-width="5"/>
+    </g>
+    <g transform="translate(508,72) rotate(-6) scale(0.3)">
+      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+      <path d="M0,-8 L0,-96" stroke-width="5"/>
+    </g>
+    <!-- small down leaf for balance -->
+    <g transform="translate(200,74) rotate(168) scale(0.22)">
+      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+    </g>
+    <g transform="translate(410,72) rotate(192) scale(0.2)">
+      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+    </g>
+    <!-- tendrils -->
+    <path d="M150,70 C150,52 134,48 130,60 C128,66 138,68 138,60" stroke-width="2.2"/>
+    <path d="M600,70 C600,52 584,48 580,60 C578,66 588,68 588,60" stroke-width="2.2"/>
+  </g>
+</svg>

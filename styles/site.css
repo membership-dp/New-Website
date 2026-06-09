@@ -314,50 +314,34 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Painted photo border — Hideaway-style brushed FRAME on all four
-   sides. A brush stroke in the SECTION background color is stamped
-   over each edge, so the photo dissolves into the page through a
-   hand-painted border (white / bone / navy — never grey).
-   ::before = top edge (brush flipped so fingers reach down).
-   ::after  = bottom + left + right edges (3 mask layers, unioned).
-   --frame-color is set per surface; --brush-band is the border depth.
+   Vine photo edges — a trailing Aristolochia vine runs along the TOP
+   and BOTTOM edges of feature photos, touching the edge and sitting
+   BEHIND the photo (z-index 1, photo is z-index 2) so the leaves and
+   tendrils peek out past the edge. Recolored via mask: navy ink on
+   light surfaces, bone on navy. --vine-edge-h = strip depth.
    ============================================================ */
-.callout-media .callout-img-lg { isolation: isolate; }
-.callout-img-lg { --brush-band: 64px; }
-.callout-img-lg::before,
-.callout-img-lg::after {
+.callout-media { --vine-edge-h: 92px; }
+.callout-media::before,
+.callout-media::after {
   content: "";
   position: absolute;
-  inset: -1px;
-  z-index: 3;
+  left: -3%;
+  right: -3%;
+  height: var(--vine-edge-h);
+  z-index: 1;                /* behind .callout-img-lg (z-index 2) */
   pointer-events: none;
-  background-color: var(--frame-color, var(--color-bone));
-}
-/* Top edge */
-.callout-img-lg::before {
-  transform: scaleY(-1);
-  -webkit-mask-image: url('/assets/brush-dry.png');
-          mask-image: url('/assets/brush-dry.png');
+  background-color: var(--vine-ink, rgba(27, 47, 68, 0.5));
+  -webkit-mask-image: url('/assets/vine-edge.svg');
+          mask-image: url('/assets/vine-edge.svg');
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
-  -webkit-mask-position: center bottom;
-          mask-position: center bottom;
-  -webkit-mask-size: 150% var(--brush-band);
-          mask-size: 150% var(--brush-band);
 }
-/* Bottom + left + right edges in one element (3 unioned mask layers) */
-.callout-img-lg::after {
-  -webkit-mask-image: url('/assets/brush-dry.png'), url('/assets/brush-dry-v.png'), url('/assets/brush-dry-v.png');
-          mask-image: url('/assets/brush-dry.png'), url('/assets/brush-dry-v.png'), url('/assets/brush-dry-v.png');
-  -webkit-mask-repeat: no-repeat, no-repeat, no-repeat;
-          mask-repeat: no-repeat, no-repeat, no-repeat;
-  -webkit-mask-position: center bottom, left center, right center;
-          mask-position: center bottom, left center, right center;
-  -webkit-mask-size: 150% var(--brush-band), var(--brush-band) 150%, var(--brush-band) 150%;
-          mask-size: 150% var(--brush-band), var(--brush-band) 150%, var(--brush-band) 150%;
-  -webkit-mask-composite: source-over, source-over, source-over;
-          mask-composite: add, add, add;
-}
+/* Top edge: stem near the photo's top, leaves peek up */
+.callout-media::before { top: calc(-1 * var(--vine-edge-h) + 26px); }
+/* Bottom edge: flip vertically so the leaves peek down */
+.callout-media::after  { bottom: calc(-1 * var(--vine-edge-h) + 26px); transform: scaleY(-1); }
 
 /* ============================================================
    Brush divider — a soft painted rule for section breaks, replacing
@@ -1166,8 +1150,8 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .stat-row-3 .stat-cell:last-child { border-bottom: 0; }
 
   /* LayeredCallout: reflow the offset matte photo to sit BELOW the big photo
-     (no room for the absolute overlap at 375px) */
-  .callout-media { position: static; }
+     (no room for the absolute overlap at 375px). Keep .callout-media
+     positioned so the edge vines stay anchored to the photo. */
   .callout-img-sm,
   .callout.flipped .callout-img-sm {
     position: static; right: auto; left: auto; bottom: auto;
