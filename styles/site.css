@@ -278,16 +278,19 @@ img { display: block; max-width: 100%; }
 .brush-stroke {
   display: block;
   width: 100%;
-  max-width: 260px;
-  height: 18px;
-  margin-top: 22px;
+  max-width: 232px;
+  height: 26px;
+  margin-top: 20px;
   color: var(--color-pennant-yellow);
-  -webkit-mask-image: url('/assets/brush-stroke.svg');
-          mask-image: url('/assets/brush-stroke.svg');
+  /* real hand-painted brush (recolored via mask — source PNG color ignored) */
+  -webkit-mask-image: url('/assets/brush-dry.png');
+          mask-image: url('/assets/brush-dry.png');
   -webkit-mask-size: 100% 100%;
           mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
   background-color: currentColor;
   /* gently fades + slides in when the InView parent flips to is-in */
   opacity: 0;
@@ -295,42 +298,89 @@ img { display: block; max-width: 100%; }
   transition: opacity 900ms var(--ease-club), transform 900ms var(--ease-club);
 }
 .is-in .brush-stroke,
-.reveal.is-visible .brush-stroke { opacity: 0.9; transform: translateX(0); }
+.reveal.is-visible .brush-stroke { opacity: 0.92; transform: translateX(0); }
 .brush-stroke.center { margin-left: auto; margin-right: auto; }
 @media (prefers-reduced-motion: reduce) {
-  .brush-stroke { opacity: 0.9; transform: none; transition: none; }
+  .brush-stroke { opacity: 0.92; transform: none; transition: none; }
 }
 
 /* ============================================================
-   Brush-edge frame — painterly torn-paper mask applied to "hero"
-   imagery (full-bleed parallax backgrounds + large LayeredCallout
-   photos). Mask scales to any aspect ratio.
+   Painted photo edges — real hand-painted brush (brush-dry.png) used
+   as a layered mask so contained editorial photos read as if brushed
+   onto the page (Hideaway-style). Layer 1 = solid (top portion).
+   Layer 2 = brush shape (bottom strip), overscanned 118% so the bottom
+   corners get texture too. Their union (mask-composite) leaves the top
+   square and the BOTTOM edge ragged/painted.
+   --brush-edge-h controls how tall the painted band is; --brush-solid
+   is where the solid region ends (kept 24px shy so the 2 layers overlap).
    ============================================================ */
-.brush-edge {
-  -webkit-mask-image: url('/assets/brush-frame.svg');
-          mask-image: url('/assets/brush-frame.svg');
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-          mask-position: center;
+.callout-img-lg img,
+.photo-frame.brush-photo img,
+.photo-frame img {
+  --brush-edge-h: 60px;
+  -webkit-mask-image: linear-gradient(#000, #000), url('/assets/brush-dry.png');
+          mask-image: linear-gradient(#000, #000), url('/assets/brush-dry.png');
+  -webkit-mask-repeat: no-repeat, no-repeat;
+          mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-position: top center, bottom center;
+          mask-position: top center, bottom center;
+  -webkit-mask-size: 100% calc(100% - (var(--brush-edge-h) - 24px)), 118% var(--brush-edge-h);
+          mask-size: 100% calc(100% - (var(--brush-edge-h) - 24px)), 118% var(--brush-edge-h);
+  -webkit-mask-composite: source-over;
+          mask-composite: add;
 }
+/* The big feature photos in callouts get a slightly deeper painted band */
+.callout-img-lg img { --brush-edge-h: 78px; }
 
-/* Apply automatically to: the parallax photo background inside every
-   page-hero + full-bleed-quote, and the large photo in every LayeredCallout. */
-.page-hero .parallax > div,
-.full-bleed-quote .parallax > div,
-.callout-img-lg img {
-  -webkit-mask-image: url('/assets/brush-frame.svg');
-          mask-image: url('/assets/brush-frame.svg');
+/* ============================================================
+   Brush divider — a soft painted rule for section breaks, replacing
+   plain 1px borders. Recolored via mask (source PNG color ignored).
+   ============================================================ */
+.brush-divider {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: 16px;
+  background-color: var(--color-navy-40);
+  -webkit-mask-image: url('/assets/brush-smear.png');
+          mask-image: url('/assets/brush-smear.png');
   -webkit-mask-size: 100% 100%;
           mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
   -webkit-mask-position: center;
           mask-position: center;
+  opacity: 0.55;
 }
+.brush-divider.center { margin-left: auto; margin-right: auto; }
+.surface-navy .brush-divider { background-color: rgba(245,241,232,0.5); }
+
+/* ============================================================
+   Footer brush flourish — large, faint bone watermark woven into the
+   navy footer using the feathery sweep brush.
+   ============================================================ */
+.site-footer { position: relative; overflow: hidden; }
+.site-footer::before {
+  content: "";
+  position: absolute;
+  right: -3%;
+  bottom: -8%;
+  width: min(760px, 78%);
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-bone);
+  -webkit-mask-image: url('/assets/brush-wing.png');
+          mask-image: url('/assets/brush-wing.png');
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: bottom right;
+          mask-position: bottom right;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+.site-footer .container { position: relative; z-index: 1; }
 
 /* Brand motif behind the TEXT column (not the photo) — default callout
    has text on the right, so the motif sits on the right half; flipped
