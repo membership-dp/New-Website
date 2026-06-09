@@ -1,33 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" fill="none" role="img" aria-label="Dutchman's Pipe Club — vine and pipe-flower motif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" fill="none" role="img" aria-label="Dutchman's Pipe Club — trumpet flower motif">
+  <!-- Original DPC trumpet-flower motif (not a copy of any licensed artwork).
+       Modeled on the reference's gesture: a flared trumpet bloom with a dark
+       throat, a funnel body, a single leaf, a curving stem, and the signature
+       flared "pipe bowl" foot. Line-art in brand navy via currentColor so it
+       recolors cleanly as a CSS mask, matching the existing motif system. -->
   <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- main vine -->
-    <path d="M196,432 C168,372 150,338 176,292 C198,252 168,224 176,188 C182,160 168,140 178,118"/>
-
-    <!-- lower-left heart leaf -->
-    <g transform="translate(176,300) rotate(-42)">
-      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
-      <path d="M0,-6 L0,-100" stroke-width="2"/>
-      <path d="M0,-44 C-14,-52 -24,-58 -33,-70 M0,-44 C14,-52 24,-58 33,-70" stroke-width="1.6"/>
-    </g>
-
-    <!-- mid-right heart leaf -->
-    <g transform="translate(176,212) rotate(34) scale(0.86)">
-      <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
-      <path d="M0,-6 L0,-100" stroke-width="2"/>
-      <path d="M0,-44 C-14,-52 -24,-58 -33,-70 M0,-44 C14,-52 24,-58 33,-70" stroke-width="1.6"/>
-    </g>
-
-    <!-- the pipe-flower: inflated base + bent tube + flared bell mouth (Aristolochia) -->
-    <g transform="translate(178,120)">
-      <!-- inflated ovary/base bulb where it meets the stem -->
-      <path d="M-14,0 C-24,-12 -22,-34 -6,-42 C12,-50 30,-40 30,-22 C30,-12 25,-4 18,0"/>
-      <!-- back wall of the bent tube: up from bulb, arcing right -->
-      <path d="M-6,-42 C0,-70 22,-90 54,-88 C82,-86 100,-70 100,-48"/>
-      <!-- front wall of the bent tube, parallel inside the curve -->
-      <path d="M28,-24 C34,-50 50,-66 74,-66 C90,-66 100,-58 100,-48"/>
-      <!-- flared bell mouth opening downward (the 'pipe' opening) -->
-      <path d="M100,-48 C114,-44 118,-26 104,-18 C92,-12 78,-18 76,-32"/>
-      <path d="M76,-32 C84,-30 94,-28 104,-18" stroke-width="1.8"/>
-    </g>
+    <!-- Trumpet mouth: 5 scalloped petal lobes across the top, rounded lower lip -->
+    <path d="M66,112
+             A 18 23 0 0 1 102,112
+             A 18 23 0 0 1 138,112
+             A 18 23 0 0 1 174,112
+             A 18 23 0 0 1 210,112
+             A 18 23 0 0 1 246,112
+             C 250,140 212,156 160,156
+             C 108,156 66,140 66,112 Z"/>
+    <!-- Throat (the trumpet opening) -->
+    <ellipse cx="160" cy="118" rx="44" ry="15"/>
+    <!-- a couple of inner ribs for depth -->
+    <path d="M134,124 C140,138 150,146 160,150 M186,124 C180,138 170,146 160,150" stroke-width="1.8"/>
+    <!-- Funnel body narrowing from the mouth down to the tube -->
+    <path d="M108,150 C103,192 140,212 149,252"/>
+    <path d="M212,150 C217,192 180,212 171,252"/>
+    <!-- Curving stem down to the pipe-bowl foot -->
+    <path d="M160,252 C160,302 130,330 127,360 C124,386 132,398 123,410"/>
+    <!-- Single leaf branching to the right off the funnel -->
+    <path d="M198,214 C238,205 282,236 302,300 C262,300 214,272 198,230 Z"/>
+    <path d="M206,226 C240,252 270,274 296,298" stroke-width="1.8"/>
+    <!-- Pipe-bowl foot: a small flared cup at the base of the stem -->
+    <path d="M101,400 C96,420 110,434 130,429 C142,426 145,413 139,405"/>
+    <ellipse cx="112" cy="399" rx="13" ry="5" transform="rotate(-36 112 399)"/>
   </g>
 </svg>

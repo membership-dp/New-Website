@@ -14,7 +14,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
     <InView className={`callout ${flipped ? 'flipped' : ''}`}>
-      <div className="callout-bg motif" style={{ '--motif': `url('/assets/motif-${motif}.svg')` }} />
+      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=9')` }} />
       <div className="callout-inner">
         <div className="callout-media">
           <div className="callout-img-lg"><img src={lgImg} alt="" /></div>

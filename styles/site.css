@@ -144,17 +144,18 @@ img { display: block; max-width: 100%; }
 .container { max-width: var(--max-content); margin: 0 auto; }
 .container-narrow { max-width: 880px; margin: 0 auto; }
 
-/* Surface */
-.surface-bone { background: var(--color-bone); color: var(--color-ink); }
-.surface-white { background: var(--color-white); color: var(--color-ink); }
+/* Surface — each exposes --frame-color so painted photo edges blend into it */
+.surface-bone { background: var(--color-bone); color: var(--color-ink); --frame-color: var(--color-bone); }
+.surface-white { background: var(--color-white); color: var(--color-ink); --frame-color: var(--color-white); }
 .surface-navy {
   background: var(--color-club-navy);
   color: var(--color-bone);
   --fg: var(--color-bone);
   --fg-muted: rgba(245,241,232,0.72);
   --border: rgba(245,241,232,0.16);
+  --frame-color: var(--color-club-navy);
 }
-.surface-bone-95 { background: var(--color-bone-95); color: var(--color-ink); }
+.surface-bone-95 { background: var(--color-bone-95); color: var(--color-ink); --frame-color: var(--color-bone-95); }
 
 /* Display */
 .display-xl { font: 500 clamp(56px, 7vw, 104px)/1.02 var(--font-display); letter-spacing: -0.025em; margin: 0; text-wrap: balance; }
@@ -313,32 +314,42 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Painted photo edges — real hand-painted brush (brush-dry.png) used
-   as a layered mask so contained editorial photos read as if brushed
-   onto the page (Hideaway-style). Layer 1 = solid (top portion).
-   Layer 2 = brush shape (bottom strip), overscanned 118% so the bottom
-   corners get texture too. Their union (mask-composite) leaves the top
-   square and the BOTTOM edge ragged/painted.
-   --brush-edge-h controls how tall the painted band is; --brush-solid
-   is where the solid region ends (kept 24px shy so the 2 layers overlap).
+   Painted photo edges — Hideaway-style. Instead of cutting the photo
+   (which revealed the box behind it), we paint a brush border in the
+   SECTION's background color OVER the top & bottom edges, so the photo
+   dissolves into the page (white / bone / navy — never grey).
+   --frame-color is set per surface below; the brush texture makes the
+   fade edge ragged rather than a straight gradient.
    ============================================================ */
-.callout-img-lg img,
-.photo-frame.brush-photo img,
-.photo-frame img {
-  --brush-edge-h: 60px;
-  -webkit-mask-image: linear-gradient(#000, #000), url('/assets/brush-dry.png');
-          mask-image: linear-gradient(#000, #000), url('/assets/brush-dry.png');
-  -webkit-mask-repeat: no-repeat, no-repeat;
-          mask-repeat: no-repeat, no-repeat;
-  -webkit-mask-position: top center, bottom center;
-          mask-position: top center, bottom center;
-  -webkit-mask-size: 100% calc(100% - (var(--brush-edge-h) - 24px)), 118% var(--brush-edge-h);
-          mask-size: 100% calc(100% - (var(--brush-edge-h) - 24px)), 118% var(--brush-edge-h);
-  -webkit-mask-composite: source-over;
-          mask-composite: add;
+.callout-media .callout-img-lg { isolation: isolate; }
+.callout-img-lg::before,
+.callout-img-lg::after {
+  content: "";
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  height: 74px;
+  z-index: 3;
+  pointer-events: none;
+  background-color: var(--frame-color, var(--color-bone));
+  -webkit-mask-image: url('/assets/brush-dry.png');
+          mask-image: url('/assets/brush-dry.png');
+  -webkit-mask-size: 150% 100%;
+          mask-size: 150% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }
-/* The big feature photos in callouts get a slightly deeper painted band */
-.callout-img-lg img { --brush-edge-h: 78px; }
+.callout-img-lg::after {  /* bottom edge: brush mass hugs the bottom, fingers reach up */
+  bottom: -1px;
+  -webkit-mask-position: center bottom;
+          mask-position: center bottom;
+}
+.callout-img-lg::before { /* top edge: same brush flipped so fingers reach down */
+  top: -1px;
+  transform: scaleY(-1);
+  -webkit-mask-position: center bottom;
+          mask-position: center bottom;
+}
 
 /* ============================================================
    Brush divider — a soft painted rule for section breaks, replacing
@@ -406,13 +417,23 @@ img { display: block; max-width: 100%; }
 .callout.flipped .callout-bg {
   left: -6%; right: 48%;
 }
-/* Center the motif behind the text column rather than anchoring it bottom */
-.callout-bg.motif {
+/* Pipe motif sits centered behind the text column */
+.callout-bg.motif-pipe {
   -webkit-mask-position: center;
           mask-position: center;
 }
+/* Grass reeds: anchor to the BOTTOM of the section and keep them faint */
+.callout-bg.motif-grass {
+  top: 28%;
+  -webkit-mask-position: center bottom;
+          mask-position: center bottom;
+  color: rgba(27, 47, 68, 0.08);
+}
 .surface-navy .callout-bg { color: rgba(245, 241, 232, 0.12); }
+.surface-navy .callout-bg.motif-grass { color: rgba(245, 241, 232, 0.07); }
 .callout.is-in .callout-bg { opacity: 1; transform: translateY(0); }
+/* Grass fades in to a lower max opacity than pipe */
+.callout.is-in .callout-bg.motif-grass { opacity: 0.65; }
 
 /* Text column: an accent rule that draws on scroll-in */
 .callout-rule {

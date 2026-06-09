@@ -92,10 +92,11 @@ function MembershipPage({ onNav }) {
 
       {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents + motif backdrop */}
       <section className="section-tight surface-bone-95" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="callout-bg motif" style={{
-          '--motif': `url('/assets/motif-grass.svg')`,
-          position: 'absolute', inset: '0 0 0 60%',
-          opacity: 0.5, pointerEvents: 'none',
+        <div className="callout-bg motif motif-grass" style={{
+          '--motif': `url('/assets/motif-grass.svg?v=9')`,
+          position: 'absolute', inset: 'auto 0 0 60%', height: '70%',
+          maskPosition: 'center bottom', WebkitMaskPosition: 'center bottom',
+          opacity: 0.32, pointerEvents: 'none',
         }} />
         <div className="container" style={{ position: 'relative' }}>
           <Reveal>
