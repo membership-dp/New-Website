@@ -671,7 +671,18 @@ img { display: block; max-width: 100%; }
 
 /* Footer */
 .site-footer {
-  background: var(--color-club-navy);
+  /* Satin carried through the footer — same silk, fold running the opposite
+     way (295°) so it reads as its own panel; bloom rises from bottom-left.
+     A champagne hairline seats it against whatever section sits above. */
+  background:
+    radial-gradient(120% 90% at 28% 100%, rgba(98, 134, 176, 0.16), transparent 60%),
+    linear-gradient(295deg,
+      var(--color-vault) 0%,
+      var(--color-satin-mid) 38%,
+      var(--color-satin-ridge) 50%,
+      #142639 62%,
+      #060F1B 100%);
+  border-top: 1px solid rgba(201, 165, 92, 0.22);
   color: rgba(245,241,232,0.78);
   padding: 96px var(--gutter) 48px;
 }
