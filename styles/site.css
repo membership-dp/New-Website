@@ -314,41 +314,49 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Painted photo edges — Hideaway-style. Instead of cutting the photo
-   (which revealed the box behind it), we paint a brush border in the
-   SECTION's background color OVER the top & bottom edges, so the photo
-   dissolves into the page (white / bone / navy — never grey).
-   --frame-color is set per surface below; the brush texture makes the
-   fade edge ragged rather than a straight gradient.
+   Painted photo border — Hideaway-style brushed FRAME on all four
+   sides. A brush stroke in the SECTION background color is stamped
+   over each edge, so the photo dissolves into the page through a
+   hand-painted border (white / bone / navy — never grey).
+   ::before = top edge (brush flipped so fingers reach down).
+   ::after  = bottom + left + right edges (3 mask layers, unioned).
+   --frame-color is set per surface; --brush-band is the border depth.
    ============================================================ */
 .callout-media .callout-img-lg { isolation: isolate; }
+.callout-img-lg { --brush-band: 64px; }
 .callout-img-lg::before,
 .callout-img-lg::after {
   content: "";
   position: absolute;
-  left: -1%;
-  right: -1%;
-  height: 74px;
+  inset: -1px;
   z-index: 3;
   pointer-events: none;
   background-color: var(--frame-color, var(--color-bone));
+}
+/* Top edge */
+.callout-img-lg::before {
+  transform: scaleY(-1);
   -webkit-mask-image: url('/assets/brush-dry.png');
           mask-image: url('/assets/brush-dry.png');
-  -webkit-mask-size: 150% 100%;
-          mask-size: 150% 100%;
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
-}
-.callout-img-lg::after {  /* bottom edge: brush mass hugs the bottom, fingers reach up */
-  bottom: -1px;
   -webkit-mask-position: center bottom;
           mask-position: center bottom;
+  -webkit-mask-size: 150% var(--brush-band);
+          mask-size: 150% var(--brush-band);
 }
-.callout-img-lg::before { /* top edge: same brush flipped so fingers reach down */
-  top: -1px;
-  transform: scaleY(-1);
-  -webkit-mask-position: center bottom;
-          mask-position: center bottom;
+/* Bottom + left + right edges in one element (3 unioned mask layers) */
+.callout-img-lg::after {
+  -webkit-mask-image: url('/assets/brush-dry.png'), url('/assets/brush-dry-v.png'), url('/assets/brush-dry-v.png');
+          mask-image: url('/assets/brush-dry.png'), url('/assets/brush-dry-v.png'), url('/assets/brush-dry-v.png');
+  -webkit-mask-repeat: no-repeat, no-repeat, no-repeat;
+          mask-repeat: no-repeat, no-repeat, no-repeat;
+  -webkit-mask-position: center bottom, left center, right center;
+          mask-position: center bottom, left center, right center;
+  -webkit-mask-size: 150% var(--brush-band), var(--brush-band) 150%, var(--brush-band) 150%;
+          mask-size: 150% var(--brush-band), var(--brush-band) 150%, var(--brush-band) 150%;
+  -webkit-mask-composite: source-over, source-over, source-over;
+          mask-composite: add, add, add;
 }
 
 /* ============================================================
@@ -422,9 +430,12 @@ img { display: block; max-width: 100%; }
   -webkit-mask-position: center;
           mask-position: center;
 }
-/* Grass reeds: anchor to the BOTTOM of the section and keep them faint */
+/* Grass reeds: drop them to the very bottom of the section (extend past the
+   callout into the section's lower padding) and keep them faint */
 .callout-bg.motif-grass {
-  top: 28%;
+  top: auto;
+  bottom: -96px;
+  height: 320px;
   -webkit-mask-position: center bottom;
           mask-position: center bottom;
   color: rgba(27, 47, 68, 0.08);
