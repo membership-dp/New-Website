@@ -70,7 +70,6 @@ function HomePage({ onNav }) {
               }}>
                 Play. Train. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>Belong.</em>
               </div>
-              <span className="brush-stroke" />
             </Reveal>
             <Reveal delay={120}>
               <p style={{
