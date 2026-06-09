@@ -1,40 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 140" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 120" fill="none">
   <g fill="#1B2F44">
-    <!-- tapered ribbon stem (swells at the left, thins to the right) -->
-    <path d="M2,74
-             C70,50 140,92 226,71
-             C312,50 392,93 470,70
-             C548,50 618,88 678,67
-             C620,94 548,56 470,76
-             C392,99 312,56 226,77
-             C140,98 70,57 2,80 Z"/>
-    <!-- lanceolate leaves with a fine negative midrib (fill-rule evenodd) -->
-    <g transform="translate(98,72) rotate(-18) scale(0.62)">
-      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
-               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+    <!-- calligraphic tapered stem: one gentle S, thick left -> hairline right -->
+    <path d="M6,66 C150,40 250,52 360,64 C470,76 545,80 676,58
+             C545,84 470,80 360,68 C250,56 150,46 6,72 Z"/>
+    <!-- slim leaves w/ hairline midrib, asymmetric rhythm -->
+    <g transform="translate(140,60) rotate(-26) scale(0.66)">
+      <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
     </g>
-    <g transform="translate(232,76) rotate(166) scale(0.5)">
-      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
-               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+    <g transform="translate(300,66) rotate(150) scale(0.5)">
+      <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
     </g>
-    <g transform="translate(322,70) rotate(14) scale(0.72)">
-      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
-               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+    <g transform="translate(430,64) rotate(20) scale(0.74)">
+      <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
     </g>
-    <g transform="translate(452,76) rotate(172) scale(0.46)">
-      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
-               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
-    </g>
-    <g transform="translate(540,72) rotate(-16) scale(0.6)">
-      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
-               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
-    </g>
-    <!-- small bud near the right tip -->
-    <path d="M636,66 C648,60 660,66 660,78 C660,88 650,92 642,88 C636,85 634,76 636,66 Z"/>
+    <!-- furled bud near the tapering tip -->
+    <path d="M600,60 C612,51 627,57 626,70 C625,80 614,83 607,78 C601,74 599,66 600,60 Z"/>
   </g>
-  <!-- hairline tendrils for delicacy -->
-  <g stroke="#1B2F44" stroke-width="1.6" fill="none" stroke-linecap="round">
-    <path d="M168,70 C168,52 152,48 148,60 C146,67 156,69 156,61"/>
-    <path d="M388,70 C388,52 404,48 408,60 C410,67 400,69 400,61"/>
+  <g stroke="#1B2F44" stroke-width="1.3" fill="none" stroke-linecap="round">
+    <path d="M232,62 C234,46 222,42 217,52 C214,58 223,61 225,53"/>
+    <path d="M520,62 C522,48 534,45 539,54"/>
   </g>
 </svg>

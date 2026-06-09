@@ -14,7 +14,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
     <InView className={`callout ${flipped ? 'flipped' : ''}`}>
-      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=13')` }} />
+      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=14')` }} />
       <div className="callout-inner">
         <div className="callout-media">
           <div className="callout-img-lg"><img src={lgImg} alt="" /></div>
@@ -118,23 +118,23 @@ function MarginVine({ side = 'left', style }) {
   }, []);
   return (
     <div ref={ref} className={`margin-vine margin-vine-${side}`} aria-hidden="true" style={style}>
-      <svg viewBox="0 0 130 640" fill="none" preserveAspectRatio="xMidYMax meet">
+      <svg viewBox="0 0 120 640" fill="none" preserveAspectRatio="xMidYMax meet">
         <g fill="currentColor">
-          <path d="M60,640 C48,566 82,520 64,452 C50,396 88,356 64,292 C46,240 84,200 62,136 C48,92 78,54 58,6 L66,6 C86,54 56,92 70,136 C92,200 54,240 72,292 C96,356 58,396 72,452 C90,520 56,566 68,640 Z"/>
-          <g transform="translate(66,452) rotate(-128) scale(0.6)">
-            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+          <path d="M58,638 C46,560 70,500 60,430 C52,372 70,312 60,242 C53,186 66,118 57,12 L63,12 C72,118 60,186 66,242 C74,312 60,372 66,430 C74,500 54,560 66,638 Z"/>
+          <g transform="translate(62,452) rotate(-122) scale(0.6)">
+            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
           </g>
-          <g transform="translate(64,300) rotate(54) scale(0.66)">
-            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+          <g transform="translate(63,300) rotate(52) scale(0.64)">
+            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
           </g>
-          <g transform="translate(62,150) rotate(-124) scale(0.56)">
-            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+          <g transform="translate(60,158) rotate(-120) scale(0.52)">
+            <path fill-rule="evenodd" d="M0,0 C-9,-16 -8,-46 0,-72 C8,-46 9,-16 0,0 Z M0,-10 C-1.4,-28 -1.4,-50 0,-64 C1.4,-50 1.4,-28 0,-10 Z"/>
           </g>
-          <path d="M60,70 C50,60 52,42 64,36 C74,42 76,58 68,68 C65,72 62,72 60,70 Z"/>
+          <path d="M58,86 C48,77 50,60 61,55 C70,60 72,75 64,84 C62,87 60,87 58,86 Z"/>
         </g>
-        <g stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round">
-          <path d="M74,386 C92,382 96,366 84,362 C77,360 75,370 83,372"/>
-          <path d="M56,232 C38,228 34,212 46,208 C53,206 55,216 47,218"/>
+        <g stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round">
+          <path d="M70,384 C86,380 90,366 79,362 C73,360 71,369 78,371"/>
+          <path d="M52,230 C36,226 32,212 43,208 C49,206 51,215 44,217"/>
         </g>
       </svg>
     </div>

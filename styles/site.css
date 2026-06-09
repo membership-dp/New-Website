@@ -331,8 +331,8 @@ img { display: block; max-width: 100%; }
   z-index: 1;                /* behind .callout-img-lg (z-index 2) */
   pointer-events: none;
   background-color: var(--vine-ink, rgba(27, 47, 68, 0.5));
-  -webkit-mask-image: url('/assets/vine-edge.svg');
-          mask-image: url('/assets/vine-edge.svg');
+  -webkit-mask-image: url('/assets/vine-edge.svg?v=14');
+          mask-image: url('/assets/vine-edge.svg?v=14');
   -webkit-mask-size: 100% 100%;
           mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
