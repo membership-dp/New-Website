@@ -181,7 +181,7 @@ function HomePage({ onNav }) {
       <section className="section surface-white">
         <LayeredCallout
           eyebrow="The Location"
-          title="Quietly removed — moments from everywhere."
+          title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
           body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International — with discreet access to private aviation. A rare balance of accessibility and separation."
           lgImg="assets/hero-palms.jpg"
           smImg="assets/hero-villa.jpg"
