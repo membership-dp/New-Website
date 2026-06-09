@@ -148,7 +148,8 @@ function HomePage({ onNav }) {
       </section>
 
       {/* LAYERED CALLOUT — The Course */}
-      <section className="section surface-bone">
+      <section className="section surface-bone vine-host">
+        <MarginVine side="left" />
         <LayeredCallout
           eyebrow="The Course"
           title="A test worthy of its design — beautifully playable."
@@ -162,7 +163,8 @@ function HomePage({ onNav }) {
       </section>
 
       {/* LAYERED CALLOUT — Racquets (navy, flipped) */}
-      <section className="section surface-navy">
+      <section className="section surface-navy vine-host">
+        <MarginVine side="right" />
         <LayeredCallout
           flipped dark
           eyebrow="The Racquet Pavilion"

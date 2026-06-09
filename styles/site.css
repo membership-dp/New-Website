@@ -409,6 +409,30 @@ img { display: block; max-width: 100%; }
 }
 .site-footer .container { position: relative; z-index: 1; }
 
+/* ============================================================
+   Margin vine — line-art Aristolochia climber in a section gutter,
+   scroll-drawn (stroke-dash animated in the component). Sits beside
+   the centered content; navy on light surfaces, bone on navy.
+   ============================================================ */
+.vine-host { position: relative; }
+.margin-vine {
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  width: 92px;
+  z-index: 1;
+  pointer-events: none;
+  color: var(--vine-ink, rgba(27, 47, 68, 0.5));
+}
+.margin-vine svg { width: 100%; height: 100%; display: block; }
+/* keep it just outside the centered content column on wide screens,
+   tucked to the edge on medium ones */
+.margin-vine-left  { left:  max(8px, calc(50% - (var(--max-content) / 2) - 70px)); }
+.margin-vine-right { right: max(8px, calc(50% - (var(--max-content) / 2) - 70px)); transform: scaleX(-1); }
+.surface-navy { --vine-ink: rgba(245, 241, 232, 0.42); }
+/* not enough room beside the text below ~1100px — hide it */
+@media (max-width: 1100px) { .margin-vine { display: none; } }
+
 /* Brand motif behind the TEXT column (not the photo) — default callout
    has text on the right, so the motif sits on the right half; flipped
    callouts have text on the left, so the motif moves to the left half. */

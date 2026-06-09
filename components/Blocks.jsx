@@ -99,6 +99,57 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
+/* MarginVine — a thin line-art Aristolochia (Dutchman's-pipe) climber that
+   "grows" up a section's side gutter as it scrolls into view. Each path
+   self-measures and animates stroke-dashoffset 0 so the stem and leaves
+   draw on. side='left'|'right'; honors reduced-motion (draws instantly). */
+function MarginVine({ side = 'left', style }) {
+  const ref = useBlockRef(null);
+  useBlockEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const paths = Array.from(el.querySelectorAll('path'));
+    paths.forEach((p, i) => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = L;
+      p.style.strokeDashoffset = L;
+      p.style.transition = `stroke-dashoffset 2200ms var(--ease-club) ${i * 160}ms`;
+    });
+    const draw = () => paths.forEach((p) => { p.style.strokeDashoffset = 0; });
+    if (blockReduced()) { draw(); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { draw(); io.unobserve(el); } });
+    }, { threshold: 0.12 });
+    io.observe(el);
+    const t = setTimeout(draw, 1900); // safety net
+    return () => { clearTimeout(t); io.disconnect(); };
+  }, []);
+  return (
+    <div ref={ref} className={`margin-vine margin-vine-${side}`} aria-hidden="true" style={style}>
+      <svg viewBox="0 0 120 640" fill="none" preserveAspectRatio="xMidYMid meet">
+        <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M62,634 C42,566 84,524 66,456 C50,396 92,360 66,296 C44,240 86,202 62,138 C46,90 80,54 60,8"/>
+          <g transform="translate(66,456) rotate(-150) scale(0.34)">
+            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+            <path d="M0,-8 L0,-96" stroke-width="5"/>
+          </g>
+          <g transform="translate(66,300) rotate(38) scale(0.32)">
+            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+            <path d="M0,-8 L0,-96" stroke-width="5"/>
+          </g>
+          <g transform="translate(62,150) rotate(-148) scale(0.3)">
+            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
+            <path d="M0,-8 L0,-96" stroke-width="5"/>
+          </g>
+          <path d="M70,388 C92,384 98,366 86,360 C78,356 76,368 84,370" stroke-width="2.4"/>
+          <path d="M58,86 C36,84 30,66 42,60 C50,56 53,68 45,70" stroke-width="2.4"/>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
+window.MarginVine = MarginVine;
