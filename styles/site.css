@@ -1,7 +1,10 @@
 /* Site styles — extends colors_and_type.css */
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
+/* clip (not hidden) so it never becomes a scroll container that breaks
+   position:sticky / parallax children — backstop against motif/offset bleed */
+.page-shell { overflow-x: clip; }
 body {
   background: var(--color-bone);
   color: var(--color-ink);
@@ -161,6 +164,11 @@ img { display: block; max-width: 100%; }
 
 .lede { font: 400 clamp(18px, 1.4vw, 22px)/1.55 var(--font-body); color: var(--fg-muted); max-width: 62ch; margin: 0; text-wrap: pretty; }
 .body-text { font: 400 17px/1.7 var(--font-body); color: var(--fg-muted); margin: 0; max-width: 60ch; text-wrap: pretty; }
+
+/* Hero sub-paragraph — shared so the phone type ramp can reach it
+   (page heroes previously hard-coded font inline, bypassing responsive sizing) */
+.hero-sub { font: 400 22px/1.5 var(--font-body); }
+.hero-sub--home { font-size: 20px; }
 
 .eyebrow {
   font: var(--type-eyebrow);
@@ -424,6 +432,11 @@ img { display: block; max-width: 100%; }
   .callout-img-sm { width: 56%; right: 12px; bottom: -36px; }
   .callout.flipped .callout-img-sm { left: auto; right: 12px; }
   .callout-text { padding-top: 56px; }
+  /* motif sat behind the text column on desktop; on stacked layouts pull it
+     fully inside so it can't bleed past the viewport (overflow backstop) */
+  .callout-bg, .callout.flipped .callout-bg { left: 0; right: 0; top: 0; bottom: 0; }
+  /* Membership pillars motif: push right + fade so it stays decorative behind copy */
+  .section-tight .callout-bg.motif { inset: 0 -20% 0 75%; opacity: 0.28; }
 }
 @media (prefers-reduced-motion: reduce) {
   .callout-img-sm, .callout-bg { opacity: 1; transform: none; transition: none; }
@@ -449,6 +462,7 @@ img { display: block; max-width: 100%; }
   align-items: flex-end;
   padding: var(--header-height) var(--gutter) 96px;
 }
+.page-hero { min-height: 100dvh; } /* iOS toolbar-safe; vh above is the fallback */
 .page-hero-inner {
   position: relative;
   width: 100%;
@@ -457,6 +471,7 @@ img { display: block; max-width: 100%; }
 }
 .page-hero-short {
   min-height: 72vh;
+  min-height: 72dvh;
 }
 
 /* --- Stat strip --- */
@@ -466,6 +481,8 @@ img { display: block; max-width: 100%; }
   border-top: 1px solid var(--color-mist);
   border-bottom: 1px solid var(--color-mist);
 }
+/* 3-up variant (Racquets court counts) — responsive, no inline grid lock */
+.stat-row-3 { grid-template-columns: repeat(3, 1fr); }
 .stat-cell {
   padding: 56px 32px;
   border-right: 1px solid var(--color-mist);
@@ -529,6 +546,7 @@ img { display: block; max-width: 100%; }
 .full-bleed-quote {
   position: relative;
   min-height: 80vh;
+  min-height: 80dvh;
   background-position: center;
   background-size: cover;
   display: flex;
@@ -664,7 +682,7 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 .site-header-menu {
   position: fixed;
   inset: 0;
-  z-index: 49;
+  z-index: 60;  /* above the fixed header (50) so the dim backdrop covers the top strip */
   background: rgba(15, 25, 40, 0.55);
   backdrop-filter: blur(8px);
   display: flex;
@@ -740,6 +758,14 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   grid-template-columns: 1fr 1fr;
 }
 .inquiry-form .span-2 { grid-column: 1 / -1; }
+/* the appearance:none select strips its native chevron — restore a pennant-yellow one */
+.inquiry-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8DA70' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 12px;
+  padding-right: 24px;
+}
 .inquiry-page-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -795,8 +821,8 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 @keyframes tpFade { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
 .tp-caption {
   position: absolute;
-  left: 16px; bottom: 14px;
-  font: 500 11px/1 var(--font-body);
+  left: 16px; right: 16px; bottom: 14px;
+  font: 500 11px/1.2 var(--font-body);
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--color-bone);
   text-shadow: 0 1px 8px rgba(15,25,40,0.6);
@@ -894,6 +920,8 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
     width: 44px;
     height: 44px;
     padding: 0;
+    position: relative;
+    z-index: 61;  /* keep the hamburger/X toggle clickable above the raised menu */
   }
 
   .site-footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -910,12 +938,21 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .four-up-cell:nth-child(2n) { border-right: 0; }
   .four-up-cell:nth-child(-n+2) { border-bottom: 1px solid var(--color-mist); }
   .four-up-cell { padding: 32px 20px; }
+
+  /* ThreePanel slideshow: 3 -> 2 across at tablet */
+  .threepanel { grid-template-columns: repeat(2, 1fr); }
+  /* Instagram strip: 6 -> 3 across (was stuck at 6 through the whole tablet band) */
+  .ig-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Touch tap targets: arrow links + IG handle were ~22px tall */
+  .arrow-link { padding-top: 14px; min-height: 44px; align-items: center; }
+  .ig-handle { display: inline-flex; align-items: center; min-height: 44px; }
 }
 
 /* ============================================================
    Splash gate — staggered intro + exit
    ============================================================ */
-.splash-root { transition: opacity 600ms var(--ease-club); }
+.splash-root { transition: opacity 600ms var(--ease-club); min-height: 100dvh; }
 .splash-root.is-leaving { opacity: 0; pointer-events: none; }
 
 .splash-intro > * {
@@ -1061,10 +1098,34 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .display-sm { font-size: 24px; }
   .lede { font-size: 16px; }
   .body-text { font: 400 15px/1.65 var(--font-body); }
+  .hero-sub, .hero-sub--home { font-size: 17px; line-height: 1.55; }
 
   /* Stat strip: 2-col stays but smaller numerals */
   .stat-cell { padding: 36px 20px; gap: 12px; }
   .stat-num { font-size: 44px !important; }
+
+  /* 3-up stat strip (Racquets): single column with horizontal dividers */
+  .stat-row-3 { grid-template-columns: 1fr; }
+  .stat-row-3 .stat-cell { border-right: 0; border-bottom: 1px solid var(--color-mist); }
+  .stat-row-3 .stat-cell:last-child { border-bottom: 0; }
+
+  /* LayeredCallout: reflow the offset matte photo to sit BELOW the big photo
+     (no room for the absolute overlap at 375px) */
+  .callout-media { position: static; }
+  .callout-img-sm,
+  .callout.flipped .callout-img-sm {
+    position: static; right: auto; left: auto; bottom: auto;
+    width: 64%; margin: -28px 0 0 auto;
+    transform: none; opacity: 1; aspect-ratio: 4 / 3;
+  }
+  .callout-text { padding-top: 24px; }
+
+  /* ThreePanel slideshow: single column on phones */
+  .threepanel { grid-template-columns: 1fr; gap: 14px; }
+  .tp-cell { aspect-ratio: 4 / 3; }
+
+  /* Home pillars force 4/5 inline; shorten so the stacked column isn't a marathon scroll */
+  .three-up .photo-frame { aspect-ratio: 4 / 3 !important; }
 
   /* Footer collapses to single column on phones */
   .site-footer { padding: 64px var(--gutter) 32px; }
@@ -1074,9 +1135,11 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .site-header-wordmark { display: none; }
   .site-header-logo { height: 36px !important; }
 
-  /* Splash gate sizing */
+  /* Splash gate sizing + comfortable Enter tap target */
+  .splash-root { padding: 40px 20px !important; }
   .splash-logo { height: 88px !important; margin-bottom: 36px !important; }
   .splash-tagline { font-size: 16px !important; }
+  .splash-root .btn-ghost-light { padding: 18px 40px !important; min-height: 52px; }
 
   /* Scroll indicator is desktop ornamentation — hide on phones */
   .scroll-indicator { display: none; }

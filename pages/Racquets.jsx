@@ -15,8 +15,7 @@ function RacquetsPage({ onNav }) {
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
             A distinct racquet culture in Palm Beach.
           </h1>
-          <p style={{
-            font: '400 22px/1.5 var(--font-body)',
+          <p className="hero-sub" style={{
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 700, marginBottom: 0,
           }}>
@@ -29,13 +28,13 @@ function RacquetsPage({ onNav }) {
       {/* STAT STRIP — court counts */}
       <Reveal as="section" className="surface-bone" style={{ padding: '0 var(--gutter)' }}>
         <div className="container">
-          <div className="stat-row" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+          <div className="stat-row stat-row-3">
             {[
               { num: '4', label: 'Har-Tru Tennis Courts' },
               { num: '2', label: 'Padel Courts' },
               { num: '2', label: 'Pickleball Courts' },
-            ].map((s, i, arr) => (
-              <div key={s.label} className="stat-cell" style={{ borderRight: i === arr.length - 1 ? 0 : '1px solid var(--color-mist)' }}>
+            ].map((s) => (
+              <div key={s.label} className="stat-cell">
                 <div className="stat-num">{s.num}</div>
                 <div className="stat-label">{s.label}</div>
               </div>

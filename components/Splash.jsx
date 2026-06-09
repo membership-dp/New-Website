@@ -16,7 +16,6 @@ function Splash({ onEnter }) {
   return (
     <section className={`splash-root ${leaving ? 'is-leaving' : ''}`} style={{
       position: 'relative',
-      minHeight: '100vh',
       backgroundImage: `url('assets/hero-sunset.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -60,8 +59,9 @@ function Splash({ onEnter }) {
         </div>
         <div style={{ marginTop: 56, display: 'flex', justifyContent: 'center' }}>
           <button onClick={handleEnter} className="btn btn-ghost-light" style={{
-            padding: '14px 28px',
+            padding: '18px 36px',
             gap: 14,
+            minHeight: 52,
             justifyContent: 'center',
           }}>
             Enter

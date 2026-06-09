@@ -15,8 +15,7 @@ function GolfPage({ onNav }) {
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
             Golf at Dutchman's Pipe.
           </h1>
-          <p style={{
-            font: '400 22px/1.5 var(--font-body)',
+          <p className="hero-sub" style={{
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 720, marginBottom: 0,
           }}>

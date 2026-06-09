@@ -20,8 +20,7 @@ function HomePage({ onNav }) {
               <h1 className="display-xl" style={{ color: 'var(--color-bone)' }}>
                 Freedom to play, whenever you please.
               </h1>
-              <p style={{
-                font: '400 20px/1.55 var(--font-body)',
+              <p className="hero-sub hero-sub--home" style={{
                 color: 'rgba(245,241,232,0.82)',
                 marginTop: 32, maxWidth: 580, marginBottom: 0,
               }}>
