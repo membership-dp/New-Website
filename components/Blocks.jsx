@@ -14,7 +14,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
     <InView className={`callout ${flipped ? 'flipped' : ''}`}>
-      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=9')` }} />
+      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=13')` }} />
       <div className="callout-inner">
         <div className="callout-media">
           <div className="callout-img-lg"><img src={lgImg} alt="" /></div>
@@ -99,50 +99,42 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
-/* MarginVine — a thin line-art Aristolochia (Dutchman's-pipe) climber that
-   "grows" up a section's side gutter as it scrolls into view. Each path
-   self-measures and animates stroke-dashoffset 0 so the stem and leaves
-   draw on. side='left'|'right'; honors reduced-motion (draws instantly). */
+/* MarginVine — a refined botanical Aristolochia climber in a section's side
+   gutter. Filled, tapered forms (not pencil-outline). On scroll-in it reveals
+   with a clip-path wipe that grows the vine up from the bottom. side='left'
+   |'right'; honors reduced-motion (appears instantly). */
 function MarginVine({ side = 'left', style }) {
   const ref = useBlockRef(null);
   useBlockEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const paths = Array.from(el.querySelectorAll('path'));
-    paths.forEach((p, i) => {
-      const L = p.getTotalLength();
-      p.style.strokeDasharray = L;
-      p.style.strokeDashoffset = L;
-      p.style.transition = `stroke-dashoffset 2200ms var(--ease-club) ${i * 160}ms`;
-    });
-    const draw = () => paths.forEach((p) => { p.style.strokeDashoffset = 0; });
-    if (blockReduced()) { draw(); return; }
+    if (blockReduced()) { el.classList.add('is-in'); return; }
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { draw(); io.unobserve(el); } });
+      entries.forEach((e) => { if (e.isIntersecting) { el.classList.add('is-in'); io.unobserve(el); } });
     }, { threshold: 0.12 });
     io.observe(el);
-    const t = setTimeout(draw, 1900); // safety net
+    const t = setTimeout(() => el.classList.add('is-in'), 1900); // safety net
     return () => { clearTimeout(t); io.disconnect(); };
   }, []);
   return (
     <div ref={ref} className={`margin-vine margin-vine-${side}`} aria-hidden="true" style={style}>
-      <svg viewBox="0 0 120 640" fill="none" preserveAspectRatio="xMidYMid meet">
-        <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
-          <path d="M62,634 C42,566 84,524 66,456 C50,396 92,360 66,296 C44,240 86,202 62,138 C46,90 80,54 60,8"/>
-          <g transform="translate(66,456) rotate(-150) scale(0.34)">
-            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
-            <path d="M0,-8 L0,-96" stroke-width="5"/>
+      <svg viewBox="0 0 130 640" fill="none" preserveAspectRatio="xMidYMax meet">
+        <g fill="currentColor">
+          <path d="M60,640 C48,566 82,520 64,452 C50,396 88,356 64,292 C46,240 84,200 62,136 C48,92 78,54 58,6 L66,6 C86,54 56,92 70,136 C92,200 54,240 72,292 C96,356 58,396 72,452 C90,520 56,566 68,640 Z"/>
+          <g transform="translate(66,452) rotate(-128) scale(0.6)">
+            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
           </g>
-          <g transform="translate(66,300) rotate(38) scale(0.32)">
-            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
-            <path d="M0,-8 L0,-96" stroke-width="5"/>
+          <g transform="translate(64,300) rotate(54) scale(0.66)">
+            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
           </g>
-          <g transform="translate(62,150) rotate(-148) scale(0.3)">
-            <path d="M0,0 C-7,-9 -34,-11 -49,-34 C-62,-55 -47,-86 0,-108 C47,-86 62,-55 49,-34 C34,-11 7,-9 0,0 Z"/>
-            <path d="M0,-8 L0,-96" stroke-width="5"/>
+          <g transform="translate(62,150) rotate(-124) scale(0.56)">
+            <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
           </g>
-          <path d="M70,388 C92,384 98,366 86,360 C78,356 76,368 84,370" stroke-width="2.4"/>
-          <path d="M58,86 C36,84 30,66 42,60 C50,56 53,68 45,70" stroke-width="2.4"/>
+          <path d="M60,70 C50,60 52,42 64,36 C74,42 76,58 68,68 C65,72 62,72 60,70 Z"/>
+        </g>
+        <g stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round">
+          <path d="M74,386 C92,382 96,366 84,362 C77,360 75,370 83,372"/>
+          <path d="M56,232 C38,228 34,212 46,208 C53,206 55,216 47,218"/>
         </g>
       </svg>
     </div>

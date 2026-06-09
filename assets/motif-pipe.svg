@@ -1,33 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" fill="none" role="img" aria-label="Dutchman's Pipe Club — trumpet flower motif">
-  <!-- Original DPC trumpet-flower motif (not a copy of any licensed artwork).
-       Modeled on the reference's gesture: a flared trumpet bloom with a dark
-       throat, a funnel body, a single leaf, a curving stem, and the signature
-       flared "pipe bowl" foot. Line-art in brand navy via currentColor so it
-       recolors cleanly as a CSS mask, matching the existing motif system. -->
-  <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- Trumpet mouth: 5 scalloped petal lobes across the top, rounded lower lip -->
-    <path d="M66,112
-             A 18 23 0 0 1 102,112
-             A 18 23 0 0 1 138,112
-             A 18 23 0 0 1 174,112
-             A 18 23 0 0 1 210,112
-             A 18 23 0 0 1 246,112
-             C 250,140 212,156 160,156
-             C 108,156 66,140 66,112 Z"/>
-    <!-- Throat (the trumpet opening) -->
-    <ellipse cx="160" cy="118" rx="44" ry="15"/>
-    <!-- a couple of inner ribs for depth -->
-    <path d="M134,124 C140,138 150,146 160,150 M186,124 C180,138 170,146 160,150" stroke-width="1.8"/>
-    <!-- Funnel body narrowing from the mouth down to the tube -->
-    <path d="M108,150 C103,192 140,212 149,252"/>
-    <path d="M212,150 C217,192 180,212 171,252"/>
-    <!-- Curving stem down to the pipe-bowl foot -->
-    <path d="M160,252 C160,302 130,330 127,360 C124,386 132,398 123,410"/>
-    <!-- Single leaf branching to the right off the funnel -->
-    <path d="M198,214 C238,205 282,236 302,300 C262,300 214,272 198,230 Z"/>
-    <path d="M206,226 C240,252 270,274 296,298" stroke-width="1.8"/>
-    <!-- Pipe-bowl foot: a small flared cup at the base of the stem -->
-    <path d="M101,400 C96,420 110,434 130,429 C142,426 145,413 139,405"/>
-    <ellipse cx="112" cy="399" rx="13" ry="5" transform="rotate(-36 112 399)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" fill="none">
+  <g fill="#1B2F44">
+    <!-- 5 filled petals fanning across the top (thin bg gaps read as divisions) -->
+    <g transform="translate(160,152)">
+      <path transform="rotate(-52)" d="M0,0 C-19,-26 -17,-72 0,-98 C17,-72 19,-26 0,0 Z"/>
+      <path transform="rotate(-26)" d="M0,0 C-20,-28 -18,-78 0,-106 C18,-78 20,-28 0,0 Z"/>
+      <path transform="rotate(0)"   d="M0,0 C-21,-30 -19,-82 0,-112 C19,-82 21,-30 0,0 Z"/>
+      <path transform="rotate(26)"  d="M0,0 C-20,-28 -18,-78 0,-106 C18,-78 20,-28 0,0 Z"/>
+      <path transform="rotate(52)"  d="M0,0 C-19,-26 -17,-72 0,-98 C17,-72 19,-26 0,0 Z"/>
+    </g>
+    <!-- throat + funnel tube: filled, with a negative throat opening (evenodd) -->
+    <path fill-rule="evenodd" d="M131,150
+             C124,196 142,214 150,256 L170,256 C178,214 196,196 189,150
+             C176,166 144,166 131,150 Z
+             M141,158 C150,170 170,170 179,158 C170,150 150,150 141,158 Z"/>
+    <!-- tapered stem ribbon curving to the pipe-bowl foot -->
+    <path d="M160,256 C160,300 130,326 126,360 C123,386 134,396 122,410
+             C132,398 121,388 124,360 C128,330 156,304 154,256 Z"/>
+    <!-- leaf: filled lanceolate with negative midrib -->
+    <g transform="translate(176,232) rotate(58) scale(0.7)">
+      <path fill-rule="evenodd" d="M0,0 C-17,-20 -19,-58 0,-96 C19,-58 17,-20 0,0 Z
+               M0,-12 C-2,-34 -2,-62 0,-84 C2,-62 2,-34 0,-12 Z"/>
+    </g>
+    <!-- pipe-bowl foot: filled cup with a negative opening -->
+    <path fill-rule="evenodd" d="M100,398 C95,418 110,432 130,426 C141,422 144,410 137,402
+             C131,412 113,412 108,398 C106,401 102,401 100,398 Z
+             M110,400 C118,408 130,407 134,400 C129,395 117,395 110,400 Z"/>
   </g>
 </svg>

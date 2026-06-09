@@ -394,9 +394,9 @@ img { display: block; max-width: 100%; }
 .site-footer .container { position: relative; z-index: 1; }
 
 /* ============================================================
-   Margin vine — line-art Aristolochia climber in a section gutter,
-   scroll-drawn (stroke-dash animated in the component). Sits beside
-   the centered content; navy on light surfaces, bone on navy.
+   Margin vine — refined botanical Aristolochia climber in a section
+   gutter. Reveals with a clip-path wipe that grows it up from the
+   bottom on scroll-in. Navy on light surfaces, bone on navy.
    ============================================================ */
 .vine-host { position: relative; }
 .margin-vine {
@@ -408,7 +408,15 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
   color: var(--vine-ink, rgba(27, 47, 68, 0.5));
 }
-.margin-vine svg { width: 100%; height: 100%; display: block; }
+.margin-vine svg {
+  width: 100%; height: 100%; display: block;
+  clip-path: inset(100% 0 0 0);            /* hidden: grows up from the bottom */
+  transition: clip-path 2400ms var(--ease-club);
+}
+.margin-vine.is-in svg { clip-path: inset(0 0 0 0); }
+@media (prefers-reduced-motion: reduce) {
+  .margin-vine svg { clip-path: inset(0 0 0 0); transition: none; }
+}
 /* keep it just outside the centered content column on wide screens,
    tucked to the edge on medium ones */
 .margin-vine-left  { left:  max(8px, calc(50% - (var(--max-content) / 2) - 70px)); }
