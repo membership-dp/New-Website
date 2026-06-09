@@ -14,10 +14,12 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
     <InView className={`callout ${flipped ? 'flipped' : ''}`}>
-      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=14')` }} />
+      <div className={`callout-bg motif motif-${motif}`} style={{ '--motif': `url('/assets/motif-${motif}.svg?v=15')` }} />
       <div className="callout-inner">
         <div className="callout-media">
-          <div className="callout-img-lg"><img src={lgImg} alt="" /></div>
+          <div className="callout-img-lg">
+            <Parallax speed={0.12} className="callout-img-drift"><img src={lgImg} alt="" /></Parallax>
+          </div>
           <div className="callout-img-sm"><img src={smImg} alt="" /></div>
         </div>
         <div className="callout-text">

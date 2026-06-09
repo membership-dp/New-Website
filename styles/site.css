@@ -15,15 +15,20 @@ body {
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 
-/* --- Reveal-on-scroll --- */
+/* --- Reveal-on-scroll — content settles + focuses in (not a flat fade) --- */
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 800ms var(--ease-club), transform 800ms var(--ease-club);
+  transform: translateY(22px) scale(0.992);
+  filter: blur(5px);
+  transition: opacity 900ms var(--ease-club),
+              transform 1100ms var(--ease-club),
+              filter 800ms var(--ease-club);
+  will-change: opacity, transform, filter;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  filter: blur(0);
 }
 
 /* --- Page transitions --- */
@@ -253,6 +258,14 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   border-radius: 2px;
   aspect-ratio: 4 / 3;
+}
+/* scroll-linked depth: the photo drifts a few px within its frame as the
+   callout passes through the viewport. Overscanned so an edge never shows. */
+.callout-img-drift {
+  position: absolute;
+  left: 0; right: 0;
+  top: -8%;
+  height: 116%;
 }
 .callout-img-lg img {
   width: 100%; height: 100%;
