@@ -20,7 +20,7 @@ function LocationPage({ onNav }) {
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 700, marginBottom: 0,
           }}>
-            Connected to the best of the island — positioned for ease.
+            Connected to the best of the island. Positioned for ease.
           </p>
         </div>
       </section>
@@ -40,12 +40,12 @@ function LocationPage({ onNav }) {
                 letterSpacing: '-0.005em',
                 fontStyle: 'italic',
               }}>
-                Dutchman's Pipe Club occupies a rare position — quietly removed, yet
+                Dutchman's Pipe Club occupies a rare position. Quietly removed, yet
                 moments from the island, downtown, and private air travel.
               </p>
               <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
                 A private setting, seamlessly connected to everything that defines the
-                Palm Beach lifestyle — convenience and proximity, while preserving a
+                Palm Beach lifestyle. Convenience and proximity, while preserving a
                 sense of calm and discretion.
               </p>
             </Reveal>

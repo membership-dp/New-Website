@@ -26,7 +26,7 @@ function HomePage({ onNav }) {
                 marginTop: 32, maxWidth: 580, marginBottom: 0,
               }}>
                 A Jack Nicklaus Signature course played without tee times, a racquet
-                pavilion alive with tennis, padel and pickleball — and a quiet rhythm
+                pavilion alive with tennis, padel and pickleball, and a quiet rhythm
                 of belonging on the edge of Palm Beach.
               </p>
             </div>
@@ -99,8 +99,8 @@ function HomePage({ onNav }) {
           <div className="three-up" style={{ marginTop: 80 }}>
             {[
               { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: '7,300 yards of unhurried play. No tee times. A 12,000 sq ft putting green and a two-acre short game complex.', target: 'golf' },
-              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Eight courts woven through landscaped walkways — a racquet culture that lives from first serve to glow-padel sunset.', target: 'racquets' },
-              { img: 'assets/hero-villa.jpg', eyebrow: 'Belonging', title: 'A Palm Beach lifestyle.', body: 'Wellness, dining, and the quiet rhythm of a private community — minutes from Worth Avenue and Palm Beach International.', target: 'location' },
+              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Eight courts woven through landscaped walkways. A racquet culture that lives from first serve to glow-padel sunset.', target: 'racquets' },
+              { img: 'assets/hero-villa.jpg', eyebrow: 'Belonging', title: 'A Palm Beach lifestyle.', body: 'Wellness, dining, and the quiet rhythm of a private community, minutes from Worth Avenue and Palm Beach International.', target: 'location' },
             ].map((it, i) => (
               <Reveal key={it.eyebrow} delay={i * 120}>
                 <a onClick={() => onNav(it.target)} style={{
@@ -153,7 +153,7 @@ function HomePage({ onNav }) {
         <LayeredCallout
           eyebrow="The Course"
           title="A test worthy of its design — beautifully playable."
-          body="Stretching to 7,300 yards from the championship tees, the Jack Nicklaus Signature course moves through subtle elevation, sculpted bunkering, and natural water features. Every hole reflects thoughtful, refined architecture — a 75.8 course rating in service of pure golf."
+          body="Stretching to 7,300 yards from the championship tees, the Jack Nicklaus Signature course moves through subtle elevation, sculpted bunkering, and natural water features. Every hole reflects thoughtful, refined architecture, with a 75.8 course rating in service of pure golf."
           lgImg="assets/course-skyline.jpg"
           smImg="assets/hero-green.jpg"
           ctaLabel="Explore the Course"
@@ -168,7 +168,7 @@ function HomePage({ onNav }) {
           flipped dark
           eyebrow="The Racquet Pavilion"
           title="A racquet culture that lives beyond the baseline."
-          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts — set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
+          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts, set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
           lgImg="assets/tennis-serve.jpg"
           smImg="assets/padel-action.jpg"
           ctaLabel="Explore the Racquet Club"
@@ -182,7 +182,7 @@ function HomePage({ onNav }) {
         <LayeredCallout
           eyebrow="The Location"
           title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
-          body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International — with discreet access to private aviation. A rare balance of accessibility and separation."
+          body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International, with discreet access to private aviation. A rare balance of accessibility and separation."
           lgImg="assets/hero-palms.jpg"
           smImg="assets/hero-villa.jpg"
           ctaLabel="The Setting"

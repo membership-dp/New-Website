@@ -18,19 +18,19 @@ function MembershipPage({ onNav }) {
     {
       name: 'Visiting',
       tag: 'Non-Resident',
-      body: 'Tailored for non-residents — limited access to the course, practice facilities, and select club amenities during their time in Palm Beach.',
+      body: 'Tailored for non-residents, with limited access to the course, practice facilities, and select club amenities during their time in Palm Beach.',
       audience: 'For seasonal members and travelers.',
     },
     {
       name: 'Social',
       tag: 'Beyond the Fairways',
-      body: 'Centers on racquet sports, wellness programming, dining, and the social calendar — the daily rhythm of the Club beyond the fairways.',
+      body: 'Centers on racquet sports, wellness programming, dining, and the social calendar. The daily rhythm of the Club beyond the fairways.',
       audience: 'For racquet, wellness, and social members.',
     },
     {
       name: 'Corporate',
       tag: 'Executive',
-      body: 'Designated access for multiple executives under one membership — an elevated setting to host clients, reward leadership, and build relationships.',
+      body: 'Designated access for multiple executives under one membership. An elevated setting to host clients, reward leadership, and build relationships.',
       audience: 'For organizations.',
     },
   ];
@@ -84,7 +84,7 @@ function MembershipPage({ onNav }) {
             eyebrow="An Invitation"
             title="A club shaped around the lives of its members."
             body={[
-              "Dutchman's Pipe is an invitation-only private club for those who expect more from their time — more access, more intention, more connection.",
+              "Dutchman's Pipe is an invitation-only private club for those who expect more from their time: more access, more intention, more connection.",
               "From golf played without tee times to evenings on the padel courts and a dedicated wellness program, membership is shaped around an engaged Palm Beach lifestyle.",
             ]}
           />
@@ -106,7 +106,7 @@ function MembershipPage({ onNav }) {
             {[
               { title: 'Golf', img: 'assets/hero-green.jpg', body: 'A Jack Nicklaus Signature course played without tee times. Performance-driven practice, Top 100 instruction, brand-agnostic club fitting.' },
               { title: 'Racquets', img: 'assets/tennis-serve.jpg', body: 'Four Har-Tru tennis courts, two pickleball courts, and two padel courts. Weekly clinics, mixers, and Glow Padel evenings.' },
-              { title: 'Wellness', img: 'assets/hero-villa.jpg', body: 'Dedicated training spaces, group classes, and personal training — a holistic approach focused on strength, mobility, and long-term vitality.' },
+              { title: 'Wellness', img: 'assets/hero-villa.jpg', body: 'Dedicated training spaces, group classes, and personal training. A holistic approach focused on strength, mobility, and long-term vitality.' },
             ].map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="photo-frame" style={{ aspectRatio: '16/10', marginBottom: 24 }}>

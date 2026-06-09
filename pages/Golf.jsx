@@ -104,7 +104,7 @@ function GolfPage({ onNav }) {
           title="A practice ground designed for meaningful improvement."
           body={[
             'A 315-yard driving range sets the stage for focused preparation, complemented by a two-acre short game area with multiple greens and bunkers, and a 12,000 square-foot undulating putting green.',
-            'Eight types of premium, brand-agnostic range balls allow distance control, trajectory, and feel to be refined with intention — ensuring preparation translates seamlessly to the course.',
+            'Eight types of premium, brand-agnostic range balls allow distance control, trajectory, and feel to be refined with intention, ensuring preparation translates seamlessly to the course.',
           ]}
           lgImg="assets/hero-putting.jpg"
           smImg="assets/hero-green.jpg"
@@ -133,7 +133,7 @@ function GolfPage({ onNav }) {
         <LayeredCallout
           eyebrow="Club Fitting & Customization"
           title="Performance optimization. Not retail fitting."
-          body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data — not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
+          body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
           lgImg="assets/clubfitting.jpg"
           smImg="assets/hero-putting.jpg"
           motif="grass"

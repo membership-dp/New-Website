@@ -49,7 +49,7 @@ function RacquetsPage({ onNav }) {
         <LayeredCallout
           eyebrow="The Courts"
           title="Open. Intentional. Alive with play."
-          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset — competitive when it needs to be, relaxed when it should be."
+          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
           lgImg="assets/padel-action.jpg"
           smImg="assets/tennis-serve.jpg"
           motif="grass"
