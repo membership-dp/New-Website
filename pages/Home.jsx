@@ -148,8 +148,7 @@ function HomePage({ onNav }) {
       </section>
 
       {/* LAYERED CALLOUT — The Course */}
-      <section className="section surface-bone vine-host">
-        <MarginVine side="left" />
+      <section className="section surface-bone">
         <LayeredCallout
           eyebrow="The Course"
           title="A test worthy of its design — beautifully playable."
@@ -163,8 +162,7 @@ function HomePage({ onNav }) {
       </section>
 
       {/* LAYERED CALLOUT — Racquets (navy, flipped) */}
-      <section className="section surface-navy vine-host">
-        <MarginVine side="right" />
+      <section className="section surface-navy">
         <LayeredCallout
           flipped dark
           eyebrow="The Racquet Pavilion"
@@ -223,7 +221,6 @@ function HomePage({ onNav }) {
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             A private world, by invitation.
           </h2>
-          <span className="brush-stroke center" />
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.8)',
