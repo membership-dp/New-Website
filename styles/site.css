@@ -671,12 +671,13 @@ img { display: block; max-width: 100%; }
 
 /* Footer */
 .site-footer {
-  /* Satin carried through the footer — same silk, fold running the opposite
-     way (295°) so it reads as its own panel; bloom rises from bottom-left.
-     A champagne hairline seats it against whatever section sits above. */
+  /* Satin carried through the footer — the SAME fold (115°) and bloom as
+     .surface-satin, so when a satin chapter sits directly above, the
+     diagonal runs continuously through the seam instead of mirror-flipping.
+     The champagne hairline reads as a stitched seam in one fabric. */
   background:
-    radial-gradient(120% 90% at 28% 100%, rgba(98, 134, 176, 0.16), transparent 60%),
-    linear-gradient(295deg,
+    radial-gradient(120% 80% at 72% 8%, rgba(98, 134, 176, 0.20), transparent 60%),
+    linear-gradient(115deg,
       var(--color-vault) 0%,
       var(--color-satin-mid) 38%,
       var(--color-satin-ridge) 50%,
@@ -773,14 +774,14 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 .site-header-menu-inner {
   width: min(420px, 100%);
   height: 100%;
-  /* mobile drawer wears the same satin as the dark chapters */
+  /* mobile drawer wears the same satin, same 115° fold as everywhere else */
   background:
-    radial-gradient(110% 70% at 80% 6%, rgba(98, 134, 176, 0.18), transparent 60%),
-    linear-gradient(160deg,
+    radial-gradient(110% 70% at 72% 8%, rgba(98, 134, 176, 0.18), transparent 60%),
+    linear-gradient(115deg,
       var(--color-vault) 0%,
-      var(--color-satin-mid) 40%,
-      var(--color-satin-ridge) 55%,
-      #142639 70%,
+      var(--color-satin-mid) 38%,
+      var(--color-satin-ridge) 50%,
+      #142639 62%,
       #060F1B 100%);
   color: var(--color-bone);
   padding: calc(var(--header-height) + 24px) 32px 48px;

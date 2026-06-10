@@ -21,7 +21,7 @@ function Footer({ onNav }) {
 
   return (
     <footer className="site-footer">
-      <Parallax speed={-0.18} className="satin-sheen" />
+      <Parallax speed={-0.25} className="satin-sheen" />
       <div className="container">
         <div className="site-footer-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>

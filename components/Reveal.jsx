@@ -41,8 +41,13 @@ function Reveal({ children, delay = 0, as: Tag = 'div', style, ...rest }) {
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     io.observe(el);
 
-    // Safety net: force-reveal after 1.6s no matter what.
-    const t = setTimeout(reveal, 1600 + delay);
+    // Safety net: if IO somehow never fired while the element is on screen,
+    // force-reveal. Off-screen elements keep waiting for the observer, so
+    // below-the-fold sections still animate when scrolled to.
+    const t = setTimeout(() => {
+      const r = el.getBoundingClientRect();
+      if (r.top < (window.innerHeight || 0) && r.bottom > 0) reveal();
+    }, 1600 + delay);
     return () => { clearTimeout(t); io.disconnect(); };
   }, [delay]);
   return <Tag ref={ref} className="reveal" style={style} {...rest}>{children}</Tag>;

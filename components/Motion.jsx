@@ -97,7 +97,12 @@ function InView({ as: Tag = 'div', className = '', once = true, threshold = 0.18
       });
     }, { threshold, rootMargin: '0px 0px -8% 0px' });
     io.observe(el);
-    const t = setTimeout(() => setVis(true), 1900); // safety net
+    // Safety net: only force-visible if IO never fired while the element is
+    // actually on screen — below-the-fold sections keep waiting for scroll.
+    const t = setTimeout(() => {
+      const r = el.getBoundingClientRect();
+      if (r.top < (window.innerHeight || 0) && r.bottom > 0) setVis(true);
+    }, 1900);
     return () => { io.disconnect(); clearTimeout(t); };
   }, [once, threshold]);
   return (
