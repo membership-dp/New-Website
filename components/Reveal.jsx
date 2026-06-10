@@ -1,7 +1,7 @@
 // Reveal.jsx — IntersectionObserver-based scroll reveal
 const { useEffect: useRevealEffect, useRef: useRevealRef } = React;
 
-function Reveal({ children, delay = 0, as: Tag = 'div', style, ...rest }) {
+function Reveal({ children, delay = 0, as: Tag = 'div', style, className = '', ...rest }) {
   const ref = useRevealRef(null);
   useRevealEffect(() => {
     const el = ref.current;
@@ -50,7 +50,7 @@ function Reveal({ children, delay = 0, as: Tag = 'div', style, ...rest }) {
     }, 1600 + delay);
     return () => { clearTimeout(t); io.disconnect(); };
   }, [delay]);
-  return <Tag ref={ref} className="reveal" style={style} {...rest}>{children}</Tag>;
+  return <Tag ref={ref} className={`reveal ${className}`.trim()} style={style} {...rest}>{children}</Tag>;
 }
 
 window.Reveal = Reveal;

@@ -43,17 +43,6 @@ function RacquetsPage({ onNav }) {
         </div>
       </Reveal>
 
-      {/* THE COURTS — layered callout */}
-      <section className="section surface-bone">
-        <LayeredCallout
-          eyebrow="The Courts"
-          title="Open. Intentional. Alive with play."
-          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
-          lgImg="assets/padel-action.jpg"
-          motif="grass"
-        />
-      </section>
-
       {/* PADEL — full bleed, parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '75vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
@@ -80,6 +69,17 @@ function RacquetsPage({ onNav }) {
             where competitive players and recreational members find their rhythm.
           </p>
         </Reveal>
+      </section>
+
+      {/* THE COURTS — layered callout */}
+      <section className="section surface-bone">
+        <LayeredCallout
+          eyebrow="The Courts"
+          title="Open. Intentional. Alive with play."
+          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
+          lgImg="assets/padel-action.jpg"
+          motif="grass"
+        />
       </section>
 
       {/* PROGRAMMING — satin chapter, flipped */}

@@ -106,20 +106,6 @@ function LocationPage({ onNav }) {
         </div>
       </Reveal>
 
-      {/* ISLAND & WORTH AVENUE — layered callout */}
-      <section className="section surface-white">
-        <LayeredCallout
-          eyebrow="The Island"
-          title="Palm Beach Island & Worth Avenue."
-          body={[
-            'Just minutes from Palm Beach Island, the Club offers effortless proximity to the boutiques of Worth Avenue, oceanfront dining, private beach clubs, and the architectural charm that defines the island.',
-            'Members move easily between a morning round and an afternoon engagement, never feeling rushed or removed.',
-          ]}
-          lgImg="assets/hero-clubhouse.jpg"
-          motif="grass"
-        />
-      </section>
-
       {/* AIR ACCESS — satin chapter, flipped */}
       <section className="section surface-satin">
         <Parallax speed={-0.25} className="satin-sheen" />
@@ -136,6 +122,20 @@ function LocationPage({ onNav }) {
           motif="pipe"
         />
         </div>
+      </section>
+
+      {/* ISLAND & WORTH AVENUE — layered callout */}
+      <section className="section surface-white">
+        <LayeredCallout
+          eyebrow="The Island"
+          title="Palm Beach Island & Worth Avenue."
+          body={[
+            'Just minutes from Palm Beach Island, the Club offers effortless proximity to the boutiques of Worth Avenue, oceanfront dining, private beach clubs, and the architectural charm that defines the island.',
+            'Members move easily between a morning round and an afternoon engagement, never feeling rushed or removed.',
+          ]}
+          lgImg="assets/hero-clubhouse.jpg"
+          motif="grass"
+        />
       </section>
 
       {/* RARE BALANCE quote — parallax drift */}
