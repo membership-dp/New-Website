@@ -21,7 +21,7 @@ function NewsPage({ onNav }) {
       font: '500 11px/1 var(--font-body)', letterSpacing: '0.2em', textTransform: 'uppercase',
       color: light ? 'rgba(245,241,232,0.7)' : 'var(--color-navy-70)',
     }}>
-      <span style={{ color: 'var(--color-pennant-yellow)' }}>{tag}</span>
+      <span style={{ color: 'var(--color-champagne)' }}>{tag}</span>
       <span>·</span>
       <span>{date}</span>
     </div>

@@ -120,8 +120,10 @@ function LocationPage({ onNav }) {
         />
       </section>
 
-      {/* AIR ACCESS — navy, flipped */}
-      <section className="section surface-navy">
+      {/* AIR ACCESS — satin chapter, flipped */}
+      <section className="section surface-satin">
+        <Parallax speed={-0.25} className="satin-sheen" />
+        <div className="satin-content">
         <LayeredCallout
           flipped dark
           eyebrow="Air Access"
@@ -133,6 +135,7 @@ function LocationPage({ onNav }) {
           lgImg="assets/hero-sunset.jpg"
           motif="pipe"
         />
+        </div>
       </section>
 
       {/* RARE BALANCE quote — parallax drift */}
@@ -150,7 +153,7 @@ function LocationPage({ onNav }) {
           </div>
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             Protected and intentional —<br/>
-            <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>fully connected.</em>
+            <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>fully connected.</em>
           </h2>
           <p style={{
             font: '400 19px/1.6 var(--font-body)',

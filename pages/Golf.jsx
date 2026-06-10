@@ -82,7 +82,7 @@ function GolfPage({ onNav }) {
             The Pace
           </div>
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
-            No tee times. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>No compromise.</em>
+            No tee times. <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>No compromise.</em>
           </h2>
           <p style={{
             font: '400 19px/1.6 var(--font-body)',
@@ -110,8 +110,10 @@ function GolfPage({ onNav }) {
         />
       </section>
 
-      {/* INSTRUCTION — navy, flipped */}
-      <section className="section surface-navy">
+      {/* INSTRUCTION — satin chapter, flipped */}
+      <section className="section surface-satin">
+        <Parallax speed={-0.25} className="satin-sheen" />
+        <div className="satin-content">
         <LayeredCallout
           flipped dark
           eyebrow="Elite Instruction"
@@ -123,6 +125,7 @@ function GolfPage({ onNav }) {
           lgImg="assets/instruction.jpg"
           motif="pipe"
         />
+        </div>
       </section>
 
       {/* CLUB FITTING — layered callout */}

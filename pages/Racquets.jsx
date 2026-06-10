@@ -68,7 +68,7 @@ function RacquetsPage({ onNav }) {
             Padel at Dutchman's Pipe
           </div>
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
-            Fast-paced, strategic, <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>inherently social.</em>
+            Fast-paced, strategic, <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>inherently social.</em>
           </h2>
           <p style={{
             font: '400 19px/1.6 var(--font-body)',
@@ -82,8 +82,10 @@ function RacquetsPage({ onNav }) {
         </Reveal>
       </section>
 
-      {/* PROGRAMMING — navy, flipped */}
-      <section className="section surface-navy">
+      {/* PROGRAMMING — satin chapter, flipped */}
+      <section className="section surface-satin">
+        <Parallax speed={-0.25} className="satin-sheen" />
+        <div className="satin-content">
         <LayeredCallout
           flipped dark
           eyebrow="Programming & Member Experience"
@@ -92,6 +94,7 @@ function RacquetsPage({ onNav }) {
           lgImg="assets/tennis-serve.jpg"
           motif="pipe"
         />
+        </div>
       </section>
 
       {/* BEYOND THE BASELINE — layered callout */}

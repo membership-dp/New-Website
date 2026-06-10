@@ -60,7 +60,7 @@ function MembershipPage({ onNav }) {
             Membership
           </div>
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
-            By invitation. <em style={{ fontStyle: 'italic', color: 'var(--color-pennant-yellow)' }}>By design.</em>
+            By invitation. <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>By design.</em>
           </h1>
           <p className="hero-sub" style={{
             color: 'rgba(245,241,232,0.84)',
@@ -115,7 +115,7 @@ function MembershipPage({ onNav }) {
                 </h3>
                 <div style={{
                   width: 32, height: 1,
-                  background: 'var(--color-pennant-yellow)',
+                  background: 'var(--color-champagne)',
                   marginTop: 18, marginBottom: 22,
                 }} />
                 <p className="body-text" style={{ color: 'var(--color-navy-70)', margin: 0 }}>
@@ -160,7 +160,7 @@ function MembershipPage({ onNav }) {
                     0{i + 1} &nbsp;·&nbsp; {t.tag}
                   </div>
                   <h3>{t.name}</h3>
-                  <div style={{ width: 24, height: 1, background: 'var(--color-pennant-yellow)' }} />
+                  <div style={{ width: 24, height: 1, background: 'var(--color-champagne)' }} />
                   <p>{t.body}</p>
                   <div style={{
                     marginTop: 'auto',
@@ -179,7 +179,8 @@ function MembershipPage({ onNav }) {
       </section>
 
       {/* INQUIRY FORM */}
-      <section className="section surface-navy" id="inquiry">
+      <section className="section surface-satin" id="inquiry">
+        <Parallax speed={-0.25} className="satin-sheen" />
         <div className="container">
           <div className="inquiry-page-grid">
             <Reveal>
@@ -196,7 +197,7 @@ function MembershipPage({ onNav }) {
                 <div style={{
                   font: '500 11px/1 var(--font-body)',
                   letterSpacing: '0.24em', textTransform: 'uppercase',
-                  color: 'var(--color-pennant-yellow)',
+                  color: 'var(--color-champagne)',
                 }}>
                   Direct Contact
                 </div>
@@ -278,7 +279,7 @@ function FormField({ label, value, onChange, type = 'text', required, options, s
     borderRadius: 0,
     transition: 'border-color 200ms var(--ease-club)',
   };
-  const onFocus = (e) => { e.target.style.borderBottomColor = 'var(--color-pennant-yellow)'; };
+  const onFocus = (e) => { e.target.style.borderBottomColor = 'var(--color-champagne)'; };
   const onBlur  = (e) => { e.target.style.borderBottomColor = 'rgba(245,241,232,0.25)'; };
 
   return (
