@@ -181,6 +181,8 @@ img { display: block; max-width: 100%; }
   --border: rgba(201, 165, 92, 0.25);
   --frame-color: var(--color-vault);
 }
+/* (Desktop viewport-fixed satin: see the rule after .site-footer — it must
+   come after any background shorthand that would reset the attachment.) */
 /* The Sheen — a diagonal band of light that drifts over the satin as you
    scroll (wrap in <Parallax> for the scroll-linked travel). */
 .satin-sheen {
@@ -671,10 +673,9 @@ img { display: block; max-width: 100%; }
 
 /* Footer */
 .site-footer {
-  /* Satin carried through the footer — the SAME fold (115°) and bloom as
-     .surface-satin, so when a satin chapter sits directly above, the
-     diagonal runs continuously through the seam instead of mirror-flipping.
-     The champagne hairline reads as a stitched seam in one fabric. */
+  /* Satin carried through the footer — identical recipe to .surface-satin;
+     on desktop both are viewport-fixed so a satin chapter above flows into
+     the footer as one uninterrupted fabric (no seam line). */
   background:
     radial-gradient(120% 80% at 72% 8%, rgba(98, 134, 176, 0.20), transparent 60%),
     linear-gradient(115deg,
@@ -683,9 +684,15 @@ img { display: block; max-width: 100%; }
       var(--color-satin-ridge) 50%,
       #142639 62%,
       #060F1B 100%);
-  border-top: 1px solid rgba(201, 165, 92, 0.22);
   color: rgba(245,241,232,0.78);
-  padding: 96px var(--gutter) 48px;
+  padding: 72px var(--gutter) 48px;
+}
+/* Desktop: pin the silk to the VIEWPORT so every satin section and the
+   footer reveal slices of the same continuous fabric — fold lines align
+   across seams and adjacent satin flows as one. Off on mobile, where
+   fixed attachment is unreliable in Safari. */
+@media (min-width: 961px) {
+  .surface-satin, .site-footer { background-attachment: fixed, fixed; }
 }
 
 /* Form fields */

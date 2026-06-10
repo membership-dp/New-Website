@@ -211,12 +211,9 @@ function HomePage({ onNav }) {
       </section>
 
       {/* CHAPTER V — MEMBERSHIP CTA: the satin proscenium (jewel-box close) */}
-      <section className="section surface-satin" style={{
-        minHeight: '70dvh',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
+      <section className="section surface-satin" style={{ paddingBottom: 72 }}>
         <Parallax speed={-0.25} className="satin-sheen" />
-        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 880, textAlign: 'center' }}>
+        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 880, marginInline: 'auto', textAlign: 'center' }}>
           <div className="eyebrow-rule" style={{
             color: 'var(--color-champagne-bright)',
             justifyContent: 'center', marginBottom: 32,
