@@ -162,30 +162,49 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
 
     // ----- auto-playing intro -----
     let finished = false;
+    let beat = 0;
     const finish = (toFallback) => {
       if (finished) return;
       finished = true;
-      if (toFallback) setFallback(true);
-      else {
-        try {
-          if (video.duration && isFinite(video.duration) && video.currentTime < video.duration - 0.1) {
-            video.currentTime = video.duration;
-          }
-          video.pause();
-        } catch (e) { setFallback(true); }
-      }
-      setDone(true);
+      if (toFallback) { setFallback(true); setDone(true); return; }
+      try {
+        if (video.duration && isFinite(video.duration) && video.currentTime < video.duration - 0.1) {
+          video.currentTime = video.duration;
+        }
+        video.pause();
+      } catch (e) { setFallback(true); setDone(true); return; }
+      // a beat of stillness on the green before the words arrive
+      beat = setTimeout(() => setDone(true), 250);
     };
     const onEnded = () => finish(false);
     const onError = () => finish(true);
     video.addEventListener('ended', onEnded);
     video.addEventListener('error', onError);
     video.muted = true; // belt-and-suspenders for autoplay policy
+    // Glide to a stop: ease playbackRate down over the final stretch so the
+    // dolly decelerates into the green instead of cutting at full speed.
+    const RAMP = 1.4;
+    let rampRaf = 0;
+    const rampTick = () => {
+      if (finished) return;
+      const dur = video.duration;
+      if (dur && isFinite(dur)) {
+        const remaining = dur - video.currentTime;
+        if (remaining <= RAMP) {
+          const k = Math.max(0, remaining / RAMP);
+          video.playbackRate = 0.3 + 0.7 * (k * k); // ease-out: 1.0 -> 0.3
+        }
+      }
+      rampRaf = requestAnimationFrame(rampTick);
+    };
+    rampRaf = requestAnimationFrame(rampTick);
     const p = video.play();
     if (p && p.catch) p.catch(() => finish(true));
-    const safety = setTimeout(() => finish(false), 10000);
+    const safety = setTimeout(() => finish(false), 12000);
     return () => {
       clearTimeout(safety);
+      clearTimeout(beat);
+      if (rampRaf) cancelAnimationFrame(rampRaf);
       video.removeEventListener('ended', onEnded);
       video.removeEventListener('error', onError);
     };
@@ -238,10 +257,14 @@ function RevealGallery({ images = [], interval = 3800 }) {
     return () => clearInterval(t);
   }, [open, images.length, interval]);
   return (
-    <div ref={ref} className={`reveal-gallery ${open ? 'is-open' : ''}`}>
-      {images.map((src, k) => (
-        <img key={src} src={src} alt="" className={k === active ? 'active' : ''} />
-      ))}
+    // IO observes the UNCLIPPED wrapper — the clipped layer reports ~0%
+    // visibility to IntersectionObserver, so it can never trigger itself.
+    <div ref={ref} className="reveal-gallery-wrap">
+      <div className={`reveal-gallery ${open ? 'is-open' : ''}`}>
+        {images.map((src, k) => (
+          <img key={src} src={src} alt="" className={k === active ? 'active' : ''} />
+        ))}
+      </div>
     </div>
   );
 }
