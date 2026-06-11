@@ -4,14 +4,18 @@
 function HomePage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO — full-bleed cinematic, big serif, anchored bottom-left.
-          Background drifts gently on scroll; arrow gives a small live cue. */}
-      <section className="page-hero" style={{ overflow: 'hidden' }}>
-        <Parallax speed={0.2} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <img src="assets/hero-sunset.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        </Parallax>
-        <div className="photo-scrim" style={{ zIndex: 1 }} />
-        <div className="page-hero-inner" style={{ zIndex: 2 }}>
+      {/* HERO — scroll-scrubbed dolly-in through the native grasses onto the
+          green (8-frame zoom sequence). Copy fades as the journey begins. */}
+      <ZoomHero
+        trackHeight="300vh"
+        frames={[
+          'assets/zoom/frame_01.jpg', 'assets/zoom/frame_02.jpg',
+          'assets/zoom/frame_03.jpg', 'assets/zoom/frame_04.jpg',
+          'assets/zoom/frame_05.jpg', 'assets/zoom/frame_06.jpg',
+          'assets/zoom/frame_07.jpg', 'assets/zoom/frame_08.jpg',
+        ]}
+      >
+        <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>
             <div className="hero-stagger" style={{ maxWidth: 920 }}>
               <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
@@ -39,17 +43,17 @@ function HomePage({ onNav }) {
               </a>
             </div>
           </div>
+          <div className="scroll-indicator" style={{
+            position: 'absolute', bottom: 24, right: 'var(--gutter)',
+            font: '500 10px/1 var(--font-body)',
+            letterSpacing: '0.36em', textTransform: 'uppercase',
+            color: 'rgba(245,241,232,0.55)',
+            writingMode: 'vertical-rl', transform: 'rotate(180deg)',
+          }}>
+            Scroll
+          </div>
         </div>
-        <div className="scroll-indicator" style={{
-          position: 'absolute', bottom: 24, right: 'var(--gutter)', zIndex: 2,
-          font: '500 10px/1 var(--font-body)',
-          letterSpacing: '0.36em', textTransform: 'uppercase',
-          color: 'rgba(245,241,232,0.55)',
-          writingMode: 'vertical-rl', transform: 'rotate(180deg)',
-        }}>
-          Scroll
-        </div>
-      </section>
+      </ZoomHero>
 
       {/* TAGLINE — substantial section, not a strip */}
       <section className="section surface-bone" style={{ borderBottom: '1px solid var(--color-mist)' }}>

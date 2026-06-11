@@ -102,6 +102,75 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
+/* ZoomHero — scroll-scrubbed dolly-in built from a photo zoom sequence.
+   A tall track pins a 100vh stage; scroll progress cross-fades through the
+   frames with a micro-scale handoff so the journey reads as one continuous
+   move, not a slideshow. The overlay copy (children) fades as the journey
+   begins. Reduced-motion: static first frame, no pinning. */
+function ZoomHero({ frames = [], trackHeight = '300vh', children }) {
+  const ref = useBlockRef(null);
+  useBlockEffect(() => {
+    const track = ref.current;
+    if (!track) return;
+    const imgs = Array.from(track.querySelectorAll('.zoom-frame'));
+    const copy = track.querySelector('.zoom-copy');
+    const scrim = track.querySelector('.zoom-scrim');
+    const n = imgs.length;
+    if (!n) return;
+    if (blockReduced()) {
+      imgs.forEach((img, k) => { img.style.opacity = k === 0 ? 1 : 0; });
+      return;
+    }
+    const HANDOFF = 0.06; // micro-scale each frame grows before handing off
+    let raf = 0;
+    const render = () => {
+      raf = 0;
+      const rect = track.getBoundingClientRect();
+      const scrollable = rect.height - (window.innerHeight || 1);
+      const p = Math.min(1, Math.max(0, -rect.top / (scrollable || 1)));
+      const pos = p * (n - 1);
+      const i = Math.min(n - 2, Math.floor(pos));
+      const f = pos - i;
+      imgs.forEach((img, idx) => {
+        if (idx === i) {
+          img.style.opacity = 1;
+          img.style.transform = `scale(${1 + f * HANDOFF})`;
+        } else if (idx === i + 1) {
+          img.style.opacity = f;
+          img.style.transform = `scale(${1 - (1 - f) * HANDOFF})`;
+        } else {
+          img.style.opacity = 0;
+        }
+      });
+      // copy + scrim retire as the dolly-in takes over
+      const o = Math.max(0, 1 - p * 2.5);
+      if (copy) { copy.style.opacity = o; copy.style.pointerEvents = o < 0.05 ? 'none' : 'auto'; }
+      if (scrim) scrim.style.opacity = o;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(render); };
+    render();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [frames.length]);
+  return (
+    <div ref={ref} className="zoom-track" style={{ height: trackHeight }}>
+      <div className="zoom-stage">
+        {frames.map((src, k) => (
+          <img key={src} className="zoom-frame" src={src} alt="" style={{ opacity: k === 0 ? 1 : 0 }} />
+        ))}
+        <div className="zoom-scrim photo-scrim" />
+        <div className="zoom-copy">{children}</div>
+      </div>
+    </div>
+  );
+}
+
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
+window.ZoomHero = ZoomHero;
