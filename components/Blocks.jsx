@@ -159,7 +159,42 @@ function ZoomHero({ videoSrc, poster, settleImg, children }) {
   );
 }
 
+/* RevealGallery — the Hideaway image animation the club asked for (6/11):
+   on scroll-in, the image is unveiled through a window that grows from a
+   small center seed out to the full band (clip-path only, nothing scales),
+   then the frame "sifts" through the image set with slow cross-fades.
+   Reduced-motion: full band, static first image. */
+function RevealGallery({ images = [], interval = 3800 }) {
+  const ref = useBlockRef(null);
+  const [open, setOpen] = useBlockState(false);
+  const [active, setActive] = useBlockState(0);
+  useBlockEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (blockReduced()) { setOpen(true); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { setOpen(true); io.unobserve(el); } });
+    }, { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  useBlockEffect(() => {
+    if (!open || blockReduced() || images.length < 2) return;
+    // start sifting once the reveal has finished opening
+    const t = setInterval(() => setActive((a) => (a + 1) % images.length), interval);
+    return () => clearInterval(t);
+  }, [open, images.length, interval]);
+  return (
+    <div ref={ref} className={`reveal-gallery ${open ? 'is-open' : ''}`}>
+      {images.map((src, k) => (
+        <img key={src} src={src} alt="" className={k === active ? 'active' : ''} />
+      ))}
+    </div>
+  );
+}
+
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
 window.ZoomHero = ZoomHero;
+window.RevealGallery = RevealGallery;

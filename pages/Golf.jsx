@@ -68,6 +68,17 @@ function GolfPage({ onNav }) {
         </div>
       </section>
 
+      {/* COURSE GALLERY — center-out reveal, then sifts through the course */}
+      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
+        <RevealGallery
+          images={[
+            'assets/hero-fairway.jpg', 'assets/hero-green.jpg',
+            'assets/course-skyline.jpg', 'assets/hero-sunset.jpg',
+            'assets/hero-putting.jpg',
+          ]}
+        />
+      </section>
+
       {/* FULL BLEED QUOTE — No tee times, parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '70vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>

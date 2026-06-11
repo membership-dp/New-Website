@@ -490,7 +490,9 @@ img { display: block; max-width: 100%; }
 /* Grass fades in to a lower max opacity than pipe */
 .callout.is-in .callout-bg.motif-grass { opacity: 0.65; }
 
-/* Text column: an accent rule that draws on scroll-in */
+/* Text column: an accent rule that draws on scroll-in.
+   Light sections only (club 6/11): the vertical line is the beige-section
+   differentiator — dark satin chapters go without it. */
 .callout-rule {
   width: 1px;
   height: 0;
@@ -499,6 +501,7 @@ img { display: block; max-width: 100%; }
   transition: height 1300ms var(--ease-club) 250ms;
 }
 .callout.is-in .callout-rule { height: 64px; }
+.surface-satin .callout-rule { display: none; }
 
 @media (max-width: 960px) {
   .callout-inner,
@@ -643,6 +646,111 @@ img { display: block; max-width: 100%; }
   font: 400 15px/1.65 var(--font-body);
   color: var(--color-navy-70);
   margin: 0;
+}
+
+/* ============================================================
+   Tier accordion — membership categories (club 6/11): expandable
+   rows for longer verbiage; champagne hairline separators; smooth
+   CSS collapse via the grid-rows technique.
+   ============================================================ */
+.accordion { border-top: 1px solid rgba(201, 165, 92, 0.35); }
+.acc-item { border-bottom: 1px solid rgba(201, 165, 92, 0.35); }
+.acc-head {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  padding: 30px 8px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.acc-num {
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.22em;
+  color: var(--color-navy-40);
+  min-width: 64px;
+}
+.acc-name {
+  font: 500 28px/1.15 var(--font-display);
+  letter-spacing: -0.015em;
+  color: var(--color-club-navy);
+  flex: 1;
+  text-wrap: balance;
+}
+.acc-tag {
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+}
+.acc-chevron {
+  font: 400 22px/1 var(--font-display);
+  color: var(--color-champagne);
+  transition: transform 420ms var(--ease-club);
+}
+.acc-item.open .acc-chevron { transform: rotate(45deg); }
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 560ms var(--ease-club);
+}
+.acc-item.open .acc-panel { grid-template-rows: 1fr; }
+.acc-panel-inner { overflow: hidden; min-height: 0; }
+.acc-body {
+  padding: 0 8px 34px calc(64px + 28px);
+  max-width: 720px;
+}
+.acc-body p {
+  font: 400 16px/1.7 var(--font-body);
+  color: var(--color-navy-70);
+  margin: 0;
+}
+.acc-body .acc-audience {
+  margin-top: 14px;
+  font: 400 13px/1.5 var(--font-body);
+  font-style: italic;
+  color: var(--color-navy-70);
+}
+@media (max-width: 600px) {
+  .acc-head { gap: 16px; padding: 24px 4px; }
+  .acc-num { min-width: 36px; }
+  .acc-name { font-size: 22px; }
+  .acc-tag { display: none; }
+  .acc-body { padding-left: calc(36px + 16px); }
+}
+
+/* ============================================================
+   RevealGallery — Hideaway-style image band (club 6/11, Golf page):
+   the image is unveiled through a window that grows from a center
+   seed to full bleed (clip-path only — nothing scales), then the
+   frame sifts through the image set with slow cross-fades.
+   ============================================================ */
+.reveal-gallery {
+  position: relative;
+  height: 68vh;
+  min-height: 420px;
+  overflow: hidden;
+  clip-path: inset(46% 47.5%);
+  transition: clip-path 1600ms var(--ease-club);
+}
+.reveal-gallery.is-open { clip-path: inset(0 0); }
+.reveal-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1200ms var(--ease-club);
+}
+.reveal-gallery img.active { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-gallery { clip-path: none; transition: none; }
+  .reveal-gallery img { transition: none; }
 }
 
 /* --- Pull quote / full bleed --- */

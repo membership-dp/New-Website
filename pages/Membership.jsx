@@ -146,34 +146,7 @@ function MembershipPage({ onNav }) {
           </Reveal>
 
           <Reveal>
-            <div className="tier-row" style={{
-              borderTop: '1px solid var(--color-mist)',
-              borderBottom: '1px solid var(--color-mist)',
-            }}>
-              {tiers.map((t, i) => (
-                <div key={t.name} className="tier-col">
-                  <div style={{
-                    font: '500 11px/1 var(--font-body)',
-                    letterSpacing: '0.22em', textTransform: 'uppercase',
-                    color: 'var(--color-navy-40)',
-                  }}>
-                    0{i + 1} &nbsp;·&nbsp; {t.tag}
-                  </div>
-                  <h3>{t.name}</h3>
-                  <div style={{ width: 24, height: 1, background: 'var(--color-champagne)' }} />
-                  <p>{t.body}</p>
-                  <div style={{
-                    marginTop: 'auto',
-                    paddingTop: 24,
-                    font: '400 13px/1.5 var(--font-body)',
-                    fontStyle: 'italic',
-                    color: 'var(--color-navy-70)',
-                  }}>
-                    {t.audience}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <TierAccordion tiers={tiers} />
           </Reveal>
         </div>
       </section>
@@ -254,6 +227,41 @@ function MembershipPage({ onNav }) {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+/* TierAccordion — membership categories as expandable rows (club 6/11).
+   First category open by default; champagne hairlines; smooth CSS collapse. */
+function TierAccordion({ tiers }) {
+  const [openIdx, setOpenIdx] = useMemState(0);
+  return (
+    <div className="accordion">
+      {tiers.map((t, i) => {
+        const open = openIdx === i;
+        return (
+          <div key={t.name} className={`acc-item ${open ? 'open' : ''}`}>
+            <button
+              className="acc-head"
+              aria-expanded={open}
+              onClick={() => setOpenIdx(open ? -1 : i)}
+            >
+              <span className="acc-num">0{i + 1}</span>
+              <span className="acc-name">{t.name}</span>
+              <span className="acc-tag">{t.tag}</span>
+              <span className="acc-chevron" aria-hidden="true">+</span>
+            </button>
+            <div className="acc-panel">
+              <div className="acc-panel-inner">
+                <div className="acc-body">
+                  <p>{t.body}</p>
+                  <div className="acc-audience">{t.audience}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
