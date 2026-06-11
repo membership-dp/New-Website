@@ -102,73 +102,57 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
-/* ZoomHero — auto-playing cinematic dolly-in from a photo zoom sequence.
-   On arrival the camera moves through the frames by itself (~4s, eased,
-   cross-fades with a micro-scale handoff so it reads as one continuous
-   move). When it settles on the final frame, the scrim fades up and the
-   copy (children) staggers in. Normal 100dvh section — no scroll track.
-   Reduced-motion: final frame + copy immediately. */
-function ZoomHero({ frames = [], duration = 4000, children }) {
+/* ZoomHero — auto-playing cinematic dolly-in, now driven by a real video
+   for perfectly smooth motion. The clip plays once on arrival (muted,
+   inline); when it ends it holds its final frame, the scrim fades up and
+   the copy (children) staggers in. poster = first frame (shown while the
+   video loads); settleImg = final-frame still used for reduced-motion or
+   if the video fails. */
+function ZoomHero({ videoSrc, poster, settleImg, children }) {
   const ref = useBlockRef(null);
   const [done, setDone] = useBlockState(false);
+  const [fallback, setFallback] = useBlockState(false);
   useBlockEffect(() => {
     const host = ref.current;
     if (!host) return;
-    const imgs = Array.from(host.querySelectorAll('.zoom-frame'));
-    const n = imgs.length;
-    if (!n) { setDone(true); return; }
-    const showLast = () => {
-      imgs.forEach((img, k) => {
-        img.style.opacity = k === n - 1 ? 1 : 0;
-        img.style.transform = 'scale(1)';
-      });
+    const video = host.querySelector('video');
+    if (!video) { setFallback(true); setDone(true); return; }
+    if (blockReduced()) { setFallback(true); setDone(true); return; }
+
+    let finished = false;
+    const finish = (toFallback) => {
+      if (finished) return;
+      finished = true;
+      if (toFallback) setFallback(true);
+      else {
+        // hold the clip's final frame if playback stalled short of the end
+        try {
+          if (video.duration && isFinite(video.duration) && video.currentTime < video.duration - 0.1) {
+            video.currentTime = video.duration;
+          }
+          video.pause();
+        } catch (e) { setFallback(true); }
+      }
       setDone(true);
     };
-    if (blockReduced()) { showLast(); return; }
-
-    const HANDOFF = 0.06;
-    const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
-    let raf = 0, t0 = 0, finished = false;
-    const finish = () => { if (finished) return; finished = true; showLast(); };
-    const tick = (now) => {
-      if (!t0) t0 = now;
-      const p = ease(Math.min((now - t0) / duration, 1));
-      const pos = p * (n - 1);
-      const i = Math.min(n - 2, Math.floor(pos));
-      const f = pos - i;
-      imgs.forEach((img, idx) => {
-        if (idx === i) {
-          img.style.opacity = 1;
-          img.style.transform = `scale(${1 + f * HANDOFF})`;
-        } else if (idx === i + 1) {
-          img.style.opacity = f;
-          img.style.transform = `scale(${1 - (1 - f) * HANDOFF})`;
-        } else {
-          img.style.opacity = 0;
-        }
-      });
-      if (p < 1) raf = requestAnimationFrame(tick);
-      else finish();
+    const onEnded = () => finish(false);
+    const onError = () => finish(true);
+    video.addEventListener('ended', onEnded);
+    video.addEventListener('error', onError);
+    video.muted = true; // belt-and-suspenders for autoplay policy
+    const p = video.play();
+    if (p && p.catch) p.catch(() => finish(true)); // autoplay blocked → settle still
+    const safety = setTimeout(() => finish(false), 10000);
+    return () => {
+      clearTimeout(safety);
+      video.removeEventListener('ended', onEnded);
+      video.removeEventListener('error', onError);
     };
-
-    // Start once the early frames have decoded (capped wait), so the journey
-    // never plays over half-loaded imagery.
-    let cancelled = false;
-    const start = () => { if (!cancelled && !finished) raf = requestAnimationFrame(tick); };
-    const decodes = imgs.slice(0, 3).map((img) =>
-      (img.decode ? img.decode() : Promise.resolve()).catch(() => {}));
-    const waitCap = new Promise((r) => setTimeout(r, 1500));
-    Promise.race([Promise.all(decodes), waitCap]).then(start);
-
-    // Hard safety: hidden/throttled tabs still land on the finished state.
-    const safety = setTimeout(finish, duration + 4000);
-    return () => { cancelled = true; clearTimeout(safety); if (raf) cancelAnimationFrame(raf); };
-  }, [frames.length, duration]);
+  }, [videoSrc]);
   return (
     <section ref={ref} className="zoom-hero">
-      {frames.map((src, k) => (
-        <img key={src} className="zoom-frame" src={src} alt="" style={{ opacity: k === 0 ? 1 : 0 }} />
-      ))}
+      <video className="zoom-frame" src={videoSrc} poster={poster} muted playsInline preload="auto" />
+      {fallback && settleImg && <img className="zoom-frame" src={settleImg} alt="" />}
       <div className={`zoom-scrim photo-scrim ${done ? 'is-on' : ''}`} />
       {done && <div className="zoom-copy">{children}</div>}
     </section>

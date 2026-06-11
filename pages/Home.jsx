@@ -4,16 +4,13 @@
 function HomePage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO — auto-playing cinematic dolly-in through the native grasses
-          onto the green; the copy staggers in once the camera settles. */}
+      {/* HERO — auto-playing cinematic dolly-in (video) through the native
+          grasses onto the green; the copy staggers in once the camera
+          settles on the final frame. */}
       <ZoomHero
-        duration={4000}
-        frames={[
-          'assets/zoom/frame_01.jpg', 'assets/zoom/frame_02.jpg',
-          'assets/zoom/frame_03.jpg', 'assets/zoom/frame_04.jpg',
-          'assets/zoom/frame_05.jpg', 'assets/zoom/frame_06.jpg',
-          'assets/zoom/frame_07.jpg', 'assets/zoom/frame_08.jpg',
-        ]}
+        videoSrc="assets/zoom/hero-zoom.mp4"
+        poster="assets/zoom/frame_01.jpg"
+        settleImg="assets/zoom/frame_08.jpg"
       >
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>

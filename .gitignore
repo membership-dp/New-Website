@@ -12,3 +12,7 @@ Dutchman's Pipe Club Website-handoff.zip
 
 # Backup of original Unsplash placeholders (kept locally for revert only)
 assets/placeholders-original/
+
+# Reference videos from the client (kept locally, not for the repo)
+Screen Recording*.mov
+hf_*.mp4
