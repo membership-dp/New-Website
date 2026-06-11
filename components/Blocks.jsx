@@ -102,32 +102,37 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
-/* ZoomHero — scroll-scrubbed dolly-in built from a photo zoom sequence.
-   A tall track pins a 100vh stage; scroll progress cross-fades through the
-   frames with a micro-scale handoff so the journey reads as one continuous
-   move, not a slideshow. The overlay copy (children) fades as the journey
-   begins. Reduced-motion: static first frame, no pinning. */
-function ZoomHero({ frames = [], trackHeight = '300vh', children }) {
+/* ZoomHero — auto-playing cinematic dolly-in from a photo zoom sequence.
+   On arrival the camera moves through the frames by itself (~4s, eased,
+   cross-fades with a micro-scale handoff so it reads as one continuous
+   move). When it settles on the final frame, the scrim fades up and the
+   copy (children) staggers in. Normal 100dvh section — no scroll track.
+   Reduced-motion: final frame + copy immediately. */
+function ZoomHero({ frames = [], duration = 4000, children }) {
   const ref = useBlockRef(null);
+  const [done, setDone] = useBlockState(false);
   useBlockEffect(() => {
-    const track = ref.current;
-    if (!track) return;
-    const imgs = Array.from(track.querySelectorAll('.zoom-frame'));
-    const copy = track.querySelector('.zoom-copy');
-    const scrim = track.querySelector('.zoom-scrim');
+    const host = ref.current;
+    if (!host) return;
+    const imgs = Array.from(host.querySelectorAll('.zoom-frame'));
     const n = imgs.length;
-    if (!n) return;
-    if (blockReduced()) {
-      imgs.forEach((img, k) => { img.style.opacity = k === 0 ? 1 : 0; });
-      return;
-    }
-    const HANDOFF = 0.06; // micro-scale each frame grows before handing off
-    let raf = 0;
-    const render = () => {
-      raf = 0;
-      const rect = track.getBoundingClientRect();
-      const scrollable = rect.height - (window.innerHeight || 1);
-      const p = Math.min(1, Math.max(0, -rect.top / (scrollable || 1)));
+    if (!n) { setDone(true); return; }
+    const showLast = () => {
+      imgs.forEach((img, k) => {
+        img.style.opacity = k === n - 1 ? 1 : 0;
+        img.style.transform = 'scale(1)';
+      });
+      setDone(true);
+    };
+    if (blockReduced()) { showLast(); return; }
+
+    const HANDOFF = 0.06;
+    const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
+    let raf = 0, t0 = 0, finished = false;
+    const finish = () => { if (finished) return; finished = true; showLast(); };
+    const tick = (now) => {
+      if (!t0) t0 = now;
+      const p = ease(Math.min((now - t0) / duration, 1));
       const pos = p * (n - 1);
       const i = Math.min(n - 2, Math.floor(pos));
       const f = pos - i;
@@ -142,31 +147,31 @@ function ZoomHero({ frames = [], trackHeight = '300vh', children }) {
           img.style.opacity = 0;
         }
       });
-      // copy + scrim retire as the dolly-in takes over
-      const o = Math.max(0, 1 - p * 2.5);
-      if (copy) { copy.style.opacity = o; copy.style.pointerEvents = o < 0.05 ? 'none' : 'auto'; }
-      if (scrim) scrim.style.opacity = o;
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else finish();
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(render); };
-    render();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [frames.length]);
+
+    // Start once the early frames have decoded (capped wait), so the journey
+    // never plays over half-loaded imagery.
+    let cancelled = false;
+    const start = () => { if (!cancelled && !finished) raf = requestAnimationFrame(tick); };
+    const decodes = imgs.slice(0, 3).map((img) =>
+      (img.decode ? img.decode() : Promise.resolve()).catch(() => {}));
+    const waitCap = new Promise((r) => setTimeout(r, 1500));
+    Promise.race([Promise.all(decodes), waitCap]).then(start);
+
+    // Hard safety: hidden/throttled tabs still land on the finished state.
+    const safety = setTimeout(finish, duration + 4000);
+    return () => { cancelled = true; clearTimeout(safety); if (raf) cancelAnimationFrame(raf); };
+  }, [frames.length, duration]);
   return (
-    <div ref={ref} className="zoom-track" style={{ height: trackHeight }}>
-      <div className="zoom-stage">
-        {frames.map((src, k) => (
-          <img key={src} className="zoom-frame" src={src} alt="" style={{ opacity: k === 0 ? 1 : 0 }} />
-        ))}
-        <div className="zoom-scrim photo-scrim" />
-        <div className="zoom-copy">{children}</div>
-      </div>
-    </div>
+    <section ref={ref} className="zoom-hero">
+      {frames.map((src, k) => (
+        <img key={src} className="zoom-frame" src={src} alt="" style={{ opacity: k === 0 ? 1 : 0 }} />
+      ))}
+      <div className={`zoom-scrim photo-scrim ${done ? 'is-on' : ''}`} />
+      {done && <div className="zoom-copy">{children}</div>}
+    </section>
   );
 }
 

@@ -186,14 +186,12 @@ img { display: block; max-width: 100%; }
    come after any background shorthand that would reset the attachment.) */
 
 /* ============================================================
-   ZoomHero — scroll-scrubbed dolly-in (photo zoom sequence).
-   The track's height sets how much scroll drives the journey;
-   the stage pins to the viewport while frames cross-fade.
+   ZoomHero — auto-playing cinematic dolly-in (photo zoom sequence).
+   A normal 100dvh hero: the journey plays by itself on arrival,
+   then the scrim fades up and the copy staggers in.
    ============================================================ */
-.zoom-track { position: relative; }
-.zoom-stage {
-  position: sticky;
-  top: 0;
+.zoom-hero {
+  position: relative;
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
@@ -207,7 +205,12 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
   will-change: opacity, transform;
 }
-.zoom-scrim { z-index: 2; }
+.zoom-scrim {
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-club);
+}
+.zoom-scrim.is-on { opacity: 1; }
 .zoom-copy {
   position: absolute;
   inset: 0;
@@ -216,10 +219,7 @@ img { display: block; max-width: 100%; }
   align-items: flex-end;
   padding: var(--header-height) var(--gutter) 96px;
   color: var(--color-bone);
-}
-@media (prefers-reduced-motion: reduce) {
-  .zoom-track { height: auto !important; }
-  .zoom-stage { position: relative; }
+  animation: fadeIn 500ms var(--ease-club);
 }
 @media (max-width: 600px) {
   .zoom-copy { padding: var(--header-height) var(--gutter) 64px; }

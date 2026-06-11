@@ -4,10 +4,10 @@
 function HomePage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO — scroll-scrubbed dolly-in through the native grasses onto the
-          green (8-frame zoom sequence). Copy fades as the journey begins. */}
+      {/* HERO — auto-playing cinematic dolly-in through the native grasses
+          onto the green; the copy staggers in once the camera settles. */}
       <ZoomHero
-        trackHeight="300vh"
+        duration={4000}
         frames={[
           'assets/zoom/frame_01.jpg', 'assets/zoom/frame_02.jpg',
           'assets/zoom/frame_03.jpg', 'assets/zoom/frame_04.jpg',
