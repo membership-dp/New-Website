@@ -102,13 +102,16 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
   );
 }
 
-/* ZoomHero — auto-playing cinematic dolly-in, now driven by a real video
-   for perfectly smooth motion. The clip plays once on arrival (muted,
-   inline); when it ends it holds its final frame, the scrim fades up and
-   the copy (children) staggers in. poster = first frame (shown while the
-   video loads); settleImg = final-frame still used for reduced-motion or
-   if the video fails. */
-function ZoomHero({ videoSrc, poster, settleImg, children }) {
+/* ZoomHero — cinematic dolly-in with two modes for A/B review:
+   mode="auto"  (default): the clip plays once on arrival; on its final
+     frame the scrim fades up and the copy staggers in.
+   mode="scrub": Apple-style pinned journey — a ~280vh track pins the
+     stage while scroll drives the video playhead (use the all-intra
+     scrubSrc so seeks are exact); the copy + scrim fade in over the
+     last 15% of the pin, then the page releases.
+   poster = first frame; settleImg = final-frame still for reduced-motion
+   or any failure. */
+function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', children }) {
   const ref = useBlockRef(null);
   const [done, setDone] = useBlockState(false);
   const [fallback, setFallback] = useBlockState(false);
@@ -116,16 +119,54 @@ function ZoomHero({ videoSrc, poster, settleImg, children }) {
     const host = ref.current;
     if (!host) return;
     const video = host.querySelector('video');
-    if (!video) { setFallback(true); setDone(true); return; }
-    if (blockReduced()) { setFallback(true); setDone(true); return; }
+    if (!video || blockReduced()) { setFallback(true); setDone(true); return; }
 
+    if (mode === 'scrub') {
+      // ----- scroll-scrubbed pinned journey -----
+      const track = host;
+      const copy = host.querySelector('.zoom-copy');
+      const scrim = host.querySelector('.zoom-scrim');
+      let raf = 0;
+      const render = () => {
+        raf = 0;
+        const dur = video.duration;
+        if (!dur || !isFinite(dur)) return;
+        const rect = track.getBoundingClientRect();
+        const scrollable = rect.height - (window.innerHeight || 1);
+        const p = Math.min(1, Math.max(0, -rect.top / (scrollable || 1)));
+        // video completes over the first 85% of the pin…
+        const t = Math.min(1, p / 0.85) * Math.max(0, dur - 0.05);
+        if (Math.abs(video.currentTime - t) > 1 / 30) video.currentTime = t;
+        // …then the words arrive over the last 15%
+        const o = Math.min(1, Math.max(0, (p - 0.85) / 0.15));
+        if (copy) { copy.style.opacity = o; copy.style.pointerEvents = o < 0.05 ? 'none' : 'auto'; }
+        if (scrim) scrim.style.opacity = o;
+      };
+      const onScroll = () => { if (!raf) raf = requestAnimationFrame(render); };
+      const onMeta = () => render();
+      const onError = () => { setFallback(true); setDone(true); };
+      video.addEventListener('loadedmetadata', onMeta);
+      video.addEventListener('error', onError);
+      video.muted = true;
+      render();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      return () => {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+        video.removeEventListener('loadedmetadata', onMeta);
+        video.removeEventListener('error', onError);
+        if (raf) cancelAnimationFrame(raf);
+      };
+    }
+
+    // ----- auto-playing intro -----
     let finished = false;
     const finish = (toFallback) => {
       if (finished) return;
       finished = true;
       if (toFallback) setFallback(true);
       else {
-        // hold the clip's final frame if playback stalled short of the end
         try {
           if (video.duration && isFinite(video.duration) && video.currentTime < video.duration - 0.1) {
             video.currentTime = video.duration;
@@ -141,14 +182,26 @@ function ZoomHero({ videoSrc, poster, settleImg, children }) {
     video.addEventListener('error', onError);
     video.muted = true; // belt-and-suspenders for autoplay policy
     const p = video.play();
-    if (p && p.catch) p.catch(() => finish(true)); // autoplay blocked → settle still
+    if (p && p.catch) p.catch(() => finish(true));
     const safety = setTimeout(() => finish(false), 10000);
     return () => {
       clearTimeout(safety);
       video.removeEventListener('ended', onEnded);
       video.removeEventListener('error', onError);
     };
-  }, [videoSrc]);
+  }, [videoSrc, mode]);
+
+  if (mode === 'scrub' && !fallback) {
+    return (
+      <div ref={ref} className="zoom-track">
+        <div className="zoom-stage">
+          <video className="zoom-frame" src={scrubSrc || videoSrc} poster={poster} muted playsInline preload="auto" />
+          <div className="zoom-scrim photo-scrim" style={{ opacity: 0 }} />
+          <div className="zoom-copy" style={{ opacity: 0, pointerEvents: 'none' }}>{children}</div>
+        </div>
+      </div>
+    );
+  }
   return (
     <section ref={ref} className="zoom-hero">
       <video className="zoom-frame" src={videoSrc} poster={poster} muted playsInline preload="auto" />

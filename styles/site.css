@@ -186,9 +186,11 @@ img { display: block; max-width: 100%; }
    come after any background shorthand that would reset the attachment.) */
 
 /* ============================================================
-   ZoomHero — auto-playing cinematic dolly-in (photo zoom sequence).
-   A normal 100dvh hero: the journey plays by itself on arrival,
-   then the scrim fades up and the copy staggers in.
+   ZoomHero — cinematic dolly-in. Two modes:
+   auto  — a normal 100dvh hero; the clip plays itself, then the
+           scrim fades up and the copy staggers in.
+   scrub — a 280vh track pins the stage while scroll drives the
+           video playhead; words arrive over the last 15%.
    ============================================================ */
 .zoom-hero {
   position: relative;
@@ -196,6 +198,19 @@ img { display: block; max-width: 100%; }
   height: 100dvh;
   overflow: hidden;
   background: var(--color-ink); /* behind frame cross-fades */
+}
+.zoom-track { position: relative; height: 280vh; }
+.zoom-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom-track { height: auto; }
+  .zoom-stage { position: relative; }
 }
 .zoom-frame {
   position: absolute;

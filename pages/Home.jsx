@@ -4,11 +4,13 @@
 function HomePage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO — auto-playing cinematic dolly-in (video) through the native
-          grasses onto the green; the copy staggers in once the camera
-          settles on the final frame. */}
+      {/* HERO — cinematic dolly-in through the native grasses onto the green.
+          A/B switch (club review): default is the auto-playing intro; add
+          ?hero=scrub to the URL for the Apple-style pinned scroll journey. */}
       <ZoomHero
+        mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'auto'}
         videoSrc="assets/zoom/hero-zoom.mp4"
+        scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
         poster="assets/zoom/frame_01.jpg"
         settleImg="assets/zoom/frame_08.jpg"
       >
