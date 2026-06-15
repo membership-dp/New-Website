@@ -388,14 +388,18 @@ function ZoomHero({
 }
 
 /* RevealGallery — the Hideaway image animation, v2 (club 6/11 + Kyle):
-   a centered SQUARE window opens first (clip-path from its center —
-   nothing scales), then the two side panels glide in toward the square.
-   Once assembled, the triptych sifts through the image set with slow
-   cross-fades, each panel offset so no two show the same image.
+   the center window opens first (clip-path from its center — nothing scales),
+   then the two side panels glide in toward it. Then it sifts through the image
+   set with slow cross-fades.
+   continuous=true (Kyle 6/15): the three panels are contiguous windows onto ONE
+   image (each img is sized to the full gallery and offset by a third), so once
+   assembled it reads as a single image spanning the section — but it still
+   arrives as three animated pieces. Default: each panel shows a different image.
    Reduced-motion: fully assembled, static. */
 function RevealGallery({
   images = [],
-  interval = 3800
+  interval = 3800,
+  continuous = false
 }) {
   const ref = useBlockRef(null);
   const [open, setOpen] = useBlockState(false);
@@ -430,6 +434,8 @@ function RevealGallery({
   if (!n) return null;
   // plain helper (not a component) so panels reconcile in place and the
   // cross-fade transitions survive re-renders
+  // continuous mode: every panel shows the SAME image (offset 0) so the slices
+  // line up into one picture; default mode: each panel is a different image.
   const panel = (cls, offset) => /*#__PURE__*/React.createElement("div", {
     className: `rg-panel ${cls}`
   }, images.map((src, k) => /*#__PURE__*/React.createElement("img", {
@@ -438,7 +444,7 @@ function RevealGallery({
     alt: "",
     loading: "lazy",
     decoding: "async",
-    className: k === (active + offset) % n ? 'active' : ''
+    className: k === (active + (continuous ? 0 : offset)) % n ? 'active' : ''
   })));
   return (
     /*#__PURE__*/
@@ -448,7 +454,7 @@ function RevealGallery({
       ref: ref,
       className: "reveal-gallery-wrap"
     }, /*#__PURE__*/React.createElement("div", {
-      className: `reveal-gallery ${open ? 'is-open' : ''}`
+      className: `reveal-gallery ${continuous ? 'is-continuous' : ''} ${open ? 'is-open' : ''}`
     }, panel('rg-side rg-left', 1), panel('rg-square', 0), panel('rg-side rg-right', 2)))
   );
 }

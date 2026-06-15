@@ -118,10 +118,11 @@ function GolfPage({ onNav }) {
         />
       </section>
 
-      {/* COURSE GALLERY — centered square opens, the wings glide in toward
-          it, then the triptych sifts through the course */}
+      {/* COURSE GALLERY — one image spanning the section, assembled from three
+          animated pieces (center opens, wings glide in), then sifts the set */}
       <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
         <RevealGallery
+          continuous
           images={[
             'assets/hero-fairway.jpg', 'assets/hero-green.jpg',
             'assets/course-skyline.jpg', 'assets/hero-sunset.jpg',
@@ -139,7 +140,7 @@ function GolfPage({ onNav }) {
               <div>
                 <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Membership</div>
                 <h2 className="display-md" style={{ color: 'var(--color-club-navy)', maxWidth: 720 }}>
-                  Five pathways to membership.
+                  Four pathways to membership.
                 </h2>
               </div>
               <p className="body-text" style={{ color: 'var(--color-navy-70)', maxWidth: 380 }}>
@@ -149,7 +150,8 @@ function GolfPage({ onNav }) {
             </div>
           </Reveal>
           <Reveal>
-            <TierColumns />
+            {/* Social omitted here (Kyle 6/15) — golfers' pathways only */}
+            <TierColumns tiers={DP_TIERS.filter((t) => t.name !== 'Social')} />
           </Reveal>
           <Reveal>
             <a {...actionProps(() => onNav('membership'))} className="arrow-link" style={{ marginTop: 48, color: 'var(--color-club-navy)' }}>

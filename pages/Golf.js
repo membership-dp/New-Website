@@ -181,6 +181,7 @@ function GolfPage({
       padding: '0 0 var(--space-section)'
     }
   }, /*#__PURE__*/React.createElement(RevealGallery, {
+    continuous: true,
     images: ['assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/course-skyline.jpg', 'assets/hero-sunset.jpg', 'assets/hero-putting.jpg']
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
@@ -206,13 +207,15 @@ function GolfPage({
       color: 'var(--color-club-navy)',
       maxWidth: 720
     }
-  }, "Five pathways to membership.")), /*#__PURE__*/React.createElement("p", {
+  }, "Four pathways to membership.")), /*#__PURE__*/React.createElement("p", {
     className: "body-text",
     style: {
       color: 'var(--color-navy-70)',
       maxWidth: 380
     }
-  }, "Each category is designed to match the rhythm of how you wish to engage with the Club."))), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(TierColumns, null)), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
+  }, "Each category is designed to match the rhythm of how you wish to engage with the Club."))), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(TierColumns, {
+    tiers: DP_TIERS.filter(t => t.name !== 'Social')
+  })), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
     className: "arrow-link",
     style: {
       marginTop: 48,

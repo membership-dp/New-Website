@@ -55,15 +55,6 @@ function Splash({
       margin: 0
     }
   }, "Dutchman's Pipe"), /*#__PURE__*/React.createElement("div", {
-    className: "splash-tagline",
-    style: {
-      font: '400 18px/1.5 var(--font-body)',
-      color: 'rgba(245,241,232,0.8)',
-      marginTop: 28,
-      maxWidth: 520,
-      marginInline: 'auto'
-    }
-  }, "A private golf and racquets sanctuary in West Palm Beach."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 56,
       display: 'flex',

@@ -110,6 +110,19 @@ function MembershipPage({ onNav }) {
         </div>
       </section>
 
+      {/* LIFESTYLE GALLERY — one image across the section, assembled from three
+          animated pieces (matches the Golf gallery treatment) */}
+      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
+        <RevealGallery
+          continuous
+          images={[
+            'assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg',
+            'assets/hero-villa.jpg', 'assets/hero-palms.jpg',
+            'assets/hero-sunset.jpg',
+          ]}
+        />
+      </section>
+
       {/* INQUIRY FORM */}
       <section className="section surface-satin" id="inquiry">
         <Parallax speed={-0.25} className="satin-sheen" />

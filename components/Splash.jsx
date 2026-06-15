@@ -46,15 +46,6 @@ function Splash({ onEnter }) {
         <h1 className="display-xl" style={{ color: 'var(--color-bone)', margin: 0 }}>
           Dutchman's Pipe
         </h1>
-        <div className="splash-tagline" style={{
-          font: '400 18px/1.5 var(--font-body)',
-          color: 'rgba(245,241,232,0.8)',
-          marginTop: 28,
-          maxWidth: 520,
-          marginInline: 'auto',
-        }}>
-          A private golf and racquets sanctuary in West Palm Beach.
-        </div>
         <div style={{ marginTop: 56, display: 'flex', justifyContent: 'center' }}>
           <button onClick={handleEnter} className="btn btn-gold" style={{
             padding: '18px 36px',

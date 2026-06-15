@@ -73,6 +73,10 @@ function Header({
     id: 'location',
     label: 'Location'
   }, {
+    id: 'villas',
+    label: 'Villas',
+    href: 'https://www.belgrovevillas.com/'
+  }, {
     id: 'news',
     label: 'In the News'
   }, {
@@ -118,7 +122,13 @@ function Header({
       alignItems: 'center',
       gap: 40
     }
-  }, navItems.map(it => /*#__PURE__*/React.createElement("a", _extends({
+  }, navItems.map(it => it.href ? /*#__PURE__*/React.createElement("a", {
+    key: it.id,
+    className: "nav-link",
+    href: it.href,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, it.label) : /*#__PURE__*/React.createElement("a", _extends({
     key: it.id,
     className: `nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
@@ -155,7 +165,14 @@ function Header({
   }, [{
     id: 'home',
     label: 'Home'
-  }, ...navItems].map(it => /*#__PURE__*/React.createElement("a", _extends({
+  }, ...navItems].map(it => it.href ? /*#__PURE__*/React.createElement("a", {
+    key: it.id,
+    className: "mobile-nav-link",
+    href: it.href,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => setMenuOpen(false)
+  }, it.label) : /*#__PURE__*/React.createElement("a", _extends({
     key: it.id,
     className: `mobile-nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined

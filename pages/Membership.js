@@ -180,6 +180,14 @@ function MembershipPage({
   }, "Each category is designed to match the rhythm of how you wish to engage with the Club."))), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(TierAccordion, {
     tiers: tiers
   })))), /*#__PURE__*/React.createElement("section", {
+    className: "surface-bone",
+    style: {
+      padding: '0 0 var(--space-section)'
+    }
+  }, /*#__PURE__*/React.createElement(RevealGallery, {
+    continuous: true,
+    images: ['assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg', 'assets/hero-villa.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg']
+  })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin",
     id: "inquiry"
   }, /*#__PURE__*/React.createElement(Parallax, {

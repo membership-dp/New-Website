@@ -816,14 +816,29 @@ body::before {
 .rg-left  { transform: translateX(-48px); }
 .rg-right { transform: translateX(48px); }
 .reveal-gallery.is-open .rg-side { opacity: 1; transform: translateX(0); }
+
+/* Continuous mode — three contiguous windows onto ONE image: equal thirds, no
+   gap, each <img> sized to the full gallery and offset by a third, so once the
+   pieces assemble they form a single picture spanning the section. */
+.reveal-gallery.is-continuous { grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+.reveal-gallery.is-continuous .rg-square { aspect-ratio: auto; height: 100%; width: auto; }
+.reveal-gallery.is-continuous .rg-panel img { inset: 0 auto 0 0; width: 300%; }
+.reveal-gallery.is-continuous .rg-left   img { left: 0; }
+.reveal-gallery.is-continuous .rg-square img { left: -100%; }
+.reveal-gallery.is-continuous .rg-right  img { left: -200%; }
+
 @media (max-width: 960px) {
   .reveal-gallery { height: 46vmin; min-height: 320px; gap: 10px; }
+  .reveal-gallery.is-continuous { gap: 0; }
 }
 @media (max-width: 600px) {
   /* phones: the square IS the gallery — no room for wings */
   .reveal-gallery { display: block; height: auto; min-height: 0; }
   .rg-side { display: none; }
   .rg-square { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+  /* continuous on phones: one full image (no slicing) */
+  .reveal-gallery.is-continuous .rg-square { aspect-ratio: 16 / 10; height: auto; width: 100%; }
+  .reveal-gallery.is-continuous .rg-square img { left: 0; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rg-square { clip-path: none; transition: none; }

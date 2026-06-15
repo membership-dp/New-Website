@@ -59,6 +59,7 @@ function Header({ route, onNav, lightOnTop = true }) {
     { id: 'golf', label: 'Golf' },
     { id: 'racquets', label: 'Racquets' },
     { id: 'location', label: 'Location' },
+    { id: 'villas', label: 'Villas', href: 'https://www.belgrovevillas.com/' },
     { id: 'news', label: 'In the News' },
     { id: 'membership', label: 'Membership' },
   ];
@@ -80,12 +81,18 @@ function Header({ route, onNav, lightOnTop = true }) {
       {/* Desktop nav */}
       <nav className="site-header-nav-desktop" style={{ marginLeft: 'auto', alignItems: 'center', gap: 40 }}>
         {navItems.map((it) => (
-          <a key={it.id}
-             className={`nav-link ${route === it.id ? 'is-active' : ''}`}
-             aria-current={route === it.id ? 'page' : undefined}
-             {...actionProps(() => goTo(it.id), 'link')}>
-            {it.label}
-          </a>
+          it.href ? (
+            <a key={it.id} className="nav-link" href={it.href} target="_blank" rel="noopener noreferrer">
+              {it.label}
+            </a>
+          ) : (
+            <a key={it.id}
+               className={`nav-link ${route === it.id ? 'is-active' : ''}`}
+               aria-current={route === it.id ? 'page' : undefined}
+               {...actionProps(() => goTo(it.id), 'link')}>
+              {it.label}
+            </a>
+          )
         ))}
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
@@ -119,12 +126,18 @@ function Header({ route, onNav, lightOnTop = true }) {
           >
             <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
               {[{ id: 'home', label: 'Home' }, ...navItems].map((it) => (
-                <a key={it.id}
-                   className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
-                   aria-current={route === it.id ? 'page' : undefined}
-                   {...actionProps(() => goTo(it.id), 'link')}>
-                  {it.label}
-                </a>
+                it.href ? (
+                  <a key={it.id} className="mobile-nav-link" href={it.href} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
+                    {it.label}
+                  </a>
+                ) : (
+                  <a key={it.id}
+                     className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
+                     aria-current={route === it.id ? 'page' : undefined}
+                     {...actionProps(() => goTo(it.id), 'link')}>
+                    {it.label}
+                  </a>
+                )
               ))}
               <a className="mobile-nav-link mobile-nav-login" {...actionProps(() => goTo('login'))}>
                 Member Login
