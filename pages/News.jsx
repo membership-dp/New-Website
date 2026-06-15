@@ -1,19 +1,7 @@
-// pages/News.jsx — "In the News" (placeholder content for wireframe review)
+// pages/News.jsx — "In the News". Content comes from NewsStore (defaults,
+// or whatever the Admin editor saved in this browser).
 function NewsPage({ onNav }) {
-  const featured = {
-    img: 'assets/hero-clubhouse.jpg',
-    tag: 'Press', date: 'May 2026',
-    title: "Dutchman's Pipe Club named among the most anticipated private clubs in Florida.",
-    excerpt: 'A look at the no-tee-time philosophy, the Jack Nicklaus Signature course, and the racquet pavilion drawing members to West Palm Beach.',
-  };
-  const articles = [
-    { img: 'assets/hero-green.jpg', tag: 'Golf', date: 'Apr 2026', title: 'Inside the Jack Nicklaus Signature design.', excerpt: 'How 7,300 yards of sculpted bunkering and natural water came together.' },
-    { img: 'assets/padel-action.jpg', tag: 'Racquets', date: 'Mar 2026', title: 'Why padel is becoming the Club’s social heartbeat.', excerpt: 'Glow Padel after sunset and a calendar built for every level.' },
-    { img: 'assets/hero-palms.jpg', tag: 'Lifestyle', date: 'Feb 2026', title: 'A Palm Beach address, quietly removed.', excerpt: 'Minutes from Worth Avenue, with discreet access to private aviation.' },
-    { img: 'assets/instruction.jpg', tag: 'Instruction', date: 'Feb 2026', title: 'Top 100 instruction comes to the practice ground.', excerpt: 'Individualized lessons rooted in fundamentals and biomechanics.' },
-    { img: 'assets/tennis-veranda.jpg', tag: 'Community', date: 'Jan 2026', title: 'The veranda: where time on court becomes time together.', excerpt: 'Chilled towels, post-match smoothies, and an easy social rhythm.' },
-    { img: 'assets/course-skyline.jpg', tag: 'Club News', date: 'Jan 2026', title: 'Membership inquiries open for the founding season.', excerpt: 'An invitation-only community takes shape on the edge of Palm Beach.' },
-  ];
+  const { featured, articles } = NewsStore.load();
 
   const Meta = ({ tag, date, light }) => (
     <div style={{

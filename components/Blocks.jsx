@@ -109,9 +109,10 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
      stage while scroll drives the video playhead (use the all-intra
      scrubSrc so seeks are exact); the copy + scrim fade in over the
      last 15% of the pin, then the page releases.
-   poster = first frame; settleImg = final-frame still for reduced-motion
-   or any failure. */
-function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', children }) {
+   poster = the auto-mode start frame (mid-flight, since auto trims the
+   clip); scrubPoster = the true first frame for scrub mode; settleImg =
+   final-frame still for reduced-motion or any failure. */
+function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = 'auto', children }) {
   const ref = useBlockRef(null);
   const [done, setDone] = useBlockState(false);
   const [fallback, setFallback] = useBlockState(false);
@@ -161,6 +162,12 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
     }
 
     // ----- auto-playing intro -----
+    // A ~3s read: start mid-flight (poster = the same frame, so no jump),
+    // cruise slightly hot, glide to a stop, then the words land quickly.
+    const START = 2.6;  // skip the widest half of the dolly — a slighter zoom
+    const BASE = 1.45;  // cruise speed
+    const RAMP = 1.0;   // glide window, in video-seconds
+    const FLOOR = 0.3;  // landing speed
     let finished = false;
     let beat = 0;
     const finish = (toFallback) => {
@@ -173,8 +180,18 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
         }
         video.pause();
       } catch (e) { setFallback(true); setDone(true); return; }
-      // a beat of stillness on the green before the words arrive
-      beat = setTimeout(() => setDone(true), 250);
+      // a short beat of stillness on the green before the words arrive
+      beat = setTimeout(() => setDone(true), 150);
+    };
+    // Seek to the mid-flight start BEFORE playback begins (the poster is
+    // that same frame), so frame 0 can never flash on a cold load.
+    const prime = () => {
+      try {
+        if (video.currentTime < START) video.currentTime = START;
+        video.playbackRate = BASE;
+      } catch (e) {}
+      const p = video.play();
+      if (p && p.catch) p.catch(() => finish(true));
     };
     const onEnded = () => finish(false);
     const onError = () => finish(true);
@@ -183,7 +200,6 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
     video.muted = true; // belt-and-suspenders for autoplay policy
     // Glide to a stop: ease playbackRate down over the final stretch so the
     // dolly decelerates into the green instead of cutting at full speed.
-    const RAMP = 1.4;
     let rampRaf = 0;
     const rampTick = () => {
       if (finished) return;
@@ -192,19 +208,20 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
         const remaining = dur - video.currentTime;
         if (remaining <= RAMP) {
           const k = Math.max(0, remaining / RAMP);
-          video.playbackRate = 0.3 + 0.7 * (k * k); // ease-out: 1.0 -> 0.3
+          video.playbackRate = FLOOR + (BASE - FLOOR) * (k * k); // ease-out: BASE -> FLOOR
         }
       }
       rampRaf = requestAnimationFrame(rampTick);
     };
     rampRaf = requestAnimationFrame(rampTick);
-    const p = video.play();
-    if (p && p.catch) p.catch(() => finish(true));
-    const safety = setTimeout(() => finish(false), 12000);
+    if (video.readyState >= 1) prime();
+    else video.addEventListener('loadedmetadata', prime, { once: true });
+    const safety = setTimeout(() => finish(false), 9000);
     return () => {
       clearTimeout(safety);
       clearTimeout(beat);
       if (rampRaf) cancelAnimationFrame(rampRaf);
+      video.removeEventListener('loadedmetadata', prime);
       video.removeEventListener('ended', onEnded);
       video.removeEventListener('error', onError);
     };
@@ -214,7 +231,7 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
     return (
       <div ref={ref} className="zoom-track">
         <div className="zoom-stage">
-          <video className="zoom-frame" src={scrubSrc || videoSrc} poster={poster} muted playsInline preload="auto" />
+          <video className="zoom-frame" src={scrubSrc || videoSrc} poster={scrubPoster || poster} muted playsInline preload="auto" />
           <div className="zoom-scrim photo-scrim" style={{ opacity: 0 }} />
           <div className="zoom-copy" style={{ opacity: 0, pointerEvents: 'none' }}>{children}</div>
         </div>
@@ -231,11 +248,12 @@ function ZoomHero({ videoSrc, scrubSrc, poster, settleImg, mode = 'auto', childr
   );
 }
 
-/* RevealGallery — the Hideaway image animation the club asked for (6/11):
-   on scroll-in, the image is unveiled through a window that grows from a
-   small center seed out to the full band (clip-path only, nothing scales),
-   then the frame "sifts" through the image set with slow cross-fades.
-   Reduced-motion: full band, static first image. */
+/* RevealGallery — the Hideaway image animation, v2 (club 6/11 + Kyle):
+   a centered SQUARE window opens first (clip-path from its center —
+   nothing scales), then the two side panels glide in toward the square.
+   Once assembled, the triptych sifts through the image set with slow
+   cross-fades, each panel offset so no two show the same image.
+   Reduced-motion: fully assembled, static. */
 function RevealGallery({ images = [], interval = 3800 }) {
   const ref = useBlockRef(null);
   const [open, setOpen] = useBlockState(false);
@@ -252,19 +270,100 @@ function RevealGallery({ images = [], interval = 3800 }) {
   }, []);
   useBlockEffect(() => {
     if (!open || blockReduced() || images.length < 2) return;
-    // start sifting once the reveal has finished opening
+    // start sifting once the reveal has finished assembling
     const t = setInterval(() => setActive((a) => (a + 1) % images.length), interval);
     return () => clearInterval(t);
   }, [open, images.length, interval]);
+  const n = images.length;
+  if (!n) return null;
+  // plain helper (not a component) so panels reconcile in place and the
+  // cross-fade transitions survive re-renders
+  const panel = (cls, offset) => (
+    <div className={`rg-panel ${cls}`}>
+      {images.map((src, k) => (
+        <img key={src} src={src} alt="" className={k === (active + offset) % n ? 'active' : ''} />
+      ))}
+    </div>
+  );
   return (
     // IO observes the UNCLIPPED wrapper — the clipped layer reports ~0%
     // visibility to IntersectionObserver, so it can never trigger itself.
     <div ref={ref} className="reveal-gallery-wrap">
       <div className={`reveal-gallery ${open ? 'is-open' : ''}`}>
-        {images.map((src, k) => (
-          <img key={src} src={src} alt="" className={k === active ? 'active' : ''} />
-        ))}
+        {panel('rg-side rg-left', 1)}
+        {panel('rg-square', 0)}
+        {panel('rg-side rg-right', 2)}
       </div>
+    </div>
+  );
+}
+
+/* Membership categories — single source shared by the Membership page
+   (accordion, per club 6/11) and the Golf page (the original column
+   layout, which the club liked for low-verbiage placements). */
+const DP_TIERS = [
+  {
+    name: 'Full Golf',
+    tag: 'Anchor',
+    body: 'Full Golf Membership provides unlimited access to the Jack Nicklaus Signature course played without tee times, the full racquet program, wellness facilities, and all club amenities. A distinguished instructional team, including Golf Magazine Top 100 instructors and performance specialists, supports every stage of a member’s golf journey.',
+    audience: 'For members who wish to engage fully in every aspect of club life.',
+  },
+  {
+    name: 'Next Generation',
+    tag: 'Under 40',
+    body: 'Next Generation Membership is reserved for members under 40 seeking long-term affiliation and progression to Full Golf Membership. It offers meaningful access today while establishing a clear pathway within the club’s future community.',
+    audience: 'Reserved for members under 40.',
+  },
+  {
+    name: 'Visiting',
+    tag: 'Non-Resident',
+    body: 'Visiting Membership offers a membership tailored for non-residents, providing limited access to the course, practice facilities, and select club amenities during their time in Palm Beach.',
+    audience: 'For seasonal members and travelers.',
+  },
+  {
+    name: 'Social',
+    tag: 'Beyond the Fairways',
+    body: 'Social Membership centers on racquet sports, wellness programming, and dining, allowing members to participate in the club’s daily rhythm beyond the fairways.',
+    audience: 'For racquet, wellness, and social members.',
+  },
+  {
+    name: 'Corporate',
+    tag: 'Executive',
+    body: 'Corporate Membership provides designated access for multiple executives under one membership, offering an elevated setting to host clients, reward leadership, and build lasting business relationships.',
+    audience: 'For organizations.',
+  },
+];
+
+/* TierColumns — the original five-column membership layout. */
+function TierColumns({ tiers = DP_TIERS }) {
+  return (
+    <div className="tier-row" style={{
+      borderTop: '1px solid var(--color-mist)',
+      borderBottom: '1px solid var(--color-mist)',
+    }}>
+      {tiers.map((t, i) => (
+        <div key={t.name} className="tier-col">
+          <div style={{
+            font: '500 11px/1 var(--font-body)',
+            letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: 'var(--color-navy-40)',
+          }}>
+            0{i + 1} &nbsp;·&nbsp; {t.tag}
+          </div>
+          <h3>{t.name}</h3>
+          <div style={{ width: 24, height: 1, background: 'var(--color-champagne)' }} />
+          <p>{t.body}</p>
+          <div style={{
+            marginTop: 'auto',
+            paddingTop: 24,
+            font: '400 13px/1.5 var(--font-body)',
+            fontStyle: 'italic',
+            color: 'var(--color-navy-70)',
+          }}>
+            {t.audience}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -274,3 +373,5 @@ window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
 window.ZoomHero = ZoomHero;
 window.RevealGallery = RevealGallery;
+window.DP_TIERS = DP_TIERS;
+window.TierColumns = TierColumns;

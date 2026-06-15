@@ -11,7 +11,8 @@ function HomePage({ onNav }) {
         mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'auto'}
         videoSrc="assets/zoom/hero-zoom.mp4"
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
-        poster="assets/zoom/frame_01.jpg"
+        poster="assets/zoom/frame_mid.jpg"
+        scrubPoster="assets/zoom/frame_01.jpg"
         settleImg="assets/zoom/frame_08.jpg"
       >
         <div className="page-hero-inner">
@@ -27,9 +28,8 @@ function HomePage({ onNav }) {
                 color: 'rgba(245,241,232,0.82)',
                 marginTop: 32, maxWidth: 580, marginBottom: 0,
               }}>
-                A Jack Nicklaus Signature course played without tee times, a racquet
-                pavilion alive with tennis, padel and pickleball, and a quiet rhythm
-                of belonging on the edge of Palm Beach.
+                A private Palm Beach club where championship golf, racquets, wellness,
+                and community come together without compromise.
               </p>
             </div>
             <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
@@ -57,9 +57,6 @@ function HomePage({ onNav }) {
       {/* TAGLINE — substantial section, not a strip */}
       <section className="section surface-bone" style={{ borderBottom: '1px solid var(--color-mist)' }}>
         <div className="container">
-          <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 40 }}>An Invitation</div>
-          </Reveal>
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1.5fr 1fr',
@@ -80,7 +77,7 @@ function HomePage({ onNav }) {
                 color: 'var(--color-navy-70)',
                 margin: 0,
               }}>
-                A private retreat where excellence is the standard and leisure is unhurried.
+                Designed for those who value access, excellence, and an active Palm Beach lifestyle.
               </p>
             </Reveal>
           </div>
@@ -99,9 +96,9 @@ function HomePage({ onNav }) {
 
           <div className="three-up" style={{ marginTop: 80 }}>
             {[
-              { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: '7,300 yards of unhurried play. No tee times. A 12,000 sq ft putting green and a two-acre short game complex.', target: 'golf' },
-              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Eight courts woven through landscaped walkways. A racquet culture that lives from first serve to glow-padel sunset.', target: 'racquets' },
-              { img: 'assets/hero-villa.jpg', eyebrow: 'Belonging', title: 'A Palm Beach lifestyle.', body: 'Wellness, dining, and the quiet rhythm of a private community, minutes from Worth Avenue and Palm Beach International.', target: 'location' },
+              { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: 'A Jack Nicklaus Signature golf course spanning more than 7,300 yards, played without tee times and supported by an exceptional practice environment.', target: 'golf' },
+              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Active with instruction, competition, and social play.', target: 'racquets' },
+              { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Strength, recovery, performance.', body: 'Dedicated spaces for strength, recovery, and performance, supported by expert coaching and programming designed to enhance both athletic performance and long-term wellbeing.', target: 'membership' },
             ].map((it, i) => (
               <Reveal key={it.eyebrow} delay={i * 120}>
                 <a onClick={() => onNav(it.target)} style={{
@@ -175,9 +172,9 @@ function HomePage({ onNav }) {
           </div>
           <LayeredCallout
             flipped dark
-            title="A racquet culture that lives beyond the baseline."
-            body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts, set among landscaped walkways and shaded viewing areas. Chilled towels at changeover, post-match smoothies on the veranda. A racquet calendar that moves from morning clinic to Glow Padel after sunset."
-            lgImg="assets/tennis-serve.jpg"
+            title="The social heart of the Club’s racquet program."
+            body="The Racquet Pavilion serves as the social heart of the Club’s racquet program. Four Har-Tru tennis courts, two pickleball courts, and two padel courts are complemented by professional instruction, competitive events, and year-round programming."
+            lgImg="assets/padel-action.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}
           />
@@ -230,10 +227,11 @@ function HomePage({ onNav }) {
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.8)',
-            marginTop: 32, maxWidth: 620, marginInline: 'auto',
+            marginTop: 32, maxWidth: 640, marginInline: 'auto',
           }}>
-            Membership at Dutchman's Pipe is by invitation. To begin a conversation,
-            please introduce yourself.
+            Membership at Dutchman's Pipe provides access to one of Palm Beach's most
+            distinctive private club experiences. Opportunities for membership are
+            limited and available through a private introduction process.
           </p>
           <div style={{ marginTop: 48 }}>
             <a onClick={() => onNav('membership')} className="btn btn-gold">

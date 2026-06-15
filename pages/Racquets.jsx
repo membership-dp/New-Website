@@ -13,35 +13,37 @@ function RacquetsPage({ onNav }) {
             The Racquet Pavilion
           </div>
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
-            A distinct racquet culture in Palm Beach.
+            A premier destination for tennis, padel, and pickleball.
           </h1>
           <p className="hero-sub" style={{
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 700, marginBottom: 0,
           }}>
-            Eight courts, woven through landscaped walkways. Active from first serve
-            to sunset.
+            Professional instruction, competitive play, and year-round programming.
           </p>
         </div>
       </section>
 
-      {/* STAT STRIP — court counts */}
-      <Reveal as="section" className="surface-bone" style={{ padding: '0 var(--gutter)' }}>
-        <div className="container">
-          <div className="stat-row stat-row-3">
-            {[
-              { num: '4', label: 'Har-Tru Tennis Courts' },
-              { num: '2', label: 'Padel Courts' },
-              { num: '2', label: 'Pickleball Courts' },
-            ].map((s) => (
-              <div key={s.label} className="stat-cell">
-                <div className="stat-num">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
+      {/* STAT STRIP — court counts. Section stays opaque; Reveal wraps the
+          content so the fixed satin sheet never shows through the fade-in */}
+      <section className="surface-bone" style={{ padding: '0 var(--gutter)' }}>
+        <Reveal>
+          <div className="container">
+            <div className="stat-row stat-row-3">
+              {[
+                { num: '4', label: 'Har-Tru Tennis Courts' },
+                { num: '2', label: 'Padel Courts' },
+                { num: '2', label: 'Pickleball Courts' },
+              ].map((s) => (
+                <div key={s.label} className="stat-cell">
+                  <div className="stat-num">{s.num}</div>
+                  <div className="stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </section>
 
       {/* PADEL — full bleed, parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '75vh', overflow: 'hidden' }}>
@@ -62,11 +64,12 @@ function RacquetsPage({ onNav }) {
           <p style={{
             font: '400 19px/1.6 var(--font-body)',
             color: 'rgba(245,241,232,0.82)',
-            marginTop: 32, maxWidth: 700, marginInline: 'auto',
+            marginTop: 32, maxWidth: 720, marginInline: 'auto',
           }}>
-            Padel has become a defining part of the Club's culture. Organized match
-            play, curated programming, and private instruction create an environment
-            where competitive players and recreational members find their rhythm.
+            One of the fastest-growing sports in the world has found a natural home at
+            Dutchman's Pipe. Structured match play, private instruction, and member
+            events create an environment where both experienced players and newcomers
+            can enjoy the game.
           </p>
         </Reveal>
       </section>
@@ -90,8 +93,8 @@ function RacquetsPage({ onNav }) {
           flipped dark
           eyebrow="Programming & Member Experience"
           title="A racquet calendar built for every level, year-round."
-          body="Whether joining a weekly clinic, scheduling a private lesson with our certified professionals, or stepping onto the court for Glow Padel after sunset, members transition effortlessly between skill development and social competition."
-          lgImg="assets/tennis-serve.jpg"
+          body="Members enjoy a thoughtfully curated mix of clinics, private coaching, match play, tournaments, and signature events throughout the year."
+          lgImg="assets/hero-tennis.jpg"
           motif="pipe"
         />
         </div>
@@ -101,20 +104,28 @@ function RacquetsPage({ onNav }) {
       <section className="section surface-white">
         <LayeredCallout
           eyebrow="Beyond the Baseline"
-          title="The veranda extends the experience."
-          body={[
-            'All eight courts are thoughtfully intertwined by lush, landscaped walkways. Comfortable viewing areas are placed throughout, allowing members to gather courtside with ease.',
-            'Following play, chilled towels are offered as a quiet luxury, and post-match smoothies extend the experience naturally into the pavilion. Time on court transitions into time together.',
-          ]}
+          title="A gathering place as active as the courts themselves."
+          body="Thoughtfully integrated throughout the property, the Club's courts are connected by landscaped pathways and comfortable gathering spaces. Whether participating in a clinic, enjoying a competitive match, or watching courtside, the racquet experience is designed to be as social as it is active."
           lgImg="assets/tennis-veranda.jpg"
           motif="grass"
+        />
+      </section>
+
+      {/* COURT GALLERY — same triptych reveal as Golf (club: "add the gallery
+          like we did on the mock") */}
+      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
+        <RevealGallery
+          images={[
+            'assets/padel-action.jpg', 'assets/tennis-veranda.jpg',
+            'assets/hero-tennis.jpg', 'assets/padel-skyline.jpg',
+          ]}
         />
       </section>
 
       {/* CTA — parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '60vh', overflow: 'hidden' }}>
         <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/hero-fairway.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          <div style={{ backgroundImage: `url('assets/padel-skyline.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 820, textAlign: 'center' }}>
@@ -124,11 +135,11 @@ function RacquetsPage({ onNav }) {
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.82)',
-            marginTop: 28, maxWidth: 620, marginInline: 'auto',
+            marginTop: 28, maxWidth: 640, marginInline: 'auto',
           }}>
-            For those who value spirited competition, thoughtful programming, and an
-            atmosphere that extends beyond the baseline, we invite you to explore
-            racquet membership at Dutchman's Pipe.
+            A vibrant racquet culture, exceptional facilities, and year-round
+            programming come together to create an experience that extends well
+            beyond the court.
           </p>
           <div style={{ marginTop: 44 }}>
             <a onClick={() => onNav('membership')} className="btn btn-ghost-light">

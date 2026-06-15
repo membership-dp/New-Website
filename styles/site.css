@@ -165,9 +165,18 @@ img { display: block; max-width: 100%; }
    a 115° fold gradient + a specular bloom, so the surface reads as
    silk, never flat navy. Use sparingly (membership / closing moments).
    ============================================================ */
-.surface-satin {
-  position: relative;
-  overflow: hidden;
+/* THE satin itself is painted ONCE, on a viewport-fixed sheet behind the
+   whole site (body::before). Satin sections and the footer are transparent
+   windows onto that one sheet, so adjacent satin chapters and the footer
+   can never show a seam — on any browser, desktop or mobile. (This replaces
+   the old per-element gradients + background-attachment:fixed approach,
+   which Safari drops and which restarted per element on mobile.) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(120% 80% at 72% 8%, rgba(98, 134, 176, 0.20), transparent 60%),
     linear-gradient(115deg,
@@ -176,14 +185,17 @@ img { display: block; max-width: 100%; }
       var(--color-satin-ridge) 50%,
       #142639 62%,
       #060F1B 100%);
+}
+.surface-satin {
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* window onto the body::before satin sheet */
   color: var(--color-bone);
   --fg: var(--color-bone);
   --fg-muted: rgba(245, 241, 232, 0.74);
   --border: rgba(201, 165, 92, 0.25);
   --frame-color: var(--color-vault);
 }
-/* (Desktop viewport-fixed satin: see the rule after .site-footer — it must
-   come after any background shorthand that would reset the attachment.) */
 
 /* ============================================================
    ZoomHero — cinematic dolly-in. Two modes:
@@ -223,7 +235,7 @@ img { display: block; max-width: 100%; }
 .zoom-scrim {
   z-index: 2;
   opacity: 0;
-  transition: opacity 900ms var(--ease-club);
+  transition: opacity 600ms var(--ease-club);
 }
 .zoom-scrim.is-on { opacity: 1; }
 .zoom-copy {
@@ -240,7 +252,9 @@ img { display: block; max-width: 100%; }
   .zoom-copy { padding: var(--header-height) var(--gutter) 64px; }
 }
 /* The Sheen — a diagonal band of light that drifts over the satin as you
-   scroll (wrap in <Parallax> for the scroll-linked travel). */
+   scroll (wrap in <Parallax> for the scroll-linked travel). The vertical
+   mask keeps the lit band away from the element's edges, so it can never
+   be sliced off at a section/footer boundary (the old seam line). */
 .satin-sheen {
   position: absolute;
   inset: -30% 0;
@@ -249,6 +263,8 @@ img { display: block; max-width: 100%; }
     transparent 42%,
     rgba(120, 150, 185, 0.14) 50%,
     transparent 58%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 28%, #000 42% 58%, transparent 72%);
+          mask-image: linear-gradient(180deg, transparent 28%, #000 42% 58%, transparent 72%);
 }
 .surface-satin > .container,
 .surface-satin > .satin-content { position: relative; z-index: 2; }
@@ -739,21 +755,23 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   RevealGallery — Hideaway-style image band (club 6/11, Golf page):
-   the image is unveiled through a window that grows from a center
-   seed to full bleed (clip-path only — nothing scales), then the
-   frame sifts through the image set with slow cross-fades.
+   RevealGallery — Hideaway-style triptych (club 6/11, Golf page):
+   Act I — a centered SQUARE window opens from its own center
+   (clip-path only, nothing scales). Act II — the two side panels
+   glide in toward the square. Then the triptych sifts through the
+   image set with slow offset cross-fades.
    ============================================================ */
 .reveal-gallery {
-  position: relative;
-  height: 68vh;
-  min-height: 420px;
-  overflow: hidden;
-  clip-path: inset(46% 47.5%);
-  transition: clip-path 1600ms var(--ease-club);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  /* square is sized from height; cap by width too so portrait viewports
+     (e.g. iPad Pro portrait, >960px wide) don't starve the wings to slivers */
+  height: min(62vh, 46vw);
+  min-height: 400px;
 }
-.reveal-gallery.is-open { clip-path: inset(0 0); }
-.reveal-gallery img {
+.rg-panel { position: relative; overflow: hidden; }
+.rg-panel img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -762,10 +780,37 @@ img { display: block; max-width: 100%; }
   opacity: 0;
   transition: opacity 1200ms var(--ease-club);
 }
-.reveal-gallery img.active { opacity: 1; }
+.rg-panel img.active { opacity: 1; }
+/* Act I — the square opens from its center */
+.rg-square {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  clip-path: inset(50%);
+  transition: clip-path 1300ms var(--ease-club);
+}
+.reveal-gallery.is-open .rg-square { clip-path: inset(0); }
+/* Act II — the wings glide in toward the square */
+.rg-side {
+  opacity: 0;
+  transition: opacity 900ms var(--ease-club) 750ms,
+              transform 1100ms var(--ease-club) 750ms;
+}
+.rg-left  { transform: translateX(-48px); }
+.rg-right { transform: translateX(48px); }
+.reveal-gallery.is-open .rg-side { opacity: 1; transform: translateX(0); }
+@media (max-width: 960px) {
+  .reveal-gallery { height: 46vmin; min-height: 320px; gap: 10px; }
+}
+@media (max-width: 600px) {
+  /* phones: the square IS the gallery — no room for wings */
+  .reveal-gallery { display: block; height: auto; min-height: 0; }
+  .rg-side { display: none; }
+  .rg-square { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .reveal-gallery { clip-path: none; transition: none; }
-  .reveal-gallery img { transition: none; }
+  .rg-square { clip-path: none; transition: none; }
+  .rg-side { opacity: 1; transform: none; transition: none; }
+  .rg-panel img { transition: none; }
 }
 
 /* --- Pull quote / full bleed --- */
@@ -837,26 +882,12 @@ img { display: block; max-width: 100%; }
 
 /* Footer */
 .site-footer {
-  /* Satin carried through the footer — identical recipe to .surface-satin;
-     on desktop both are viewport-fixed so a satin chapter above flows into
-     the footer as one uninterrupted fabric (no seam line). */
-  background:
-    radial-gradient(120% 80% at 72% 8%, rgba(98, 134, 176, 0.20), transparent 60%),
-    linear-gradient(115deg,
-      var(--color-vault) 0%,
-      var(--color-satin-mid) 38%,
-      var(--color-satin-ridge) 50%,
-      #142639 62%,
-      #060F1B 100%);
+  /* Satin carried through the footer — a transparent window onto the same
+     body::before sheet the satin sections show, so a satin chapter above
+     flows into the footer as one uninterrupted fabric (no seam line). */
+  background: transparent;
   color: rgba(245,241,232,0.78);
   padding: 72px var(--gutter) 48px;
-}
-/* Desktop: pin the silk to the VIEWPORT so every satin section and the
-   footer reveal slices of the same continuous fabric — fold lines align
-   across seams and adjacent satin flows as one. Off on mobile, where
-   fixed attachment is unreliable in Safari. */
-@media (min-width: 961px) {
-  .surface-satin, .site-footer { background-attachment: fixed, fixed; }
 }
 
 /* Form fields */
@@ -1246,6 +1277,13 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 @keyframes heroRise {
   to { opacity: 1; transform: translateY(0); }
 }
+/* Zoom hero only: the dolly already spent ~3s — words land quicker here */
+.zoom-copy .hero-stagger > * { animation-duration: 620ms; }
+.zoom-copy .hero-stagger > :nth-child(1) { animation-delay: 40ms; }
+.zoom-copy .hero-stagger > :nth-child(2) { animation-delay: 140ms; }
+.zoom-copy .hero-stagger > :nth-child(3) { animation-delay: 240ms; }
+.zoom-copy .hero-stagger > :nth-child(4) { animation-delay: 340ms; }
+.zoom-copy .hero-stagger > :nth-child(5) { animation-delay: 440ms; }
 
 /* ============================================================
    Scroll indicator — gentle vertical breath

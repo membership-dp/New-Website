@@ -25,58 +25,26 @@ function GolfPage({ onNav }) {
         </div>
       </section>
 
-      {/* STAT STRIP */}
-      <Reveal as="section" className="surface-bone" style={{ padding: '0 var(--gutter)' }}>
-        <div className="container">
-          <div className="stat-row">
-            {[
-              { num: '7,300', label: 'Yards from the tips' },
-              { num: '75.8', label: 'Course rating' },
-              { num: '315', label: 'Yard driving range' },
-              { num: '12,000', label: 'Sq ft putting green' },
-            ].map((s) => (
-              <div key={s.label} className="stat-cell">
-                <div className="stat-num">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
+      {/* STAT STRIP — section stays opaque; the Reveal wraps the content so the
+          fixed satin sheet never shows through during the fade-in */}
+      <section className="surface-bone" style={{ padding: '0 var(--gutter)' }}>
+        <Reveal>
+          <div className="container">
+            <div className="stat-row">
+              {[
+                { num: '7,300', label: 'Yards from the tips' },
+                { num: '75.8', label: 'Course rating' },
+                { num: '315', label: 'Yard driving range' },
+                { num: '12,000', label: 'Sq ft putting green' },
+              ].map((s) => (
+                <div key={s.label} className="stat-cell">
+                  <div className="stat-num">{s.num}</div>
+                  <div className="stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Reveal>
-
-      {/* INTRO LEDE */}
-      <section className="section surface-bone">
-        <div className="container">
-          <div className="lede-page-grid">
-            <Reveal>
-              <div className="eyebrow-rule">A Nicklaus Signature</div>
-            </Reveal>
-            <Reveal delay={100}>
-              <p style={{
-                font: '400 26px/1.5 var(--font-display)',
-                color: 'var(--color-club-navy)',
-                margin: 0, maxWidth: '40ch',
-                letterSpacing: '-0.005em',
-                fontStyle: 'italic',
-              }}>
-                Stretching to 7,300 yards from the championship tees, the course moves
-                through subtle elevation, sculpted bunkering, and natural water features
-                that reward precision while remaining beautifully playable.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* COURSE GALLERY — center-out reveal, then sifts through the course */}
-      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
-        <RevealGallery
-          images={[
-            'assets/hero-fairway.jpg', 'assets/hero-green.jpg',
-            'assets/course-skyline.jpg', 'assets/hero-sunset.jpg',
-            'assets/hero-putting.jpg',
-          ]}
-        />
+        </Reveal>
       </section>
 
       {/* FULL BLEED QUOTE — No tee times, parallax drift */}
@@ -98,11 +66,11 @@ function GolfPage({ onNav }) {
           <p style={{
             font: '400 19px/1.6 var(--font-body)',
             color: 'rgba(245,241,232,0.82)',
-            marginTop: 32, maxWidth: 660, marginInline: 'auto',
+            marginTop: 32, maxWidth: 680, marginInline: 'auto',
           }}>
-            Our no tee time model is foundational. It preserves pace, protects member
-            access, and eliminates the constraints typical of traditional clubs. Your
-            day flows from arrival to final putt without scheduling pressure.
+            Golf without tee times is central to the Dutchman's Pipe experience,
+            preserving access, enhancing pace of play, and allowing members to enjoy
+            the course entirely on their own schedule.
           </p>
         </Reveal>
       </section>
@@ -113,8 +81,8 @@ function GolfPage({ onNav }) {
           eyebrow="Practice & Performance"
           title="A practice ground designed for meaningful improvement."
           body={[
-            'A 315-yard driving range sets the stage for focused preparation, complemented by a two-acre short game area with multiple greens and bunkers, and a 12,000 square-foot undulating putting green.',
-            'Eight types of premium, brand-agnostic range balls allow distance control, trajectory, and feel to be refined with intention, ensuring preparation translates seamlessly to the course.',
+            "Designed for purposeful practice and measurable improvement, the Club's training grounds include a 315-yard driving range, a two-acre short game complex, multiple practice greens, and a 12,000-square-foot putting surface.",
+            'Eight varieties of premium range balls allow members to refine distance control, trajectory, and feel in a setting built to support every aspect of the game.',
           ]}
           lgImg="assets/hero-putting.jpg"
           motif="grass"
@@ -128,10 +96,10 @@ function GolfPage({ onNav }) {
         <LayeredCallout
           flipped dark
           eyebrow="Elite Instruction"
-          title="Led by Top 100 instructors. Rooted in fundamentals."
+          title="Led by Top 100 instructors. Designed for lasting improvement."
           body={[
-            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Lessons are individualized and rooted in fundamentals, biomechanics, and on-course application.",
-            "The Club has made a meaningful commitment to women's golf programming. Weekly Ladies Clinics create structured development and camaraderie, while signature events such as the Ladies Member-Member tournament elevate the competitive and social experience alike.",
+            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Through private coaching, playing lessons, clinics, and performance-based training, members benefit from a comprehensive approach that blends technical expertise, biomechanics, and on-course strategy.",
+            'A strong commitment to player development extends across the membership, with dedicated programming for women, men, and juniors. From weekly Ladies Clinics to competitive member events, opportunities to learn, improve, and engage are woven into the Club experience year-round.',
           ]}
           lgImg="assets/instruction.jpg"
           motif="pipe"
@@ -150,10 +118,52 @@ function GolfPage({ onNav }) {
         />
       </section>
 
+      {/* COURSE GALLERY — centered square opens, the wings glide in toward
+          it, then the triptych sifts through the course */}
+      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
+        <RevealGallery
+          images={[
+            'assets/hero-fairway.jpg', 'assets/hero-green.jpg',
+            'assets/course-skyline.jpg', 'assets/hero-sunset.jpg',
+            'assets/hero-putting.jpg',
+          ]}
+        />
+      </section>
+
+      {/* MEMBERSHIP — the five categories in the original column layout
+          (the club liked the columns for low-verbiage placements) */}
+      <section className="section surface-white">
+        <div className="container">
+          <Reveal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 24, marginBottom: 64 }}>
+              <div>
+                <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Membership</div>
+                <h2 className="display-md" style={{ color: 'var(--color-club-navy)', maxWidth: 720 }}>
+                  Five pathways to membership.
+                </h2>
+              </div>
+              <p className="body-text" style={{ color: 'var(--color-navy-70)', maxWidth: 380 }}>
+                Each category is designed to match the rhythm of how you wish to
+                engage with the Club.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <TierColumns />
+          </Reveal>
+          <Reveal>
+            <a onClick={() => onNav('membership')} className="arrow-link" style={{ marginTop: 48, color: 'var(--color-club-navy)' }}>
+              Explore Membership
+              <img src="assets/arrow-link.png" alt="" />
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
       {/* CTA — parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '60vh', overflow: 'hidden' }}>
         <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/hero-clubhouse.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          <div style={{ backgroundImage: `url('assets/golf-cta.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 820, textAlign: 'center' }}>
@@ -163,11 +173,10 @@ function GolfPage({ onNav }) {
           <p style={{
             font: '400 19px/1.55 var(--font-body)',
             color: 'rgba(245,241,232,0.82)',
-            marginTop: 28, maxWidth: 620, marginInline: 'auto',
+            marginTop: 28, maxWidth: 640, marginInline: 'auto',
           }}>
-            If you value uninterrupted access, exceptional course conditions, and a
-            private club culture built for dedicated players, we invite you to explore
-            membership at Dutchman's Pipe.
+            For golfers who seek more time on the course and fewer constraints around
+            it, Dutchman's Pipe offers an experience unlike any other in Palm Beach.
           </p>
           <div style={{ marginTop: 44 }}>
             <a onClick={() => onNav('membership')} className="btn btn-ghost-light">

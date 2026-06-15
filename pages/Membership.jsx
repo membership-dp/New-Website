@@ -2,38 +2,7 @@
 const { useState: useMemState } = React;
 
 function MembershipPage({ onNav }) {
-  const tiers = [
-    {
-      name: 'Full Golf',
-      tag: 'Anchor',
-      body: 'Unlimited access to the Jack Nicklaus Signature course played without tee times, the full racquet program, wellness facilities, and all club amenities.',
-      audience: 'For members who wish to engage fully in every aspect of club life.',
-    },
-    {
-      name: 'Next Generation',
-      tag: 'Under 40',
-      body: 'Long-term affiliation with progression to Full Golf Membership. Meaningful access today, a clear pathway within the club\u2019s future community.',
-      audience: 'Reserved for members under 40.',
-    },
-    {
-      name: 'Visiting',
-      tag: 'Non-Resident',
-      body: 'Tailored for non-residents, with limited access to the course, practice facilities, and select club amenities during their time in Palm Beach.',
-      audience: 'For seasonal members and travelers.',
-    },
-    {
-      name: 'Social',
-      tag: 'Beyond the Fairways',
-      body: 'Centers on racquet sports, wellness programming, dining, and the social calendar. The daily rhythm of the Club beyond the fairways.',
-      audience: 'For racquet, wellness, and social members.',
-    },
-    {
-      name: 'Corporate',
-      tag: 'Executive',
-      body: 'Designated access for multiple executives under one membership. An elevated setting to host clients, reward leadership, and build relationships.',
-      audience: 'For organizations.',
-    },
-  ];
+  const tiers = DP_TIERS; // shared with the Golf page's column layout (Blocks.jsx)
 
   const [submitted, setSubmitted] = useMemState(false);
   const [data, setData] = useMemState({
@@ -48,7 +17,7 @@ function MembershipPage({ onNav }) {
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.2} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
           <div style={{
-            backgroundImage: `url('assets/hero-clubhouse.jpg')`,
+            backgroundImage: `url('assets/membership-hero.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%', height: '100%',
@@ -72,24 +41,14 @@ function MembershipPage({ onNav }) {
         </div>
       </section>
 
-      {/* INTRO — LayeredCallout signature module */}
-      <section className="section surface-bone">
-        <div className="container">
-          <LayeredCallout
-            lgImg="assets/hero-clubhouse.jpg"
-            smImg="assets/hero-villa.jpg"
-            motif="pipe"
-            eyebrow="An Invitation"
-            title="A club shaped around the lives of its members."
-            body={[
-              "Dutchman's Pipe is an invitation-only private club for those who expect more from their time: more access, more intention, more connection.",
-              "From golf played without tee times to evenings on the padel courts and a dedicated wellness program, membership is shaped around an engaged Palm Beach lifestyle.",
-            ]}
-          />
-        </div>
-      </section>
+      {/* (Intro callout removed per club copy notes — they marked the
+          "A club shaped around the lives of its members" block "Change to ''".
+          NOTE for client: new intro copy still pending.) */}
 
-      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents */}
+      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents.
+          NOTE for client: club flagged Golf/Racquets pillar copy to change and
+          Wellness to be removed, but no replacement copy was provided — leaving
+          current copy in place pending their text. */}
       <section className="section-tight surface-bone-95" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative' }}>
           <Reveal>

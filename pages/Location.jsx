@@ -5,7 +5,7 @@ function LocationPage({ onNav }) {
       {/* HERO — parallax drift */}
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/hero-palms.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          <div style={{ backgroundImage: `url('assets/location-hero.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
@@ -17,94 +17,52 @@ function LocationPage({ onNav }) {
           </h1>
           <p className="hero-sub" style={{
             color: 'rgba(245,241,232,0.84)',
-            marginTop: 28, maxWidth: 700, marginBottom: 0,
+            marginTop: 28, maxWidth: 720, marginBottom: 0,
           }}>
-            Connected to the best of the island. Positioned for ease.
+            Quietly removed, yet moments from the island, downtown, and private air travel.
           </p>
         </div>
       </section>
 
-      {/* INTRO LEDE */}
-      <section className="section surface-bone">
-        <div className="container">
-          <div className="lede-page-grid">
-            <Reveal>
-              <div className="eyebrow-rule">A Rare Position</div>
-            </Reveal>
-            <Reveal delay={100}>
-              <p style={{
-                font: '400 26px/1.5 var(--font-display)',
-                color: 'var(--color-club-navy)',
-                margin: 0, maxWidth: '40ch',
-                letterSpacing: '-0.005em',
-                fontStyle: 'italic',
-              }}>
-                Dutchman's Pipe Club occupies a rare position. Quietly removed, yet
-                moments from the island, downtown, and private air travel.
-              </p>
-              <p className="body-text" style={{ marginTop: 28, color: 'var(--color-navy-70)' }}>
-                A private setting, seamlessly connected to everything that defines the
-                Palm Beach lifestyle. Convenience and proximity, while preserving a
-                sense of calm and discretion.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* THREE-PANEL SLIDESHOW — the setting, cycling */}
-      <section className="section-tight surface-bone">
-        <div className="container">
-          <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 32 }}>The Setting</div>
-            <ThreePanel
-              images={[
-                'assets/hero-palms.jpg', 'assets/hero-clubhouse.jpg', 'assets/course-skyline.jpg',
-                'assets/hero-sunset.jpg', 'assets/hero-villa.jpg', 'assets/hero-fairway.jpg',
-              ]}
-              captions={[
-                'Coastal palms', 'The clubhouse', 'Downtown skyline',
-                'Evening light', 'Private residences', 'Signature fairway',
-              ]}
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* MAP / KEY DESTINATIONS — illustrative diagram */}
-      <Reveal as="section" className="section-tight surface-bone-95">
-        <div className="container">
-          <div className="eyebrow-rule" style={{ marginBottom: 40 }}>From the Clubhouse</div>
-          <div className="four-up-strip">
-            {[
-              { time: '8', unit: 'min', dest: 'Worth Avenue' },
-              { time: '10', unit: 'min', dest: 'Palm Beach Island' },
-              { time: '12', unit: 'min', dest: 'PBI Airport' },
-              { time: '20', unit: 'min', dest: 'Private Aviation' },
-            ].map((d) => (
-              <div key={d.dest} className="four-up-cell">
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <span className="stat-num" style={{ fontSize: 64 }}>{d.time}</span>
-                  <span style={{
-                    font: '500 12px/1 var(--font-body)',
-                    letterSpacing: '0.22em', textTransform: 'uppercase',
-                    color: 'var(--color-navy-70)',
+      {/* FROM THE CLUBHOUSE — travel-time strip, moved directly under the hero
+          (club: delete "A Rare Position", move this up, remove the collage).
+          Section stays opaque; Reveal wraps the content so the fixed satin
+          sheet never shows through during the fade-in. */}
+      <section className="section-tight surface-bone-95">
+        <Reveal>
+          <div className="container">
+            <div className="eyebrow-rule" style={{ marginBottom: 40 }}>From the Clubhouse</div>
+            <div className="four-up-strip">
+              {[
+                { time: '8', unit: 'min', dest: 'Worth Avenue' },
+                { time: '10', unit: 'min', dest: 'Palm Beach Island' },
+                { time: '12', unit: 'min', dest: 'PBI Airport' },
+                { time: '20', unit: 'min', dest: 'Private Aviation' },
+              ].map((d) => (
+                <div key={d.dest} className="four-up-cell">
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                    <span className="stat-num" style={{ fontSize: 64 }}>{d.time}</span>
+                    <span style={{
+                      font: '500 12px/1 var(--font-body)',
+                      letterSpacing: '0.22em', textTransform: 'uppercase',
+                      color: 'var(--color-navy-70)',
+                    }}>
+                      {d.unit}
+                    </span>
+                  </div>
+                  <div style={{
+                    font: '500 15px/1.35 var(--font-body)',
+                    color: 'var(--color-club-navy)',
+                    letterSpacing: '0.04em',
                   }}>
-                    {d.unit}
-                  </span>
+                    {d.dest}
+                  </div>
                 </div>
-                <div style={{
-                  font: '500 15px/1.35 var(--font-body)',
-                  color: 'var(--color-club-navy)',
-                  letterSpacing: '0.04em',
-                }}>
-                  {d.dest}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </section>
 
       {/* AIR ACCESS — satin chapter, flipped */}
       <section className="section surface-satin">
@@ -114,11 +72,8 @@ function LocationPage({ onNav }) {
           flipped dark
           eyebrow="Air Access"
           title="Runway to clubhouse — measured in minutes."
-          body={[
-            'Palm Beach International (PBI) is located nearby, providing direct, efficient commercial access for seasonal residents and traveling members.',
-            'For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.',
-          ]}
-          lgImg="assets/hero-sunset.jpg"
+          body="Conveniently positioned for both local and visiting members, Dutchman's Pipe is within easy reach of Palm Beach International Airport and private aviation facilities, providing seamless access from across the country."
+          lgImg="assets/air-access.jpg"
           motif="pipe"
         />
         </div>
@@ -129,10 +84,7 @@ function LocationPage({ onNav }) {
         <LayeredCallout
           eyebrow="The Island"
           title="Palm Beach Island & Worth Avenue."
-          body={[
-            'Just minutes from Palm Beach Island, the Club offers effortless proximity to the boutiques of Worth Avenue, oceanfront dining, private beach clubs, and the architectural charm that defines the island.',
-            'Members move easily between a morning round and an afternoon engagement, never feeling rushed or removed.',
-          ]}
+          body="Just minutes from Palm Beach Island and Worth Avenue, members enjoy immediate access to world-class shopping, dining, cultural attractions, and waterfront destinations while returning to the privacy and pace of club life."
           lgImg="assets/hero-clubhouse.jpg"
           motif="grass"
         />
