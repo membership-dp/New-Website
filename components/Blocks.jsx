@@ -162,15 +162,15 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     }
 
     // ----- auto-playing intro -----
-    // Snappy ~2s read: start late (poster = that frame, so no jump), cruise
-    // hot, just-barely ease the last beat so it isn't a dead cut, then the
-    // words pop in immediately.
-    const START = 3.0;  // start late — a short, slight zoom
-    const BASE = 1.6;   // cruise speed (fast/snappy)
-    const RAMP = 0.45;  // brief glide window, in video-seconds
-    const FLOOR = 0.7;  // landing speed (only a touch slower)
+    // The clip is PRE-TRIMMED to the exact ~2.1s segment we want, so we just
+    // play it start to finish: NO runtime seeking (seeking to a non-keyframe
+    // was the "cut halfway through") and NO speed-up. We start only once the
+    // clip can play through without stalling, so the motion stays smooth — and
+    // a whisper of deceleration softens the final beat before the words pop in.
+    const RAMP = 0.4;    // glide window, in video-seconds
+    const FLOOR = 0.85;  // landing speed (barely slower — not a dead stop)
     let finished = false;
-    let beat = 0;
+    let started = false;
     const finish = (toFallback) => {
       if (finished) return;
       finished = true;
@@ -181,16 +181,12 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
         }
         video.pause();
       } catch (e) { setFallback(true); setDone(true); return; }
-      // snappy: the words arrive the instant the zoom settles, no beat
-      setDone(true);
+      setDone(true); // the words arrive the instant the zoom settles
     };
-    // Seek to the mid-flight start BEFORE playback begins (the poster is
-    // that same frame), so frame 0 can never flash on a cold load.
-    const prime = () => {
-      try {
-        if (video.currentTime < START) video.currentTime = START;
-        video.playbackRate = BASE;
-      } catch (e) {}
+    const startPlay = () => {
+      if (started || finished) return;
+      started = true;
+      try { video.playbackRate = 1; } catch (e) {}
       const p = video.play();
       if (p && p.catch) p.catch(() => finish(true));
     };
@@ -199,30 +195,32 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     video.addEventListener('ended', onEnded);
     video.addEventListener('error', onError);
     video.muted = true; // belt-and-suspenders for autoplay policy
-    // Glide to a stop: ease playbackRate down over the final stretch so the
-    // dolly decelerates into the green instead of cutting at full speed.
+    // Start only once enough is buffered to play through cleanly → no stutter.
+    if (video.readyState >= 4) startPlay();
+    else video.addEventListener('canplaythrough', startPlay, { once: true });
+    // …but don't wait forever: kick off once it's merely playable.
+    const kick = setTimeout(startPlay, 1400);
+    // Glide to a stop: ease playbackRate down over the final beat.
     let rampRaf = 0;
     const rampTick = () => {
       if (finished) return;
       const dur = video.duration;
-      if (dur && isFinite(dur)) {
+      if (started && dur && isFinite(dur)) {
         const remaining = dur - video.currentTime;
         if (remaining <= RAMP) {
           const k = Math.max(0, remaining / RAMP);
-          video.playbackRate = FLOOR + (BASE - FLOOR) * (k * k); // ease-out: BASE -> FLOOR
+          video.playbackRate = FLOOR + (1 - FLOOR) * (k * k); // ease-out: 1 -> FLOOR
         }
       }
       rampRaf = requestAnimationFrame(rampTick);
     };
     rampRaf = requestAnimationFrame(rampTick);
-    if (video.readyState >= 1) prime();
-    else video.addEventListener('loadedmetadata', prime, { once: true });
     const safety = setTimeout(() => finish(false), 9000);
     return () => {
       clearTimeout(safety);
-      clearTimeout(beat);
+      clearTimeout(kick);
       if (rampRaf) cancelAnimationFrame(rampRaf);
-      video.removeEventListener('loadedmetadata', prime);
+      video.removeEventListener('canplaythrough', startPlay);
       video.removeEventListener('ended', onEnded);
       video.removeEventListener('error', onError);
     };
@@ -240,7 +238,13 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     );
   }
   return (
-    <section ref={ref} className="zoom-hero">
+    // The poster also paints as the section background, so the very first paint
+    // is the course photo — never the dark/satin surface while the clip buffers.
+    <section
+      ref={ref}
+      className="zoom-hero"
+      style={poster ? { backgroundImage: `url(${poster})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+    >
       <video className="zoom-frame" src={videoSrc} poster={poster} muted playsInline preload="auto" />
       {fallback && settleImg && <img className="zoom-frame" src={settleImg} alt="" />}
       <div className={`zoom-scrim photo-scrim ${done ? 'is-on' : ''}`} />

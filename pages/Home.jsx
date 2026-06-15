@@ -9,9 +9,9 @@ function HomePage({ onNav }) {
           ?hero=scrub to the URL for the Apple-style pinned scroll journey. */}
       <ZoomHero
         mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'auto'}
-        videoSrc="assets/zoom/hero-zoom.mp4"
+        videoSrc="assets/zoom/hero-zoom-2s.mp4"
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
-        poster="assets/zoom/frame_mid.jpg"
+        poster="assets/zoom/hero-poster.jpg"
         scrubPoster="assets/zoom/frame_01.jpg"
         settleImg="assets/zoom/frame_08.jpg"
       >
