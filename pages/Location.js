@@ -1,0 +1,204 @@
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+// pages/Location.jsx
+function LocationPage({
+  onNav
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "page-shell"
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "page-hero page-hero-short",
+    style: {
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement(Parallax, {
+    speed: 0.18,
+    style: {
+      position: 'absolute',
+      inset: '-9% 0',
+      zIndex: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      backgroundImage: `url('assets/location-hero.jpg')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      height: '100%'
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "photo-scrim",
+    style: {
+      zIndex: 1
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "page-hero-inner hero-stagger",
+    style: {
+      position: 'relative',
+      zIndex: 2
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-rule",
+    style: {
+      color: 'rgba(245,241,232,0.85)',
+      marginBottom: 32
+    }
+  }, "The Location"), /*#__PURE__*/React.createElement("h1", {
+    className: "display-xl",
+    style: {
+      color: 'var(--color-bone)',
+      maxWidth: 1100
+    }
+  }, "Ideally situated in Palm Beach."), /*#__PURE__*/React.createElement("p", {
+    className: "hero-sub",
+    style: {
+      color: 'rgba(245,241,232,0.84)',
+      marginTop: 28,
+      maxWidth: 720,
+      marginBottom: 0
+    }
+  }, "Quietly removed, yet moments from the island, downtown, and private air travel."))), /*#__PURE__*/React.createElement("section", {
+    className: "section-tight surface-bone-95"
+  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-rule",
+    style: {
+      marginBottom: 40
+    }
+  }, "From the Clubhouse"), /*#__PURE__*/React.createElement("div", {
+    className: "four-up-strip"
+  }, [{
+    time: '8',
+    unit: 'min',
+    dest: 'Worth Avenue'
+  }, {
+    time: '10',
+    unit: 'min',
+    dest: 'Palm Beach Island'
+  }, {
+    time: '12',
+    unit: 'min',
+    dest: 'PBI Airport'
+  }, {
+    time: '20',
+    unit: 'min',
+    dest: 'Private Aviation'
+  }].map(d => /*#__PURE__*/React.createElement("div", {
+    key: d.dest,
+    className: "four-up-cell"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'baseline',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "stat-num",
+    style: {
+      fontSize: 64
+    }
+  }, d.time), /*#__PURE__*/React.createElement("span", {
+    style: {
+      font: '500 12px/1 var(--font-body)',
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--color-navy-70)'
+    }
+  }, d.unit)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      font: '500 15px/1.35 var(--font-body)',
+      color: 'var(--color-club-navy)',
+      letterSpacing: '0.04em'
+    }
+  }, d.dest))))))), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-satin"
+  }, /*#__PURE__*/React.createElement(Parallax, {
+    speed: -0.25,
+    className: "satin-sheen"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "satin-content"
+  }, /*#__PURE__*/React.createElement(LayeredCallout, {
+    flipped: true,
+    dark: true,
+    eyebrow: "Air Access",
+    title: "Runway to clubhouse \u2014 measured in minutes.",
+    body: "Conveniently positioned for both local and visiting members, Dutchman's Pipe is within easy reach of Palm Beach International Airport and private aviation facilities, providing seamless access from across the country.",
+    lgImg: "assets/air-access.jpg",
+    motif: "pipe"
+  }))), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-white"
+  }, /*#__PURE__*/React.createElement(LayeredCallout, {
+    eyebrow: "The Island",
+    title: "Palm Beach Island & Worth Avenue.",
+    body: "Just minutes from Palm Beach Island and Worth Avenue, members enjoy immediate access to world-class shopping, dining, cultural attractions, and waterfront destinations while returning to the privacy and pace of club life.",
+    lgImg: "assets/hero-clubhouse.jpg",
+    motif: "grass"
+  })), /*#__PURE__*/React.createElement("section", {
+    className: "full-bleed-quote",
+    style: {
+      minHeight: '70vh',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement(Parallax, {
+    speed: 0.22,
+    style: {
+      position: 'absolute',
+      inset: '-11% 0',
+      zIndex: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      backgroundImage: `url('assets/hero-fairway.jpg')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      height: '100%'
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      inset: 0,
+      zIndex: 1,
+      background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.78))'
+    }
+  }), /*#__PURE__*/React.createElement(Reveal, {
+    style: {
+      position: 'relative',
+      zIndex: 2,
+      maxWidth: 1100,
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-rule",
+    style: {
+      color: 'rgba(245,241,232,0.85)',
+      justifyContent: 'center',
+      marginBottom: 32
+    }
+  }, "A Rare Balance"), /*#__PURE__*/React.createElement("h2", {
+    className: "display-lg",
+    style: {
+      color: 'var(--color-bone)'
+    }
+  }, "Protected and intentional \u2014", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("em", {
+    style: {
+      fontStyle: 'italic',
+      color: 'var(--color-champagne-bright)'
+    }
+  }, "fully connected.")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      font: '400 19px/1.6 var(--font-body)',
+      color: 'rgba(245,241,232,0.82)',
+      marginTop: 32,
+      maxWidth: 700,
+      marginInline: 'auto'
+    }
+  }, "Few clubs offer this level of accessibility while maintaining a sense of separation. This balance is what makes the location exceptional."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 44
+    }
+  }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
+    className: "btn btn-ghost-light"
+  }), "Request Membership Information")))));
+}
+window.LocationPage = LocationPage;
