@@ -375,8 +375,8 @@ function ZoomHero({
       muted: true,
       playsInline: true,
       preload: "auto"
-    }), fallback && settleImg && /*#__PURE__*/React.createElement("img", {
-      className: "zoom-frame",
+    }), settleImg && /*#__PURE__*/React.createElement("img", {
+      className: `zoom-frame zoom-settle ${done || fallback ? 'is-on' : ''}`,
       src: settleImg,
       alt: ""
     }), /*#__PURE__*/React.createElement("div", {

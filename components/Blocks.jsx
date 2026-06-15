@@ -246,7 +246,10 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
       style={poster ? { backgroundImage: `url(${poster})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
     >
       <video className="zoom-frame" src={videoSrc} poster={poster} muted playsInline preload="auto" />
-      {fallback && settleImg && <img className="zoom-frame" src={settleImg} alt="" />}
+      {/* On settle, cross-fade from the motion-soft video to a crisp high-res
+          still so the resting frame (what the viewer reads) is sharp. Also the
+          static fallback for reduced-motion / blocked autoplay. */}
+      {settleImg && <img className={`zoom-frame zoom-settle ${(done || fallback) ? 'is-on' : ''}`} src={settleImg} alt="" />}
       <div className={`zoom-scrim photo-scrim ${done ? 'is-on' : ''}`} />
       {done && <div className="zoom-copy">{children}</div>}
     </section>

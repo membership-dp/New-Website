@@ -13,7 +13,7 @@ function HomePage({
     scrubSrc: "assets/zoom/hero-zoom-scrub.mp4",
     poster: "assets/zoom/hero-poster.jpg",
     scrubPoster: "assets/zoom/frame_01.jpg",
-    settleImg: "assets/zoom/frame_08.jpg"
+    settleImg: "assets/zoom/hero-end.jpg"
   }, /*#__PURE__*/React.createElement("div", {
     className: "page-hero-inner"
   }, /*#__PURE__*/React.createElement("div", {

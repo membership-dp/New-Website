@@ -13,7 +13,7 @@ function HomePage({ onNav }) {
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
         poster="assets/zoom/hero-poster.jpg"
         scrubPoster="assets/zoom/frame_01.jpg"
-        settleImg="assets/zoom/frame_08.jpg"
+        settleImg="assets/zoom/hero-end.jpg"
       >
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>

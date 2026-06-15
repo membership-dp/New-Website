@@ -250,6 +250,14 @@ body::before {
   object-fit: cover;
   will-change: opacity, transform;
 }
+/* Crisp settle still — fades in over the video when the dolly comes to rest,
+   so the read-state is sharp rather than a compression-soft paused frame. */
+.zoom-settle {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 420ms var(--ease-club);
+}
+.zoom-settle.is-on { opacity: 1; }
 .zoom-scrim {
   z-index: 2;
   opacity: 0;
