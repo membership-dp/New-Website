@@ -36,7 +36,7 @@ function Footer({ onNav }) {
             </div>
             <div style={{
               font: '400 14px/1.65 var(--font-body)',
-              color: 'rgba(245,241,232,0.6)',
+              color: 'rgba(245,241,232,0.72)',
               maxWidth: 280,
             }}>
               An invitation-only private club in West Palm Beach.
@@ -55,16 +55,18 @@ function Footer({ onNav }) {
               }}>
                 {col.title}
               </div>
-              {col.links.map((l) => (
-                <a key={l.id} className="footer-link" onClick={() => onNav(l.id)} style={{
-                  font: '400 15px/1.4 var(--font-body)',
-                  color: 'rgba(245,241,232,0.78)',
-                  textDecoration: 'none', cursor: 'pointer',
-                  alignSelf: 'flex-start',
-                }}>
-                  {l.label}
-                </a>
-              ))}
+              <nav aria-label={col.title} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {col.links.map((l) => (
+                  <a key={l.id} className="footer-link" {...actionProps(() => onNav(l.id))} style={{
+                    font: '400 15px/1.4 var(--font-body)',
+                    color: 'rgba(245,241,232,0.78)',
+                    textDecoration: 'none', cursor: 'pointer',
+                    alignSelf: 'flex-start',
+                  }}>
+                    {l.label}
+                  </a>
+                ))}
+              </nav>
             </div>
           ))}
 
@@ -94,10 +96,12 @@ function Footer({ onNav }) {
         <div className="site-footer-bottom">
           <div>© 2026 Dutchman's Pipe Club. All Rights Reserved.</div>
           <div style={{ display: 'flex', gap: 28 }}>
-            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Privacy</a>
-            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Terms</a>
-            <a className="footer-link" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Press</a>
-            <a className="footer-link" onClick={() => onNav('admin')} style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Club Admin</a>
+            {/* Privacy/Terms/Press have no destinations yet — render as plain
+                text so they aren't announced as links that do nothing. */}
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Press</span>
+            <a className="footer-link" {...actionProps(() => onNav('admin'))} style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Club Admin</a>
           </div>
         </div>
       </div>

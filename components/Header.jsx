@@ -1,10 +1,11 @@
 // Header.jsx — fixed transparent over hero, becomes Bone after scroll
-const { useState: useHeaderState, useEffect: useHeaderEffect } = React;
+const { useState: useHeaderState, useEffect: useHeaderEffect, useRef: useHeaderRef } = React;
 
 function Header({ route, onNav, lightOnTop = true }) {
   const [scrolled, setScrolled] = useHeaderState(false);
   const [hidden, setHidden] = useHeaderState(false);
   const [menuOpen, setMenuOpen] = useHeaderState(false);
+  const menuRef = useHeaderRef(null);
 
   useHeaderEffect(() => {
     let lastY = window.scrollY;
@@ -29,9 +30,17 @@ function Header({ route, onNav, lightOnTop = true }) {
     if (menuOpen) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      const opener = document.activeElement;        // the hamburger toggle
       const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
       window.addEventListener('keydown', onKey);
-      return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
+      // move focus into the drawer; restore it to the toggle on close
+      const first = menuRef.current && menuRef.current.querySelector('a, button');
+      if (first) first.focus();
+      return () => {
+        document.body.style.overflow = prev;
+        window.removeEventListener('keydown', onKey);
+        if (opener && opener.focus) opener.focus();
+      };
     }
   }, [menuOpen]);
 
@@ -58,7 +67,7 @@ function Header({ route, onNav, lightOnTop = true }) {
 
   return (
     <header className={cls}>
-      <a onClick={() => goTo('home')} style={{
+      <a {...actionProps(() => goTo('home'))} aria-label="Dutchman's Pipe Club — home" style={{
         display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
         textDecoration: 'none', color: 'inherit',
       }}>
@@ -73,13 +82,14 @@ function Header({ route, onNav, lightOnTop = true }) {
         {navItems.map((it) => (
           <a key={it.id}
              className={`nav-link ${route === it.id ? 'is-active' : ''}`}
-             onClick={() => goTo(it.id)}>
+             aria-current={route === it.id ? 'page' : undefined}
+             {...actionProps(() => goTo(it.id), 'link')}>
             {it.label}
           </a>
         ))}
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
-           onClick={() => goTo('login')}>
+           {...actionProps(() => goTo('login'))}>
           Member Login
         </a>
       </nav>
@@ -99,16 +109,24 @@ function Header({ route, onNav, lightOnTop = true }) {
       {/* Mobile menu overlay */}
       {menuOpen && (
         <div className="site-header-menu" onClick={() => setMenuOpen(false)}>
-          <div className="site-header-menu-inner" onClick={(e) => e.stopPropagation()}>
+          <div
+            ref={menuRef}
+            className="site-header-menu-inner"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+          >
             <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
               {[{ id: 'home', label: 'Home' }, ...navItems].map((it) => (
                 <a key={it.id}
                    className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
-                   onClick={() => goTo(it.id)}>
+                   aria-current={route === it.id ? 'page' : undefined}
+                   {...actionProps(() => goTo(it.id), 'link')}>
                   {it.label}
                 </a>
               ))}
-              <a className="mobile-nav-link mobile-nav-login" onClick={() => goTo('login')}>
+              <a className="mobile-nav-link mobile-nav-login" {...actionProps(() => goTo('login'))}>
                 Member Login
               </a>
             </nav>

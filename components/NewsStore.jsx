@@ -33,15 +33,23 @@ window.NewsStore = {
   KEY: 'dp-news-v1',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
+  // stamp a stable per-article id so the Admin editor can key rows by identity
+  // (index keys corrupt controlled inputs on reorder/remove). id is internal-only.
+  _stamp(v) {
+    if (v && Array.isArray(v.articles)) {
+      v.articles.forEach((a) => { if (!a.id) a.id = 'a' + Math.random().toString(36).slice(2, 9); });
+    }
+    return v;
+  },
   load() {
     try {
       const raw = localStorage.getItem(this.KEY);
       if (raw) {
         const v = JSON.parse(raw);
-        if (v && v.featured && Array.isArray(v.articles)) return v;
+        if (v && v.featured && Array.isArray(v.articles)) return this._stamp(v);
       }
     } catch (e) {}
-    return JSON.parse(JSON.stringify(DP_NEWS_DEFAULTS)); // fresh copy — safe to mutate
+    return this._stamp(JSON.parse(JSON.stringify(DP_NEWS_DEFAULTS))); // fresh copy — safe to mutate
   },
   save(v) { try { localStorage.setItem(this.KEY, JSON.stringify(v)); } catch (e) {} },
   reset() { try { localStorage.removeItem(this.KEY); } catch (e) {} },

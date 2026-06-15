@@ -142,7 +142,7 @@ function RacquetsPage({ onNav }) {
             beyond the court.
           </p>
           <div style={{ marginTop: 44 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+            <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
               Request Membership Information
             </a>
           </div>

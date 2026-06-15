@@ -19,9 +19,9 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
       <div className="callout-inner">
         <div className="callout-media">
           <div className="callout-img-lg">
-            <Parallax speed={0.12} className="callout-img-drift"><img src={lgImg} alt="" /></Parallax>
+            <Parallax speed={0.12} className="callout-img-drift"><img src={lgImg} alt="" loading="lazy" decoding="async" /></Parallax>
           </div>
-          {smImg && <div className="callout-img-sm"><img src={smImg} alt="" /></div>}
+          {smImg && <div className="callout-img-sm"><img src={smImg} alt="" loading="lazy" decoding="async" /></div>}
         </div>
         <div className="callout-text">
           <div className="callout-rule" />
@@ -33,7 +33,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
               ))
             : <p className="body-text" style={{ marginTop: 26, color: muted }}>{body}</p>}
           {ctaLabel && (
-            <a onClick={onCta} className="arrow-link" style={{
+            <a {...actionProps(onCta)} className="arrow-link" style={{
               marginTop: 34, color: head,
               borderColor: dark ? 'var(--color-champagne)' : undefined,
             }}>
@@ -66,7 +66,7 @@ function ThreePanel({ images = [], interval = 3800, captions = [] }) {
       <div className="threepanel">
         {cols.map((idx, col) => (
           <div className="tp-cell" key={col}>
-            <Parallax speed={0.08} className="img-drift"><img key={idx} src={images[idx]} alt="" /></Parallax>
+            <Parallax speed={0.08} className="img-drift"><img key={idx} src={images[idx]} alt="" loading="lazy" decoding="async" /></Parallax>
             {captions[idx] && <div className="tp-caption">{captions[idx]}</div>}
           </div>
         ))}
@@ -94,7 +94,7 @@ function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
       <div className="ig-grid" data-snapwidget-placeholder="true">
         {images.map((src, i) => (
           <a key={i} className="ig-tile" href={`https://instagram.com/${handle.replace('@', '')}`} target="_blank" rel="noopener noreferrer">
-            <img src={src} alt="" />
+            <img src={src} alt="" loading="lazy" decoding="async" />
           </a>
         ))}
       </div>
@@ -286,7 +286,7 @@ function RevealGallery({ images = [], interval = 3800 }) {
   const panel = (cls, offset) => (
     <div className={`rg-panel ${cls}`}>
       {images.map((src, k) => (
-        <img key={src} src={src} alt="" className={k === (active + offset) % n ? 'active' : ''} />
+        <img key={src} src={src} alt="" loading="lazy" decoding="async" className={k === (active + offset) % n ? 'active' : ''} />
       ))}
     </div>
   );

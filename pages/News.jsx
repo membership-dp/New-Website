@@ -20,7 +20,7 @@ function NewsPage({ onNav }) {
       {/* HERO */}
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.2} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <img src="assets/hero-villa.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/hero-villa.jpg" alt="" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner" style={{ zIndex: 2 }}>
@@ -63,7 +63,7 @@ function NewsPage({ onNav }) {
               <Reveal key={a.title} delay={(i % 3) * 120}>
                 <a style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
                   <div className="photo-frame" style={{ aspectRatio: '4/3' }}>
-                    <img src={a.img} alt="" />
+                    <img src={a.img} alt="" loading="lazy" decoding="async" />
                   </div>
                   <div style={{ marginTop: 22 }}><Meta tag={a.tag} date={a.date} /></div>
                   <h3 className="display-sm" style={{ color: 'var(--color-club-navy)', marginTop: 14, fontSize: 24 }}>
@@ -86,7 +86,7 @@ function NewsPage({ onNav }) {
       {/* CTA */}
       <section className="full-bleed-quote" style={{ minHeight: '56vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/hero-fairway.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/hero-fairway.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 820, textAlign: 'center' }}>
@@ -94,7 +94,7 @@ function NewsPage({ onNav }) {
             Be part of the story.
           </h2>
           <div style={{ marginTop: 40 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+            <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
               Request Membership Information
             </a>
           </div>

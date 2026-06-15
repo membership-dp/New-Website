@@ -62,7 +62,7 @@ function MembershipPage({ onNav }) {
             ].map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="photo-frame" style={{ aspectRatio: '16/10', marginBottom: 24 }}>
-                  <Parallax speed={0.09} className="img-drift"><img src={p.img} alt="" /></Parallax>
+                  <Parallax speed={0.09} className="img-drift"><img src={p.img} alt="" loading="lazy" decoding="async" /></Parallax>
                 </div>
                 <h3 style={{
                   font: '500 30px/1.15 var(--font-display)',
@@ -198,11 +198,15 @@ function TierAccordion({ tiers }) {
     <div className="accordion">
       {tiers.map((t, i) => {
         const open = openIdx === i;
+        const headId = `acc-head-${i}`;
+        const panelId = `acc-panel-${i}`;
         return (
           <div key={t.name} className={`acc-item ${open ? 'open' : ''}`}>
             <button
+              id={headId}
               className="acc-head"
               aria-expanded={open}
+              aria-controls={panelId}
               onClick={() => setOpenIdx(open ? -1 : i)}
             >
               <span className="acc-num">0{i + 1}</span>
@@ -210,7 +214,7 @@ function TierAccordion({ tiers }) {
               <span className="acc-tag">{t.tag}</span>
               <span className="acc-chevron" aria-hidden="true">+</span>
             </button>
-            <div className="acc-panel">
+            <div className="acc-panel" id={panelId} role="region" aria-labelledby={headId}>
               <div className="acc-panel-inner">
                 <div className="acc-body">
                   <p>{t.body}</p>

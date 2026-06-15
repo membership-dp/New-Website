@@ -116,7 +116,7 @@ function LocationPage({ onNav }) {
             separation. This balance is what makes the location exceptional.
           </p>
           <div style={{ marginTop: 44 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+            <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
               Request Membership Information
             </a>
           </div>

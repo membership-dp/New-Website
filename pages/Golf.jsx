@@ -152,7 +152,7 @@ function GolfPage({ onNav }) {
             <TierColumns />
           </Reveal>
           <Reveal>
-            <a onClick={() => onNav('membership')} className="arrow-link" style={{ marginTop: 48, color: 'var(--color-club-navy)' }}>
+            <a {...actionProps(() => onNav('membership'))} className="arrow-link" style={{ marginTop: 48, color: 'var(--color-club-navy)' }}>
               Explore Membership
               <img src="assets/arrow-link.png" alt="" />
             </a>
@@ -179,7 +179,7 @@ function GolfPage({ onNav }) {
             it, Dutchman's Pipe offers an experience unlike any other in Palm Beach.
           </p>
           <div style={{ marginTop: 44 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+            <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
               Request Membership Information
             </a>
           </div>

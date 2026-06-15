@@ -33,10 +33,10 @@ function HomePage({ onNav }) {
               </p>
             </div>
             <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
-              <a onClick={() => onNav('membership')} className="btn btn-ghost-light">
+              <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
                 Request Membership
               </a>
-              <a onClick={() => onNav('golf')} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
+              <a {...actionProps(() => onNav('golf'))} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
                 Discover the Club
                 <img src="assets/arrow-link.png" style={{ filter: 'brightness(0) invert(1)' }} alt="" />
               </a>
@@ -46,7 +46,7 @@ function HomePage({ onNav }) {
             position: 'absolute', bottom: 24, right: 'var(--gutter)',
             font: '500 10px/1 var(--font-body)',
             letterSpacing: '0.36em', textTransform: 'uppercase',
-            color: 'rgba(245,241,232,0.55)',
+            color: 'rgba(245,241,232,0.72)',
             writingMode: 'vertical-rl', transform: 'rotate(180deg)',
           }}>
             Scroll
@@ -101,12 +101,12 @@ function HomePage({ onNav }) {
               { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Strength, recovery, performance.', body: 'Dedicated spaces for strength, recovery, and performance, supported by expert coaching and programming designed to enhance both athletic performance and long-term wellbeing.', target: 'membership' },
             ].map((it, i) => (
               <Reveal key={it.eyebrow} delay={i * 120}>
-                <a onClick={() => onNav(it.target)} style={{
+                <a {...actionProps(() => onNav(it.target))} aria-label={`${it.eyebrow}: ${it.title}`} style={{
                   display: 'flex', flexDirection: 'column', cursor: 'pointer',
                   textDecoration: 'none', color: 'inherit',
                 }}>
                   <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
-                    <Parallax speed={0.1} className="img-drift"><img src={it.img} alt="" /></Parallax>
+                    <Parallax speed={0.1} className="img-drift"><img src={it.img} alt="" loading="lazy" decoding="async" /></Parallax>
                   </div>
                   <div className="eyebrow-rule" style={{ marginTop: 28 }}>{it.eyebrow}</div>
                   <h3 className="display-sm" style={{ color: 'var(--color-club-navy)', marginTop: 12 }}>
@@ -129,7 +129,7 @@ function HomePage({ onNav }) {
       {/* SIGNATURE LINE — full-bleed editorial quote, drifting background */}
       <section className="full-bleed-quote" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/hero-fairway.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/hero-fairway.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.45), rgba(15,25,40,0.7))' }} />
         <Parallax speed={-0.1} style={{ position: 'relative', zIndex: 2, width: '100%' }}>
@@ -234,7 +234,7 @@ function HomePage({ onNav }) {
             limited and available through a private introduction process.
           </p>
           <div style={{ marginTop: 48 }}>
-            <a onClick={() => onNav('membership')} className="btn btn-gold">
+            <a {...actionProps(() => onNav('membership'))} className="btn btn-gold">
               Request Membership Information
             </a>
           </div>

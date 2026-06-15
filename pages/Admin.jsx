@@ -31,11 +31,11 @@ function AdminPage({ onNav }) {
             </h1>
             {authed && (
               <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-                <a onClick={() => onNav('news')} className="arrow-link" style={{ color: 'rgba(245,241,232,0.85)', borderColor: 'var(--color-champagne)' }}>
+                <a {...actionProps(() => onNav('news'))} className="arrow-link" style={{ color: 'rgba(245,241,232,0.85)', borderColor: 'var(--color-champagne)' }}>
                   View News Page
                   <img src="assets/arrow-link.png" style={{ filter: 'brightness(0) invert(1)' }} alt="" />
                 </a>
-                <a onClick={signOut} style={{
+                <a {...actionProps(signOut)} style={{
                   font: '500 11px/1 var(--font-body)', letterSpacing: '0.22em',
                   textTransform: 'uppercase', color: 'rgba(245,241,232,0.6)',
                   cursor: 'pointer', textDecoration: 'none',
@@ -129,7 +129,7 @@ function NewsEditor({ onNav }) {
   const add = () => touch({
     ...draft,
     articles: [
-      { img: NewsStore.images[0], tag: 'Club News', date: '', title: 'New story title', excerpt: '' },
+      { id: 'a' + Math.random().toString(36).slice(2, 9), img: NewsStore.images[0], tag: 'Club News', date: '', title: 'New story title', excerpt: '' },
       ...draft.articles,
     ],
   });
@@ -156,14 +156,14 @@ function NewsEditor({ onNav }) {
         {/* Article list */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 72, marginBottom: 28, gap: 24, flexWrap: 'wrap' }}>
           <div className="eyebrow-rule">Latest Stories — {draft.articles.length}</div>
-          <a onClick={add} className="arrow-link" style={{ color: 'var(--color-club-navy)' }}>
+          <a {...actionProps(add)} className="arrow-link" style={{ color: 'var(--color-club-navy)' }}>
             Add a Story
             <img src="assets/arrow-link.png" alt="" />
           </a>
         </div>
         {draft.articles.map((a, i) => (
           <ArticleCard
-            key={i}
+            key={a.id}
             a={a}
             onChange={(patch) => setArticle(i, patch)}
             onMoveUp={i > 0 ? () => move(i, -1) : null}
@@ -197,7 +197,7 @@ function NewsEditor({ onNav }) {
               Unsaved changes
             </span>
           )}
-          <a onClick={resetAll} style={{
+          <a {...actionProps(resetAll)} style={{
             marginLeft: 'auto',
             font: '400 13px/1 var(--font-body)', color: 'var(--color-navy-40)',
             textDecoration: 'underline', cursor: 'pointer',
@@ -239,6 +239,7 @@ function ArticleCard({ a, onChange, onMoveUp, onMoveDown, onRemove, index, excer
         </div>
         <select
           value={a.img}
+          aria-label="Article photo"
           onChange={(e) => onChange({ img: e.target.value })}
           style={{
             marginTop: 10, width: 120,
@@ -288,7 +289,7 @@ function ArticleCard({ a, onChange, onMoveUp, onMoveDown, onRemove, index, excer
 
 function AdminTool({ label, onClick, danger }) {
   return (
-    <a onClick={onClick} style={{
+    <a {...actionProps(onClick)} style={{
       font: '500 11px/1 var(--font-body)', letterSpacing: '0.16em',
       textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'none',
       color: danger ? '#A0522D' : 'var(--color-navy-70)',

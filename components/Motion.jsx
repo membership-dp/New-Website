@@ -164,7 +164,28 @@ function CountUp({ value, duration = 1500, className, style }) {
   return <span ref={ref} className={className} style={style}>{value}</span>;
 }
 
+/**
+ * actionProps — make a non-anchor-href clickable element keyboard-operable.
+ * The site uses <a onClick> (SPA nav, no href) all over; spreading this turns
+ * each into a proper, focusable, Enter/Space-activatable control for keyboard
+ * and screen-reader users. Usage: <a {...actionProps(() => onNav('golf'))}>…</a>
+ */
+function actionProps(fn, role) {
+  return {
+    role: role || 'button',
+    tabIndex: 0,
+    onClick: fn,
+    onKeyDown: (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        fn(e);
+      }
+    },
+  };
+}
+
 window.Parallax = Parallax;
 window.Tilt = Tilt;
 window.InView = InView;
 window.CountUp = CountUp;
+window.actionProps = actionProps;
