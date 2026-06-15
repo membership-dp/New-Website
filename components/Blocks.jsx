@@ -162,12 +162,13 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     }
 
     // ----- auto-playing intro -----
-    // A ~3s read: start mid-flight (poster = the same frame, so no jump),
-    // cruise slightly hot, glide to a stop, then the words land quickly.
-    const START = 2.6;  // skip the widest half of the dolly — a slighter zoom
-    const BASE = 1.45;  // cruise speed
-    const RAMP = 1.0;   // glide window, in video-seconds
-    const FLOOR = 0.3;  // landing speed
+    // Snappy ~2s read: start late (poster = that frame, so no jump), cruise
+    // hot, just-barely ease the last beat so it isn't a dead cut, then the
+    // words pop in immediately.
+    const START = 3.0;  // start late — a short, slight zoom
+    const BASE = 1.6;   // cruise speed (fast/snappy)
+    const RAMP = 0.45;  // brief glide window, in video-seconds
+    const FLOOR = 0.7;  // landing speed (only a touch slower)
     let finished = false;
     let beat = 0;
     const finish = (toFallback) => {
@@ -180,8 +181,8 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
         }
         video.pause();
       } catch (e) { setFallback(true); setDone(true); return; }
-      // a short beat of stillness on the green before the words arrive
-      beat = setTimeout(() => setDone(true), 150);
+      // snappy: the words arrive the instant the zoom settles, no beat
+      setDone(true);
     };
     // Seek to the mid-flight start BEFORE playback begins (the poster is
     // that same frame), so frame 0 can never flash on a cold load.
