@@ -70,20 +70,7 @@ function HomePage({
       filter: 'brightness(0) invert(1)'
     },
     alt: ""
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "scroll-indicator",
-    style: {
-      position: 'absolute',
-      bottom: 24,
-      right: 'var(--gutter)',
-      font: '500 10px/1 var(--font-body)',
-      letterSpacing: '0.36em',
-      textTransform: 'uppercase',
-      color: 'rgba(245,241,232,0.72)',
-      writingMode: 'vertical-rl',
-      transform: 'rotate(180deg)'
-    }
-  }, "Scroll"))), /*#__PURE__*/React.createElement("section", {
+  })))))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-bone",
     style: {
       borderBottom: '1px solid var(--color-mist)'
