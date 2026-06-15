@@ -14,19 +14,19 @@ function Splash({ onEnter }) {
   };
 
   return (
-    <section className={`splash-root ${leaving ? 'is-leaving' : ''}`} style={{
+    <section className={`splash-root surface-satin ${leaving ? 'is-leaving' : ''}`} style={{
       position: 'relative',
-      backgroundImage: `url('assets/hero-sunset.jpg')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
       color: 'var(--color-bone)',
       display: 'grid',
       placeItems: 'center',
       padding: '64px 24px',
     }}>
+      {/* Blue-satin jewel box — the same fabric as the site's satin chapters
+          (transparent window onto the fixed body::before sheet), with a soft
+          vignette to deepen the edges and center the invitation. */}
       <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.78))',
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'radial-gradient(125% 90% at 50% 38%, transparent 42%, rgba(6,15,27,0.5))',
       }} />
       <div className="splash-intro splash-stage" style={{
         position: 'relative',
@@ -56,7 +56,7 @@ function Splash({ onEnter }) {
           A private golf and racquets sanctuary in West Palm Beach.
         </div>
         <div style={{ marginTop: 56, display: 'flex', justifyContent: 'center' }}>
-          <button onClick={handleEnter} className="btn btn-ghost-light" style={{
+          <button onClick={handleEnter} className="btn btn-gold" style={{
             padding: '18px 36px',
             gap: 14,
             minHeight: 52,
