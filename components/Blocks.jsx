@@ -167,8 +167,8 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     // was the "cut halfway through") and NO speed-up. We start only once the
     // clip can play through without stalling, so the motion stays smooth — and
     // a whisper of deceleration softens the final beat before the words pop in.
-    const RAMP = 0.4;    // glide window, in video-seconds
-    const FLOOR = 0.85;  // landing speed (barely slower — not a dead stop)
+    const RAMP = 0.7;    // longer glide window (video-seconds) for a smoother settle
+    const FLOOR = 0.55;  // ease further down so the dolly drifts gently to rest
     let finished = false;
     let started = false;
     const finish = (toFallback) => {

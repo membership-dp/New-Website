@@ -235,7 +235,7 @@ body::before {
 .zoom-scrim {
   z-index: 2;
   opacity: 0;
-  transition: opacity 280ms var(--ease-club);
+  transition: opacity 700ms var(--ease-club);
 }
 .zoom-scrim.is-on { opacity: 1; }
 .zoom-copy {
@@ -246,7 +246,7 @@ body::before {
   align-items: flex-end;
   padding: var(--header-height) var(--gutter) 96px;
   color: var(--color-bone);
-  animation: fadeIn 220ms var(--ease-club);
+  animation: fadeIn 520ms var(--ease-club);
 }
 @media (max-width: 600px) {
   .zoom-copy { padding: var(--header-height) var(--gutter) 64px; }
@@ -1277,13 +1277,14 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 @keyframes heroRise {
   to { opacity: 1; transform: translateY(0); }
 }
-/* Zoom hero only: snappy — the words pop in the instant the zoom settles */
-.zoom-copy .hero-stagger > * { animation-duration: 320ms; transform: translateY(10px); }
-.zoom-copy .hero-stagger > :nth-child(1) { animation-delay: 0ms; }
-.zoom-copy .hero-stagger > :nth-child(2) { animation-delay: 60ms; }
-.zoom-copy .hero-stagger > :nth-child(3) { animation-delay: 110ms; }
-.zoom-copy .hero-stagger > :nth-child(4) { animation-delay: 160ms; }
-.zoom-copy .hero-stagger > :nth-child(5) { animation-delay: 210ms; }
+/* Zoom hero only: the words ease in gently once the zoom settles — slower and
+   smoother than a pop, each line drifting up just after the last. */
+.zoom-copy .hero-stagger > * { animation-duration: 760ms; transform: translateY(16px); }
+.zoom-copy .hero-stagger > :nth-child(1) { animation-delay: 80ms; }
+.zoom-copy .hero-stagger > :nth-child(2) { animation-delay: 240ms; }
+.zoom-copy .hero-stagger > :nth-child(3) { animation-delay: 380ms; }
+.zoom-copy .hero-stagger > :nth-child(4) { animation-delay: 520ms; }
+.zoom-copy .hero-stagger > :nth-child(5) { animation-delay: 660ms; }
 
 /* ============================================================
    Scroll indicator — gentle vertical breath
