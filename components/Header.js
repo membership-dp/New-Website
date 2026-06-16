@@ -103,7 +103,9 @@ function Header({
     src: "assets/logo-emblem-color.png",
     className: "site-header-logo",
     style: {
-      height: 44
+      height: 44,
+      filter: wordmarkFilter,
+      transition: 'filter 320ms var(--ease-club)'
     },
     alt: ""
   }), /*#__PURE__*/React.createElement("img", {

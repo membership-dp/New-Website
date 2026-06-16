@@ -23,7 +23,8 @@ function LocationPage({
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      transform: 'rotate(-1.2deg) scale(1.08)'
     }
   })), /*#__PURE__*/React.createElement("div", {
     className: "photo-scrim",
@@ -122,17 +123,32 @@ function LocationPage({
     dark: true,
     eyebrow: "Air Access",
     title: "Runway to clubhouse \u2014 measured in minutes.",
-    body: "Conveniently positioned for both local and visiting members, Dutchman's Pipe is within easy reach of Palm Beach International Airport and private aviation facilities, providing seamless access from across the country.",
+    body: ['Palm Beach International Airport (PBI) is located nearby, providing direct and efficient commercial access for seasonal residents and traveling members. For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.', 'From runway to clubhouse, the transition is measured in minutes — not hours.'],
     lgImg: "assets/air-access.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "The Island",
-    title: "Palm Beach Island & Worth Avenue.",
-    body: "Just minutes from Palm Beach Island and Worth Avenue, members enjoy immediate access to world-class shopping, dining, cultural attractions, and waterfront destinations while returning to the privacy and pace of club life.",
-    lgImg: "assets/hero-clubhouse.jpg",
+    title: "Minutes from Palm Beach.",
+    body: "Located moments from Palm Beach Island and Worth Avenue, Dutchman's Pipe places members close to the destinations they enjoy most\u2014from luxury shopping and dining to cultural events and waterfront experiences. The Club offers the convenience of proximity while maintaining a setting defined by privacy and ease.",
+    lgImg: "assets/course-skyline.jpg",
     motif: "grass"
+  })), /*#__PURE__*/React.createElement("section", {
+    className: "section-tight surface-bone"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement(PhotoGrid, {
+    images: ['assets/location-hero.jpg', 'assets/golf-aerial.jpg', 'assets/course-skyline.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg', 'assets/hero-clubhouse.jpg']
+  }))), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-white"
+  }, /*#__PURE__*/React.createElement(LayeredCallout, {
+    flipped: true,
+    eyebrow: "Downtown & CityPlace",
+    title: "The best of the city, minutes away.",
+    body: "Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown\u2014some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it.",
+    lgImg: "assets/golf-aerial.jpg",
+    motif: "pipe"
   })), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {

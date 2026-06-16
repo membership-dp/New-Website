@@ -500,6 +500,8 @@ body::before {
   transition: transform 1100ms var(--ease-club) 150ms, opacity 900ms var(--ease-club) 150ms;
 }
 .callout.flipped .callout-img-sm { right: auto; left: -40px; }
+/* bare variant — no white matte (club 6/15: drop the white border) */
+.callout-img-sm--bare { padding: 0; background: transparent; }
 .callout-img-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .callout.is-in .callout-img-sm { opacity: 1; transform: translateY(0); }
 
@@ -683,7 +685,7 @@ body::before {
 /* --- Tier columns --- */
 .tier-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(var(--tier-cols, 5), 1fr);
   gap: 0;
 }
 .tier-col {
@@ -776,11 +778,14 @@ body::before {
   color: var(--color-navy-70);
 }
 @media (max-width: 600px) {
-  .acc-head { gap: 16px; padding: 24px 4px; }
-  .acc-num { min-width: 36px; }
-  .acc-name { font-size: 22px; }
+  /* knock the membership type sizes down on phones (club 6/15) */
+  .acc-head { gap: 14px; padding: 22px 4px; }
+  .acc-num { min-width: 32px; font-size: 10px; }
+  .acc-name { font-size: 19px; }
   .acc-tag { display: none; }
-  .acc-body { padding-left: calc(36px + 16px); }
+  .acc-body { padding-left: calc(32px + 14px); }
+  .acc-body p { font-size: 15px; }
+  .acc-chevron { font-size: 18px; }
 }
 
 /* ============================================================
@@ -875,6 +880,32 @@ body::before {
   /* stack the photo over the fields, and the tag/date pair into one column */
   .admin-card { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
   .admin-field-row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PhotoGrid — grid of smaller thumbnails (club 6/15 "like the mock")
+   ============================================================ */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.photo-grid-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 800ms var(--ease-club), transform 900ms var(--ease-club);
+}
+.photo-grid-cell.is-in { opacity: 1; transform: none; }
+.photo-grid-cell img { width: 100%; height: 100%; object-fit: cover; transition: opacity 300ms var(--ease-club); }
+.photo-grid-cell:hover img { opacity: 0.88; }
+@media (max-width: 960px) { .photo-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+@media (prefers-reduced-motion: reduce) {
+  .photo-grid-cell { opacity: 1; transform: none; transition: none; }
 }
 
 /* --- Pull quote / full bleed --- */

@@ -1,4 +1,3 @@
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 // pages/Racquets.jsx
 function RacquetsPage({
   onNav
@@ -96,7 +95,7 @@ function RacquetsPage({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      backgroundImage: `url('assets/padel-skyline.jpg')`,
+      backgroundImage: `url('assets/padel-serve.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       width: '100%',
@@ -147,7 +146,7 @@ function RacquetsPage({
     eyebrow: "The Courts",
     title: "Open. Intentional. Alive with play.",
     body: "Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be.",
-    lgImg: "assets/padel-action.jpg",
+    lgImg: "assets/pickleball.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin"
@@ -162,7 +161,7 @@ function RacquetsPage({
     eyebrow: "Programming & Member Experience",
     title: "A racquet calendar built for every level, year-round.",
     body: "Members enjoy a thoughtfully curated mix of clinics, private coaching, match play, tournaments, and signature events throughout the year.",
-    lgImg: "assets/hero-tennis.jpg",
+    lgImg: "assets/padel-rally.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
@@ -173,66 +172,11 @@ function RacquetsPage({
     lgImg: "assets/tennis-veranda.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
-    className: "surface-bone",
-    style: {
-      padding: '0 0 var(--space-section)'
-    }
-  }, /*#__PURE__*/React.createElement(RevealGallery, {
-    images: ['assets/padel-action.jpg', 'assets/tennis-veranda.jpg', 'assets/hero-tennis.jpg', 'assets/padel-skyline.jpg']
-  })), /*#__PURE__*/React.createElement("section", {
-    className: "full-bleed-quote",
-    style: {
-      minHeight: '60vh',
-      overflow: 'hidden'
-    }
-  }, /*#__PURE__*/React.createElement(Parallax, {
-    speed: 0.18,
-    style: {
-      position: 'absolute',
-      inset: '-9% 0',
-      zIndex: 0
-    }
+    className: "section surface-bone"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      backgroundImage: `url('assets/padel-skyline.jpg')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      width: '100%',
-      height: '100%'
-    }
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      inset: 0,
-      zIndex: 1,
-      background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))'
-    }
-  }), /*#__PURE__*/React.createElement(Reveal, {
-    style: {
-      position: 'relative',
-      zIndex: 2,
-      maxWidth: 820,
-      textAlign: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("h2", {
-    className: "display-lg",
-    style: {
-      color: 'var(--color-bone)'
-    }
-  }, "For those who play with intention."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      font: '400 19px/1.55 var(--font-body)',
-      color: 'rgba(245,241,232,0.82)',
-      marginTop: 28,
-      maxWidth: 640,
-      marginInline: 'auto'
-    }
-  }, "A vibrant racquet culture, exceptional facilities, and year-round programming come together to create an experience that extends well beyond the court."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 44
-    }
-  }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
-    className: "btn btn-ghost-light"
-  }), "Request Membership Information")))));
+    className: "container"
+  }, /*#__PURE__*/React.createElement(PhotoGrid, {
+    images: ['assets/padel-serve.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg', 'assets/padel-action.jpg', 'assets/hero-tennis.jpg', 'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg']
+  }))));
 }
 window.RacquetsPage = RacquetsPage;

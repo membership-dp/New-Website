@@ -110,17 +110,19 @@ function MembershipPage({ onNav }) {
         </div>
       </section>
 
-      {/* LIFESTYLE GALLERY — one image across the section, assembled from three
-          animated pieces (matches the Golf gallery treatment) */}
-      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
-        <RevealGallery
-          continuous
-          images={[
-            'assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg',
-            'assets/hero-villa.jpg', 'assets/hero-palms.jpg',
-            'assets/hero-sunset.jpg',
-          ]}
-        />
+      {/* LIFESTYLE GALLERY — grid of smaller images (club 6/15: "add this
+          gallery in" — the mock grid, matching the Racquets treatment) */}
+      <section className="section surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg',
+              'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg',
+              'assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg',
+              'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg',
+            ]}
+          />
+        </div>
       </section>
 
       {/* INQUIRY FORM */}

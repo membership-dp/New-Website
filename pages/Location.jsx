@@ -5,7 +5,8 @@ function LocationPage({ onNav }) {
       {/* HERO — parallax drift */}
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/location-hero.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          {/* nudged counterclockwise + scaled to level the horizon (club: looked crooked) */}
+          <div style={{ backgroundImage: `url('assets/location-hero.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%', transform: 'rotate(-1.2deg) scale(1.08)' }} />
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
@@ -72,7 +73,10 @@ function LocationPage({ onNav }) {
           flipped dark
           eyebrow="Air Access"
           title="Runway to clubhouse — measured in minutes."
-          body="Conveniently positioned for both local and visiting members, Dutchman's Pipe is within easy reach of Palm Beach International Airport and private aviation facilities, providing seamless access from across the country."
+          body={[
+            'Palm Beach International Airport (PBI) is located nearby, providing direct and efficient commercial access for seasonal residents and traveling members. For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.',
+            'From runway to clubhouse, the transition is measured in minutes — not hours.',
+          ]}
           lgImg="assets/air-access.jpg"
           motif="pipe"
         />
@@ -83,10 +87,35 @@ function LocationPage({ onNav }) {
       <section className="section surface-white">
         <LayeredCallout
           eyebrow="The Island"
-          title="Palm Beach Island & Worth Avenue."
-          body="Just minutes from Palm Beach Island and Worth Avenue, members enjoy immediate access to world-class shopping, dining, cultural attractions, and waterfront destinations while returning to the privacy and pace of club life."
-          lgImg="assets/hero-clubhouse.jpg"
+          title="Minutes from Palm Beach."
+          body="Located moments from Palm Beach Island and Worth Avenue, Dutchman's Pipe places members close to the destinations they enjoy most—from luxury shopping and dining to cultural events and waterfront experiences. The Club offers the convenience of proximity while maintaining a setting defined by privacy and ease."
+          lgImg="assets/course-skyline.jpg"
           motif="grass"
+        />
+      </section>
+
+      {/* PALM BEACH GALLERY — grid of surroundings (club 6/15: gallery below the
+          island section). NOTE: dedicated downtown/CityPlace photos still welcome. */}
+      <section className="section-tight surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/location-hero.jpg', 'assets/golf-aerial.jpg', 'assets/course-skyline.jpg',
+              'assets/hero-palms.jpg', 'assets/hero-sunset.jpg', 'assets/hero-clubhouse.jpg',
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* CITYPLACE / DOWNTOWN — new section (club 6/15) */}
+      <section className="section surface-white">
+        <LayeredCallout
+          flipped
+          eyebrow="Downtown & CityPlace"
+          title="The best of the city, minutes away."
+          body="Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown—some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it."
+          lgImg="assets/golf-aerial.jpg"
+          motif="pipe"
         />
       </section>
 

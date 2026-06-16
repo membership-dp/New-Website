@@ -48,7 +48,7 @@ function RacquetsPage({ onNav }) {
       {/* PADEL — full bleed, parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '75vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/padel-skyline.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          <div style={{ backgroundImage: `url('assets/padel-serve.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.5), rgba(15,25,40,0.75))' }} />
         <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 1000, textAlign: 'center' }}>
@@ -80,7 +80,7 @@ function RacquetsPage({ onNav }) {
           eyebrow="The Courts"
           title="Open. Intentional. Alive with play."
           body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
-          lgImg="assets/padel-action.jpg"
+          lgImg="assets/pickleball.jpg"
           motif="grass"
         />
       </section>
@@ -94,7 +94,7 @@ function RacquetsPage({ onNav }) {
           eyebrow="Programming & Member Experience"
           title="A racquet calendar built for every level, year-round."
           body="Members enjoy a thoughtfully curated mix of clinics, private coaching, match play, tournaments, and signature events throughout the year."
-          lgImg="assets/hero-tennis.jpg"
+          lgImg="assets/padel-rally.jpg"
           motif="pipe"
         />
         </div>
@@ -111,42 +111,18 @@ function RacquetsPage({ onNav }) {
         />
       </section>
 
-      {/* COURT GALLERY — same triptych reveal as Golf (club: "add the gallery
-          like we did on the mock") */}
-      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
-        <RevealGallery
-          images={[
-            'assets/padel-action.jpg', 'assets/tennis-veranda.jpg',
-            'assets/hero-tennis.jpg', 'assets/padel-skyline.jpg',
-          ]}
-        />
-      </section>
-
-      {/* CTA — parallax drift */}
-      <section className="full-bleed-quote" style={{ minHeight: '60vh', overflow: 'hidden' }}>
-        <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/padel-skyline.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
-        </Parallax>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.55), rgba(15,25,40,0.82))' }} />
-        <Reveal style={{ position: 'relative', zIndex: 2, maxWidth: 820, textAlign: 'center' }}>
-          <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
-            For those who play with intention.
-          </h2>
-          <p style={{
-            font: '400 19px/1.55 var(--font-body)',
-            color: 'rgba(245,241,232,0.82)',
-            marginTop: 28, maxWidth: 640, marginInline: 'auto',
-          }}>
-            A vibrant racquet culture, exceptional facilities, and year-round
-            programming come together to create an experience that extends well
-            beyond the court.
-          </p>
-          <div style={{ marginTop: 44 }}>
-            <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
-              Request Membership Information
-            </a>
-          </div>
-        </Reveal>
+      {/* COURT GALLERY — grid of smaller images (club 6/15: "smaller images
+          like the mock instead of the three") */}
+      <section className="section surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/padel-serve.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg',
+              'assets/padel-action.jpg', 'assets/hero-tennis.jpg',
+              'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
+            ]}
+          />
+        </div>
       </section>
     </div>
   );

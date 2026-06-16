@@ -4,16 +4,15 @@
 function HomePage({ onNav }) {
   return (
     <div className="page-shell">
-      {/* HERO — cinematic dolly-in through the native grasses onto the green.
-          A/B switch (club review): default is the auto-playing intro; add
-          ?hero=scrub to the URL for the Apple-style pinned scroll journey. */}
+      {/* HERO — static high-res still (club 6/15: photo quality felt too soft
+          for the zoom, so the zoom is removed). ?hero=scrub still available. */}
       <ZoomHero
-        mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'auto'}
+        mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'still'}
         videoSrc="assets/zoom/hero-zoom-2s.mp4"
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
-        poster="assets/zoom/hero-poster.jpg"
+        poster="assets/golf-hero.jpg"
         scrubPoster="assets/zoom/frame_01.jpg"
-        settleImg="assets/zoom/hero-end.jpg"
+        settleImg="assets/golf-hero.jpg"
       >
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>
@@ -24,13 +23,6 @@ function HomePage({ onNav }) {
               <h1 className="display-xl" style={{ color: 'var(--color-bone)' }}>
                 Freedom to play, whenever you please.
               </h1>
-              <p className="hero-sub hero-sub--home" style={{
-                color: 'rgba(245,241,232,0.82)',
-                marginTop: 32, maxWidth: 580, marginBottom: 0,
-              }}>
-                A private Palm Beach club where championship golf, racquets, wellness,
-                and community come together without compromise.
-              </p>
             </div>
             <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
               <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
@@ -68,7 +60,7 @@ function HomePage({ onNav }) {
                 color: 'var(--color-navy-70)',
                 margin: 0,
               }}>
-                Designed for those who value access, excellence, and an active Palm Beach lifestyle.
+                A private Palm Beach club where championship golf, racquets, wellness, and community come together without compromise.
               </p>
             </Reveal>
           </div>
@@ -147,8 +139,9 @@ function HomePage({ onNav }) {
         <LayeredCallout
           title="A test worthy of its design — beautifully playable."
           body="Stretching to 7,300 yards from the championship tees, the Jack Nicklaus Signature course moves through subtle elevation, sculpted bunkering, and natural water features. Every hole reflects thoughtful, refined architecture, with a 75.8 course rating in service of pure golf."
-          lgImg="assets/course-skyline.jpg"
-          smImg="assets/hero-green.jpg"
+          lgImg="assets/hero-green.jpg"
+          smImg="assets/course-emblem.jpg"
+          smBare
           ctaLabel="Explore the Course"
           onCta={() => onNav('golf')}
         />
@@ -164,7 +157,10 @@ function HomePage({ onNav }) {
           <LayeredCallout
             flipped dark
             title="The social heart of the Club’s racquet program."
-            body="The Racquet Pavilion serves as the social heart of the Club’s racquet program. Four Har-Tru tennis courts, two pickleball courts, and two padel courts are complemented by professional instruction, competitive events, and year-round programming."
+            body={[
+              "The Racquet Pavilion serves as the social heart of the Club’s racquet program. Four Har-Tru tennis courts, two pickleball courts, and two padel courts are complemented by professional instruction, competitive events, and year-round programming.",
+              'From instruction and weekly clinics to competitive play and social events, members enjoy year-round programming across tennis, padel, and pickleball in an active yet approachable environment.',
+            ]}
             lgImg="assets/padel-action.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}

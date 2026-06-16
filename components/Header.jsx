@@ -73,7 +73,7 @@ function Header({ route, onNav, lightOnTop = true }) {
         textDecoration: 'none', color: 'inherit',
       }}>
         <img src="assets/logo-emblem-color.png" className="site-header-logo"
-          style={{ height: 44 }} alt="" />
+          style={{ height: 44, filter: wordmarkFilter, transition: 'filter 320ms var(--ease-club)' }} alt="" />
         <img src="assets/wordmark-navy.png" className="site-header-wordmark"
           style={{ height: 13, filter: wordmarkFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
       </a>

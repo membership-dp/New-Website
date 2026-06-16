@@ -78,13 +78,13 @@ function GolfPage({ onNav }) {
       {/* PRACTICE & PERFORMANCE — layered callout */}
       <section className="section surface-white">
         <LayeredCallout
-          eyebrow="Practice & Performance"
-          title="A practice ground designed for meaningful improvement."
+          eyebrow="Practice with Purpose"
+          title="Practice with purpose."
           body={[
-            "Designed for purposeful practice and measurable improvement, the Club's training grounds include a 315-yard driving range, a two-acre short game complex, multiple practice greens, and a 12,000-square-foot putting surface.",
-            'Eight varieties of premium range balls allow members to refine distance control, trajectory, and feel in a setting built to support every aspect of the game.',
+            "The practice grounds at Dutchman's Pipe are designed to mirror the challenges of the course. A two-acre short game area, championship-caliber greens, strategically placed bunkers, and a dedicated wedge matrix create an environment where players build skills that translate directly to scoring.",
+            'Improvement is not treated as a separate activity. Practice, coaching, and performance are connected as part of everyday club life.',
           ]}
-          lgImg="assets/hero-putting.jpg"
+          lgImg="assets/practice-cart.jpg"
           motif="grass"
         />
       </section>
@@ -96,12 +96,12 @@ function GolfPage({ onNav }) {
         <LayeredCallout
           flipped dark
           eyebrow="Elite Instruction"
-          title="Led by Top 100 instructors. Designed for lasting improvement."
+          title="The pursuit of better golf."
           body={[
-            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Through private coaching, playing lessons, clinics, and performance-based training, members benefit from a comprehensive approach that blends technical expertise, biomechanics, and on-course strategy.",
-            'A strong commitment to player development extends across the membership, with dedicated programming for women, men, and juniors. From weekly Ladies Clinics to competitive member events, opportunities to learn, improve, and engage are woven into the Club experience year-round.',
+            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Private coaching, playing lessons, clinics, and performance training combine technical expertise, biomechanics, and on-course strategy to create a complete approach to player development.",
+            'Programming for women, men, and juniors ensures opportunities to learn, improve, and compete throughout the year.',
           ]}
-          lgImg="assets/instruction.jpg"
+          lgImg="assets/instruction-coach.jpg"
           motif="pipe"
         />
         </div>
@@ -112,8 +112,11 @@ function GolfPage({ onNav }) {
         <LayeredCallout
           eyebrow="Club Fitting & Customization"
           title="Performance optimization. Not retail fitting."
-          body="Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty. Through advanced fitting technology and real-condition testing, members refine every detail of their equipment to match their swing characteristics and playing goals."
-          lgImg="assets/clubfitting.jpg"
+          body={[
+            'Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty. Eight varieties of premium range balls provide the ideal environment to refine distance control, trajectory, and feel.',
+            'Through advanced fitting technology and real-condition testing, every club is optimized to match the individual golfer and the way they play.',
+          ]}
+          lgImg="assets/clubfitting-bags.jpg"
           motif="grass"
         />
       </section>
@@ -124,9 +127,8 @@ function GolfPage({ onNav }) {
         <RevealGallery
           continuous
           images={[
-            'assets/hero-fairway.jpg', 'assets/hero-green.jpg',
-            'assets/course-skyline.jpg', 'assets/hero-sunset.jpg',
-            'assets/hero-putting.jpg',
+            'assets/golf-hero.jpg', 'assets/golf-aerial.jpg',
+            'assets/golf-green.jpg', 'assets/golf-grasses.jpg',
           ]}
         />
       </section>
@@ -143,10 +145,6 @@ function GolfPage({ onNav }) {
                   Four pathways to membership.
                 </h2>
               </div>
-              <p className="body-text" style={{ color: 'var(--color-navy-70)', maxWidth: 380 }}>
-                Each category is designed to match the rhythm of how you wish to
-                engage with the Club.
-              </p>
             </div>
           </Reveal>
           <Reveal>

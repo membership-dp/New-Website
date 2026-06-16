@@ -24,18 +24,9 @@ function NewsPage({ onNav }) {
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner" style={{ zIndex: 2 }}>
-          <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
-            In the News
-          </div>
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
-            Stories from the Club.
+            In the News
           </h1>
-          <p className="hero-sub" style={{
-            color: 'rgba(245,241,232,0.84)',
-            marginTop: 28, maxWidth: 680, marginBottom: 0,
-          }}>
-            Press, announcements, and dispatches from life at Dutchman's Pipe.
-          </p>
         </div>
       </section>
 

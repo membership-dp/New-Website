@@ -11,7 +11,7 @@ function blockReduced() {
    treatment is used sparingly — omit smImg for a single photo. `flipped`
    mirrors it; `dark` adapts colors for navy surfaces. (`motif` prop is
    accepted but currently unused — plant backdrops removed per client.) */
-function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, flipped, motif = 'grass', dark }) {
+function LayeredCallout({ lgImg, smImg, smBare, eyebrow, title, body, ctaLabel, onCta, flipped, motif = 'grass', dark }) {
   const muted = dark ? 'rgba(245,241,232,0.78)' : 'var(--color-navy-70)';
   const head = dark ? 'var(--color-bone)' : 'var(--color-club-navy)';
   return (
@@ -21,7 +21,7 @@ function LayeredCallout({ lgImg, smImg, eyebrow, title, body, ctaLabel, onCta, f
           <div className="callout-img-lg">
             <Parallax speed={0.12} className="callout-img-drift"><img src={lgImg} alt="" loading="lazy" decoding="async" /></Parallax>
           </div>
-          {smImg && <div className="callout-img-sm"><img src={smImg} alt="" loading="lazy" decoding="async" /></div>}
+          {smImg && <div className={`callout-img-sm ${smBare ? 'callout-img-sm--bare' : ''}`}><img src={smImg} alt="" loading="lazy" decoding="async" /></div>}
         </div>
         <div className="callout-text">
           <div className="callout-rule" />
@@ -117,6 +117,7 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
   const [done, setDone] = useBlockState(false);
   const [fallback, setFallback] = useBlockState(false);
   useBlockEffect(() => {
+    if (mode === 'still') return; // static hero — no video, no motion
     const host = ref.current;
     if (!host) return;
     const video = host.querySelector('video');
@@ -226,6 +227,22 @@ function ZoomHero({ videoSrc, scrubSrc, poster, scrubPoster, settleImg, mode = '
     };
   }, [videoSrc, mode]);
 
+  if (mode === 'still') {
+    // Static hero — the club found the photo quality too soft for the zoom
+    // (6/15 doc). A crisp high-res still, copy fades in over it. No motion.
+    const img = settleImg || poster;
+    return (
+      <section
+        ref={ref}
+        className="zoom-hero"
+        style={img ? { backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+      >
+        {img && <img className="zoom-frame" src={img} alt="" fetchpriority="high" />}
+        <div className="zoom-scrim photo-scrim is-on" />
+        <div className="zoom-copy">{children}</div>
+      </section>
+    );
+  }
   if (mode === 'scrub' && !fallback) {
     return (
       <div ref={ref} className="zoom-track">
@@ -353,6 +370,7 @@ function TierColumns({ tiers = DP_TIERS }) {
     <div className="tier-row" style={{
       borderTop: '1px solid var(--color-mist)',
       borderBottom: '1px solid var(--color-mist)',
+      '--tier-cols': tiers.length,
     }}>
       {tiers.map((t, i) => (
         <div key={t.name} className="tier-col">
@@ -381,10 +399,26 @@ function TierColumns({ tiers = DP_TIERS }) {
   );
 }
 
+/* PhotoGrid — a responsive grid of equal thumbnails (club 6/15: galleries
+   "like the mock" — many smaller images rather than the big 3-panel reveal).
+   Each cell scroll-reveals with a soft rise + fade (no scale, per client). */
+function PhotoGrid({ images = [] }) {
+  return (
+    <div className="photo-grid">
+      {images.map((src, i) => (
+        <InView key={src + i} className="photo-grid-cell" style={{ transitionDelay: `${(i % 5) * 60}ms` }}>
+          <img src={src} alt="" loading="lazy" decoding="async" />
+        </InView>
+      ))}
+    </div>
+  );
+}
+
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
 window.ZoomHero = ZoomHero;
 window.RevealGallery = RevealGallery;
+window.PhotoGrid = PhotoGrid;
 window.DP_TIERS = DP_TIERS;
 window.TierColumns = TierColumns;

@@ -60,27 +60,13 @@ function NewsPage({
     style: {
       zIndex: 2
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "eyebrow-rule",
-    style: {
-      color: 'rgba(245,241,232,0.85)',
-      marginBottom: 32
-    }
-  }, "In the News"), /*#__PURE__*/React.createElement("h1", {
+  }, /*#__PURE__*/React.createElement("h1", {
     className: "display-xl",
     style: {
       color: 'var(--color-bone)',
       maxWidth: 1100
     }
-  }, "Stories from the Club."), /*#__PURE__*/React.createElement("p", {
-    className: "hero-sub",
-    style: {
-      color: 'rgba(245,241,232,0.84)',
-      marginTop: 28,
-      maxWidth: 680,
-      marginBottom: 0
-    }
-  }, "Press, announcements, and dispatches from life at Dutchman's Pipe."))), /*#__PURE__*/React.createElement("section", {
+  }, "In the News"))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-bone"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "Featured",

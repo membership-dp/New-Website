@@ -18,6 +18,7 @@ function blockReduced() {
 function LayeredCallout({
   lgImg,
   smImg,
+  smBare,
   eyebrow,
   title,
   body,
@@ -46,7 +47,7 @@ function LayeredCallout({
     loading: "lazy",
     decoding: "async"
   }))), smImg && /*#__PURE__*/React.createElement("div", {
-    className: "callout-img-sm"
+    className: `callout-img-sm ${smBare ? 'callout-img-sm--bare' : ''}`
   }, /*#__PURE__*/React.createElement("img", {
     src: smImg,
     alt: "",
@@ -198,6 +199,7 @@ function ZoomHero({
   const [done, setDone] = useBlockState(false);
   const [fallback, setFallback] = useBlockState(false);
   useBlockEffect(() => {
+    if (mode === 'still') return; // static hero — no video, no motion
     const host = ref.current;
     if (!host) return;
     const video = host.querySelector('video');
@@ -330,6 +332,29 @@ function ZoomHero({
       video.removeEventListener('error', onError);
     };
   }, [videoSrc, mode]);
+  if (mode === 'still') {
+    // Static hero — the club found the photo quality too soft for the zoom
+    // (6/15 doc). A crisp high-res still, copy fades in over it. No motion.
+    const img = settleImg || poster;
+    return /*#__PURE__*/React.createElement("section", {
+      ref: ref,
+      className: "zoom-hero",
+      style: img ? {
+        backgroundImage: `url(${img})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      } : undefined
+    }, img && /*#__PURE__*/React.createElement("img", {
+      className: "zoom-frame",
+      src: img,
+      alt: "",
+      fetchpriority: "high"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "zoom-scrim photo-scrim is-on"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "zoom-copy"
+    }, children));
+  }
   if (mode === 'scrub' && !fallback) {
     return /*#__PURE__*/React.createElement("div", {
       ref: ref,
@@ -497,7 +522,8 @@ function TierColumns({
     className: "tier-row",
     style: {
       borderTop: '1px solid var(--color-mist)',
-      borderBottom: '1px solid var(--color-mist)'
+      borderBottom: '1px solid var(--color-mist)',
+      '--tier-cols': tiers.length
     }
   }, tiers.map((t, i) => /*#__PURE__*/React.createElement("div", {
     key: t.name,
@@ -525,10 +551,33 @@ function TierColumns({
     }
   }, t.audience))));
 }
+
+/* PhotoGrid — a responsive grid of equal thumbnails (club 6/15: galleries
+   "like the mock" — many smaller images rather than the big 3-panel reveal).
+   Each cell scroll-reveals with a soft rise + fade (no scale, per client). */
+function PhotoGrid({
+  images = []
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "photo-grid"
+  }, images.map((src, i) => /*#__PURE__*/React.createElement(InView, {
+    key: src + i,
+    className: "photo-grid-cell",
+    style: {
+      transitionDelay: `${i % 5 * 60}ms`
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: "",
+    loading: "lazy",
+    decoding: "async"
+  }))));
+}
 window.LayeredCallout = LayeredCallout;
 window.ThreePanel = ThreePanel;
 window.InstagramStrip = InstagramStrip;
 window.ZoomHero = ZoomHero;
 window.RevealGallery = RevealGallery;
+window.PhotoGrid = PhotoGrid;
 window.DP_TIERS = DP_TIERS;
 window.TierColumns = TierColumns;
