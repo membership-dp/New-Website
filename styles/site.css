@@ -563,8 +563,11 @@ body::before {
 @media (max-width: 960px) {
   .callout-inner,
   .callout.flipped .callout-inner { grid-template-columns: 1fr; gap: 24px; }
+  /* Stacked layout: reveal vertically, not from the side. The horizontal
+     translateX slide left a bone gap beside the image as it animated in
+     (the "white border on the sides of an image" from the 6/15 review). */
   .callout-media, .callout-text,
-  .callout.flipped .callout-media, .callout.flipped .callout-text { order: 0; }
+  .callout.flipped .callout-media, .callout.flipped .callout-text { order: 0; transform: translateY(24px); }
   .callout-img-sm { width: 56%; right: 12px; bottom: -36px; }
   .callout.flipped .callout-img-sm { left: auto; right: 12px; }
   .callout-text { padding-top: 56px; }
@@ -852,6 +855,26 @@ body::before {
   .rg-square { clip-path: none; transition: none; }
   .rg-side { opacity: 1; transform: none; transition: none; }
   .rg-panel img { transition: none; }
+}
+
+/* ============================================================
+   Admin "In the News" editor — responsive story card
+   ============================================================ */
+.admin-card {
+  border: 1px solid var(--color-mist);
+  background: var(--color-white);
+  padding: 28px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.admin-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) {
+  /* stack the photo over the fields, and the tag/date pair into one column */
+  .admin-card { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+  .admin-field-row { grid-template-columns: 1fr; }
 }
 
 /* --- Pull quote / full bleed --- */
@@ -1460,6 +1483,9 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
     transform: none; opacity: 1; aspect-ratio: 4 / 3;
   }
   .callout-text { padding-top: 24px; }
+  /* Drop the champagne vertical accent line on phones (6/15 review: remove the
+     stray vertical line). It stays on tablet/desktop as the section marker. */
+  .callout-rule { display: none; }
 
   /* ThreePanel slideshow: single column on phones */
   .threepanel { grid-template-columns: 1fr; gap: 14px; }

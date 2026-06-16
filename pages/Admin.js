@@ -350,16 +350,7 @@ function ArticleCard({
 }) {
   const hasTools = onRemove || onMoveUp || onMoveDown;
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      border: '1px solid var(--color-mist)',
-      background: 'var(--color-white)',
-      padding: 28,
-      marginBottom: 20,
-      display: 'grid',
-      gridTemplateColumns: '120px 1fr',
-      gap: 28,
-      alignItems: 'start'
-    }
+    className: "admin-card"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       width: 120,
@@ -401,11 +392,7 @@ function ArticleCard({
       gap: 18
     }
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 18
-    }
+    className: "admin-field-row"
   }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
     className: "field-label"
   }, "Tag"), /*#__PURE__*/React.createElement("input", {

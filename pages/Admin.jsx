@@ -222,16 +222,7 @@ function NewsEditor({ onNav }) {
 function ArticleCard({ a, onChange, onMoveUp, onMoveDown, onRemove, index, excerptRows = 2 }) {
   const hasTools = onRemove || onMoveUp || onMoveDown;
   return (
-    <div style={{
-      border: '1px solid var(--color-mist)',
-      background: 'var(--color-white)',
-      padding: 28,
-      marginBottom: 20,
-      display: 'grid',
-      gridTemplateColumns: '120px 1fr',
-      gap: 28,
-      alignItems: 'start',
-    }}>
+    <div className="admin-card">
       {/* photo + picker */}
       <div>
         <div style={{ width: 120, aspectRatio: '1/1', overflow: 'hidden', borderRadius: 2 }}>
@@ -256,7 +247,7 @@ function ArticleCard({ a, onChange, onMoveUp, onMoveDown, onRemove, index, excer
 
       {/* fields */}
       <div style={{ display: 'grid', gap: 18 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+        <div className="admin-field-row">
           <label>
             <span className="field-label">Tag</span>
             <input className="field-input" value={a.tag} onChange={(e) => onChange({ tag: e.target.value })} />
