@@ -251,8 +251,8 @@ function MembershipPage({
       color: 'var(--color-bone)'
     }
   }, "Your inquiry has been received."), /*#__PURE__*/React.createElement("p", {
+    className: "body-text",
     style: {
-      font: '400 16px/1.6 var(--font-body)',
       color: 'rgba(245,241,232,0.72)',
       marginTop: 20,
       maxWidth: 440,

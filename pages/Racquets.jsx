@@ -61,8 +61,7 @@ function RacquetsPage({ onNav }) {
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             Fast-paced, strategic, <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>inherently social.</em>
           </h2>
-          <p style={{
-            font: '400 19px/1.6 var(--font-body)',
+          <p className="body-text" style={{
             color: 'rgba(245,241,232,0.82)',
             marginTop: 32, maxWidth: 720, marginInline: 'auto',
           }}>

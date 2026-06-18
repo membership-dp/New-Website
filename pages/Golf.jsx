@@ -63,8 +63,7 @@ function GolfPage({ onNav }) {
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             No tee times. <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>No compromise.</em>
           </h2>
-          <p style={{
-            font: '400 19px/1.6 var(--font-body)',
+          <p className="body-text" style={{
             color: 'rgba(245,241,232,0.82)',
             marginTop: 32, maxWidth: 680, marginInline: 'auto',
           }}>
@@ -170,8 +169,7 @@ function GolfPage({ onNav }) {
           <h2 className="display-lg" style={{ color: 'var(--color-bone)' }}>
             An invitation to explore.
           </h2>
-          <p style={{
-            font: '400 19px/1.55 var(--font-body)',
+          <p className="body-text" style={{
             color: 'rgba(245,241,232,0.82)',
             marginTop: 28, maxWidth: 640, marginInline: 'auto',
           }}>

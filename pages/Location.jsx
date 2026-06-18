@@ -136,8 +136,7 @@ function LocationPage({ onNav }) {
             Protected and intentional —<br/>
             <em style={{ fontStyle: 'italic', color: 'var(--color-champagne-bright)' }}>fully connected.</em>
           </h2>
-          <p style={{
-            font: '400 19px/1.6 var(--font-body)',
+          <p className="body-text" style={{
             color: 'rgba(245,241,232,0.82)',
             marginTop: 32, maxWidth: 700, marginInline: 'auto',
           }}>

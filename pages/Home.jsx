@@ -55,8 +55,7 @@ function HomePage({ onNav }) {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <p style={{
-                font: '400 19px/1.6 var(--font-body)',
+              <p className="body-text" style={{
                 color: 'var(--color-navy-70)',
                 margin: 0,
               }}>
@@ -211,8 +210,7 @@ function HomePage({ onNav }) {
             A private world, by invitation.
           </h2>
           <span className="champagne-rule" />
-          <p style={{
-            font: '400 19px/1.55 var(--font-body)',
+          <p className="body-text" style={{
             color: 'rgba(245,241,232,0.8)',
             marginTop: 32, maxWidth: 640, marginInline: 'auto',
           }}>

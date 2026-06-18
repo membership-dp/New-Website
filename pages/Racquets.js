@@ -133,8 +133,8 @@ function RacquetsPage({
       color: 'var(--color-champagne-bright)'
     }
   }, "inherently social.")), /*#__PURE__*/React.createElement("p", {
+    className: "body-text",
     style: {
-      font: '400 19px/1.6 var(--font-body)',
       color: 'rgba(245,241,232,0.82)',
       marginTop: 32,
       maxWidth: 720,

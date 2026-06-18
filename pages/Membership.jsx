@@ -169,8 +169,7 @@ function MembershipPage({ onNav }) {
                   <h3 className="display-sm" style={{ color: 'var(--color-bone)' }}>
                     Your inquiry has been received.
                   </h3>
-                  <p style={{
-                    font: '400 16px/1.6 var(--font-body)',
+                  <p className="body-text" style={{
                     color: 'rgba(245,241,232,0.72)',
                     marginTop: 20, maxWidth: 440, marginInline: 'auto',
                   }}>

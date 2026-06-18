@@ -91,8 +91,8 @@ function HomePage({
   }, "Belong."))), /*#__PURE__*/React.createElement(Reveal, {
     delay: 120
   }, /*#__PURE__*/React.createElement("p", {
+    className: "body-text",
     style: {
-      font: '400 19px/1.6 var(--font-body)',
       color: 'var(--color-navy-70)',
       margin: 0
     }
@@ -332,8 +332,8 @@ function HomePage({
   }, "A private world, by invitation."), /*#__PURE__*/React.createElement("span", {
     className: "champagne-rule"
   }), /*#__PURE__*/React.createElement("p", {
+    className: "body-text",
     style: {
-      font: '400 19px/1.55 var(--font-body)',
       color: 'rgba(245,241,232,0.8)',
       marginTop: 32,
       maxWidth: 640,
