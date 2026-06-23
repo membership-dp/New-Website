@@ -100,12 +100,11 @@ function Header({
       color: 'inherit'
     }
   }), /*#__PURE__*/React.createElement("img", {
-    src: "assets/logo-emblem-color.png",
+    src: scrolled || !lightOnTop ? 'assets/logo-emblem-color.png' : 'assets/logo-white.svg',
     className: "site-header-logo",
     style: {
       height: 44,
-      filter: wordmarkFilter,
-      transition: 'filter 320ms var(--ease-club)'
+      transition: 'opacity 320ms var(--ease-club)'
     },
     alt: ""
   }), /*#__PURE__*/React.createElement("img", {

@@ -148,7 +148,7 @@ function LocationPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/cityplace.jpg', 'assets/location-hero.jpg', 'assets/course-skyline.jpg', 'assets/golf-aerial.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg']
+    images: ['assets/worth-ave.jpg', 'assets/wpb-dining.jpg', 'assets/cityplace-walk.jpg', 'assets/wpb-aerial.jpg', 'assets/cityplace.jpg', 'assets/location-hero.jpg']
   }))), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {

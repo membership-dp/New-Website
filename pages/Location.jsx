@@ -107,14 +107,13 @@ function LocationPage({ onNav }) {
       </section>
 
       {/* PALM BEACH GALLERY — moved to the bottom, below Downtown & CityPlace
-          (club 6/19). NOTE: the Worth Ave / dining / CityPlace-walk photos from
-          the word doc still welcome to swap in. */}
+          (club 6/19); the WPB lifestyle photos from the club's collage. */}
       <section className="section-tight surface-bone">
         <div className="container">
           <PhotoGrid
             images={[
-              'assets/cityplace.jpg', 'assets/location-hero.jpg', 'assets/course-skyline.jpg',
-              'assets/golf-aerial.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg',
+              'assets/worth-ave.jpg', 'assets/wpb-dining.jpg', 'assets/cityplace-walk.jpg',
+              'assets/wpb-aerial.jpg', 'assets/cityplace.jpg', 'assets/location-hero.jpg',
             ]}
           />
         </div>

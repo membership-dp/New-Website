@@ -44,9 +44,9 @@ function Footer({
       gap: 24
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/logo-emblem-white.png",
+    src: "assets/logo-white.svg",
     style: {
-      height: 72,
+      height: 80,
       width: 'auto',
       objectFit: 'contain',
       alignSelf: 'flex-start'

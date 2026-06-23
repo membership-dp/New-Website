@@ -72,8 +72,9 @@ function Header({ route, onNav, lightOnTop = true }) {
         display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
         textDecoration: 'none', color: 'inherit',
       }}>
-        <img src="assets/logo-emblem-color.png" className="site-header-logo"
-          style={{ height: 44, filter: wordmarkFilter, transition: 'filter 320ms var(--ease-club)' }} alt="" />
+        {/* real white logo over the hero; color emblem once scrolled onto bone */}
+        <img src={scrolled || !lightOnTop ? 'assets/logo-emblem-color.png' : 'assets/logo-white.svg'} className="site-header-logo"
+          style={{ height: 44, transition: 'opacity 320ms var(--ease-club)' }} alt="" />
         <img src="assets/wordmark-navy.png" className="site-header-wordmark"
           style={{ height: 13, filter: wordmarkFilter, transition: 'filter 320ms var(--ease-club)' }} alt="Dutchman's Pipe" />
       </a>
