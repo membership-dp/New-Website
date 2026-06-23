@@ -45,6 +45,18 @@ function RacquetsPage({ onNav }) {
         </Reveal>
       </section>
 
+      {/* THE COURTS — moved above Padel (club 6/19); reworked as the program
+          overview (the old Programming & Member Experience section is folded in). */}
+      <section className="section surface-bone">
+        <LayeredCallout
+          eyebrow="The Courts"
+          title="Always in Motion."
+          body="From morning clinics and private instruction to evening mixers and match play, the racquet program is designed to bring members together naturally. Competitive when you want it to be, social when you don't."
+          lgImg="assets/pickleball.jpg"
+          motif="grass"
+        />
+      </section>
+
       {/* PADEL — full bleed, parallax drift */}
       <section className="full-bleed-quote" style={{ minHeight: '75vh', overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
@@ -73,32 +85,6 @@ function RacquetsPage({ onNav }) {
         </Reveal>
       </section>
 
-      {/* THE COURTS — layered callout */}
-      <section className="section surface-bone">
-        <LayeredCallout
-          eyebrow="The Courts"
-          title="Open. Intentional. Alive with play."
-          body="Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be."
-          lgImg="assets/pickleball.jpg"
-          motif="grass"
-        />
-      </section>
-
-      {/* PROGRAMMING — satin chapter, flipped */}
-      <section className="section surface-satin">
-        <Parallax speed={-0.25} className="satin-sheen" />
-        <div className="satin-content">
-        <LayeredCallout
-          flipped dark
-          eyebrow="Programming & Member Experience"
-          title="A racquet calendar built for every level, year-round."
-          body="Members enjoy a thoughtfully curated mix of clinics, private coaching, match play, tournaments, and signature events throughout the year."
-          lgImg="assets/padel-rally.jpg"
-          motif="pipe"
-        />
-        </div>
-      </section>
-
       {/* BEYOND THE BASELINE — layered callout */}
       <section className="section surface-white">
         <LayeredCallout
@@ -116,9 +102,9 @@ function RacquetsPage({ onNav }) {
         <div className="container">
           <PhotoGrid
             images={[
-              'assets/padel-serve.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg',
-              'assets/padel-action.jpg', 'assets/hero-tennis.jpg',
-              'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
+              'assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg',
+              'assets/pickleball.jpg', 'assets/padel-rally.jpg',
+              'assets/padel-action.jpg', 'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
             ]}
           />
         </div>

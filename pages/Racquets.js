@@ -81,6 +81,14 @@ function RacquetsPage({
   }, s.num), /*#__PURE__*/React.createElement("div", {
     className: "stat-label"
   }, s.label))))))), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-bone"
+  }, /*#__PURE__*/React.createElement(LayeredCallout, {
+    eyebrow: "The Courts",
+    title: "Always in Motion.",
+    body: "From morning clinics and private instruction to evening mixers and match play, the racquet program is designed to bring members together naturally. Competitive when you want it to be, social when you don't.",
+    lgImg: "assets/pickleball.jpg",
+    motif: "grass"
+  })), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {
       minHeight: '75vh',
@@ -141,29 +149,6 @@ function RacquetsPage({
       marginInline: 'auto'
     }
   }, "One of the fastest-growing sports in the world has found a natural home at Dutchman's Pipe. Structured match play, private instruction, and member events create an environment where both experienced players and newcomers can enjoy the game."))), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-bone"
-  }, /*#__PURE__*/React.createElement(LayeredCallout, {
-    eyebrow: "The Courts",
-    title: "Open. Intentional. Alive with play.",
-    body: "Four Har-Tru tennis courts, two pickleball courts, and two padel courts set the stage for a racquet program that feels active from first serve to sunset. Competitive when it needs to be, relaxed when it should be.",
-    lgImg: "assets/pickleball.jpg",
-    motif: "grass"
-  })), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-satin"
-  }, /*#__PURE__*/React.createElement(Parallax, {
-    speed: -0.25,
-    className: "satin-sheen"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "satin-content"
-  }, /*#__PURE__*/React.createElement(LayeredCallout, {
-    flipped: true,
-    dark: true,
-    eyebrow: "Programming & Member Experience",
-    title: "A racquet calendar built for every level, year-round.",
-    body: "Members enjoy a thoughtfully curated mix of clinics, private coaching, match play, tournaments, and signature events throughout the year.",
-    lgImg: "assets/padel-rally.jpg",
-    motif: "pipe"
-  }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "Beyond the Baseline",
@@ -176,7 +161,7 @@ function RacquetsPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/padel-serve.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg', 'assets/padel-action.jpg', 'assets/hero-tennis.jpg', 'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg']
+    images: ['assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg', 'assets/padel-action.jpg', 'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg']
   }))));
 }
 window.RacquetsPage = RacquetsPage;

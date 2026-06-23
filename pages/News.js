@@ -42,7 +42,7 @@ function NewsPage({
       zIndex: 0
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/hero-villa.jpg",
+    src: "assets/news-featured.jpg",
     alt: "",
     decoding: "async",
     style: {

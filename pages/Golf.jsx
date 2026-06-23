@@ -120,16 +120,19 @@ function GolfPage({ onNav }) {
         />
       </section>
 
-      {/* COURSE GALLERY — one image spanning the section, assembled from three
-          animated pieces (center opens, wings glide in), then sifts the set */}
-      <section className="surface-bone" style={{ padding: '0 0 var(--space-section)' }}>
-        <RevealGallery
-          continuous
-          images={[
-            'assets/golf-hero.jpg', 'assets/golf-aerial.jpg',
-            'assets/golf-green.jpg', 'assets/golf-grasses.jpg',
-          ]}
-        />
+      {/* COURSE GALLERY — grid of course photos (consistent with the Racquets /
+          Membership galleries; replaces the fragile one-image slice) */}
+      <section className="section surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg',
+              'assets/golf-grasses.jpg', 'assets/course-skyline.jpg',
+              'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg',
+              'assets/hero-putting.jpg',
+            ]}
+          />
+        </div>
       </section>
 
       {/* MEMBERSHIP — the five categories in the original column layout

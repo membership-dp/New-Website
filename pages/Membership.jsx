@@ -45,46 +45,8 @@ function MembershipPage({ onNav }) {
           "A club shaped around the lives of its members" block "Change to ''".
           NOTE for client: new intro copy still pending.) */}
 
-      {/* WHAT MEMBERSHIP OFFERS — three pillars with image accents.
-          NOTE for client: club flagged Golf/Racquets pillar copy to change and
-          Wellness to be removed, but no replacement copy was provided — leaving
-          current copy in place pending their text. */}
-      <section className="section-tight surface-bone-95" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ position: 'relative' }}>
-          <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 40 }}>What Membership Offers</div>
-          </Reveal>
-          <div className="three-up three-up-tight">
-            {[
-              { title: 'Golf', img: 'assets/hero-green.jpg', body: 'A Jack Nicklaus Signature course played without tee times. Performance-driven practice, Top 100 instruction, brand-agnostic club fitting.' },
-              { title: 'Racquets', img: 'assets/tennis-serve.jpg', body: 'Four Har-Tru tennis courts, two pickleball courts, and two padel courts. Weekly clinics, mixers, and Glow Padel evenings.' },
-              { title: 'Wellness', img: 'assets/hero-villa.jpg', body: 'Dedicated training spaces, group classes, and personal training. A holistic approach focused on strength, mobility, and long-term vitality.' },
-            ].map((p, i) => (
-              <Reveal key={p.title} delay={i * 100}>
-                <div className="photo-frame" style={{ aspectRatio: '16/10', marginBottom: 24 }}>
-                  <Parallax speed={0.09} className="img-drift"><img src={p.img} alt="" loading="lazy" decoding="async" /></Parallax>
-                </div>
-                <h3 style={{
-                  font: '500 30px/1.15 var(--font-display)',
-                  letterSpacing: '-0.02em',
-                  color: 'var(--color-club-navy)',
-                  margin: 0,
-                }}>
-                  {p.title}
-                </h3>
-                <div style={{
-                  width: 32, height: 1,
-                  background: 'var(--color-champagne)',
-                  marginTop: 18, marginBottom: 22,
-                }} />
-                <p className="body-text" style={{ color: 'var(--color-navy-70)', margin: 0 }}>
-                  {p.body}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* (The "What Membership Offers" Golf/Racquets/Wellness pillars were
+          removed per club 6/19 — the Categories accordion below covers it.) */}
 
       {/* MEMBERSHIP CATEGORIES — five-column tier row */}
       <section className="section surface-white">

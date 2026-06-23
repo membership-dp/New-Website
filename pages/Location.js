@@ -135,21 +135,21 @@ function LocationPage({
     lgImg: "assets/course-skyline.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
-    className: "section-tight surface-bone"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/location-hero.jpg', 'assets/golf-aerial.jpg', 'assets/course-skyline.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg', 'assets/hero-clubhouse.jpg']
-  }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     flipped: true,
     eyebrow: "Downtown & CityPlace",
     title: "The best of the city, minutes away.",
     body: "Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown\u2014some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it.",
-    lgImg: "assets/golf-aerial.jpg",
+    lgImg: "assets/cityplace.jpg",
     motif: "pipe"
   })), /*#__PURE__*/React.createElement("section", {
+    className: "section-tight surface-bone"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement(PhotoGrid, {
+    images: ['assets/cityplace.jpg', 'assets/location-hero.jpg', 'assets/course-skyline.jpg', 'assets/golf-aerial.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg']
+  }))), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {
       minHeight: '70vh',

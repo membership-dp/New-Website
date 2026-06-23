@@ -20,7 +20,7 @@ function NewsPage({ onNav }) {
       {/* HERO */}
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.2} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <img src="assets/hero-villa.jpg" alt="" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/news-featured.jpg" alt="" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner" style={{ zIndex: 2 }}>

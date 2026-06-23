@@ -94,29 +94,30 @@ function LocationPage({ onNav }) {
         />
       </section>
 
-      {/* PALM BEACH GALLERY — grid of surroundings (club 6/15: gallery below the
-          island section). NOTE: dedicated downtown/CityPlace photos still welcome. */}
-      <section className="section-tight surface-bone">
-        <div className="container">
-          <PhotoGrid
-            images={[
-              'assets/location-hero.jpg', 'assets/golf-aerial.jpg', 'assets/course-skyline.jpg',
-              'assets/hero-palms.jpg', 'assets/hero-sunset.jpg', 'assets/hero-clubhouse.jpg',
-            ]}
-          />
-        </div>
-      </section>
-
-      {/* CITYPLACE / DOWNTOWN — new section (club 6/15) */}
+      {/* CITYPLACE / DOWNTOWN — new section (club 6/15); CityPlace photo 6/19 */}
       <section className="section surface-white">
         <LayeredCallout
           flipped
           eyebrow="Downtown & CityPlace"
           title="The best of the city, minutes away."
           body="Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown—some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it."
-          lgImg="assets/golf-aerial.jpg"
+          lgImg="assets/cityplace.jpg"
           motif="pipe"
         />
+      </section>
+
+      {/* PALM BEACH GALLERY — moved to the bottom, below Downtown & CityPlace
+          (club 6/19). NOTE: the Worth Ave / dining / CityPlace-walk photos from
+          the word doc still welcome to swap in. */}
+      <section className="section-tight surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/cityplace.jpg', 'assets/location-hero.jpg', 'assets/course-skyline.jpg',
+              'assets/golf-aerial.jpg', 'assets/hero-palms.jpg', 'assets/hero-sunset.jpg',
+            ]}
+          />
+        </div>
       </section>
 
       {/* RARE BALANCE quote — parallax drift */}

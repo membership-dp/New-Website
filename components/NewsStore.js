@@ -5,7 +5,7 @@
 // backend (per-editor login + database) without touching either page.
 const DP_NEWS_DEFAULTS = {
   featured: {
-    img: 'assets/news-featured.jpg',
+    img: 'assets/hero-villa.jpg',
     tag: 'Press',
     date: 'May 2026',
     title: "Dutchman's Pipe Club named among the most anticipated private clubs in Florida.",

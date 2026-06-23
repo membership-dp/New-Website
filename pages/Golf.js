@@ -176,14 +176,12 @@ function GolfPage({
     lgImg: "assets/clubfitting-bags.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
-    className: "surface-bone",
-    style: {
-      padding: '0 0 var(--space-section)'
-    }
-  }, /*#__PURE__*/React.createElement(RevealGallery, {
-    continuous: true,
-    images: ['assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/golf-grasses.jpg']
-  })), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-bone"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement(PhotoGrid, {
+    images: ['assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/golf-grasses.jpg', 'assets/course-skyline.jpg', 'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg', 'assets/hero-putting.jpg']
+  }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
