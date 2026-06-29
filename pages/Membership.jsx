@@ -115,7 +115,7 @@ function MembershipPage({ onNav }) {
                 </div>
                 <div style={{ font: '400 15px/1.6 var(--font-body)', color: 'rgba(245,241,232,0.72)' }}>
                   Membership@dutchmanspipeclub.com<br/>
-                  +1 772 633 3815
+                  +1 561 557 5840
                 </div>
               </div>
             </Reveal>

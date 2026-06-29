@@ -59,7 +59,7 @@ function HomePage({ onNav }) {
                 color: 'var(--color-navy-70)',
                 margin: 0,
               }}>
-                A private Palm Beach club where championship golf, racquets, wellness, and community come together without compromise.
+                A private Palm Beach club built around the freedom to play, the pursuit of improvement, and the relationships that make a club worth belonging to.
               </p>
             </Reveal>
           </div>
@@ -78,9 +78,9 @@ function HomePage({ onNav }) {
 
           <div className="three-up" style={{ marginTop: 80 }}>
             {[
-              { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: 'A Jack Nicklaus Signature golf course spanning more than 7,300 yards, played without tee times and supported by an exceptional practice environment.', target: 'golf' },
-              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Tennis. Padel. Pickleball.', body: 'Active with instruction, competition, and social play.', target: 'racquets' },
-              { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Strength, recovery, performance.', body: 'Dedicated spaces for strength, recovery, and performance, supported by expert coaching and programming designed to enhance both athletic performance and long-term wellbeing.', target: 'membership' },
+              { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: 'Championship golf without tee times, where exceptional conditioning and effortless access define the experience.', target: 'golf' },
+              { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Always in play.', body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.', target: 'racquets' },
+              { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Built around wellbeing.', body: 'A thoughtful approach to fitness, recovery, and performance designed to support both everyday wellness and athletic goals.', target: 'membership' },
             ].map((it, i) => (
               <Reveal key={it.eyebrow} delay={i * 120}>
                 <a {...actionProps(() => onNav(it.target))} aria-label={`${it.eyebrow}: ${it.title}`} style={{
@@ -155,11 +155,8 @@ function HomePage({ onNav }) {
           </div>
           <LayeredCallout
             flipped dark
-            title="The social heart of the Club’s racquet program."
-            body={[
-              "The Racquet Pavilion serves as the social heart of the Club’s racquet program. Four Har-Tru tennis courts, two pickleball courts, and two padel courts are complemented by professional instruction, competitive events, and year-round programming.",
-              'From instruction and weekly clinics to competitive play and social events, members enjoy year-round programming across tennis, padel, and pickleball in an active yet approachable environment.',
-            ]}
+            title="Where competition meets connection."
+            body="From early morning matches to evening socials, the Racquet Pavilion is one of the Club’s most active gathering places."
             lgImg="assets/padel-action.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}
@@ -174,7 +171,7 @@ function HomePage({ onNav }) {
         </div>
         <LayeredCallout
           title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
-          body="Minutes from the boutiques of Worth Avenue, the waterfront promenades of downtown West Palm Beach, and Palm Beach International, with discreet access to private aviation. A rare balance of accessibility and separation."
+          body="Minutes from Worth Avenue and Palm Beach International Airport, yet a world apart."
           lgImg="assets/hero-palms.jpg"
           ctaLabel="The Setting"
           onCta={() => onNav('location')}

@@ -74,8 +74,8 @@ function LocationPage({ onNav }) {
           eyebrow="Air Access"
           title="Runway to clubhouse — measured in minutes."
           body={[
-            'Palm Beach International Airport (PBI) is located nearby, providing direct and efficient commercial access for seasonal residents and traveling members. For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.',
-            'From runway to clubhouse, the transition is measured in minutes — not hours.',
+            'Palm Beach International Airport is just moments away, with convenient commercial service and nearby private aviation options for effortless arrivals.',
+            'Close to everything, yet quietly removed.',
           ]}
           lgImg="assets/air-access.jpg"
           motif="pipe"
@@ -87,8 +87,8 @@ function LocationPage({ onNav }) {
       <section className="section surface-white">
         <LayeredCallout
           eyebrow="The Island"
-          title="Minutes from Palm Beach."
-          body="Located moments from Palm Beach Island and Worth Avenue, Dutchman's Pipe places members close to the destinations they enjoy most—from luxury shopping and dining to cultural events and waterfront experiences. The Club offers the convenience of proximity while maintaining a setting defined by privacy and ease."
+          title="Palm Beach, within reach."
+          body="From mornings along the Lake Trail to afternoons on the beach and shopping along Worth Avenue, Dutchman's Pipe is ideally positioned to enjoy the lifestyle that has made Palm Beach one of America's most desirable destinations."
           lgImg="assets/course-skyline.jpg"
           motif="grass"
         />
@@ -106,14 +106,15 @@ function LocationPage({ onNav }) {
         />
       </section>
 
-      {/* PALM BEACH GALLERY — moved to the bottom, below Downtown & CityPlace
-          (club 6/19); the WPB lifestyle photos from the club's collage. */}
+      {/* PALM BEACH GALLERY — one row of WPB lifestyle photos (club 6/23:
+          single row, course shot removed). NOTE: club's new left-side photo
+          (doc image6) still to drop in. */}
       <section className="section-tight surface-bone">
         <div className="container">
           <PhotoGrid
             images={[
               'assets/worth-ave.jpg', 'assets/wpb-dining.jpg', 'assets/cityplace-walk.jpg',
-              'assets/wpb-aerial.jpg', 'assets/cityplace.jpg', 'assets/location-hero.jpg',
+              'assets/wpb-aerial.jpg', 'assets/cityplace.jpg',
             ]}
           />
         </div>

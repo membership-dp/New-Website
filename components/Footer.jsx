@@ -84,8 +84,8 @@ function Footer({ onNav }) {
               1900 Banyan Club Road<br/>
               West Palm Beach, FL 33401
             </div>
-            <a href="tel:+17726333815" className="footer-link" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none', alignSelf: 'flex-start' }}>
-              +1 772 633 3815
+            <a href="tel:+15615575840" className="footer-link" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none', alignSelf: 'flex-start' }}>
+              +1 561 557 5840
             </a>
             <a href="mailto:Membership@dutchmanspipeclub.com" className="footer-link" style={{ font: '400 15px/1.4 var(--font-body)', color: 'rgba(245,241,232,0.78)', textDecoration: 'none', alignSelf: 'flex-start' }}>
               Membership@dutchmanspipeclub.com

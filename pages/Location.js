@@ -123,15 +123,15 @@ function LocationPage({
     dark: true,
     eyebrow: "Air Access",
     title: "Runway to clubhouse \u2014 measured in minutes.",
-    body: ['Palm Beach International Airport (PBI) is located nearby, providing direct and efficient commercial access for seasonal residents and traveling members. For those arriving by private aviation, multiple executive airports are within close reach, ensuring discreet, streamlined arrivals.', 'From runway to clubhouse, the transition is measured in minutes — not hours.'],
+    body: ['Palm Beach International Airport is just moments away, with convenient commercial service and nearby private aviation options for effortless arrivals.', 'Close to everything, yet quietly removed.'],
     lgImg: "assets/air-access.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "The Island",
-    title: "Minutes from Palm Beach.",
-    body: "Located moments from Palm Beach Island and Worth Avenue, Dutchman's Pipe places members close to the destinations they enjoy most\u2014from luxury shopping and dining to cultural events and waterfront experiences. The Club offers the convenience of proximity while maintaining a setting defined by privacy and ease.",
+    title: "Palm Beach, within reach.",
+    body: "From mornings along the Lake Trail to afternoons on the beach and shopping along Worth Avenue, Dutchman's Pipe is ideally positioned to enjoy the lifestyle that has made Palm Beach one of America's most desirable destinations.",
     lgImg: "assets/course-skyline.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
@@ -148,7 +148,7 @@ function LocationPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/worth-ave.jpg', 'assets/wpb-dining.jpg', 'assets/cityplace-walk.jpg', 'assets/wpb-aerial.jpg', 'assets/cityplace.jpg', 'assets/location-hero.jpg']
+    images: ['assets/worth-ave.jpg', 'assets/wpb-dining.jpg', 'assets/cityplace-walk.jpg', 'assets/wpb-aerial.jpg', 'assets/cityplace.jpg']
   }))), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {

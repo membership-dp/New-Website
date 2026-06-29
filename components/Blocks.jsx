@@ -334,33 +334,33 @@ function RevealGallery({ images = [], interval = 3800, continuous = false }) {
 const DP_TIERS = [
   {
     name: 'Full Golf',
-    tag: 'Anchor',
-    body: 'Full Golf Membership provides unlimited access to the Jack Nicklaus Signature course played without tee times, the full racquet program, wellness facilities, and all club amenities. A distinguished instructional team, including Golf Magazine Top 100 instructors and performance specialists, supports every stage of a member’s golf journey.',
-    audience: 'For members who wish to engage fully in every aspect of club life.',
+    tag: 'Signature',
+    body: 'The Club in its fullest expression. Full Golf Membership offers unlimited access to championship golf, racquets, wellness, dining, and the complete calendar of member events and experiences.',
+    audience: 'Designed for those who wish to engage fully in every aspect of club life and make Dutchman’s Pipe part of their everyday routine.',
   },
   {
     name: 'Next Generation',
     tag: 'Under 40',
-    body: 'Next Generation Membership is reserved for members under 40 seeking long-term affiliation and progression to Full Golf Membership. It offers meaningful access today while establishing a clear pathway within the club’s future community.',
-    audience: 'Reserved for members under 40.',
+    body: 'Created for members age 39 and under seeking a long-term connection to the Club. Next Generation Membership provides Full Golf privileges today while establishing a protected pathway to Full Golf Membership at a locked initiation rate.',
+    audience: 'One hundred percent of annual dues paid are credited toward future Full Golf initiation.',
   },
   {
     name: 'Visiting',
     tag: 'Non-Resident',
-    body: 'Visiting Membership offers a membership tailored for non-residents, providing limited access to the course, practice facilities, and select club amenities during their time in Palm Beach.',
-    audience: 'For seasonal members and travelers.',
-  },
-  {
-    name: 'Social',
-    tag: 'Beyond the Fairways',
-    body: 'Social Membership centers on racquet sports, wellness programming, and dining, allowing members to participate in the club’s daily rhythm beyond the fairways.',
-    audience: 'For racquet, wellness, and social members.',
+    body: 'Tailored for those who spend only part of the year in Palm Beach. Visiting Membership is available exclusively to individuals who do not reside in Palm Beach, Broward, or Martin Counties and provides access to golf, practice facilities, and club amenities during time spent in residence.',
+    audience: 'Members enjoy up to 30 rounds annually, with a pathway to Full Golf Membership should their lifestyle evolve.',
   },
   {
     name: 'Corporate',
     tag: 'Executive',
-    body: 'Corporate Membership provides designated access for multiple executives under one membership, offering an elevated setting to host clients, reward leadership, and build lasting business relationships.',
-    audience: 'For organizations.',
+    body: 'An elevated membership designed for organizations seeking a distinctive setting for business and leisure. Corporate Membership allows up to four designated representatives to enjoy golf, racquets, wellness, dining, and the full range of club amenities.',
+    audience: 'A unique opportunity to host clients, reward leadership, and build lasting relationships in an exceptional setting.',
+  },
+  {
+    name: 'Social',
+    tag: 'Lifestyle',
+    body: 'Designed for members who value connection, recreation, and an active club lifestyle. Social Membership includes access to racquets, wellness, dining, social programming, and The Belgrove resort amenities and pools.',
+    audience: 'Members also enjoy summer golf privileges from June through September, creating opportunities to experience the game in a relaxed and welcoming environment.',
   },
 ];
 

@@ -1,5 +1,13 @@
 // pages/Golf.jsx
 function GolfPage({ onNav }) {
+  // Golf-page pathways use their own concise copy (club 6/23) — the Membership
+  // page accordion uses the longer DP_TIERS copy. Social omitted here.
+  const golfTiers = [
+    { name: 'Full Golf', tag: 'Signature', body: 'The Club in its fullest expression. Full Golf Membership includes unlimited access to championship golf, racquets, wellness, dining, and a distinguished instructional team led by nationally recognized professionals.', audience: 'For members who wish to engage fully in every aspect of club life.' },
+    { name: 'Next Generation', tag: 'Under 40', body: 'Designed for members under 40 seeking a long-term connection to Dutchman’s Pipe. Next Generation Membership offers Full Golf privileges today and a clear path toward lifelong membership.', audience: 'Reserved for members under 40.' },
+    { name: 'Visiting', tag: 'Non-Resident', body: 'Created for those who spend only part of the year in Palm Beach. Visiting Membership offers access to golf, practice facilities, and club amenities tailored to a seasonal lifestyle.', audience: 'For seasonal residents and frequent visitors.' },
+    { name: 'Corporate', tag: 'Executive', body: 'An elevated membership designed for organizations seeking a distinctive setting for business and leisure. Corporate Membership provides designated access for executives while creating opportunities to host, connect, and enjoy the Club together.', audience: 'For organizations.' },
+  ];
   return (
     <div className="page-shell">
       {/* HERO — parallax drift */}
@@ -79,10 +87,7 @@ function GolfPage({ onNav }) {
         <LayeredCallout
           eyebrow="Practice with Purpose"
           title="Practice with purpose."
-          body={[
-            "The practice grounds at Dutchman's Pipe are designed to mirror the challenges of the course. A two-acre short game area, championship-caliber greens, strategically placed bunkers, and a dedicated wedge matrix create an environment where players build skills that translate directly to scoring.",
-            'Improvement is not treated as a separate activity. Practice, coaching, and performance are connected as part of everyday club life.',
-          ]}
+          body="The practice grounds at Dutchman's Pipe are designed to mirror the challenges of the course. A two-acre short game area, championship-caliber greens, thoughtfully designed practice spaces, and eight varieties of premium range balls create an environment where preparation is as rewarding as play."
           lgImg="assets/practice-cart.jpg"
           motif="grass"
         />
@@ -97,8 +102,8 @@ function GolfPage({ onNav }) {
           eyebrow="Elite Instruction"
           title="The pursuit of better golf."
           body={[
-            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors. Private coaching, playing lessons, clinics, and performance training combine technical expertise, biomechanics, and on-course strategy to create a complete approach to player development.",
-            'Programming for women, men, and juniors ensures opportunities to learn, improve, and compete throughout the year.',
+            "Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors, who bring decades of experience to a highly personalized coaching environment.",
+            'Private lessons, playing sessions, clinics, and performance training are all designed around the individual golfer.',
           ]}
           lgImg="assets/instruction-coach.jpg"
           motif="pipe"
@@ -112,31 +117,15 @@ function GolfPage({ onNav }) {
           eyebrow="Club Fitting & Customization"
           title="Performance optimization. Not retail fitting."
           body={[
-            'Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty. Eight varieties of premium range balls provide the ideal environment to refine distance control, trajectory, and feel.',
-            'Through advanced fitting technology and real-condition testing, every club is optimized to match the individual golfer and the way they play.',
+            'Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty.',
+            'Using advanced fitting technology and personalized analysis, every club is optimized to complement the individual golfer and elevate their performance.',
           ]}
           lgImg="assets/clubfitting-bags.jpg"
           motif="grass"
         />
       </section>
 
-      {/* COURSE GALLERY — grid of course photos (consistent with the Racquets /
-          Membership galleries; replaces the fragile one-image slice) */}
-      <section className="section surface-bone">
-        <div className="container">
-          <PhotoGrid
-            images={[
-              'assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg',
-              'assets/golf-grasses.jpg', 'assets/course-skyline.jpg',
-              'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg',
-              'assets/hero-putting.jpg',
-            ]}
-          />
-        </div>
-      </section>
-
-      {/* MEMBERSHIP — the five categories in the original column layout
-          (the club liked the columns for low-verbiage placements) */}
+      {/* MEMBERSHIP — pathway columns (club 6/23: moved above the gallery) */}
       <section className="section surface-white">
         <div className="container">
           <Reveal>
@@ -150,8 +139,7 @@ function GolfPage({ onNav }) {
             </div>
           </Reveal>
           <Reveal>
-            {/* Social omitted here (Kyle 6/15) — golfers' pathways only */}
-            <TierColumns tiers={DP_TIERS.filter((t) => t.name !== 'Social')} />
+            <TierColumns tiers={golfTiers} />
           </Reveal>
           <Reveal>
             <a {...actionProps(() => onNav('membership'))} className="arrow-link" style={{ marginTop: 48, color: 'var(--color-club-navy)' }}>
@@ -159,6 +147,21 @@ function GolfPage({ onNav }) {
               <img src="assets/arrow-link.png" alt="" />
             </a>
           </Reveal>
+        </div>
+      </section>
+
+      {/* COURSE GALLERY — moved below membership (club 6/23).
+          NOTE: club's added course photo (doc image1) still to drop in. */}
+      <section className="section surface-bone">
+        <div className="container">
+          <PhotoGrid
+            images={[
+              'assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg',
+              'assets/golf-grasses.jpg', 'assets/course-skyline.jpg',
+              'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg',
+              'assets/hero-putting.jpg',
+            ]}
+          />
         </div>
       </section>
 

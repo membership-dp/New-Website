@@ -118,7 +118,7 @@ function Footer({
       color: 'rgba(245,241,232,0.78)'
     }
   }, "1900 Banyan Club Road", /*#__PURE__*/React.createElement("br", null), "West Palm Beach, FL 33401"), /*#__PURE__*/React.createElement("a", {
-    href: "tel:+17726333815",
+    href: "tel:+15615575840",
     className: "footer-link",
     style: {
       font: '400 15px/1.4 var(--font-body)',
@@ -126,7 +126,7 @@ function Footer({
       textDecoration: 'none',
       alignSelf: 'flex-start'
     }
-  }, "+1 772 633 3815"), /*#__PURE__*/React.createElement("a", {
+  }, "+1 561 557 5840"), /*#__PURE__*/React.createElement("a", {
     href: "mailto:Membership@dutchmanspipeclub.com",
     className: "footer-link",
     style: {

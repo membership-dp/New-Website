@@ -168,7 +168,7 @@ function MembershipPage({
       font: '400 15px/1.6 var(--font-body)',
       color: 'rgba(245,241,232,0.72)'
     }
-  }, "Membership@dutchmanspipeclub.com", /*#__PURE__*/React.createElement("br", null), "+1 772 633 3815"))), /*#__PURE__*/React.createElement(Reveal, {
+  }, "Membership@dutchmanspipeclub.com", /*#__PURE__*/React.createElement("br", null), "+1 561 557 5840"))), /*#__PURE__*/React.createElement(Reveal, {
     delay: 120
   }, submitted ? /*#__PURE__*/React.createElement("div", {
     style: {

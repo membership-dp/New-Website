@@ -100,11 +100,13 @@ function RacquetsPage({ onNav }) {
           like the mock instead of the three") */}
       <section className="section surface-bone">
         <div className="container">
+          {/* club 6/23: removed padel-action (Aaron + building). NOTE: club's
+              three added racquet photos (doc images) still to drop in. */}
           <PhotoGrid
             images={[
               'assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg',
               'assets/pickleball.jpg', 'assets/padel-rally.jpg',
-              'assets/padel-action.jpg', 'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
+              'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
             ]}
           />
         </div>
