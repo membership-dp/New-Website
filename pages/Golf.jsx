@@ -85,7 +85,6 @@ function GolfPage({ onNav }) {
       {/* PRACTICE & PERFORMANCE — layered callout */}
       <section className="section surface-white">
         <LayeredCallout
-          eyebrow="Practice with Purpose"
           title="Practice with purpose."
           body="The practice grounds at Dutchman's Pipe are designed to mirror the challenges of the course. A two-acre short game area, championship-caliber greens, thoughtfully designed practice spaces, and eight varieties of premium range balls create an environment where preparation is as rewarding as play."
           lgImg="assets/practice-cart.jpg"
@@ -150,14 +149,14 @@ function GolfPage({ onNav }) {
         </div>
       </section>
 
-      {/* COURSE GALLERY — moved below membership (club 6/23).
-          NOTE: club's added course photo (doc image1) still to drop in. */}
+      {/* COURSE GALLERY — moved below membership (club 6/23). Club's new course
+          aerial added as the lead image (Madison 6/30). */}
       <section className="section surface-bone">
         <div className="container">
           <PhotoGrid
             images={[
-              'assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg',
-              'assets/golf-grasses.jpg', 'assets/course-skyline.jpg',
+              'assets/golf-island.jpg', 'assets/golf-hero.jpg', 'assets/golf-aerial.jpg',
+              'assets/golf-green.jpg', 'assets/golf-grasses.jpg', 'assets/course-skyline.jpg',
               'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg',
               'assets/hero-putting.jpg',
             ]}

@@ -170,7 +170,6 @@ function GolfPage({
   }, "Golf without tee times is central to the Dutchman's Pipe experience, preserving access, enhancing pace of play, and allowing members to enjoy the course entirely on their own schedule."))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
-    eyebrow: "Practice with Purpose",
     title: "Practice with purpose.",
     body: "The practice grounds at Dutchman's Pipe are designed to mirror the challenges of the course. A two-acre short game area, championship-caliber greens, thoughtfully designed practice spaces, and eight varieties of premium range balls create an environment where preparation is as rewarding as play.",
     lgImg: "assets/practice-cart.jpg",
@@ -238,7 +237,7 @@ function GolfPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/golf-grasses.jpg', 'assets/course-skyline.jpg', 'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg', 'assets/hero-putting.jpg']
+    images: ['assets/golf-island.jpg', 'assets/golf-hero.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/golf-grasses.jpg', 'assets/course-skyline.jpg', 'assets/hero-fairway.jpg', 'assets/hero-green.jpg', 'assets/hero-sunset.jpg', 'assets/hero-putting.jpg']
   }))), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {

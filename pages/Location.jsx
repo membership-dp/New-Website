@@ -83,13 +83,15 @@ function LocationPage({ onNav }) {
         </div>
       </section>
 
-      {/* ISLAND & WORTH AVENUE — layered callout */}
-      <section className="section surface-white">
+      {/* ISLAND & WORTH AVENUE — layered callout. Image swapped to the new
+          lagoon/skyline aerial (Madison 6/30). Bottom padding dropped so the
+          gap with CityPlace is one section (120px), not the doubled 240px. */}
+      <section className="section surface-white" style={{ paddingBottom: 0 }}>
         <LayeredCallout
           eyebrow="The Island"
           title="Palm Beach, within reach."
           body="From mornings along the Lake Trail to afternoons on the beach and shopping along Worth Avenue, Dutchman's Pipe is ideally positioned to enjoy the lifestyle that has made Palm Beach one of America's most desirable destinations."
-          lgImg="assets/course-skyline.jpg"
+          lgImg="assets/palmbeach-aerial.jpg"
           motif="grass"
         />
       </section>

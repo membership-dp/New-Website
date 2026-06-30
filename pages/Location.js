@@ -127,12 +127,15 @@ function LocationPage({
     lgImg: "assets/air-access.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-white"
+    className: "section surface-white",
+    style: {
+      paddingBottom: 0
+    }
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "The Island",
     title: "Palm Beach, within reach.",
     body: "From mornings along the Lake Trail to afternoons on the beach and shopping along Worth Avenue, Dutchman's Pipe is ideally positioned to enjoy the lifestyle that has made Palm Beach one of America's most desirable destinations.",
-    lgImg: "assets/course-skyline.jpg",
+    lgImg: "assets/palmbeach-aerial.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
