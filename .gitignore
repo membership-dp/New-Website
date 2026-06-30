@@ -20,3 +20,6 @@ hf_*.mp4
 # JSX build toolchain (compiled .js are committed; deps are not)
 node_modules/
 package-lock.json
+
+# Internal working handoff doc (Claude session continuity — not for the client repo)
+HANDOFF.md
