@@ -133,12 +133,16 @@ function HomePage({
     target: 'membership'
   }].map((it, i) => /*#__PURE__*/React.createElement(Reveal, {
     key: it.eyebrow,
-    delay: i * 120
+    delay: i * 120,
+    style: {
+      height: '100%'
+    }
   }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav(it.target)), {
     "aria-label": `${it.eyebrow}: ${it.title}`,
     style: {
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
       cursor: 'pointer',
       textDecoration: 'none',
       color: 'inherit'
@@ -176,7 +180,8 @@ function HomePage({
   }, it.body), /*#__PURE__*/React.createElement("span", {
     className: "arrow-link",
     style: {
-      marginTop: 24,
+      marginTop: 'auto',
+      paddingTop: 24,
       alignSelf: 'flex-start',
       color: 'var(--color-club-navy)'
     }
@@ -196,7 +201,7 @@ function HomePage({
       zIndex: 0
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/hero-fairway.jpg",
+    src: "assets/course-dusk.jpg",
     alt: "",
     loading: "lazy",
     decoding: "async",
@@ -267,11 +272,11 @@ function HomePage({
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
     className: "folio"
-  }, "No. III \u2014 The Racquet Pavilion"))), /*#__PURE__*/React.createElement(LayeredCallout, {
+  }, "No. III \u2014 The Racquet Club"))), /*#__PURE__*/React.createElement(LayeredCallout, {
     flipped: true,
     dark: true,
     title: "Where competition meets connection.",
-    body: "From early morning matches to evening socials, the Racquet Pavilion is one of the Club\u2019s most active gathering places.",
+    body: "From early morning matches to evening socials, the Racquet Club is one of the Club\u2019s most active gathering places.",
     lgImg: "assets/padel-action.jpg",
     ctaLabel: "Explore the Racquet Club",
     onCta: () => onNav('racquets')

@@ -82,9 +82,9 @@ function HomePage({ onNav }) {
               { img: 'assets/hero-tennis.jpg', eyebrow: 'Racquets', title: 'Always in play.', body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.', target: 'racquets' },
               { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Built around wellbeing.', body: 'A thoughtful approach to fitness, recovery, and performance designed to support both everyday wellness and athletic goals.', target: 'membership' },
             ].map((it, i) => (
-              <Reveal key={it.eyebrow} delay={i * 120}>
+              <Reveal key={it.eyebrow} delay={i * 120} style={{ height: '100%' }}>
                 <a {...actionProps(() => onNav(it.target))} aria-label={`${it.eyebrow}: ${it.title}`} style={{
-                  display: 'flex', flexDirection: 'column', cursor: 'pointer',
+                  display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer',
                   textDecoration: 'none', color: 'inherit',
                 }}>
                   <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
@@ -97,7 +97,7 @@ function HomePage({ onNav }) {
                   <p className="body-text" style={{ color: 'var(--color-navy-70)', marginTop: 14 }}>
                     {it.body}
                   </p>
-                  <span className="arrow-link" style={{ marginTop: 24, alignSelf: 'flex-start', color: 'var(--color-club-navy)' }}>
+                  <span className="arrow-link" style={{ marginTop: 'auto', paddingTop: 24, alignSelf: 'flex-start', color: 'var(--color-club-navy)' }}>
                     Explore
                     <img src="assets/arrow-link.png" alt="" />
                   </span>
@@ -111,7 +111,7 @@ function HomePage({ onNav }) {
       {/* SIGNATURE LINE — full-bleed editorial quote, drifting background */}
       <section className="full-bleed-quote" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/hero-fairway.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/course-dusk.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.45), rgba(15,25,40,0.7))' }} />
         <Parallax speed={-0.1} style={{ position: 'relative', zIndex: 2, width: '100%' }}>
@@ -151,12 +151,12 @@ function HomePage({ onNav }) {
         <Parallax speed={-0.25} className="satin-sheen" />
         <div className="satin-content">
           <div className="container">
-            <Reveal><div className="folio">No. III — The Racquet Pavilion</div></Reveal>
+            <Reveal><div className="folio">No. III — The Racquet Club</div></Reveal>
           </div>
           <LayeredCallout
             flipped dark
             title="Where competition meets connection."
-            body="From early morning matches to evening socials, the Racquet Pavilion is one of the Club’s most active gathering places."
+            body="From early morning matches to evening socials, the Racquet Club is one of the Club’s most active gathering places."
             lgImg="assets/padel-action.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}

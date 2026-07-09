@@ -10,7 +10,7 @@ function RacquetsPage({ onNav }) {
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
-            The Racquet Pavilion
+            The Racquet Club
           </div>
           <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
             A premier destination for tennis, padel, and pickleball.

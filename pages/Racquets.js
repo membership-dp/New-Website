@@ -41,7 +41,7 @@ function RacquetsPage({
       color: 'rgba(245,241,232,0.85)',
       marginBottom: 32
     }
-  }, "The Racquet Pavilion"), /*#__PURE__*/React.createElement("h1", {
+  }, "The Racquet Club"), /*#__PURE__*/React.createElement("h1", {
     className: "display-xl",
     style: {
       color: 'var(--color-bone)',
