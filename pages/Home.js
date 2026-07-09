@@ -11,9 +11,9 @@ function HomePage({
     mode: new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'still',
     videoSrc: "assets/zoom/hero-zoom-2s.mp4",
     scrubSrc: "assets/zoom/hero-zoom-scrub.mp4",
-    poster: "assets/golf-hero.jpg",
+    poster: "assets/course-dusk.jpg",
     scrubPoster: "assets/zoom/frame_01.jpg",
-    settleImg: "assets/golf-hero.jpg"
+    settleImg: "assets/course-dusk.jpg"
   }, /*#__PURE__*/React.createElement("div", {
     className: "page-hero-inner"
   }, /*#__PURE__*/React.createElement("div", {
@@ -201,7 +201,7 @@ function HomePage({
       zIndex: 0
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/course-dusk.jpg",
+    src: "assets/hero-fairway.jpg",
     alt: "",
     loading: "lazy",
     decoding: "async",

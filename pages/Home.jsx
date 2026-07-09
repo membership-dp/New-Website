@@ -10,9 +10,9 @@ function HomePage({ onNav }) {
         mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'still'}
         videoSrc="assets/zoom/hero-zoom-2s.mp4"
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
-        poster="assets/golf-hero.jpg"
+        poster="assets/course-dusk.jpg"
         scrubPoster="assets/zoom/frame_01.jpg"
-        settleImg="assets/golf-hero.jpg"
+        settleImg="assets/course-dusk.jpg"
       >
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>
@@ -111,7 +111,7 @@ function HomePage({ onNav }) {
       {/* SIGNATURE LINE — full-bleed editorial quote, drifting background */}
       <section className="full-bleed-quote" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/course-dusk.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/hero-fairway.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.45), rgba(15,25,40,0.7))' }} />
         <Parallax speed={-0.1} style={{ position: 'relative', zIndex: 2, width: '100%' }}>
