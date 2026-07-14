@@ -423,13 +423,23 @@ function ArticleCard({
   }, "Excerpt"), /*#__PURE__*/React.createElement("textarea", {
     className: "field-input",
     rows: excerptRows,
-    value: a.excerpt,
+    value: a.excerpt || '',
     onChange: e => onChange({
       excerpt: e.target.value
     }),
     style: {
       resize: 'vertical'
     }
+  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
+    className: "field-label"
+  }, "Link (URL)"), /*#__PURE__*/React.createElement("input", {
+    className: "field-input",
+    type: "url",
+    value: a.url || '',
+    onChange: e => onChange({
+      url: e.target.value
+    }),
+    placeholder: "https://\u2026  (leave blank for coverage with no link)"
   })), hasTools && /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',

@@ -33,12 +33,12 @@ function NewsPage({ onNav }) {
       {/* FEATURED — large layered callout */}
       <section className="section surface-bone">
         <LayeredCallout
-          eyebrow="Featured"
+          eyebrow={`Featured — ${featured.tag}`}
           title={featured.title}
           body={featured.excerpt}
           lgImg={featured.img}
-          ctaLabel="Read the Story"
-          onCta={() => {}}
+          ctaLabel={featured.url ? `Read on ${featured.tag}` : undefined}
+          onCta={() => { if (featured.url) window.open(featured.url, '_blank', 'noopener,noreferrer'); }}
           motif="grass"
         />
       </section>
@@ -50,26 +50,34 @@ function NewsPage({ onNav }) {
             <div className="eyebrow-rule" style={{ marginBottom: 40 }}>Latest</div>
           </Reveal>
           <div className="three-up">
-            {articles.map((a, i) => (
-              <Reveal key={a.title} delay={(i % 3) * 120}>
-                <a style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
-                  <div className="photo-frame" style={{ aspectRatio: '4/3' }}>
-                    <img src={a.img} alt="" loading="lazy" decoding="async" />
-                  </div>
-                  <div style={{ marginTop: 22 }}><Meta tag={a.tag} date={a.date} /></div>
-                  <h3 className="display-sm" style={{ color: 'var(--color-club-navy)', marginTop: 14, fontSize: 24 }}>
-                    {a.title}
-                  </h3>
-                  <p className="body-text" style={{ color: 'var(--color-navy-70)', marginTop: 12, fontSize: 15 }}>
-                    {a.excerpt}
-                  </p>
-                  <span className="arrow-link" style={{ marginTop: 20, alignSelf: 'flex-start', color: 'var(--color-club-navy)' }}>
-                    Read
-                    <img src="assets/arrow-link.png" alt="" />
-                  </span>
-                </a>
-              </Reveal>
-            ))}
+            {articles.map((a, i) => {
+              const linked = !!a.url;
+              const linkProps = linked ? { href: a.url, target: '_blank', rel: 'noopener noreferrer' } : {};
+              return (
+                <Reveal key={a.id || a.title} delay={(i % 3) * 120} style={{ height: '100%' }}>
+                  <a {...linkProps} style={{ display: 'flex', flexDirection: 'column', height: '100%', cursor: linked ? 'pointer' : 'default', textDecoration: 'none', color: 'inherit' }}>
+                    <div className="photo-frame" style={{ aspectRatio: '4/3' }}>
+                      <img src={a.img} alt="" loading="lazy" decoding="async" />
+                    </div>
+                    <div style={{ marginTop: 22 }}><Meta tag={a.tag} date={a.date} /></div>
+                    <h3 className="display-sm" style={{ color: 'var(--color-club-navy)', marginTop: 14, fontSize: 24 }}>
+                      {a.title}
+                    </h3>
+                    {a.excerpt ? (
+                      <p className="body-text" style={{ color: 'var(--color-navy-70)', marginTop: 12, fontSize: 15 }}>
+                        {a.excerpt}
+                      </p>
+                    ) : null}
+                    {linked && (
+                      <span className="arrow-link" style={{ marginTop: 'auto', paddingTop: 20, alignSelf: 'flex-start', color: 'var(--color-club-navy)' }}>
+                        Read the story
+                        <img src="assets/arrow-link.png" alt="" />
+                      </span>
+                    )}
+                  </a>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

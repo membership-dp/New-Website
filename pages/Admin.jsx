@@ -263,7 +263,11 @@ function ArticleCard({ a, onChange, onMoveUp, onMoveDown, onRemove, index, excer
         </label>
         <label>
           <span className="field-label">Excerpt</span>
-          <textarea className="field-input" rows={excerptRows} value={a.excerpt} onChange={(e) => onChange({ excerpt: e.target.value })} style={{ resize: 'vertical' }} />
+          <textarea className="field-input" rows={excerptRows} value={a.excerpt || ''} onChange={(e) => onChange({ excerpt: e.target.value })} style={{ resize: 'vertical' }} />
+        </label>
+        <label>
+          <span className="field-label">Link (URL)</span>
+          <input className="field-input" type="url" value={a.url || ''} onChange={(e) => onChange({ url: e.target.value })} placeholder="https://…  (leave blank for coverage with no link)" />
         </label>
         {hasTools && (
           <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>

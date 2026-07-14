@@ -69,12 +69,14 @@ function NewsPage({
   }, "In the News"))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-bone"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
-    eyebrow: "Featured",
+    eyebrow: `Featured — ${featured.tag}`,
     title: featured.title,
     body: featured.excerpt,
     lgImg: featured.img,
-    ctaLabel: "Read the Story",
-    onCta: () => {},
+    ctaLabel: featured.url ? `Read on ${featured.tag}` : undefined,
+    onCta: () => {
+      if (featured.url) window.open(featured.url, '_blank', 'noopener,noreferrer');
+    },
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
@@ -87,59 +89,72 @@ function NewsPage({
     }
   }, "Latest")), /*#__PURE__*/React.createElement("div", {
     className: "three-up"
-  }, articles.map((a, i) => /*#__PURE__*/React.createElement(Reveal, {
-    key: a.title,
-    delay: i % 3 * 120
-  }, /*#__PURE__*/React.createElement("a", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      cursor: 'pointer',
-      textDecoration: 'none',
-      color: 'inherit'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "photo-frame",
-    style: {
-      aspectRatio: '4/3'
-    }
-  }, /*#__PURE__*/React.createElement("img", {
-    src: a.img,
-    alt: "",
-    loading: "lazy",
-    decoding: "async"
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 22
-    }
-  }, /*#__PURE__*/React.createElement(Meta, {
-    tag: a.tag,
-    date: a.date
-  })), /*#__PURE__*/React.createElement("h3", {
-    className: "display-sm",
-    style: {
-      color: 'var(--color-club-navy)',
-      marginTop: 14,
-      fontSize: 24
-    }
-  }, a.title), /*#__PURE__*/React.createElement("p", {
-    className: "body-text",
-    style: {
-      color: 'var(--color-navy-70)',
-      marginTop: 12,
-      fontSize: 15
-    }
-  }, a.excerpt), /*#__PURE__*/React.createElement("span", {
-    className: "arrow-link",
-    style: {
-      marginTop: 20,
-      alignSelf: 'flex-start',
-      color: 'var(--color-club-navy)'
-    }
-  }, "Read", /*#__PURE__*/React.createElement("img", {
-    src: "assets/arrow-link.png",
-    alt: ""
-  })))))))), /*#__PURE__*/React.createElement("section", {
+  }, articles.map((a, i) => {
+    const linked = !!a.url;
+    const linkProps = linked ? {
+      href: a.url,
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    } : {};
+    return /*#__PURE__*/React.createElement(Reveal, {
+      key: a.id || a.title,
+      delay: i % 3 * 120,
+      style: {
+        height: '100%'
+      }
+    }, /*#__PURE__*/React.createElement("a", _extends({}, linkProps, {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        cursor: linked ? 'pointer' : 'default',
+        textDecoration: 'none',
+        color: 'inherit'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "photo-frame",
+      style: {
+        aspectRatio: '4/3'
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: a.img,
+      alt: "",
+      loading: "lazy",
+      decoding: "async"
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 22
+      }
+    }, /*#__PURE__*/React.createElement(Meta, {
+      tag: a.tag,
+      date: a.date
+    })), /*#__PURE__*/React.createElement("h3", {
+      className: "display-sm",
+      style: {
+        color: 'var(--color-club-navy)',
+        marginTop: 14,
+        fontSize: 24
+      }
+    }, a.title), a.excerpt ? /*#__PURE__*/React.createElement("p", {
+      className: "body-text",
+      style: {
+        color: 'var(--color-navy-70)',
+        marginTop: 12,
+        fontSize: 15
+      }
+    }, a.excerpt) : null, linked && /*#__PURE__*/React.createElement("span", {
+      className: "arrow-link",
+      style: {
+        marginTop: 'auto',
+        paddingTop: 20,
+        alignSelf: 'flex-start',
+        color: 'var(--color-club-navy)'
+      }
+    }, "Read the story", /*#__PURE__*/React.createElement("img", {
+      src: "assets/arrow-link.png",
+      alt: ""
+    }))));
+  })))), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
     style: {
       minHeight: '56vh',
