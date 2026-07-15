@@ -69,21 +69,21 @@ function LocationPage({
   }, "From the Clubhouse"), /*#__PURE__*/React.createElement("div", {
     className: "four-up-strip"
   }, [{
+    time: '1',
+    unit: 'min',
+    dest: 'The Belgrove Resort & Spa'
+  }, {
     time: '10',
     unit: 'min',
     dest: 'Palm Beach Island'
   }, {
-    time: '10',
-    unit: 'min',
-    dest: 'Downtown West Palm'
-  }, {
     time: '12',
     unit: 'min',
-    dest: 'DJT Airport'
+    dest: 'President Donald J. Trump International Airport'
   }, {
     time: '15',
     unit: 'min',
-    dest: 'Beaches'
+    dest: 'Atlantic Ocean Beaches'
   }].map(d => /*#__PURE__*/React.createElement("div", {
     key: d.dest,
     className: "four-up-cell"
@@ -141,10 +141,10 @@ function LocationPage({
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     flipped: true,
-    eyebrow: "Downtown & CityPlace",
-    title: "The best of the city, minutes away.",
-    body: "Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown\u2014some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it.",
-    lgImg: "assets/cityplace.jpg",
+    eyebrow: "The Belgrove Resort & Spa",
+    title: "Steps from the Club.",
+    body: "Adjacent to the Clubhouse, The Belgrove Resort & Spa, an Autograph Collection property, features 150 guest rooms, multiple dining venues, a full-service spa, and resort-style pools.",
+    lgImg: "assets/spa-treatment.jpg",
     motif: "pipe"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section-tight surface-bone"

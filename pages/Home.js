@@ -292,7 +292,7 @@ function HomePage({
         whiteSpace: 'nowrap'
       }
     }, "moments from everywhere.")),
-    body: "Minutes from Worth Avenue and Palm Beach International Airport, yet a world apart.",
+    body: "Minutes from Worth Avenue and President Donald J. Trump International Airport, yet a world apart.",
     lgImg: "assets/location-aerial.jpg",
     ctaLabel: "The Setting",
     onCta: () => onNav('location')
