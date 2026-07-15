@@ -8,12 +8,12 @@ function GolfPage({
   const golfTiers = [{
     name: 'Full Golf',
     tag: 'Signature',
-    body: 'The Club in its fullest expression. Full Golf Membership includes unlimited access to championship golf, racquets, wellness, dining, and a distinguished instructional team led by nationally recognized professionals.',
+    body: 'Full Golf Membership includes unlimited access to championship golf, racquets, wellness, dining, and a distinguished instructional team led by nationally recognized professionals.',
     audience: 'For members who wish to engage fully in every aspect of club life.'
   }, {
-    name: 'Next Generation',
+    name: 'Next Gen.',
     tag: 'Under 40',
-    body: 'Designed for members under 40 seeking a long-term connection to Dutchman’s Pipe. Next Generation Membership offers Full Golf privileges today and a clear path toward lifelong membership.',
+    body: 'Designed for members under 40 seeking a long-term connection to Dutchman’s Pipe. Next Gen. Membership offers Full Golf privileges today and a clear path toward lifelong membership.',
     audience: 'Reserved for members under 40.'
   }, {
     name: 'Visiting',

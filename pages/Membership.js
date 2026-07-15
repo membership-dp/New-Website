@@ -103,20 +103,14 @@ function MembershipPage({
       color: 'var(--color-club-navy)',
       maxWidth: 720
     }
-  }, "Five pathways to membership.")), /*#__PURE__*/React.createElement("p", {
-    className: "body-text",
-    style: {
-      color: 'var(--color-navy-70)',
-      maxWidth: 380
-    }
-  }, "Each category is designed to match the rhythm of how you wish to engage with the Club."))), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(TierAccordion, {
+  }, "Five pathways to membership.")))), /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(TierAccordion, {
     tiers: tiers
   })))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-bone"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg', 'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg', 'assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg', 'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg']
+    images: ['assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg', 'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg', 'assets/spa-belgrove.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg', 'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg']
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin",
     id: "inquiry"
@@ -228,7 +222,7 @@ function MembershipPage({
     value: data.interest,
     onChange: set('interest'),
     span: 2,
-    options: ['Full Golf', 'Next Generation', 'Visiting', 'Social', 'Corporate']
+    options: ['Full Golf', 'Next Gen.', 'Visiting', 'Social', 'Corporate']
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "A Note (optional)",
     type: "textarea",

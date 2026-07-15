@@ -96,7 +96,7 @@ function HomePage({
       color: 'var(--color-navy-70)',
       margin: 0
     }
-  }, "A private Palm Beach club built around the freedom to play, the pursuit of improvement, and the relationships that make a club worth belonging to."))))), /*#__PURE__*/React.createElement("section", {
+  }, "A private club built around exceptional golf, effortless access, and a highly personalized member experience in the heart of West Palm Beach."))))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -120,7 +120,7 @@ function HomePage({
     body: 'Championship golf without tee times, where exceptional conditioning and effortless access define the experience.',
     target: 'golf'
   }, {
-    img: 'assets/hero-tennis.jpg',
+    img: 'assets/racquet-pillar.jpg',
     eyebrow: 'Racquets',
     title: 'Always in play.',
     body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.',
@@ -276,7 +276,7 @@ function HomePage({
     flipped: true,
     dark: true,
     title: "Where competition meets connection.",
-    body: "From early morning matches to evening socials, the Racquet Club is one of the Club\u2019s most active gathering places.",
+    body: "Home to one of the area's few private club padel programs, the Racquet Club offers members another dynamic way to stay active, sharpen their skills, and connect throughout the year.",
     lgImg: "assets/padel-action.jpg",
     ctaLabel: "Explore the Racquet Club",
     onCta: () => onNav('racquets')

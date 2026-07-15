@@ -20,7 +20,7 @@ function LocationPage({ onNav }) {
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 720, marginBottom: 0,
           }}>
-            Quietly removed, yet moments from the island, downtown, and private air travel.
+            East of I-95, minutes from Palm Beach Island and Downtown.
           </p>
         </div>
       </section>
@@ -35,10 +35,10 @@ function LocationPage({ onNav }) {
             <div className="eyebrow-rule" style={{ marginBottom: 40 }}>From the Clubhouse</div>
             <div className="four-up-strip">
               {[
-                { time: '8', unit: 'min', dest: 'Worth Avenue' },
                 { time: '10', unit: 'min', dest: 'Palm Beach Island' },
-                { time: '12', unit: 'min', dest: 'PBI Airport' },
-                { time: '20', unit: 'min', dest: 'Private Aviation' },
+                { time: '10', unit: 'min', dest: 'Downtown West Palm' },
+                { time: '12', unit: 'min', dest: 'DJT Airport' },
+                { time: '15', unit: 'min', dest: 'Beaches' },
               ].map((d) => (
                 <div key={d.dest} className="four-up-cell">
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
@@ -74,7 +74,7 @@ function LocationPage({ onNav }) {
           eyebrow="Air Access"
           title="Runway to clubhouse — measured in minutes."
           body={[
-            'Palm Beach International Airport is just moments away, with convenient commercial service and nearby private aviation options for effortless arrivals.',
+            'President Donald J. Trump International Airport is just moments away, offering convenient commercial service and private aviation options for effortless arrivals.',
             'Close to everything, yet quietly removed.',
           ]}
           lgImg="assets/air-access.jpg"

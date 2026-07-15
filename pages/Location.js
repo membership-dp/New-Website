@@ -57,7 +57,7 @@ function LocationPage({
       maxWidth: 720,
       marginBottom: 0
     }
-  }, "Quietly removed, yet moments from the island, downtown, and private air travel."))), /*#__PURE__*/React.createElement("section", {
+  }, "East of I-95, minutes from Palm Beach Island and Downtown."))), /*#__PURE__*/React.createElement("section", {
     className: "section-tight surface-bone-95"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -69,21 +69,21 @@ function LocationPage({
   }, "From the Clubhouse"), /*#__PURE__*/React.createElement("div", {
     className: "four-up-strip"
   }, [{
-    time: '8',
-    unit: 'min',
-    dest: 'Worth Avenue'
-  }, {
     time: '10',
     unit: 'min',
     dest: 'Palm Beach Island'
   }, {
+    time: '10',
+    unit: 'min',
+    dest: 'Downtown West Palm'
+  }, {
     time: '12',
     unit: 'min',
-    dest: 'PBI Airport'
+    dest: 'DJT Airport'
   }, {
-    time: '20',
+    time: '15',
     unit: 'min',
-    dest: 'Private Aviation'
+    dest: 'Beaches'
   }].map(d => /*#__PURE__*/React.createElement("div", {
     key: d.dest,
     className: "four-up-cell"
@@ -123,7 +123,7 @@ function LocationPage({
     dark: true,
     eyebrow: "Air Access",
     title: "Runway to clubhouse \u2014 measured in minutes.",
-    body: ['Palm Beach International Airport is just moments away, with convenient commercial service and nearby private aviation options for effortless arrivals.', 'Close to everything, yet quietly removed.'],
+    body: ['President Donald J. Trump International Airport is just moments away, offering convenient commercial service and private aviation options for effortless arrivals.', 'Close to everything, yet quietly removed.'],
     lgImg: "assets/air-access.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {

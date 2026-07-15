@@ -59,10 +59,6 @@ function MembershipPage({ onNav }) {
                   Five pathways to membership.
                 </h2>
               </div>
-              <p className="body-text" style={{ color: 'var(--color-navy-70)', maxWidth: 380 }}>
-                Each category is designed to match the rhythm of how you wish to engage
-                with the Club.
-              </p>
             </div>
           </Reveal>
 
@@ -80,7 +76,7 @@ function MembershipPage({ onNav }) {
             images={[
               'assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg',
               'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg',
-              'assets/hero-clubhouse.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg',
+              'assets/spa-belgrove.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg',
               'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg',
             ]}
           />
@@ -147,7 +143,7 @@ function MembershipPage({ onNav }) {
                   <FormField label="Phone" type="tel" value={data.phone} onChange={set('phone')} />
                   <FormField label="City of Residence" value={data.residence} onChange={set('residence')} span={2} />
                   <FormField label="Membership Interest" type="select" value={data.interest} onChange={set('interest')} span={2}
-                    options={['Full Golf', 'Next Generation', 'Visiting', 'Social', 'Corporate']}
+                    options={['Full Golf', 'Next Gen.', 'Visiting', 'Social', 'Corporate']}
                   />
                   <FormField label="A Note (optional)" type="textarea" value={data.message} onChange={set('message')} span={2} />
                   <div style={{ gridColumn: '1 / -1', marginTop: 16 }}>

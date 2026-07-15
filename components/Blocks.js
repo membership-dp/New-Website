@@ -490,12 +490,12 @@ function RevealGallery({
 const DP_TIERS = [{
   name: 'Full Golf',
   tag: 'Signature',
-  body: 'The Club in its fullest expression. Full Golf Membership offers unlimited access to championship golf, racquets, wellness, dining, and the complete calendar of member events and experiences.',
+  body: 'Full Golf Membership offers unlimited access to championship golf, racquets, wellness, dining, and the complete calendar of member events and experiences.',
   audience: 'Designed for those who wish to engage fully in every aspect of club life and make Dutchman’s Pipe part of their everyday routine.'
 }, {
-  name: 'Next Generation',
+  name: 'Next Gen.',
   tag: 'Under 40',
-  body: 'Created for members age 39 and under seeking a long-term connection to the Club. Next Generation Membership provides Full Golf privileges today while establishing a protected pathway to Full Golf Membership at a locked initiation rate.',
+  body: 'Created for members age 39 and under seeking a long-term connection to the Club. Next Gen. Membership provides Full Golf privileges today while establishing a protected pathway to Full Golf Membership at a locked initiation rate.',
   audience: 'One hundred percent of annual dues paid are credited toward future Full Golf initiation.'
 }, {
   name: 'Visiting',
