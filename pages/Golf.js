@@ -42,7 +42,7 @@ function GolfPage({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      backgroundImage: `url('assets/hero-fairway.jpg')`,
+      backgroundImage: `url('assets/golf-header.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       width: '100%',

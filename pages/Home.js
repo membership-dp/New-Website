@@ -11,9 +11,9 @@ function HomePage({
     mode: new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'still',
     videoSrc: "assets/zoom/hero-zoom-2s.mp4",
     scrubSrc: "assets/zoom/hero-zoom-scrub.mp4",
-    poster: "assets/course-dusk.jpg",
+    poster: "assets/home-hero.jpg",
     scrubPoster: "assets/zoom/frame_01.jpg",
-    settleImg: "assets/course-dusk.jpg"
+    settleImg: "assets/home-hero.jpg"
   }, /*#__PURE__*/React.createElement("div", {
     className: "page-hero-inner"
   }, /*#__PURE__*/React.createElement("div", {
@@ -293,7 +293,7 @@ function HomePage({
       }
     }, "moments from everywhere.")),
     body: "Minutes from Worth Avenue and Palm Beach International Airport, yet a world apart.",
-    lgImg: "assets/hero-palms.jpg",
+    lgImg: "assets/location-aerial.jpg",
     ctaLabel: "The Setting",
     onCta: () => onNav('location')
   })), /*#__PURE__*/React.createElement("section", {

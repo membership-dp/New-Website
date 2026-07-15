@@ -10,9 +10,9 @@ function HomePage({ onNav }) {
         mode={new URLSearchParams(window.location.search).get('hero') === 'scrub' ? 'scrub' : 'still'}
         videoSrc="assets/zoom/hero-zoom-2s.mp4"
         scrubSrc="assets/zoom/hero-zoom-scrub.mp4"
-        poster="assets/course-dusk.jpg"
+        poster="assets/home-hero.jpg"
         scrubPoster="assets/zoom/frame_01.jpg"
-        settleImg="assets/course-dusk.jpg"
+        settleImg="assets/home-hero.jpg"
       >
         <div className="page-hero-inner">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 64, flexWrap: 'wrap' }}>
@@ -172,7 +172,7 @@ function HomePage({ onNav }) {
         <LayeredCallout
           title={<>Quietly removed — <span style={{ whiteSpace: 'nowrap' }}>moments from everywhere.</span></>}
           body="Minutes from Worth Avenue and Palm Beach International Airport, yet a world apart."
-          lgImg="assets/hero-palms.jpg"
+          lgImg="assets/location-aerial.jpg"
           ctaLabel="The Setting"
           onCta={() => onNav('location')}
         />
