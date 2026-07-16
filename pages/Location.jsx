@@ -96,15 +96,28 @@ function LocationPage({ onNav }) {
         />
       </section>
 
-      {/* THE BELGROVE RESORT & SPA — replaced the Downtown & CityPlace section
-          per Madison 7/15 (her copy + the spa treatment-room image). */}
-      <section className="section surface-white">
+      {/* THE BELGROVE RESORT & SPA — added per Madison 7/15 (her copy + spa
+          treatment-room image). Bottom padding dropped so it pairs tightly with
+          the CityPlace section re-added below it. */}
+      <section className="section surface-white" style={{ paddingBottom: 0 }}>
         <LayeredCallout
           flipped
           eyebrow="The Belgrove Resort & Spa"
           title="Steps from the Club."
           body="Adjacent to the Clubhouse, The Belgrove Resort & Spa, an Autograph Collection property, features 150 guest rooms, multiple dining venues, a full-service spa, and resort-style pools."
           lgImg="assets/spa-treatment.jpg"
+          motif="pipe"
+        />
+      </section>
+
+      {/* DOWNTOWN & CITYPLACE — re-added below Belgrove per Shannon review 7/16
+          (they wanted both sections). Un-flipped so it alternates with Belgrove. */}
+      <section className="section surface-white">
+        <LayeredCallout
+          eyebrow="Downtown & CityPlace"
+          title="The best of the city, minutes away."
+          body="Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown—some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it."
+          lgImg="assets/cityplace.jpg"
           motif="pipe"
         />
       </section>

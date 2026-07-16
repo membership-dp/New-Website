@@ -199,6 +199,15 @@ function GolfPage({
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
+  }, /*#__PURE__*/React.createElement(LayeredCallout, {
+    flipped: true,
+    eyebrow: "Caddie Program",
+    title: "White-glove service. Every step of the way.",
+    body: "At Dutchman's Pipe Club, every round is accompanied by a professional caddie who serves as an extension of the Club's commitment to exceptional hospitality. More than carrying a bag, our caddies anticipate every detail\u2014from reading greens and recommending strategy to cleaning clubs, arranging refreshments, placing lunch orders, and ensuring every aspect of the day is effortlessly managed.",
+    lgImg: "assets/caddie-program.jpg",
+    motif: "pipe"
+  })), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {

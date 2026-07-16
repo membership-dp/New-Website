@@ -124,6 +124,18 @@ function GolfPage({ onNav }) {
         />
       </section>
 
+      {/* CADDIE PROGRAM — added under Club Fitting per Shannon review 7/16. */}
+      <section className="section surface-white">
+        <LayeredCallout
+          flipped
+          eyebrow="Caddie Program"
+          title="White-glove service. Every step of the way."
+          body="At Dutchman's Pipe Club, every round is accompanied by a professional caddie who serves as an extension of the Club's commitment to exceptional hospitality. More than carrying a bag, our caddies anticipate every detail—from reading greens and recommending strategy to cleaning clubs, arranging refreshments, placing lunch orders, and ensuring every aspect of the day is effortlessly managed."
+          lgImg="assets/caddie-program.jpg"
+          motif="pipe"
+        />
+      </section>
+
       {/* MEMBERSHIP — pathway columns (club 6/23: moved above the gallery) */}
       <section className="section surface-white">
         <div className="container">
