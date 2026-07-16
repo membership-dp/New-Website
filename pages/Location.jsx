@@ -91,7 +91,7 @@ function LocationPage({ onNav }) {
           eyebrow="The Island"
           title="Palm Beach, within reach."
           body="From mornings along the Lake Trail to afternoons on the beach and shopping along Worth Avenue, Dutchman's Pipe is ideally positioned to enjoy the lifestyle that has made Palm Beach one of America's most desirable destinations."
-          lgImg="assets/palmbeach-aerial.jpg"
+          lgImg="assets/wpb-marina.jpg"
           motif="grass"
         />
       </section>
@@ -116,8 +116,8 @@ function LocationPage({ onNav }) {
         <LayeredCallout
           eyebrow="Downtown & CityPlace"
           title="The best of the city, minutes away."
-          body="Dinner at Milos, a performance at the Kravis Center, or cocktails with friends downtown—some of West Palm Beach's most sought-after experiences are just minutes from Dutchman's Pipe. The Club offers effortless access to the city while remaining a quiet retreat from it."
-          lgImg="assets/cityplace.jpg"
+          body="Just minutes from Dutchman's Pipe, downtown West Palm Beach offers acclaimed restaurants, boutique shopping, live entertainment, and cultural attractions. Whether spending an afternoon in NORA District, an evening at the Kravis Center, or cocktails with friends, the city's best experiences are always within easy reach."
+          lgImg="assets/downtown-dining.jpg"
           motif="pipe"
         />
       </section>
