@@ -49,14 +49,12 @@ function HomePage({
       paddingBottom: 8
     }
   }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
-    className: "btn btn-ghost-light"
-  }), "Request Membership"), /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('golf')), {
     className: "arrow-link arrow-link-bob",
     style: {
       color: 'rgba(245,241,232,0.8)',
       borderColor: 'rgba(245,241,232,0.4)'
     }
-  }), "Discover the Club", /*#__PURE__*/React.createElement("img", {
+  }), "Membership Pathways", /*#__PURE__*/React.createElement("img", {
     src: "assets/arrow-link.png",
     style: {
       filter: 'brightness(0) invert(1)'
@@ -277,7 +275,7 @@ function HomePage({
     dark: true,
     title: "Where competition meets connection.",
     body: "Home to one of the area's few private club padel programs, the Racquet Club offers members another dynamic way to stay active, sharpen their skills, and connect throughout the year.",
-    lgImg: "assets/padel-action.jpg",
+    lgImg: "assets/tennis-backhand.jpg",
     ctaLabel: "Explore the Racquet Club",
     onCta: () => onNav('racquets')
   }))), /*#__PURE__*/React.createElement("section", {

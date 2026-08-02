@@ -19,6 +19,20 @@ const DP_NEWS_DEFAULTS = {
     url: 'https://www.forbes.com/sites/erikmatuszewski/2025/10/11/how-the-witkoff-group-built-south-floridas-new-breed-of-private-clubs/'
   },
   articles: [{
+    img: 'assets/golf-island.jpg',
+    tag: 'The Golf Wire',
+    date: 'Jul 2026',
+    title: 'Dutchman’s Pipe Club shines as host of the Final Qualifier for the 126th U.S. Amateur Championship.',
+    excerpt: '',
+    url: 'https://thegolfwire.com/dutchmans-pipe-club-us-amateur-championship/'
+  }, {
+    img: 'assets/practice-cart.jpg',
+    tag: 'Yahoo! Sports',
+    date: 'Jul 2026',
+    title: 'The surprising drawback of driving it longer — and the shot data you’re probably not using.',
+    excerpt: '',
+    url: 'https://sports.yahoo.com/articles/surprising-drawback-driving-longer-piece-165937484.html?guccounter=1'
+  }, {
     img: 'assets/golf-aerial.jpg',
     tag: 'Golf News Net',
     date: 'Jul 2026',
@@ -155,11 +169,12 @@ const DP_NEWS_DEFAULTS = {
 };
 
 // The photo library the Admin image pickers offer (current site assets).
-const DP_NEWS_IMAGES = ['assets/course-dusk.jpg', 'assets/golf-island.jpg', 'assets/palmbeach-aerial.jpg', 'assets/hero-green.jpg', 'assets/hero-fairway.jpg', 'assets/hero-sunset.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/course-skyline.jpg', 'assets/hero-putting.jpg', 'assets/hero-clubhouse.jpg', 'assets/hero-villa.jpg', 'assets/hero-palms.jpg', 'assets/instruction-coach.jpg', 'assets/practice-cart.jpg', 'assets/clubfitting-bags.jpg', 'assets/padel-player.jpg', 'assets/tennis-player.jpg', 'assets/tennis-veranda.jpg', 'assets/pickleball.jpg'];
+const DP_NEWS_IMAGES = ['assets/course-dusk.jpg', 'assets/golf-island.jpg', 'assets/palmbeach-aerial.jpg', 'assets/hero-green.jpg', 'assets/hero-fairway.jpg', 'assets/hero-sunset.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/course-skyline.jpg', 'assets/hero-putting.jpg', 'assets/hero-clubhouse.jpg', 'assets/hero-villa.jpg', 'assets/hero-palms.jpg', 'assets/instruction-coach.jpg', 'assets/practice-cart.jpg', 'assets/clubfitting-bags.jpg', 'assets/padel-player.jpg', 'assets/tennis-player.jpg', 'assets/tennis-rally.jpg', 'assets/pickleball.jpg'];
 window.NewsStore = {
-  // v2 — real media coverage replaces the wireframe placeholders (7/9). Bumping
-  // the key retires any stale placeholder content saved under v1 in a browser.
-  KEY: 'dp-news-v2',
+  // v3 — two placements added 7/31 (The Golf Wire, Yahoo! Sports). Bumping the
+  // key makes the new defaults win over anything saved under v2 in a browser
+  // (wireframe edits are per-browser; production moves this to a database).
+  KEY: 'dp-news-v3',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
   // stamp a stable per-article id so the Admin editor can key rows by identity

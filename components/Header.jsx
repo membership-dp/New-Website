@@ -68,7 +68,7 @@ function Header({ route, onNav, lightOnTop = true }) {
 
   return (
     <header className={cls}>
-      <a {...actionProps(() => goTo('home'))} aria-label="Dutchman's Pipe Club — home" style={{
+      <a {...actionProps(() => goTo('home'))} aria-label="Dutchman's Pipe Club — home" className="site-header-brand" style={{
         display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
         textDecoration: 'none', color: 'inherit',
       }}>
@@ -80,7 +80,7 @@ function Header({ route, onNav, lightOnTop = true }) {
       </a>
 
       {/* Desktop nav */}
-      <nav className="site-header-nav-desktop" style={{ marginLeft: 'auto', alignItems: 'center', gap: 40 }}>
+      <nav className="site-header-nav-desktop" style={{ marginLeft: 'auto' }}>
         {navItems.map((it) => (
           it.href ? (
             <a key={it.id} className="nav-link" href={it.href} target="_blank" rel="noopener noreferrer">

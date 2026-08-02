@@ -91,7 +91,7 @@ function RacquetsPage({ onNav }) {
           eyebrow="Beyond the Baseline"
           title="A gathering place as active as the courts themselves."
           body="Thoughtfully integrated throughout the property, the Club's courts are connected by landscaped pathways and comfortable gathering spaces. Whether participating in a clinic, enjoying a competitive match, or watching courtside, the racquet experience is designed to be as social as it is active."
-          lgImg="assets/tennis-veranda.jpg"
+          lgImg="assets/tennis-rally.jpg"
           motif="grass"
         />
       </section>
@@ -107,7 +107,7 @@ function RacquetsPage({ onNav }) {
             images={[
               'assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg',
               'assets/pickleball.jpg', 'assets/padel-rally.jpg',
-              'assets/tennis-veranda.jpg', 'assets/padel-skyline.jpg',
+              'assets/padel-skyline.jpg',
               'assets/racquet-lounge.jpg', 'assets/tennis-player.jpg', 'assets/padel-player.jpg',
             ]}
           />

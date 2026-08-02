@@ -496,12 +496,12 @@ const DP_TIERS = [{
   name: 'Next Gen.',
   tag: 'Under 40',
   body: 'Created for members age 39 and under seeking a long-term connection to the Club. Next Gen. Membership provides Full Golf privileges today while establishing a protected pathway to Full Golf Membership at a locked initiation rate.',
-  audience: 'One hundred percent of annual dues paid are credited toward future Full Golf initiation.'
+  audience: 'Limited memberships available.'
 }, {
   name: 'Visiting',
   tag: 'Non-Resident',
   body: 'Tailored for those who spend only part of the year in Palm Beach. Visiting Membership is available exclusively to individuals who do not reside in Palm Beach, Broward, or Martin Counties and provides access to golf, practice facilities, and club amenities during time spent in residence.',
-  audience: 'Members enjoy up to 30 rounds annually, with a pathway to Full Golf Membership should their lifestyle evolve.'
+  audience: 'Members enjoy up to 30 rounds annually, with a pathway to Full Golf Membership should their lifestyle evolve. Limited memberships available.'
 }, {
   name: 'Corporate',
   tag: 'Executive',
@@ -543,11 +543,11 @@ function TierColumns({
     }
   }), /*#__PURE__*/React.createElement("p", null, t.body), /*#__PURE__*/React.createElement("div", {
     style: {
-      marginTop: 'auto',
       paddingTop: 24,
       font: '400 13px/1.5 var(--font-body)',
       fontStyle: 'italic',
-      color: 'var(--color-navy-70)'
+      color: 'var(--color-navy-70)',
+      alignSelf: 'start'
     }
   }, t.audience))));
 }

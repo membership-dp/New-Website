@@ -91,6 +91,7 @@ function Header({
     className: cls
   }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => goTo('home')), {
     "aria-label": "Dutchman's Pipe Club \u2014 home",
+    className: "site-header-brand",
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -119,9 +120,7 @@ function Header({
   })), /*#__PURE__*/React.createElement("nav", {
     className: "site-header-nav-desktop",
     style: {
-      marginLeft: 'auto',
-      alignItems: 'center',
-      gap: 40
+      marginLeft: 'auto'
     }
   }, navItems.map(it => it.href ? /*#__PURE__*/React.createElement("a", {
     key: it.id,

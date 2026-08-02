@@ -24,12 +24,11 @@ function HomePage({ onNav }) {
                 Freedom to play, whenever you please.
               </h1>
             </div>
+            {/* club 7/31: the "Request Membership" button is gone; the remaining
+                link reads "Membership Pathways" and goes to the Membership page. */}
             <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
-              <a {...actionProps(() => onNav('membership'))} className="btn btn-ghost-light">
-                Request Membership
-              </a>
-              <a {...actionProps(() => onNav('golf'))} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
-                Discover the Club
+              <a {...actionProps(() => onNav('membership'))} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
+                Membership Pathways
                 <img src="assets/arrow-link.png" style={{ filter: 'brightness(0) invert(1)' }} alt="" />
               </a>
             </div>
@@ -157,7 +156,7 @@ function HomePage({ onNav }) {
             flipped dark
             title="Where competition meets connection."
             body="Home to one of the area's few private club padel programs, the Racquet Club offers members another dynamic way to stay active, sharpen their skills, and connect throughout the year."
-            lgImg="assets/padel-action.jpg"
+            lgImg="assets/tennis-backhand.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}
           />

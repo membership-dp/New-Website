@@ -15,6 +15,9 @@ function Footer({
       label: 'Location',
       id: 'location'
     }, {
+      label: 'Guest Information',
+      id: 'guests'
+    }, {
       label: 'In the News',
       id: 'news'
     }]

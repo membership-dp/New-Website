@@ -79,7 +79,7 @@ function GolfPage({
       maxWidth: 720,
       marginBottom: 0
     }
-  }, "An 18-hole Jack Nicklaus Signature course where nature sets the rhythm \u2014 not the tee sheet."))), /*#__PURE__*/React.createElement("section", {
+  }, "A Championship Jack Nicklaus Signature course where nature sets the rhythm \u2014 not the tee sheet."))), /*#__PURE__*/React.createElement("section", {
     className: "surface-bone",
     style: {
       padding: '0 var(--gutter)'
@@ -198,7 +198,10 @@ function GolfPage({
     lgImg: "assets/clubfitting-bags.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-white"
+    className: "section surface-white",
+    style: {
+      paddingBottom: 0
+    }
   }, /*#__PURE__*/React.createElement(LayeredCallout, {
     flipped: true,
     eyebrow: "Caddie Program",

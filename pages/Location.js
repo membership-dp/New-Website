@@ -69,9 +69,9 @@ function LocationPage({
   }, "From the Clubhouse"), /*#__PURE__*/React.createElement("div", {
     className: "four-up-strip"
   }, [{
-    time: '1',
+    time: '8',
     unit: 'min',
-    dest: 'The Belgrove Resort & Spa'
+    dest: 'Worth Avenue'
   }, {
     time: '10',
     unit: 'min',
@@ -146,7 +146,7 @@ function LocationPage({
     flipped: true,
     eyebrow: "The Belgrove Resort & Spa",
     title: "Steps from the Club.",
-    body: "Adjacent to the Clubhouse, The Belgrove Resort & Spa, an Autograph Collection property, features 150 guest rooms, multiple dining venues, a full-service spa, and resort-style pools.",
+    body: "Adjacent to the Clubhouse, The Belgrove Resort & Spa, an Autograph Collection property, features 150 guest rooms, multiple dining venues, a full-service spa, and resort-style pools. As an extension of the Club experience, members enjoy privileged access to the resort's amenities and services.",
     lgImg: "assets/spa-treatment.jpg",
     motif: "pipe"
   })), /*#__PURE__*/React.createElement("section", {

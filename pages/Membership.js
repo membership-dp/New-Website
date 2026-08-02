@@ -110,7 +110,7 @@ function MembershipPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg', 'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg', 'assets/spa-belgrove.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg', 'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg']
+    images: ['assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg', 'assets/tennis-rally.jpg', 'assets/hero-villa.jpg', 'assets/spa-belgrove.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg', 'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg']
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin",
     id: "inquiry"

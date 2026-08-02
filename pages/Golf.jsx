@@ -27,7 +27,7 @@ function GolfPage({ onNav }) {
             color: 'rgba(245,241,232,0.84)',
             marginTop: 28, maxWidth: 720, marginBottom: 0,
           }}>
-            An 18-hole Jack Nicklaus Signature course where nature sets the rhythm —
+            A Championship Jack Nicklaus Signature course where nature sets the rhythm —
             not the tee sheet.
           </p>
         </div>
@@ -124,8 +124,11 @@ function GolfPage({ onNav }) {
         />
       </section>
 
-      {/* CADDIE PROGRAM — added under Club Fitting per Shannon review 7/16. */}
-      <section className="section surface-white">
+      {/* CADDIE PROGRAM — added under Club Fitting per Shannon review 7/16.
+          Bottom padding dropped (club 7/31 "fix padding around the caddie
+          section"): it and the Membership section below are both white, so the
+          gap was reading as a doubled 240px void. */}
+      <section className="section surface-white" style={{ paddingBottom: 0 }}>
         <LayeredCallout
           flipped
           eyebrow="Caddie Program"

@@ -18,6 +18,8 @@ const DP_NEWS_DEFAULTS = {
     url: 'https://www.forbes.com/sites/erikmatuszewski/2025/10/11/how-the-witkoff-group-built-south-floridas-new-breed-of-private-clubs/',
   },
   articles: [
+    { img: 'assets/golf-island.jpg', tag: 'The Golf Wire', date: 'Jul 2026', title: 'Dutchman’s Pipe Club shines as host of the Final Qualifier for the 126th U.S. Amateur Championship.', excerpt: '', url: 'https://thegolfwire.com/dutchmans-pipe-club-us-amateur-championship/' },
+    { img: 'assets/practice-cart.jpg', tag: 'Yahoo! Sports', date: 'Jul 2026', title: 'The surprising drawback of driving it longer — and the shot data you’re probably not using.', excerpt: '', url: 'https://sports.yahoo.com/articles/surprising-drawback-driving-longer-piece-165937484.html?guccounter=1' },
     { img: 'assets/golf-aerial.jpg', tag: 'Golf News Net', date: 'Jul 2026', title: 'Course and infrastructure enhancements elevate the member experience.', excerpt: '', url: 'https://clubhouse.thegolfnewsnet.com/2026/07/02/dutchmans-pipe-club-announces-course-and-infrastructure-enhancements-to-further-elevate-member-experience/' },
     { img: 'assets/course-dusk.jpg', tag: 'AOL', date: 'Jul 2026', title: "Dutchman's Pipe is quietly becoming one of America's most fascinating private golf clubs.", excerpt: '', url: 'https://www.aol.com/articles/dutchmans-pipe-quietly-becoming-one-003543000.html?guccounter=1' },
     { img: 'assets/course-skyline.jpg', tag: 'Markets of Tomorrow', date: 'Jun 2026', title: "Inside Dutchman's Pipe Club.", excerpt: '', url: 'https://www.oftmw.com/post/inside-dutchman-s-pipe-the-ultra-private-jack-nicklaus-club-bringing-no-tee-time-golf-to-the-heart-of-west-palm-beach/' },
@@ -48,13 +50,14 @@ const DP_NEWS_IMAGES = [
   'assets/hero-putting.jpg', 'assets/hero-clubhouse.jpg', 'assets/hero-villa.jpg',
   'assets/hero-palms.jpg', 'assets/instruction-coach.jpg', 'assets/practice-cart.jpg',
   'assets/clubfitting-bags.jpg', 'assets/padel-player.jpg', 'assets/tennis-player.jpg',
-  'assets/tennis-veranda.jpg', 'assets/pickleball.jpg',
+  'assets/tennis-rally.jpg', 'assets/pickleball.jpg',
 ];
 
 window.NewsStore = {
-  // v2 — real media coverage replaces the wireframe placeholders (7/9). Bumping
-  // the key retires any stale placeholder content saved under v1 in a browser.
-  KEY: 'dp-news-v2',
+  // v3 — two placements added 7/31 (The Golf Wire, Yahoo! Sports). Bumping the
+  // key makes the new defaults win over anything saved under v2 in a browser
+  // (wireframe edits are per-browser; production moves this to a database).
+  KEY: 'dp-news-v3',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
   // stamp a stable per-article id so the Admin editor can key rows by identity

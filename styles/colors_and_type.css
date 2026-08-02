@@ -57,7 +57,10 @@
 
   /* ---------- TYPE FACES ---------- */
   --font-display:  'Cormorant Garamond', 'Artifex Hand CF', 'Adobe Caslon Pro', Georgia, serif;
-  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  /* Body face is Sweet Sans Pro (club 7/31). It is a licensed font — it renders
+     once the club's Adobe Fonts web-project CSS (or self-hosted .woff2 files)
+     is added to index.html; until then this falls back to Inter. */
+  --font-body:     'Sweet Sans Pro', 'sweet-sans-pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --font-mono:     'SFMono-Regular', ui-monospace, 'Menlo', 'Consolas', monospace;
 
   /* ---------- TYPE SCALE (px / line-height / weight / tracking) ---------- */

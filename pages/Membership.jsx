@@ -75,7 +75,7 @@ function MembershipPage({ onNav }) {
           <PhotoGrid
             images={[
               'assets/golf-hero.jpg', 'assets/hero-green.jpg', 'assets/padel-rally.jpg',
-              'assets/tennis-veranda.jpg', 'assets/hero-villa.jpg',
+              'assets/tennis-rally.jpg', 'assets/hero-villa.jpg',
               'assets/spa-belgrove.jpg', 'assets/membership-hero.jpg', 'assets/hero-palms.jpg',
               'assets/course-skyline.jpg', 'assets/clubfitting-bags.jpg',
             ]}
