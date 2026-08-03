@@ -1,15 +1,15 @@
-// pages/Guests.jsx — Guest Information (club 7/31). Content mirrors the club's
-// existing guest page (dutchmanspipeclub.com/guests) so a sponsoring member can
-// send guests here for arrival protocol, caddies, and dress code.
+// pages/Guests.jsx — Guest Information. Reworked per Madison 8/3: new header
+// image, no sub-copy under the title, the beige lede band removed, and Guest
+// Registration promoted to a feature across the top with the remaining notes
+// stacked beneath it. Copy is hers.
 function GuestsPage({ onNav }) {
   const items = [
-    { title: 'Registration', body: 'All guests must be sponsored by a current Member of the Club.' },
-    { title: 'Gate & Security', body: 'On arrival at the guarded entrance, please provide your name and the name of your sponsoring Member before continuing to valet.' },
-    { title: 'Valet & Bag Drop', body: 'Complimentary valet and bag drop service is available at the clubhouse entrance. Members are asked to arrive ahead of their guests.' },
-    { title: 'Arrival', body: 'Please check in at the Golf Pro Shop or the Tennis Pro Shop upon arrival, where our staff will direct you to the facilities.' },
-    { title: 'Caddies', body: 'Caddies are mandatory. The Caddie Master will assign a caddie upon your arrival. Please note there is no ATM on property.' },
-    { title: 'Mobile Phones', body: 'Phones should be silenced throughout the Club. Respectful, discreet use is permitted.' },
-    { title: 'Dress Code', body: 'Proper golf and tennis attire is required at all times. Appropriate clothing is available in the pro shops.' },
+    { title: 'Arrival & Security', body: "Upon arrival at the Club's guarded entrance, guests will simply provide their name and the name of their sponsoring Member to the gate attendant before proceeding to the clubhouse." },
+    { title: 'Valet Parking', body: 'Complimentary valet parking is available at the clubhouse entrance. To help ensure a smooth arrival, we encourage Members to arrive prior to their guests whenever possible.' },
+    { title: 'Clubhouse Check-In', body: 'Once you arrive at the clubhouse, please check in at either the Golf Pro Shop or the Racquets Pro Shop, where our team will be happy to welcome you and direct you to the appropriate facilities.' },
+    { title: 'Dress Code', body: 'Appropriate golf and racquets attire is required throughout the Club. If you need anything during your visit, both Pro Shops offer a selection of apparel and accessories.' },
+    { title: 'Caddie Program', body: 'Caddies are required for all golf rounds and will be assigned by the Caddie Master upon arrival. Please note that there is no ATM available on property.' },
+    { title: 'Cell Phones', body: 'To help preserve the relaxed atmosphere of the Club, we kindly ask that mobile phones remain on silent throughout your visit. Respectful and discreet use is always appreciated.' },
   ];
 
   return (
@@ -17,50 +17,41 @@ function GuestsPage({ onNav }) {
       {/* HERO — parallax drift */}
       <section className="page-hero page-hero-short" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.18} style={{ position: 'absolute', inset: '-9% 0', zIndex: 0 }}>
-          <div style={{ backgroundImage: `url('assets/hero-clubhouse.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+          <div style={{ backgroundImage: `url('assets/guests-hero.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
         </Parallax>
         <div className="photo-scrim" style={{ zIndex: 1 }} />
         <div className="page-hero-inner hero-stagger" style={{ position: 'relative', zIndex: 2 }}>
           <div className="eyebrow-rule" style={{ color: 'rgba(245,241,232,0.85)', marginBottom: 32 }}>
             Guest Information
           </div>
-          <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100 }}>
+          <h1 className="display-xl" style={{ color: 'var(--color-bone)', maxWidth: 1100, marginBottom: 0 }}>
             Welcome to Dutchman's Pipe.
           </h1>
-          <p className="hero-sub" style={{
-            color: 'rgba(245,241,232,0.84)',
-            marginTop: 28, maxWidth: 760, marginBottom: 0,
-          }}>
-            Every Member guest is meant to experience the Club with the same pleasure
-            and enjoyment as full Membership.
-          </p>
         </div>
       </section>
 
-      {/* LEDE */}
-      <section className="section-tight surface-bone-95">
-        <Reveal>
-          <div className="container">
-            <p className="body-text" style={{ color: 'var(--color-navy-70)', maxWidth: 820 }}>
-              We are delighted to welcome you. So that every visit is a comfortable one,
-              we ask that guests observe the protocols and customs of the Club during
-              their time on property. Should you have any question at all, our staff
-              is always happy to help.
-            </p>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* GUEST PROTOCOL */}
+      {/* GUEST REGISTRATION — feature across the top, then the notes beneath */}
       <section className="section surface-white">
         <div className="container">
           <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Before You Arrive</div>
-            <h2 className="display-md" style={{ color: 'var(--color-club-navy)', maxWidth: 720, marginBottom: 64 }}>
-              A few notes for your visit.
+            <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Guest Registration</div>
+            <h2 className="display-lg" style={{ color: 'var(--color-club-navy)', maxWidth: 900 }}>
+              Before You Arrive
             </h2>
+            <span className="champagne-rule" />
+            <p className="body-text" style={{
+              color: 'var(--color-navy-70)',
+              marginTop: 32, maxWidth: 900, fontSize: 19, lineHeight: 1.7,
+            }}>
+              We look forward to welcoming you to Dutchman's Pipe. Guests are welcomed
+              by invitation of a current Member of the Club and should be registered
+              prior to arrival. The information below has been thoughtfully prepared to
+              help ensure a seamless arrival and an enjoyable experience during your
+              visit.
+            </p>
           </Reveal>
-          <div className="three-up">
+
+          <div className="three-up" style={{ marginTop: 88 }}>
             {items.map((it, i) => (
               <Reveal key={it.title} delay={(i % 3) * 120}>
                 <div style={{ borderTop: '1px solid var(--color-champagne)', paddingTop: 24 }}>
@@ -77,7 +68,7 @@ function GuestsPage({ onNav }) {
         </div>
       </section>
 
-      {/* ARRIVAL DETAILS — satin chapter */}
+      {/* FINDING US — satin chapter */}
       <section className="section surface-satin">
         <Parallax speed={-0.25} className="satin-sheen" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>

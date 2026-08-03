@@ -78,7 +78,7 @@ function HomePage({ onNav }) {
           <div className="three-up" style={{ marginTop: 80 }}>
             {[
               { img: 'assets/hero-green.jpg', eyebrow: 'Golf', title: 'Jack Nicklaus Signature.', body: 'Championship golf without tee times, where exceptional conditioning and effortless access define the experience.', target: 'golf' },
-              { img: 'assets/racquet-pillar.jpg', eyebrow: 'Racquets', title: 'Always in play.', body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.', target: 'racquets' },
+              { img: 'assets/tennis-pillar.jpg', eyebrow: 'Racquets', title: 'Always in play.', body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.', target: 'racquets' },
               { img: 'assets/hero-villa.jpg', eyebrow: 'Wellness', title: 'Built around wellbeing.', body: 'A thoughtful approach to fitness, recovery, and performance designed to support both everyday wellness and athletic goals.', target: 'membership' },
             ].map((it, i) => (
               <Reveal key={it.eyebrow} delay={i * 120} style={{ height: '100%' }}>
@@ -156,7 +156,7 @@ function HomePage({ onNav }) {
             flipped dark
             title="Where competition meets connection."
             body="Home to one of the area's few private club padel programs, the Racquet Club offers members another dynamic way to stay active, sharpen their skills, and connect throughout the year."
-            lgImg="assets/tennis-backhand.jpg"
+            lgImg="assets/padel-action.jpg"
             ctaLabel="Explore the Racquet Club"
             onCta={() => onNav('racquets')}
           />
@@ -184,7 +184,7 @@ function HomePage({ onNav }) {
             <InstagramStrip
               handle="@dutchmanspipeclub"
               images={[
-                'assets/hero-green.jpg', 'assets/tennis-serve.jpg', 'assets/hero-palms.jpg',
+                'assets/hero-green.jpg', 'assets/tennis-rally.jpg', 'assets/hero-palms.jpg',
                 'assets/padel-action.jpg', 'assets/course-skyline.jpg', 'assets/hero-villa.jpg',
               ]}
             />

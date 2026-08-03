@@ -161,7 +161,7 @@ function RacquetsPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(PhotoGrid, {
-    images: ['assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg', 'assets/padel-skyline.jpg', 'assets/racquet-lounge.jpg', 'assets/tennis-player.jpg', 'assets/padel-player.jpg']
+    images: ['assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg', 'assets/pickleball.jpg', 'assets/padel-rally.jpg', 'assets/padel-skyline.jpg', 'assets/tennis-rally.jpg', 'assets/racquet-lounge.jpg', 'assets/tennis-player.jpg', 'assets/padel-player.jpg']
   }))));
 }
 window.RacquetsPage = RacquetsPage;

@@ -1055,6 +1055,23 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 .site-header-logo, .site-header-wordmark { flex: none; }
 .nav-link { white-space: nowrap; }
 
+/* Secondary destinations grouped into one stacked column (club 8/3) — keeps
+   Villas / In the News / Guest Information visible while taking one slot. */
+.nav-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+/* tighter than a standalone nav item so all three lines clear the 64px
+   scrolled header (the base .nav-link padding of 6px would overflow it) */
+.nav-stack .nav-link {
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  padding: 1px 0;
+}
+
 @media (max-width: 1300px) {
   .site-header-nav-desktop { gap: 26px; }
   .nav-link { letter-spacing: 0.1em; }

@@ -63,6 +63,10 @@ function Header({
   // Branding stays blue/yellow everywhere — no white logo variants (client decision 6/9).
   // The wordmark alone gets a white treatment over the hero for legibility.
   const wordmarkFilter = scrolled || !lightOnTop ? 'none' : 'brightness(0) invert(1)';
+
+  // The four primary destinations run across the bar; Villas / In the News /
+  // Guest Information are grouped into one stacked column so the nav reads
+  // cleaner without hiding anything (club 8/3).
   const navItems = [{
     id: 'golf',
     label: 'Golf'
@@ -73,6 +77,10 @@ function Header({
     id: 'location',
     label: 'Location'
   }, {
+    id: 'membership',
+    label: 'Membership'
+  }];
+  const navStack = [{
     id: 'villas',
     label: 'Villas',
     href: 'https://www.belgrovevillas.com/'
@@ -80,8 +88,8 @@ function Header({
     id: 'news',
     label: 'In the News'
   }, {
-    id: 'membership',
-    label: 'Membership'
+    id: 'guests',
+    label: 'Guest Information'
   }];
   const goTo = id => {
     setMenuOpen(false);
@@ -132,7 +140,19 @@ function Header({
     key: it.id,
     className: `nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
-  }, actionProps(() => goTo(it.id), 'link')), it.label)), /*#__PURE__*/React.createElement("a", _extends({
+  }, actionProps(() => goTo(it.id), 'link')), it.label)), /*#__PURE__*/React.createElement("div", {
+    className: "nav-stack"
+  }, navStack.map(it => it.href ? /*#__PURE__*/React.createElement("a", {
+    key: it.id,
+    className: "nav-link",
+    href: it.href,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, it.label) : /*#__PURE__*/React.createElement("a", _extends({
+    key: it.id,
+    className: `nav-link ${route === it.id ? 'is-active' : ''}`,
+    "aria-current": route === it.id ? 'page' : undefined
+  }, actionProps(() => goTo(it.id), 'link')), it.label))), /*#__PURE__*/React.createElement("a", _extends({
     className: "nav-link",
     style: {
       padding: '10px 20px',
@@ -165,7 +185,7 @@ function Header({
   }, [{
     id: 'home',
     label: 'Home'
-  }, ...navItems].map(it => it.href ? /*#__PURE__*/React.createElement("a", {
+  }, ...navItems, ...navStack].map(it => it.href ? /*#__PURE__*/React.createElement("a", {
     key: it.id,
     className: "mobile-nav-link",
     href: it.href,

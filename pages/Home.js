@@ -118,7 +118,7 @@ function HomePage({
     body: 'Championship golf without tee times, where exceptional conditioning and effortless access define the experience.',
     target: 'golf'
   }, {
-    img: 'assets/racquet-pillar.jpg',
+    img: 'assets/tennis-pillar.jpg',
     eyebrow: 'Racquets',
     title: 'Always in play.',
     body: 'Tennis, padel, and pickleball with instruction, clinics, leagues, and social play for every level.',
@@ -275,7 +275,7 @@ function HomePage({
     dark: true,
     title: "Where competition meets connection.",
     body: "Home to one of the area's few private club padel programs, the Racquet Club offers members another dynamic way to stay active, sharpen their skills, and connect throughout the year.",
-    lgImg: "assets/tennis-backhand.jpg",
+    lgImg: "assets/padel-action.jpg",
     ctaLabel: "Explore the Racquet Club",
     onCta: () => onNav('racquets')
   }))), /*#__PURE__*/React.createElement("section", {
@@ -303,7 +303,7 @@ function HomePage({
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(InstagramStrip, {
     handle: "@dutchmanspipeclub",
-    images: ['assets/hero-green.jpg', 'assets/tennis-serve.jpg', 'assets/hero-palms.jpg', 'assets/padel-action.jpg', 'assets/course-skyline.jpg', 'assets/hero-villa.jpg']
+    images: ['assets/hero-green.jpg', 'assets/tennis-rally.jpg', 'assets/hero-palms.jpg', 'assets/padel-action.jpg', 'assets/course-skyline.jpg', 'assets/hero-villa.jpg']
   })))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin",
     style: {

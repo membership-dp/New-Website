@@ -55,13 +55,19 @@ function Header({ route, onNav, lightOnTop = true }) {
   // The wordmark alone gets a white treatment over the hero for legibility.
   const wordmarkFilter = scrolled || !lightOnTop ? 'none' : 'brightness(0) invert(1)';
 
+  // The four primary destinations run across the bar; Villas / In the News /
+  // Guest Information are grouped into one stacked column so the nav reads
+  // cleaner without hiding anything (club 8/3).
   const navItems = [
     { id: 'golf', label: 'Golf' },
     { id: 'racquets', label: 'Racquets' },
     { id: 'location', label: 'Location' },
+    { id: 'membership', label: 'Membership' },
+  ];
+  const navStack = [
     { id: 'villas', label: 'Villas', href: 'https://www.belgrovevillas.com/' },
     { id: 'news', label: 'In the News' },
-    { id: 'membership', label: 'Membership' },
+    { id: 'guests', label: 'Guest Information' },
   ];
 
   const goTo = (id) => { setMenuOpen(false); onNav(id); };
@@ -95,6 +101,23 @@ function Header({ route, onNav, lightOnTop = true }) {
             </a>
           )
         ))}
+        {/* secondary items, stacked into a single column */}
+        <div className="nav-stack">
+          {navStack.map((it) => (
+            it.href ? (
+              <a key={it.id} className="nav-link" href={it.href} target="_blank" rel="noopener noreferrer">
+                {it.label}
+              </a>
+            ) : (
+              <a key={it.id}
+                 className={`nav-link ${route === it.id ? 'is-active' : ''}`}
+                 aria-current={route === it.id ? 'page' : undefined}
+                 {...actionProps(() => goTo(it.id), 'link')}>
+                {it.label}
+              </a>
+            )
+          ))}
+        </div>
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
            {...actionProps(() => goTo('login'))}>
@@ -126,7 +149,7 @@ function Header({ route, onNav, lightOnTop = true }) {
             aria-label="Menu"
           >
             <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-              {[{ id: 'home', label: 'Home' }, ...navItems].map((it) => (
+              {[{ id: 'home', label: 'Home' }, ...navItems, ...navStack].map((it) => (
                 it.href ? (
                   <a key={it.id} className="mobile-nav-link" href={it.href} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
                     {it.label}
