@@ -9,6 +9,9 @@ function Footer({
       label: 'Golf',
       id: 'golf'
     }, {
+      label: 'Instruction',
+      id: 'instruction'
+    }, {
       label: 'Racquet Sports',
       id: 'racquets'
     }, {

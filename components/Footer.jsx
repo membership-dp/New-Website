@@ -5,6 +5,7 @@ function Footer({ onNav }) {
       title: 'The Club',
       links: [
         { label: 'Golf', id: 'golf' },
+        { label: 'Instruction', id: 'instruction' },
         { label: 'Racquet Sports', id: 'racquets' },
         { label: 'Location', id: 'location' },
         { label: 'Guest Information', id: 'guests' },

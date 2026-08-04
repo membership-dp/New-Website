@@ -188,6 +188,8 @@ function GolfPage({
     title: "The pursuit of better golf.",
     body: ["Instruction at Dutchman's Pipe is led by nationally recognized professionals, including Golf Magazine Top 100 instructors, who bring decades of experience to a highly personalized coaching environment.", 'Private lessons, playing sessions, clinics, and performance training are all designed around the individual golfer.'],
     lgImg: "assets/instruction-coach.jpg",
+    ctaLabel: "Learn More",
+    onCta: () => onNav('instruction'),
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-bone"

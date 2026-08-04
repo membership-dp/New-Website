@@ -105,6 +105,8 @@ function GolfPage({ onNav }) {
             'Private lessons, playing sessions, clinics, and performance training are all designed around the individual golfer.',
           ]}
           lgImg="assets/instruction-coach.jpg"
+          ctaLabel="Learn More"
+          onCta={() => onNav('instruction')}
           motif="pipe"
         />
         </div>

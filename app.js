@@ -71,6 +71,8 @@ function App() {
     onNav: onNav
   }), route === 'guests' && /*#__PURE__*/React.createElement(GuestsPage, {
     onNav: onNav
+  }), route === 'instruction' && /*#__PURE__*/React.createElement(InstructionPage, {
+    onNav: onNav
   }), route === 'membership' && /*#__PURE__*/React.createElement(MembershipPage, {
     onNav: onNav
   }), route === 'admin' && /*#__PURE__*/React.createElement(AdminPage, {

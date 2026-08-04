@@ -46,6 +46,7 @@ function App() {
         {route === 'location' && <LocationPage onNav={onNav} />}
         {route === 'news' && <NewsPage onNav={onNav} />}
         {route === 'guests' && <GuestsPage onNav={onNav} />}
+        {route === 'instruction' && <InstructionPage onNav={onNav} />}
         {route === 'membership' && <MembershipPage onNav={onNav} />}
         {route === 'admin' && <AdminPage onNav={onNav} />}
       </main>
