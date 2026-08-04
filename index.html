@@ -8,10 +8,16 @@
   <!-- Warm the unpkg connection (React/ReactDOM UMD load from here) -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
+  <!-- Club brand type (Adobe Fonts). Kit bux1rla is the club's own web project
+       — the same one dutchmanspipeclub.com loads — and carries sweet-sans-pro
+       + freight-big-pro. NOTE: add this preview domain to the kit's allowed
+       domains in Adobe Fonts so it keeps serving. -->
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/bux1rla.css">
   <!-- LCP: the home hero poster paints first regardless of mode -->
   <link rel="preload" as="image" href="assets/home-hero.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="styles/colors_and_type.css?v=66">
-  <link rel="stylesheet" href="styles/site.css?v=66">
+  <link rel="stylesheet" href="styles/colors_and_type.css?v=67">
+  <link rel="stylesheet" href="styles/site.css?v=67">
 </head>
 <body>
   <div id="app"></div>
@@ -24,26 +30,26 @@
   <script defer src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 
   <!-- Shared components (compiled from components/*.jsx) -->
-  <script defer src="components/Reveal.js?v=66"></script>
-  <script defer src="components/Motion.js?v=66"></script>
-  <script defer src="components/Blocks.js?v=66"></script>
-  <script defer src="components/NewsStore.js?v=66"></script>
-  <script defer src="components/Header.js?v=66"></script>
-  <script defer src="components/Footer.js?v=66"></script>
-  <script defer src="components/Splash.js?v=66"></script>
+  <script defer src="components/Reveal.js?v=67"></script>
+  <script defer src="components/Motion.js?v=67"></script>
+  <script defer src="components/Blocks.js?v=67"></script>
+  <script defer src="components/NewsStore.js?v=67"></script>
+  <script defer src="components/Header.js?v=67"></script>
+  <script defer src="components/Footer.js?v=67"></script>
+  <script defer src="components/Splash.js?v=67"></script>
 
   <!-- Pages (compiled from pages/*.jsx) -->
-  <script defer src="pages/Home.js?v=66"></script>
-  <script defer src="pages/Golf.js?v=66"></script>
-  <script defer src="pages/Racquets.js?v=66"></script>
-  <script defer src="pages/Location.js?v=66"></script>
-  <script defer src="pages/News.js?v=66"></script>
-  <script defer src="pages/Guests.js?v=66"></script>
-  <script defer src="pages/Membership.js?v=66"></script>
-  <script defer src="pages/Admin.js?v=66"></script>
+  <script defer src="pages/Home.js?v=67"></script>
+  <script defer src="pages/Golf.js?v=67"></script>
+  <script defer src="pages/Racquets.js?v=67"></script>
+  <script defer src="pages/Location.js?v=67"></script>
+  <script defer src="pages/News.js?v=67"></script>
+  <script defer src="pages/Guests.js?v=67"></script>
+  <script defer src="pages/Membership.js?v=67"></script>
+  <script defer src="pages/Admin.js?v=67"></script>
 
   <!-- App shell + bootstrap (compiled from app.jsx) — runs last -->
-  <script defer src="app.js?v=66"></script>
+  <script defer src="app.js?v=67"></script>
 
   <style>
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
