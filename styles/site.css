@@ -1055,33 +1055,43 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 .site-header-logo, .site-header-wordmark { flex: none; }
 .nav-link { white-space: nowrap; }
 
-/* Secondary destinations grouped into one stacked column (club 8/3) — keeps
-   Villas / In the News / Guest Information visible while taking one slot. */
-.nav-stack {
+/* Secondary destinations (club 8/3): same single row as the primary links, but
+   set quieter and separated by a champagne hairline, so the eye reads two
+   groups rather than seven equal items. Reads as hierarchy, not as a stack. */
+.nav-secondary {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
+  align-items: center;
+  gap: 20px;
+  padding-left: 22px;
+  position: relative;
 }
-/* tighter than a standalone nav item so all three lines clear the 64px
-   scrolled header (the base .nav-link padding of 6px would overflow it) */
-.nav-stack .nav-link {
+.nav-secondary::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 1px; height: 15px;
+  background: var(--color-champagne);
+  opacity: 0.55;
+}
+.nav-secondary .nav-link {
   font-size: 11px;
-  line-height: 1.2;
-  letter-spacing: 0.14em;
-  padding: 1px 0;
+  letter-spacing: 0.16em;
+  opacity: 0.7;
+  transition: opacity 260ms var(--ease-club);
 }
+.nav-secondary .nav-link:hover,
+.nav-secondary .nav-link.is-active { opacity: 1; }
 
-@media (max-width: 1300px) {
+@media (max-width: 1340px) {
   .site-header-nav-desktop { gap: 26px; }
   .nav-link { letter-spacing: 0.1em; }
+  .nav-secondary { gap: 16px; padding-left: 18px; }
 }
-@media (max-width: 1160px) {
-  .site-header-nav-desktop { gap: 18px; font-size: 12px; }
-}
-/* Hand off to the hamburger before the row can wrap. Kept in its own query
-   (not the 960 layout block) so page layout doesn't shift at the same width. */
-@media (max-width: 1100px) {
+/* Hand off to the hamburger while the row still has real breathing room —
+   below this the wordmark and nav start crowding each other. Kept in its own
+   query (not the 960 layout block) so page layout doesn't shift with it. */
+@media (max-width: 1240px) {
   .site-header-nav-desktop { display: none; }
   .site-header-toggle {
     display: inline-flex;

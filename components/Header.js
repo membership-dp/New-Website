@@ -80,6 +80,7 @@ function Header({
     id: 'membership',
     label: 'Membership'
   }];
+  // `short` keeps the top bar tight; the drawer and footer use the full label.
   const navStack = [{
     id: 'villas',
     label: 'Villas',
@@ -89,7 +90,8 @@ function Header({
     label: 'In the News'
   }, {
     id: 'guests',
-    label: 'Guest Information'
+    label: 'Guest Information',
+    short: 'Guests'
   }];
   const goTo = id => {
     setMenuOpen(false);
@@ -141,18 +143,18 @@ function Header({
     className: `nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
   }, actionProps(() => goTo(it.id), 'link')), it.label)), /*#__PURE__*/React.createElement("div", {
-    className: "nav-stack"
+    className: "nav-secondary"
   }, navStack.map(it => it.href ? /*#__PURE__*/React.createElement("a", {
     key: it.id,
     className: "nav-link",
     href: it.href,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, it.label) : /*#__PURE__*/React.createElement("a", _extends({
+  }, it.short || it.label) : /*#__PURE__*/React.createElement("a", _extends({
     key: it.id,
     className: `nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
-  }, actionProps(() => goTo(it.id), 'link')), it.label))), /*#__PURE__*/React.createElement("a", _extends({
+  }, actionProps(() => goTo(it.id), 'link')), it.short || it.label))), /*#__PURE__*/React.createElement("a", _extends({
     className: "nav-link",
     style: {
       padding: '10px 20px',

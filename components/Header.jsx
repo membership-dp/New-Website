@@ -64,10 +64,11 @@ function Header({ route, onNav, lightOnTop = true }) {
     { id: 'location', label: 'Location' },
     { id: 'membership', label: 'Membership' },
   ];
+  // `short` keeps the top bar tight; the drawer and footer use the full label.
   const navStack = [
     { id: 'villas', label: 'Villas', href: 'https://www.belgrovevillas.com/' },
     { id: 'news', label: 'In the News' },
-    { id: 'guests', label: 'Guest Information' },
+    { id: 'guests', label: 'Guest Information', short: 'Guests' },
   ];
 
   const goTo = (id) => { setMenuOpen(false); onNav(id); };
@@ -101,19 +102,19 @@ function Header({ route, onNav, lightOnTop = true }) {
             </a>
           )
         ))}
-        {/* secondary items, stacked into a single column */}
-        <div className="nav-stack">
+        {/* secondary destinations — same row, quieter, behind a hairline */}
+        <div className="nav-secondary">
           {navStack.map((it) => (
             it.href ? (
               <a key={it.id} className="nav-link" href={it.href} target="_blank" rel="noopener noreferrer">
-                {it.label}
+                {it.short || it.label}
               </a>
             ) : (
               <a key={it.id}
                  className={`nav-link ${route === it.id ? 'is-active' : ''}`}
                  aria-current={route === it.id ? 'page' : undefined}
                  {...actionProps(() => goTo(it.id), 'link')}>
-                {it.label}
+                {it.short || it.label}
               </a>
             )
           ))}
