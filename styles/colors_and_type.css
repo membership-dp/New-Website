@@ -56,7 +56,12 @@
   --color-error:           #8B3A2F;
 
   /* ---------- TYPE FACES ---------- */
-  --font-display:  'Cormorant Garamond', 'Artifex Hand CF', 'Adobe Caslon Pro', Georgia, serif;
+  /* Display face is Freight Big Pro — the club's headline serif, from the same
+     Adobe kit as the body face (bux1rla). Replaces the Cormorant Garamond
+     placeholder chosen at kickoff. The kit ships 300/400/600 + italics; the
+     .display-* classes ask for 500, which matches to Book (400) — the right
+     weight for a high-contrast display serif at hero sizes. */
+  --font-display:  'freight-big-pro', 'Cormorant Garamond', 'Adobe Caslon Pro', Georgia, serif;
   /* Body face is Sweet Sans Pro (club 7/31), served from the club's own Adobe
      Fonts kit (bux1rla) — see index.html. HEADS UP: that kit currently ships
      only weights 600 + 800, so 400/500 text synthesises to 600. Adding the
@@ -65,7 +70,7 @@
   --font-mono:     'SFMono-Regular', ui-monospace, 'Menlo', 'Consolas', monospace;
 
   /* ---------- TYPE SCALE (px / line-height / weight / tracking) ---------- */
-  /* Display — Cormorant Garamond, very tight tracking */
+  /* Display — Freight Big Pro, very tight tracking */
   --type-display-xl:    700 88px/1.05 var(--font-display); /* hero */
   --type-display-lg:    700 64px/1.08 var(--font-display);
   --type-display-md:    600 48px/1.12 var(--font-display);
