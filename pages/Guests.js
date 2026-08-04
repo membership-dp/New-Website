@@ -75,16 +75,16 @@ function GuestsPage({
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
-    className: "eyebrow-rule",
+  }, /*#__PURE__*/React.createElement(Reveal, {
     style: {
-      marginBottom: 24
+      textAlign: 'center'
     }
-  }, "Guest Registration"), /*#__PURE__*/React.createElement("h2", {
+  }, /*#__PURE__*/React.createElement("h2", {
     className: "display-lg",
     style: {
       color: 'var(--color-club-navy)',
-      maxWidth: 900
+      maxWidth: 900,
+      marginInline: 'auto'
     }
   }, "Before You Arrive"), /*#__PURE__*/React.createElement("span", {
     className: "champagne-rule"
@@ -93,7 +93,8 @@ function GuestsPage({
     style: {
       color: 'var(--color-navy-70)',
       marginTop: 32,
-      maxWidth: 900,
+      maxWidth: 820,
+      marginInline: 'auto',
       fontSize: 19,
       lineHeight: 1.7
     }

@@ -33,15 +33,16 @@ function GuestsPage({ onNav }) {
       {/* GUEST REGISTRATION — feature across the top, then the notes beneath */}
       <section className="section surface-white">
         <div className="container">
-          <Reveal>
-            <div className="eyebrow-rule" style={{ marginBottom: 24 }}>Guest Registration</div>
-            <h2 className="display-lg" style={{ color: 'var(--color-club-navy)', maxWidth: 900 }}>
+          {/* club 8/4: eyebrow dropped, heading + intro centred. The champagne
+              rule already auto-centres, so it now sits under the heading. */}
+          <Reveal style={{ textAlign: 'center' }}>
+            <h2 className="display-lg" style={{ color: 'var(--color-club-navy)', maxWidth: 900, marginInline: 'auto' }}>
               Before You Arrive
             </h2>
             <span className="champagne-rule" />
             <p className="body-text" style={{
               color: 'var(--color-navy-70)',
-              marginTop: 32, maxWidth: 900, fontSize: 19, lineHeight: 1.7,
+              marginTop: 32, maxWidth: 820, marginInline: 'auto', fontSize: 19, lineHeight: 1.7,
             }}>
               We look forward to welcoming you to Dutchman's Pipe. Guests are welcomed
               by invitation of a current Member of the Club and should be registered
