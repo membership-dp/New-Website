@@ -2,6 +2,16 @@
 // LayeredCallout / InstagramStrip live in components/Blocks.jsx (shared).
 
 function HomePage({ onNav }) {
+  // Hero CTA drops the reader into "No. I — The Club" rather than leaving the
+  // page (club 8/3). Offset clears the fixed header.
+  const scrollToClub = () => {
+    const el = document.getElementById('the-club');
+    if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - 72;
+    window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+  };
+
   return (
     <div className="page-shell">
       {/* HERO — static high-res still (club 6/15: photo quality felt too soft
@@ -24,11 +34,10 @@ function HomePage({ onNav }) {
                 Freedom to play, whenever you please.
               </h1>
             </div>
-            {/* club 7/31: the "Request Membership" button is gone; the remaining
-                link reads "Membership Pathways" and goes to the Membership page. */}
+            {/* club 8/3: reads "Explore the Club" and anchors down to No. I */}
             <div className="hero-stagger" style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 8 }}>
-              <a {...actionProps(() => onNav('membership'))} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
-                Membership Pathways
+              <a {...actionProps(scrollToClub)} className="arrow-link arrow-link-bob" style={{ color: 'rgba(245,241,232,0.8)', borderColor: 'rgba(245,241,232,0.4)' }}>
+                Explore the Club
                 <img src="assets/arrow-link.png" style={{ filter: 'brightness(0) invert(1)' }} alt="" />
               </a>
             </div>
@@ -65,8 +74,8 @@ function HomePage({ onNav }) {
         </div>
       </section>
 
-      {/* THE PILLARS — 3-up amenity grid */}
-      <section className="section surface-white">
+      {/* THE PILLARS — 3-up amenity grid (hero CTA anchors here) */}
+      <section className="section surface-white" id="the-club">
         <div className="container">
           <Reveal>
             <div className="folio">No. I — The Club</div>

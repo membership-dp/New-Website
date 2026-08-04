@@ -14,12 +14,12 @@ function GolfPage({
     name: 'Next Gen.',
     tag: 'Under 40',
     body: 'Designed for members under 40 seeking a long-term connection to Dutchman’s Pipe. Next Gen. Membership offers Full Golf privileges today and a clear path toward lifelong membership.',
-    audience: 'Reserved for members under 40.'
+    audience: 'Reserved for members under 40. Limited opportunities available.'
   }, {
     name: 'Visiting',
     tag: 'Non-Resident',
     body: 'Created for those who spend only part of the year in Palm Beach. Visiting Membership offers access to golf, practice facilities, and club amenities tailored to a seasonal lifestyle.',
-    audience: 'For seasonal residents and frequent visitors.'
+    audience: 'For seasonal residents and frequent visitors. Limited memberships available.'
   }, {
     name: 'Corporate',
     tag: 'Executive',

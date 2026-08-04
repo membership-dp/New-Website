@@ -107,7 +107,7 @@ function RacquetsPage({ onNav }) {
             images={[
               'assets/padel-court.jpg', 'assets/tennis-court.jpg', 'assets/padel-volley.jpg',
               'assets/pickleball.jpg', 'assets/padel-rally.jpg',
-              'assets/padel-skyline.jpg', 'assets/tennis-rally.jpg',
+              'assets/racquet-courts-aerial.jpg', 'assets/tennis-rally.jpg',
               'assets/racquet-lounge.jpg', 'assets/tennis-player.jpg', 'assets/padel-player.jpg',
             ]}
           />

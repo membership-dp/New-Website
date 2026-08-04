@@ -938,8 +938,12 @@ body::before {
   display: flex;
   align-items: center;
   padding: 0 var(--gutter);
-  transition: background 320ms var(--ease-club),
-              border-color 320ms var(--ease-club),
+  /* The bar is filled from the first paint (club 8/3): club navy at the top of
+     the page, easing to the bone bar once scrolled — never transparent. */
+  background: var(--color-club-navy);
+  border-bottom: 1px solid transparent;
+  transition: background 420ms var(--ease-club),
+              border-color 420ms var(--ease-club),
               backdrop-filter 320ms var(--ease-club),
               height 360ms var(--ease-club),
               transform 460ms var(--ease-club);

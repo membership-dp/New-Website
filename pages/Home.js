@@ -5,6 +5,18 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 function HomePage({
   onNav
 }) {
+  // Hero CTA drops the reader into "No. I — The Club" rather than leaving the
+  // page (club 8/3). Offset clears the fixed header.
+  const scrollToClub = () => {
+    const el = document.getElementById('the-club');
+    if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - 72;
+    window.scrollTo({
+      top: y,
+      behavior: reduce ? 'auto' : 'smooth'
+    });
+  };
   return /*#__PURE__*/React.createElement("div", {
     className: "page-shell"
   }, /*#__PURE__*/React.createElement(ZoomHero, {
@@ -48,13 +60,13 @@ function HomePage({
       gap: 16,
       paddingBottom: 8
     }
-  }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => onNav('membership')), {
+  }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(scrollToClub), {
     className: "arrow-link arrow-link-bob",
     style: {
       color: 'rgba(245,241,232,0.8)',
       borderColor: 'rgba(245,241,232,0.4)'
     }
-  }), "Membership Pathways", /*#__PURE__*/React.createElement("img", {
+  }), "Explore the Club", /*#__PURE__*/React.createElement("img", {
     src: "assets/arrow-link.png",
     style: {
       filter: 'brightness(0) invert(1)'
@@ -95,7 +107,8 @@ function HomePage({
       margin: 0
     }
   }, "A private club built around exceptional golf, effortless access, and a highly personalized member experience in the heart of West Palm Beach."))))), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-white"
+    className: "section surface-white",
+    id: "the-club"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
