@@ -23,13 +23,6 @@ function InstructionPage({ onNav }) {
     },
   ];
 
-  const facilities = [
-    '310-Yard Practice Tee',
-    'Two-Acre Short Game Area',
-    'Multiple Putting Greens',
-    'TrackMan Technology',
-  ];
-
   return (
     <div className="page-shell">
       {/* HERO — parallax drift */}
@@ -49,23 +42,8 @@ function InstructionPage({ onNav }) {
         </div>
       </section>
 
-      {/* LEDE — centred intro */}
-      <section className="section-tight surface-bone-95">
-        <Reveal style={{ textAlign: 'center' }}>
-          <div className="container">
-            <p className="body-text" style={{
-              color: 'var(--color-navy-70)',
-              maxWidth: 860, marginInline: 'auto', fontSize: 19, lineHeight: 1.7,
-            }}>
-              Instruction at Dutchman's Pipe is designed around the individual. Led by
-              nationally recognized coaches and supported by exceptional practice
-              facilities, our instructional program combines personalized coaching,
-              modern technology, and proven teaching methods to help every member
-              achieve their goals.
-            </p>
-          </div>
-        </Reveal>
-      </section>
+      {/* (club 8/4: the beige lede band was removed — the page goes straight
+          from the hero into the team, whose intro now carries that copy.) */}
 
       {/* THE TEAM */}
       <section className="section surface-white">
@@ -75,12 +53,12 @@ function InstructionPage({ onNav }) {
             <h2 className="display-lg" style={{ color: 'var(--color-club-navy)', maxWidth: 900 }}>
               Meet our instruction team.
             </h2>
-            <p className="body-text" style={{ color: 'var(--color-navy-70)', marginTop: 28, maxWidth: 780 }}>
-              Dutchman's Pipe brings together some of the most respected names in golf
-              instruction, offering members access to world-class coaching across every
-              aspect of the game. Through private lessons, specialty clinics, and
-              exclusive member programming, our team delivers an exceptional
-              instructional experience tailored to every level of golfer.
+            <p className="body-text" style={{ color: 'var(--color-navy-70)', marginTop: 28, maxWidth: 820 }}>
+              At Dutchman's Pipe, instruction is designed around the individual.
+              Supported by exceptional practice facilities, modern technology, and
+              proven teaching methods, our nationally recognized coaches provide
+              personalized guidance tailored to every member's goals. Meet the team
+              behind one of the country's premier instructional programs.
             </p>
           </Reveal>
 
@@ -88,7 +66,9 @@ function InstructionPage({ onNav }) {
             {coaches.map((c, i) => (
               <Reveal key={c.name} delay={i * 120} style={{ height: '100%' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  <div className="photo-frame" style={{ aspectRatio: '4/5' }}>
+                  {/* 3/4 matches the club's re-cut headshots exactly (all 600×800),
+                      so the three portraits are shown uncropped (club 8/4). */}
+                  <div className="photo-frame" style={{ aspectRatio: '3/4' }}>
                     <Parallax speed={0.08} className="img-drift">
                       <img src={c.img} alt={`${c.name}, ${c.role}`} loading="lazy" decoding="async" />
                     </Parallax>
@@ -108,7 +88,7 @@ function InstructionPage({ onNav }) {
       </section>
 
       {/* PRACTICE FACILITIES — satin chapter */}
-      <section className="section surface-satin" style={{ paddingBottom: 0 }}>
+      <section className="section surface-satin">
         <Parallax speed={-0.25} className="satin-sheen" />
         <div className="satin-content">
           <div className="container">
@@ -118,44 +98,24 @@ function InstructionPage({ onNav }) {
             flipped dark
             eyebrow="Practice Facilities"
             title="Designed for performance."
-            body="Every lesson is supported by practice facilities purposefully designed to develop every aspect of the game. Members enjoy access to a 310-yard Practice Tee, an expansive two-acre short game area, multiple putting greens, and TrackMan technology, creating an environment where purposeful practice leads to lasting improvement."
+            body="Beyond the course, members enjoy exceptional practice facilities designed to develop every aspect of their game. The golf campus features a 315-yard driving range with four target greens and a PGA Tour-inspired wedge matrix, a 12,000-square-foot putting green, and a two-acre short game complex with multiple greens and bunkers for situational practice. Paired with personalized instruction and advanced technology, every practice session is designed for meaningful improvement."
             lgImg="assets/instruction-practice.jpg"
             motif="pipe"
           />
         </div>
       </section>
 
-      {/* FACILITY DETAIL STRIP */}
-      <section className="section-tight surface-bone-95">
-        <Reveal>
-          <div className="container">
-            <div className="four-up-strip">
-              {facilities.map((f) => (
-                <div key={f} className="four-up-cell" style={{ justifyContent: 'center' }}>
-                  <div style={{
-                    font: '500 15px/1.4 var(--font-body)',
-                    color: 'var(--color-club-navy)',
-                    letterSpacing: '0.04em',
-                  }}>
-                    {f}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* PLAYER DEVELOPMENT */}
+      {/* FUTURE VISION — Golf Performance Center (club 8/4, replaces the old
+          Player Development chapter; rendering supplied by the club) */}
       <section className="section surface-white">
         <div className="container">
-          <Reveal><div className="folio">No. III — Player Development</div></Reveal>
+          <Reveal><div className="folio">No. III — Future Vision</div></Reveal>
         </div>
         <LayeredCallout
-          eyebrow="Personalized Player Development"
-          title="No two golfers are the same."
-          body="No two golfers are the same, and neither is our approach to instruction. Whether your focus is improving consistency, sharpening your short game, or preparing for tournament play, every coaching experience is tailored to your individual goals through private instruction, on-course coaching, performance analysis, and specialty clinics."
-          lgImg="assets/instruction-development.jpg"
+          eyebrow="Future Vision"
+          title="The Golf Performance Center."
+          body="Designed as the next evolution of the Club's instructional program, the future Golf Performance Center will feature two dedicated instructional bays and inviting indoor-outdoor gathering spaces, creating a vibrant community hub where members can learn, practice, connect, and enjoy the game year-round."
+          lgImg="assets/performance-center.jpg"
           motif="grass"
         />
       </section>

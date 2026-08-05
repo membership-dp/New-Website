@@ -21,7 +21,6 @@ function InstructionPage({
     role: 'Golf Ambassador',
     body: "One of the most respected coaches in the game, Chris Como is recognized as one of Golf Digest's 50 Best Teachers in America and has guided major champions and some of the world's top players throughout his career. As Golf Ambassador, he brings his innovative approach to performance and player development to Dutchman's Pipe through exclusive instructional programming and member experiences."
   }];
-  const facilities = ['310-Yard Practice Tee', 'Two-Acre Short Game Area', 'Multiple Putting Greens', 'TrackMan Technology'];
   return /*#__PURE__*/React.createElement("div", {
     className: "page-shell"
   }, /*#__PURE__*/React.createElement("section", {
@@ -74,23 +73,6 @@ function InstructionPage({
       color: 'var(--color-champagne-bright)'
     }
   }, "World-class expertise.")))), /*#__PURE__*/React.createElement("section", {
-    className: "section-tight surface-bone-95"
-  }, /*#__PURE__*/React.createElement(Reveal, {
-    style: {
-      textAlign: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "body-text",
-    style: {
-      color: 'var(--color-navy-70)',
-      maxWidth: 860,
-      marginInline: 'auto',
-      fontSize: 19,
-      lineHeight: 1.7
-    }
-  }, "Instruction at Dutchman's Pipe is designed around the individual. Led by nationally recognized coaches and supported by exceptional practice facilities, our instructional program combines personalized coaching, modern technology, and proven teaching methods to help every member achieve their goals.")))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -107,9 +89,9 @@ function InstructionPage({
     style: {
       color: 'var(--color-navy-70)',
       marginTop: 28,
-      maxWidth: 780
+      maxWidth: 820
     }
-  }, "Dutchman's Pipe brings together some of the most respected names in golf instruction, offering members access to world-class coaching across every aspect of the game. Through private lessons, specialty clinics, and exclusive member programming, our team delivers an exceptional instructional experience tailored to every level of golfer.")), /*#__PURE__*/React.createElement("div", {
+  }, "At Dutchman's Pipe, instruction is designed around the individual. Supported by exceptional practice facilities, modern technology, and proven teaching methods, our nationally recognized coaches provide personalized guidance tailored to every member's goals. Meet the team behind one of the country's premier instructional programs.")), /*#__PURE__*/React.createElement("div", {
     className: "three-up",
     style: {
       marginTop: 88
@@ -129,7 +111,7 @@ function InstructionPage({
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo-frame",
     style: {
-      aspectRatio: '4/5'
+      aspectRatio: '3/4'
     }
   }, /*#__PURE__*/React.createElement(Parallax, {
     speed: 0.08,
@@ -159,10 +141,7 @@ function InstructionPage({
       fontSize: 15
     }
   }, c.body))))))), /*#__PURE__*/React.createElement("section", {
-    className: "section surface-satin",
-    style: {
-      paddingBottom: 0
-    }
+    className: "section surface-satin"
   }, /*#__PURE__*/React.createElement(Parallax, {
     speed: -0.25,
     className: "satin-sheen"
@@ -180,38 +159,20 @@ function InstructionPage({
     dark: true,
     eyebrow: "Practice Facilities",
     title: "Designed for performance.",
-    body: "Every lesson is supported by practice facilities purposefully designed to develop every aspect of the game. Members enjoy access to a 310-yard Practice Tee, an expansive two-acre short game area, multiple putting greens, and TrackMan technology, creating an environment where purposeful practice leads to lasting improvement.",
+    body: "Beyond the course, members enjoy exceptional practice facilities designed to develop every aspect of their game. The golf campus features a 315-yard driving range with four target greens and a PGA Tour-inspired wedge matrix, a 12,000-square-foot putting green, and a two-acre short game complex with multiple greens and bunkers for situational practice. Paired with personalized instruction and advanced technology, every practice session is designed for meaningful improvement.",
     lgImg: "assets/instruction-practice.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
-    className: "section-tight surface-bone-95"
-  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "four-up-strip"
-  }, facilities.map(f => /*#__PURE__*/React.createElement("div", {
-    key: f,
-    className: "four-up-cell",
-    style: {
-      justifyContent: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      font: '500 15px/1.4 var(--font-body)',
-      color: 'var(--color-club-navy)',
-      letterSpacing: '0.04em'
-    }
-  }, f))))))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
     className: "folio"
-  }, "No. III \u2014 Player Development"))), /*#__PURE__*/React.createElement(LayeredCallout, {
-    eyebrow: "Personalized Player Development",
-    title: "No two golfers are the same.",
-    body: "No two golfers are the same, and neither is our approach to instruction. Whether your focus is improving consistency, sharpening your short game, or preparing for tournament play, every coaching experience is tailored to your individual goals through private instruction, on-course coaching, performance analysis, and specialty clinics.",
-    lgImg: "assets/instruction-development.jpg",
+  }, "No. III \u2014 Future Vision"))), /*#__PURE__*/React.createElement(LayeredCallout, {
+    eyebrow: "Future Vision",
+    title: "The Golf Performance Center.",
+    body: "Designed as the next evolution of the Club's instructional program, the future Golf Performance Center will feature two dedicated instructional bays and inviting indoor-outdoor gathering spaces, creating a vibrant community hub where members can learn, practice, connect, and enjoy the game year-round.",
+    lgImg: "assets/performance-center.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "full-bleed-quote",
