@@ -19,7 +19,7 @@ function GolfPage({
     name: 'Visiting',
     tag: 'Non-Resident',
     body: 'Created for those who spend only part of the year in Palm Beach. Visiting Membership offers access to golf, practice facilities, and club amenities tailored to a seasonal lifestyle.',
-    audience: 'For seasonal residents and frequent visitors. Limited memberships available.'
+    audience: 'Limited memberships available.'
   }, {
     name: 'Corporate',
     tag: 'Executive',

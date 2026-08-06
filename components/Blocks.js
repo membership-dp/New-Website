@@ -501,7 +501,7 @@ const DP_TIERS = [{
   name: 'Visiting',
   tag: 'Non-Resident',
   body: 'Tailored for those who spend only part of the year in Palm Beach. Visiting Membership is available exclusively to individuals who do not reside in Palm Beach, Broward, or Martin Counties and provides access to golf, practice facilities, and club amenities during time spent in residence.',
-  audience: 'Members enjoy up to 30 rounds annually, with a pathway to Full Golf Membership should their lifestyle evolve. Limited memberships available.'
+  audience: 'Limited memberships available.'
 }, {
   name: 'Corporate',
   tag: 'Executive',
