@@ -21,6 +21,25 @@ function InstructionPage({ onNav }) {
       role: 'Golf Ambassador',
       body: "One of the most respected coaches in the game, Chris Como is recognized as one of Golf Digest's 50 Best Teachers in America and has guided major champions and some of the world's top players throughout his career. As Golf Ambassador, he brings his innovative approach to performance and player development to Dutchman's Pipe through exclusive instructional programming and member experiences.",
     },
+    // Added 8/5 after Shannon's review — appended in the order Madison listed.
+    {
+      img: 'assets/coach-cain.jpg',
+      name: 'Matt Cain',
+      role: 'Director of Golf',
+      body: "Matt Cain brings experience from some of the country's most respected private clubs, including Yellowstone Club, Victoria National, and Spanish Oaks. As Director of Golf, he is committed to creating exceptional member experiences while fostering a welcoming culture where personalized service, instruction, and the traditions of the game come together.",
+    },
+    {
+      img: 'assets/coach-carter.jpg',
+      name: 'Mark Carter',
+      role: 'Head Golf Professional & Director of Club Fitting',
+      body: "Mark Carter combines elite custom fitting expertise with a passion for player development. After leading TaylorMade Golf's experiential and Tour fitting programs, he brings industry-leading equipment knowledge and a personalized approach to help members maximize performance through precision club fitting and instruction.",
+    },
+    {
+      img: 'assets/coach-rowles.jpg',
+      name: 'Terry Rowles',
+      role: 'Performance Coach',
+      body: 'A GOLF Magazine Top 100 Teacher and Golf Digest Top 50 Instructor, Terry Rowles has spent more than three decades coaching tour professionals, elite amateurs, and recreational golfers. His individualized, movement-based teaching philosophy simplifies the game and helps players build lasting confidence, consistency, and performance.',
+    },
   ];
 
   return (
@@ -62,9 +81,11 @@ function InstructionPage({ onNav }) {
             </p>
           </Reveal>
 
+          {/* delay staggers per row (i % 3), so the second row of coaches
+              doesn't sit waiting on the first to finish revealing */}
           <div className="three-up" style={{ marginTop: 88 }}>
             {coaches.map((c, i) => (
-              <Reveal key={c.name} delay={i * 120} style={{ height: '100%' }}>
+              <Reveal key={c.name} delay={(i % 3) * 120} style={{ height: '100%' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                   {/* 3/4 matches the club's re-cut headshots exactly (all 600×800),
                       so the three portraits are shown uncropped (club 8/4). */}
