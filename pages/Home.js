@@ -212,7 +212,7 @@ function HomePage({
       zIndex: 0
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/hero-fairway.jpg",
+    src: "assets/atmosphere.jpg",
     alt: "",
     loading: "lazy",
     decoding: "async",

@@ -119,7 +119,7 @@ function HomePage({ onNav }) {
       {/* SIGNATURE LINE — full-bleed editorial quote, drifting background */}
       <section className="full-bleed-quote" style={{ overflow: 'hidden' }}>
         <Parallax speed={0.22} style={{ position: 'absolute', inset: '-11% 0', zIndex: 0 }}>
-          <img src="assets/hero-fairway.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="assets/atmosphere.jpg" alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </Parallax>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(rgba(15,25,40,0.45), rgba(15,25,40,0.7))' }} />
         <Parallax speed={-0.1} style={{ position: 'relative', zIndex: 2, width: '100%' }}>

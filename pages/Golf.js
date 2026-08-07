@@ -197,7 +197,7 @@ function GolfPage({
     eyebrow: "Club Fitting & Customization",
     title: "Performance optimization. Not retail fitting.",
     body: ['Our club fitting philosophy is entirely brand agnostic. Equipment decisions are driven by performance data, not manufacturer loyalty.', 'Using advanced fitting technology and personalized analysis, every club is optimized to complement the individual golfer and elevate their performance.'],
-    lgImg: "assets/clubfitting-bags.jpg",
+    lgImg: "assets/clubfitting-station.jpg",
     motif: "grass"
   })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white",
