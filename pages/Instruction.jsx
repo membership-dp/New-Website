@@ -127,11 +127,30 @@ function InstructionPage({ onNav }) {
         </div>
       </section>
 
+      {/* PERFORMANCE TRAINING — added at Madison's request (8/18); placed
+          directly above Future Vision as she specified. Body copy is hers,
+          verbatim. Eyebrow is her section name; the title is taken from her
+          own wording ("Fitness Center") to match the chapter pattern rather
+          than introduce new copy. */}
+      <section className="section surface-bone">
+        <div className="container">
+          <Reveal><div className="folio">No. III — Performance Training</div></Reveal>
+        </div>
+        <LayeredCallout
+          flipped
+          eyebrow="Performance Training"
+          title="The Fitness Center."
+          body="Our holistic approach to performance extends into the Fitness Center, where mobility, strength, stability, and functional movement complement golf instruction. By connecting physical performance with the golf swing, members can move more efficiently, build greater body awareness, and support their performance on the course."
+          lgImg="assets/performance-training.jpg"
+          motif="pipe"
+        />
+      </section>
+
       {/* FUTURE VISION — Golf Performance Center (club 8/4, replaces the old
           Player Development chapter; rendering supplied by the club) */}
       <section className="section surface-white">
         <div className="container">
-          <Reveal><div className="folio">No. III — Future Vision</div></Reveal>
+          <Reveal><div className="folio">No. IV — Future Vision</div></Reveal>
         </div>
         <LayeredCallout
           eyebrow="Future Vision"

@@ -182,12 +182,25 @@ function InstructionPage({
     lgImg: "assets/instruction-practice.jpg",
     motif: "pipe"
   }))), /*#__PURE__*/React.createElement("section", {
+    className: "section surface-bone"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
+    className: "folio"
+  }, "No. III \u2014 Performance Training"))), /*#__PURE__*/React.createElement(LayeredCallout, {
+    flipped: true,
+    eyebrow: "Performance Training",
+    title: "The Fitness Center.",
+    body: "Our holistic approach to performance extends into the Fitness Center, where mobility, strength, stability, and functional movement complement golf instruction. By connecting physical performance with the golf swing, members can move more efficiently, build greater body awareness, and support their performance on the course.",
+    lgImg: "assets/performance-training.jpg",
+    motif: "pipe"
+  })), /*#__PURE__*/React.createElement("section", {
     className: "section surface-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement("div", {
     className: "folio"
-  }, "No. III \u2014 Future Vision"))), /*#__PURE__*/React.createElement(LayeredCallout, {
+  }, "No. IV \u2014 Future Vision"))), /*#__PURE__*/React.createElement(LayeredCallout, {
     eyebrow: "Future Vision",
     title: "The Golf Performance Center.",
     body: "Designed as the next evolution of the Club's instructional program, the future Golf Performance Center will feature two dedicated instructional bays and inviting indoor-outdoor gathering spaces, creating a vibrant community hub where members can learn, practice, connect, and enjoy the game year-round.",
