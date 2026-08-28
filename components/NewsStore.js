@@ -18,7 +18,16 @@ const DP_NEWS_DEFAULTS = {
     excerpt: "Forbes examines the group behind a new generation of South Florida private clubs — with Dutchman's Pipe among them.",
     url: 'https://www.forbes.com/sites/erikmatuszewski/2025/10/11/how-the-witkoff-group-built-south-floridas-new-breed-of-private-clubs/'
   },
-  articles: [{
+  articles: [
+  // Added 8/27 at Madison's request — AOL/Athlon Sports, 23 Aug 2026.
+  {
+    img: 'assets/course-fountain-aerial.jpg',
+    tag: 'AOL',
+    date: 'Aug 2026',
+    title: 'Rare golf access can open doors for golf’s next generation.',
+    excerpt: '',
+    url: 'https://www.aol.com/articles/rare-golf-access-open-doors-005225000.html?guccounter=1'
+  }, {
     img: 'assets/golf-island.jpg',
     tag: 'The Golf Wire',
     date: 'Jul 2026',
@@ -54,7 +63,7 @@ const DP_NEWS_DEFAULTS = {
     excerpt: '',
     url: 'https://www.oftmw.com/post/inside-dutchman-s-pipe-the-ultra-private-jack-nicklaus-club-bringing-no-tee-time-golf-to-the-heart-of-west-palm-beach/'
   }, {
-    img: 'assets/hero-clubhouse.jpg',
+    img: 'assets/clubhouse-tacos.jpg',
     tag: 'GOLF',
     date: 'Jun 2026',
     title: 'Clubhouse eats.',
@@ -103,7 +112,7 @@ const DP_NEWS_DEFAULTS = {
     excerpt: '',
     url: 'https://frontofficesports.com/what-do-liv-golfs-team-gms-do-wear-a-lot-of-hats/'
   }, {
-    img: 'assets/hero-villa.jpg',
+    img: 'assets/jet-arrival.jpg',
     tag: 'Golf Pass',
     date: 'Nov 2025',
     title: 'The amenities arms race.',
@@ -138,7 +147,7 @@ const DP_NEWS_DEFAULTS = {
     excerpt: '',
     url: ''
   }, {
-    img: 'assets/course-skyline.jpg',
+    img: 'assets/downtown-plaza.jpg',
     tag: 'New York Post',
     date: 'Mar 2025',
     title: "West Palm Beach's luxury growth — Dutchman's Pipe spotlight.",
@@ -159,7 +168,7 @@ const DP_NEWS_DEFAULTS = {
     excerpt: '',
     url: ''
   }, {
-    img: 'assets/hero-clubhouse.jpg',
+    img: 'assets/course-golden-hour.jpg',
     tag: 'Score Golf Magazine',
     date: 'Mar 2025',
     title: "A Dutchman's Pipe mention timed to the Cognizant Classic.",
@@ -169,12 +178,15 @@ const DP_NEWS_DEFAULTS = {
 };
 
 // The photo library the Admin image pickers offer (current site assets).
-const DP_NEWS_IMAGES = ['assets/course-dusk.jpg', 'assets/golf-island.jpg', 'assets/palmbeach-aerial.jpg', 'assets/hero-green.jpg', 'assets/hero-fairway.jpg', 'assets/hero-sunset.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/course-skyline.jpg', 'assets/hero-putting.jpg', 'assets/hero-clubhouse.jpg', 'assets/hero-villa.jpg', 'assets/hero-palms.jpg', 'assets/instruction-coach.jpg', 'assets/practice-cart.jpg', 'assets/clubfitting-bags.jpg', 'assets/padel-player.jpg', 'assets/tennis-player.jpg', 'assets/tennis-rally.jpg', 'assets/pickleball.jpg'];
+const DP_NEWS_IMAGES = ['assets/course-dusk.jpg', 'assets/golf-island.jpg', 'assets/palmbeach-aerial.jpg', 'assets/hero-green.jpg', 'assets/hero-fairway.jpg', 'assets/hero-sunset.jpg', 'assets/golf-aerial.jpg', 'assets/golf-green.jpg', 'assets/course-skyline.jpg', 'assets/hero-putting.jpg', 'assets/hero-clubhouse.jpg', 'assets/hero-villa.jpg', 'assets/hero-palms.jpg', 'assets/instruction-coach.jpg', 'assets/practice-cart.jpg', 'assets/clubfitting-bags.jpg', 'assets/padel-player.jpg', 'assets/tennis-player.jpg', 'assets/tennis-rally.jpg', 'assets/pickleball.jpg',
+// added 8/27 with the news cover refresh
+'assets/course-fountain-aerial.jpg', 'assets/clubhouse-tacos.jpg', 'assets/course-golden-hour.jpg', 'assets/jet-arrival.jpg', 'assets/downtown-plaza.jpg'];
 window.NewsStore = {
-  // v3 — two placements added 7/31 (The Golf Wire, Yahoo! Sports). Bumping the
-  // key makes the new defaults win over anything saved under v2 in a browser
-  // (wireframe edits are per-browser; production moves this to a database).
-  KEY: 'dp-news-v3',
+  // v4 — AOL placement added 8/27, plus four replacement covers (clubhouse
+  // eats, Cognizant Classic, amenities arms race, WPB luxury growth). Bumping
+  // the key makes the new defaults win over anything saved under v3 in a
+  // browser (wireframe edits are per-browser; production moves this to a database).
+  KEY: 'dp-news-v4',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
   // stamp a stable per-article id so the Admin editor can key rows by identity
