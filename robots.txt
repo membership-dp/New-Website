@@ -1,0 +1,8 @@
+# Dutchman's Pipe Club
+User-agent: *
+Allow: /
+
+# The News editor is not content and should never be indexed.
+Disallow: /admin
+
+Sitemap: https://www.dutchmanspipeclub.com/sitemap.xml
