@@ -37,7 +37,14 @@ function MembershipPage({ onNav }) {
       const res = await fetch(INQUIRY_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...fields, _subject: "Membership Inquiry — Dutchman's Pipe Club" }),
+        body: JSON.stringify({
+          ...fields,
+          // _subject / _replyto are honoured by Formspree and most form
+          // services: the notification lands with a useful subject line, and
+          // hitting Reply goes to the prospective member, not the robot.
+          _subject: `Membership Inquiry — ${fields.firstName} ${fields.lastName}`.trim(),
+          _replyto: fields.email,
+        }),
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       setStatus('idle');
@@ -179,15 +186,15 @@ function MembershipPage({ onNav }) {
                   <input type="text" name="company" tabIndex={-1} autoComplete="off"
                     aria-hidden="true" value={data.company} onChange={set('company')}
                     style={{ position: 'absolute', left: -9999, width: 1, height: 1, opacity: 0 }} />
-                  <FormField label="First Name" value={data.firstName} onChange={set('firstName')} required />
-                  <FormField label="Last Name" value={data.lastName} onChange={set('lastName')} required />
-                  <FormField label="Email" type="email" value={data.email} onChange={set('email')} required />
-                  <FormField label="Phone" type="tel" value={data.phone} onChange={set('phone')} />
-                  <FormField label="City of Residence" value={data.residence} onChange={set('residence')} span={2} />
-                  <FormField label="Membership Interest" type="select" value={data.interest} onChange={set('interest')} span={2}
+                  <FormField label="First Name" name="firstName" autoComplete="given-name" value={data.firstName} onChange={set('firstName')} required />
+                  <FormField label="Last Name" name="lastName" autoComplete="family-name" value={data.lastName} onChange={set('lastName')} required />
+                  <FormField label="Email" type="email" name="email" autoComplete="email" value={data.email} onChange={set('email')} required />
+                  <FormField label="Phone" type="tel" name="phone" autoComplete="tel" value={data.phone} onChange={set('phone')} />
+                  <FormField label="City of Residence" name="residence" autoComplete="address-level2" value={data.residence} onChange={set('residence')} span={2} />
+                  <FormField label="Membership Interest" type="select" name="interest" value={data.interest} onChange={set('interest')} span={2}
                     options={['Full Golf', 'Next Gen.', 'Visiting', 'Social', 'Corporate']}
                   />
-                  <FormField label="A Note (optional)" type="textarea" value={data.message} onChange={set('message')} span={2} />
+                  <FormField label="A Note (optional)" type="textarea" name="message" value={data.message} onChange={set('message')} span={2} />
                   <div style={{ gridColumn: '1 / -1', marginTop: 16 }}>
                     <button type="submit" className="btn btn-ghost-light" disabled={status === 'sending'}
                       style={status === 'sending' ? { opacity: 0.6, cursor: 'wait' } : undefined}>
@@ -254,7 +261,7 @@ function TierAccordion({ tiers }) {
   );
 }
 
-function FormField({ label, value, onChange, type = 'text', required, options, span = 1 }) {
+function FormField({ label, value, onChange, type = 'text', required, options, span = 1, name, autoComplete }) {
   const labelStyle = {
     display: 'block',
     font: 'var(--type-eyebrow)',
@@ -282,15 +289,16 @@ function FormField({ label, value, onChange, type = 'text', required, options, s
     <label style={{ gridColumn: span === 2 ? '1 / -1' : 'auto' }}>
       <span style={labelStyle}>{label}</span>
       {type === 'select' ? (
-        <select value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur}
+        <select name={name} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur}
           style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}>
           {options.map((o) => <option key={o} style={{ color: '#000' }}>{o}</option>)}
         </select>
       ) : type === 'textarea' ? (
-        <textarea rows={3} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur}
+        <textarea name={name} rows={3} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur}
           style={{ ...inputStyle, resize: 'vertical' }} />
       ) : (
-        <input type={type} value={value} onChange={onChange} required={required} onFocus={onFocus} onBlur={onBlur}
+        <input type={type} name={name} autoComplete={autoComplete} value={value} onChange={onChange}
+          required={required} onFocus={onFocus} onBlur={onBlur}
           style={inputStyle} />
       )}
     </label>

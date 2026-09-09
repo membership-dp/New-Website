@@ -60,7 +60,11 @@ function MembershipPage({
         },
         body: JSON.stringify({
           ...fields,
-          _subject: "Membership Inquiry — Dutchman's Pipe Club"
+          // _subject / _replyto are honoured by Formspree and most form
+          // services: the notification lands with a useful subject line, and
+          // hitting Reply goes to the prospective member, not the robot.
+          _subject: `Membership Inquiry — ${fields.firstName} ${fields.lastName}`.trim(),
+          _replyto: fields.email
         })
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -254,33 +258,44 @@ function MembershipPage({
     }
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "First Name",
+    name: "firstName",
+    autoComplete: "given-name",
     value: data.firstName,
     onChange: set('firstName'),
     required: true
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "Last Name",
+    name: "lastName",
+    autoComplete: "family-name",
     value: data.lastName,
     onChange: set('lastName'),
     required: true
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "Email",
     type: "email",
+    name: "email",
+    autoComplete: "email",
     value: data.email,
     onChange: set('email'),
     required: true
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "Phone",
     type: "tel",
+    name: "phone",
+    autoComplete: "tel",
     value: data.phone,
     onChange: set('phone')
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "City of Residence",
+    name: "residence",
+    autoComplete: "address-level2",
     value: data.residence,
     onChange: set('residence'),
     span: 2
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "Membership Interest",
     type: "select",
+    name: "interest",
     value: data.interest,
     onChange: set('interest'),
     span: 2,
@@ -288,6 +303,7 @@ function MembershipPage({
   }), /*#__PURE__*/React.createElement(FormField, {
     label: "A Note (optional)",
     type: "textarea",
+    name: "message",
     value: data.message,
     onChange: set('message'),
     span: 2
@@ -378,7 +394,9 @@ function FormField({
   type = 'text',
   required,
   options,
-  span = 1
+  span = 1,
+  name,
+  autoComplete
 }) {
   const labelStyle = {
     display: 'block',
@@ -413,6 +431,7 @@ function FormField({
   }, /*#__PURE__*/React.createElement("span", {
     style: labelStyle
   }, label), type === 'select' ? /*#__PURE__*/React.createElement("select", {
+    name: name,
     value: value,
     onChange: onChange,
     onFocus: onFocus,
@@ -428,6 +447,7 @@ function FormField({
       color: '#000'
     }
   }, o))) : type === 'textarea' ? /*#__PURE__*/React.createElement("textarea", {
+    name: name,
     rows: 3,
     value: value,
     onChange: onChange,
@@ -439,6 +459,8 @@ function FormField({
     }
   }) : /*#__PURE__*/React.createElement("input", {
     type: type,
+    name: name,
+    autoComplete: autoComplete,
     value: value,
     onChange: onChange,
     required: required,
