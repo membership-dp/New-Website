@@ -1,4 +1,7 @@
 // Header.jsx — fixed transparent over hero, becomes Bone after scroll
+// The members portal is a separate application on its own subdomain, so
+// Member Login is a real outbound link rather than an in-app route.
+const MEMBER_PORTAL_URL = 'https://members.dutchmanspipeclub.com/';
 const { useState: useHeaderState, useEffect: useHeaderEffect, useRef: useHeaderRef } = React;
 
 function Header({ route, onNav, lightOnTop = true }) {
@@ -121,7 +124,7 @@ function Header({ route, onNav, lightOnTop = true }) {
         </div>
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
-           {...actionProps(() => goTo('login'))}>
+           href={MEMBER_PORTAL_URL} target="_blank" rel="noopener noreferrer">
           Member Login
         </a>
       </nav>
@@ -164,7 +167,9 @@ function Header({ route, onNav, lightOnTop = true }) {
                   </a>
                 )
               ))}
-              <a className="mobile-nav-link mobile-nav-login" {...actionProps(() => goTo('login'))}>
+              <a className="mobile-nav-link mobile-nav-login"
+                 href={MEMBER_PORTAL_URL} target="_blank" rel="noopener noreferrer"
+                 onClick={() => setMenuOpen(false)}>
                 Member Login
               </a>
             </nav>

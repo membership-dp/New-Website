@@ -1,5 +1,8 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 // Header.jsx — fixed transparent over hero, becomes Bone after scroll
+// The members portal is a separate application on its own subdomain, so
+// Member Login is a real outbound link rather than an in-app route.
+const MEMBER_PORTAL_URL = 'https://members.dutchmanspipeclub.com/';
 const {
   useState: useHeaderState,
   useEffect: useHeaderEffect,
@@ -154,14 +157,17 @@ function Header({
     key: it.id,
     className: `nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
-  }, actionProps(() => goTo(it.id), 'link')), it.short || it.label))), /*#__PURE__*/React.createElement("a", _extends({
+  }, actionProps(() => goTo(it.id), 'link')), it.short || it.label))), /*#__PURE__*/React.createElement("a", {
     className: "nav-link",
     style: {
       padding: '10px 20px',
       border: '1px solid currentColor',
       borderRadius: 2
-    }
-  }, actionProps(() => goTo('login'))), "Member Login")), /*#__PURE__*/React.createElement("button", {
+    },
+    href: MEMBER_PORTAL_URL,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Member Login")), /*#__PURE__*/React.createElement("button", {
     className: "site-header-toggle",
     onClick: () => setMenuOpen(!menuOpen),
     "aria-label": menuOpen ? 'Close menu' : 'Open menu',
@@ -198,8 +204,12 @@ function Header({
     key: it.id,
     className: `mobile-nav-link ${route === it.id ? 'is-active' : ''}`,
     "aria-current": route === it.id ? 'page' : undefined
-  }, actionProps(() => goTo(it.id), 'link')), it.label)), /*#__PURE__*/React.createElement("a", _extends({
-    className: "mobile-nav-link mobile-nav-login"
-  }, actionProps(() => goTo('login'))), "Member Login")))));
+  }, actionProps(() => goTo(it.id), 'link')), it.label)), /*#__PURE__*/React.createElement("a", {
+    className: "mobile-nav-link mobile-nav-login",
+    href: MEMBER_PORTAL_URL,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => setMenuOpen(false)
+  }, "Member Login")))));
 }
 window.Header = Header;
