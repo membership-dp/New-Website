@@ -13,8 +13,8 @@ script that compiles `.jsx` files down to plain `.js`.
 ## Quick start
 
 ```bash
-git clone https://github.com/membership-dp/New-Website.git
-cd New-Website
+git clone <this repo>
+cd <the repo directory>
 npm run serve          # then open http://localhost:8080
 ```
 
