@@ -83,18 +83,53 @@ function ThreePanel({ images = [], interval = 3800, captions = [] }) {
 
 /* InstagramStrip — placeholder for the homepage Instagram widget. In production
    the inner grid is replaced by the SnapWidget embed (same as the reference). */
-function InstagramStrip({ handle = '@dutchmanspipeclub', images = [] }) {
+function InstagramStrip({ handle = '@dutchmanspipeclub', images = [], feedId }) {
+  // Live feed from the club's Instagram via Behold (connected 9/9).
+  //
+  // We deliberately do NOT use Behold's <behold-widget> embed: it ships its own
+  // markup and stylesheet, which would fight the site's design. Their feed is
+  // also plain CORS-enabled JSON, so we fetch that and render the tiles with
+  // our own .ig-grid / .ig-tile styles — the section is indistinguishable from
+  // the rest of the page, and no third-party script runs.
+  //
+  // If the fetch fails for any reason, the hand-picked `images` grid stays.
+  const [posts, setPosts] = useBlockState(null);
+
+  useBlockEffect(() => {
+    if (!feedId) return undefined;
+    let cancelled = false;
+    fetch(`https://feeds.behold.so/${feedId}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((d) => {
+        if (!cancelled && d && Array.isArray(d.posts) && d.posts.length) setPosts(d.posts);
+      })
+      .catch(() => { /* leave `posts` null — the static grid renders instead */ });
+    return () => { cancelled = true; };
+  }, [feedId]);
+
+  const profile = `https://instagram.com/${handle.replace('@', '')}`;
+
+  // Square 700px crops match the 1:1 tiles; fall back through the size ladder.
+  const tiles = (posts && posts.length)
+    ? posts.slice(0, 6).map((p) => ({
+        key: p.id,
+        src: (p.sizes && ((p.sizes.medium && p.sizes.medium.mediaUrl) || (p.sizes.small && p.sizes.small.mediaUrl)))
+          || p.thumbnailUrl || p.mediaUrl,
+        href: p.permalink || profile,
+        alt: p.prunedCaption ? String(p.prunedCaption).slice(0, 120) : '',
+      }))
+    : images.slice(0, 6).map((src, i) => ({ key: `static-${i}`, src, href: profile, alt: '' }));
+
   return (
     <div className="ig-strip">
       <div className="ig-head">
         <div className="eyebrow-rule">Follow Along</div>
-        <a className="ig-handle" href={`https://instagram.com/${handle.replace('@', '')}`} target="_blank" rel="noopener noreferrer">{handle}</a>
+        <a className="ig-handle" href={profile} target="_blank" rel="noopener noreferrer">{handle}</a>
       </div>
-      {/* TODO(prod): replace this grid with the SnapWidget embed script/iframe */}
-      <div className="ig-grid" data-snapwidget-placeholder="true">
-        {images.map((src, i) => (
-          <a key={i} className="ig-tile" href={`https://instagram.com/${handle.replace('@', '')}`} target="_blank" rel="noopener noreferrer">
-            <img src={src} alt="" loading="lazy" decoding="async" />
+      <div className="ig-grid">
+        {tiles.map((t) => (
+          <a key={t.key} className="ig-tile" href={t.href} target="_blank" rel="noopener noreferrer">
+            <img src={t.src} alt={t.alt} loading="lazy" decoding="async" />
           </a>
         ))}
       </div>

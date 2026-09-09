@@ -192,6 +192,7 @@ function HomePage({ onNav }) {
           <Reveal>
             <InstagramStrip
               handle="@dutchmanspipeclub"
+              feedId="Hdp1HAvrXQS4QHui3sVw"
               images={[
                 'assets/hero-green.jpg', 'assets/tennis-rally.jpg', 'assets/hero-palms.jpg',
                 'assets/padel-action.jpg', 'assets/course-skyline.jpg', 'assets/hero-villa.jpg',

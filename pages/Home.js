@@ -316,6 +316,7 @@ function HomePage({
     className: "container"
   }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(InstagramStrip, {
     handle: "@dutchmanspipeclub",
+    feedId: "Hdp1HAvrXQS4QHui3sVw",
     images: ['assets/hero-green.jpg', 'assets/tennis-rally.jpg', 'assets/hero-palms.jpg', 'assets/padel-action.jpg', 'assets/course-skyline.jpg', 'assets/hero-villa.jpg']
   })))), /*#__PURE__*/React.createElement("section", {
     className: "section surface-satin",
