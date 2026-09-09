@@ -169,7 +169,8 @@ function Header({ route, onNav, lightOnTop = true }) {
                 )
               ))}
               <a className="mobile-nav-link mobile-nav-login"
-                 href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer">
+                 href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer"
+                 onClick={() => setMenuOpen(false)}>
                 Member Login
               </a>
             </nav>

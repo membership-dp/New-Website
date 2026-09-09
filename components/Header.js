@@ -209,7 +209,8 @@ function Header({
     className: "mobile-nav-link mobile-nav-login",
     href: DP_MEMBER_PORTAL,
     target: "_blank",
-    rel: "noopener noreferrer"
+    rel: "noopener noreferrer",
+    onClick: () => setMenuOpen(false)
   }, "Member Login")))));
 }
 window.Header = Header;
