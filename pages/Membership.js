@@ -2,12 +2,23 @@
 const {
   useState: useMemState
 } = React;
+
+// Where membership inquiries are POSTed. Empty string = wireframe demo mode:
+// the confirmation panel shows but nothing is sent. Paste the form provider's
+// endpoint here and submissions go live — nothing else needs to change.
+//
+// RECIPIENTS ARE NOT CONFIGURED HERE. Who receives an inquiry is set in the
+// form provider's dashboard. Never put staff email addresses in this file —
+// it compiles to Membership.js and ships to every visitor's browser in plain
+// text, where scrapers will find them.
+const INQUIRY_ENDPOINT = '';
 function MembershipPage({
   onNav
 }) {
   const tiers = DP_TIERS; // shared with the Golf page's column layout (Blocks.jsx)
 
   const [submitted, setSubmitted] = useMemState(false);
+  const [status, setStatus] = useMemState('idle'); // idle | sending | error
   const [data, setData] = useMemState({
     firstName: '',
     lastName: '',
@@ -15,12 +26,51 @@ function MembershipPage({
     phone: '',
     interest: 'Full Golf',
     residence: '',
-    message: ''
+    message: '',
+    company: '' // honeypot — see the hidden field below
   });
   const set = k => e => setData({
     ...data,
     [k]: e.target.value
   });
+  const submitInquiry = async e => {
+    e.preventDefault();
+    if (status === 'sending') return;
+    // A bot filled the hidden field. Show success, send nothing.
+    if (data.company) {
+      setSubmitted(true);
+      return;
+    }
+    // Demo mode — no endpoint configured yet.
+    if (!INQUIRY_ENDPOINT) {
+      setSubmitted(true);
+      return;
+    }
+    setStatus('sending');
+    try {
+      const {
+        company,
+        ...fields
+      } = data;
+      const res = await fetch(INQUIRY_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          ...fields,
+          _subject: "Membership Inquiry — Dutchman's Pipe Club"
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      setStatus('idle');
+      setSubmitted(true);
+    } catch (err) {
+      // Never swallow it — the visitor gets the direct email as a fallback.
+      setStatus('error');
+    }
+  };
   return /*#__PURE__*/React.createElement("div", {
     className: "page-shell"
   }, /*#__PURE__*/React.createElement("section", {
@@ -185,12 +235,24 @@ function MembershipPage({
       marginInline: 'auto'
     }
   }, "A member of our Membership team will be in touch within two business days.")) : /*#__PURE__*/React.createElement("form", {
-    onSubmit: e => {
-      e.preventDefault();
-      setSubmitted(true);
-    },
+    onSubmit: submitInquiry,
     className: "inquiry-form"
-  }, /*#__PURE__*/React.createElement(FormField, {
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "company",
+    tabIndex: -1,
+    autoComplete: "off",
+    "aria-hidden": "true",
+    value: data.company,
+    onChange: set('company'),
+    style: {
+      position: 'absolute',
+      left: -9999,
+      width: 1,
+      height: 1,
+      opacity: 0
+    }
+  }), /*#__PURE__*/React.createElement(FormField, {
     label: "First Name",
     value: data.firstName,
     onChange: set('firstName'),
@@ -236,15 +298,33 @@ function MembershipPage({
     }
   }, /*#__PURE__*/React.createElement("button", {
     type: "submit",
-    className: "btn btn-ghost-light"
-  }, "Submit Inquiry", /*#__PURE__*/React.createElement("img", {
+    className: "btn btn-ghost-light",
+    disabled: status === 'sending',
+    style: status === 'sending' ? {
+      opacity: 0.6,
+      cursor: 'wait'
+    } : undefined
+  }, status === 'sending' ? 'Sending…' : 'Submit Inquiry', /*#__PURE__*/React.createElement("img", {
     src: "assets/arrow-link.png",
     style: {
       height: 9,
       filter: 'brightness(0) invert(1)'
     },
     alt: ""
-  })))))))));
+  })), status === 'error' && /*#__PURE__*/React.createElement("p", {
+    role: "alert",
+    className: "body-text",
+    style: {
+      marginTop: 20,
+      fontSize: 15,
+      color: 'var(--color-champagne-bright)'
+    }
+  }, "We couldn't send that just now. Please email", ' ', /*#__PURE__*/React.createElement("a", {
+    href: "mailto:Membership@dutchmanspipeclub.com",
+    style: {
+      color: 'inherit'
+    }
+  }, "Membership@dutchmanspipeclub.com"), ' ', "or call +1 561 557 5840 and we'll take care of it."))))))));
 }
 
 /* TierAccordion — membership categories as expandable rows (club 6/11).

@@ -1,4 +1,8 @@
 // Header.jsx — fixed transparent over hero, becomes Bone after scroll
+// The club's real member portal (Clubessential). Linked, not routed — it is a
+// separate application on its own subdomain, so these are true <a href> links
+// that cmd-click and open-in-new-tab correctly.
+const DP_MEMBER_PORTAL = 'https://members.dutchmanspipeclub.com/login';
 const { useState: useHeaderState, useEffect: useHeaderEffect, useRef: useHeaderRef } = React;
 
 function Header({ route, onNav, lightOnTop = true }) {
@@ -121,7 +125,7 @@ function Header({ route, onNav, lightOnTop = true }) {
         </div>
         <a className="nav-link"
            style={{ padding: '10px 20px', border: '1px solid currentColor', borderRadius: 2 }}
-           {...actionProps(() => goTo('login'))}>
+           href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer">
           Member Login
         </a>
       </nav>
@@ -164,7 +168,8 @@ function Header({ route, onNav, lightOnTop = true }) {
                   </a>
                 )
               ))}
-              <a className="mobile-nav-link mobile-nav-login" {...actionProps(() => goTo('login'))}>
+              <a className="mobile-nav-link mobile-nav-login"
+                 href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer">
                 Member Login
               </a>
             </nav>
@@ -176,3 +181,4 @@ function Header({ route, onNav, lightOnTop = true }) {
 }
 
 window.Header = Header;
+window.DP_MEMBER_PORTAL = DP_MEMBER_PORTAL;

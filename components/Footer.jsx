@@ -16,7 +16,7 @@ function Footer({ onNav }) {
       title: 'Membership',
       links: [
         { label: 'Membership Inquiry', id: 'membership' },
-        { label: 'Member Login', id: 'login' },
+        { label: 'Member Login', id: 'login', href: DP_MEMBER_PORTAL },
       ],
     },
   ];
@@ -59,12 +59,16 @@ function Footer({ onNav }) {
               </div>
               <nav aria-label={col.title} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {col.links.map((l) => (
-                  <a key={l.id} className="footer-link" {...actionProps(() => onNav(l.id))} style={{
-                    font: '400 15px/1.4 var(--font-body)',
-                    color: 'rgba(245,241,232,0.78)',
-                    textDecoration: 'none', cursor: 'pointer',
-                    alignSelf: 'flex-start',
-                  }}>
+                  <a key={l.id} className="footer-link"
+                    {...(l.href
+                      ? { href: l.href, target: '_blank', rel: 'noopener noreferrer' }
+                      : actionProps(() => onNav(l.id)))}
+                    style={{
+                      font: '400 15px/1.4 var(--font-body)',
+                      color: 'rgba(245,241,232,0.78)',
+                      textDecoration: 'none', cursor: 'pointer',
+                      alignSelf: 'flex-start',
+                    }}>
                     {l.label}
                   </a>
                 ))}

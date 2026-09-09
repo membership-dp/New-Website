@@ -19,9 +19,13 @@ and the brand type system wired to the club's Adobe Fonts kit.
 
 | What | Where |
 |---|---|
-| Membership inquiry form | `pages/Membership.jsx` |
-| Member portal sign-in | `app.jsx` |
+| Membership inquiry form — renders and validates, but no endpoint configured yet | `pages/Membership.jsx` |
 | Club Admin editor (saves to one browser) | `pages/Admin.jsx` |
+
+The **member portal** is no longer a stub: Member Login in the header, mobile
+drawer and footer links straight to the club's Clubessential portal at
+`members.dutchmanspipeclub.com/login`. The URL is defined once as
+`DP_MEMBER_PORTAL` at the top of `components/Header.jsx`.
 
 ## Placeholder content
 

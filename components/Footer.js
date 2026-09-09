@@ -31,7 +31,8 @@ function Footer({
       id: 'membership'
     }, {
       label: 'Member Login',
-      id: 'login'
+      id: 'login',
+      href: DP_MEMBER_PORTAL
     }]
   }];
   return /*#__PURE__*/React.createElement("footer", {
@@ -96,7 +97,11 @@ function Footer({
   }, col.links.map(l => /*#__PURE__*/React.createElement("a", _extends({
     key: l.id,
     className: "footer-link"
-  }, actionProps(() => onNav(l.id)), {
+  }, l.href ? {
+    href: l.href,
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  } : actionProps(() => onNav(l.id)), {
     style: {
       font: '400 15px/1.4 var(--font-body)',
       color: 'rgba(245,241,232,0.78)',

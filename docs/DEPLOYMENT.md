@@ -46,9 +46,20 @@ Three interfaces are complete visually but have nothing behind them:
 
 | Feature | State | Needs |
 |---|---|---|
-| **Membership inquiry form** (`pages/Membership.jsx`) | Renders, does not submit | HubSpot integration was the plan |
-| **Member portal login** (`app.jsx`) | Dialog opens, does not authenticate | Connection to the real member system |
+| **Membership inquiry form** (`pages/Membership.jsx`) | Submits properly, but `INQUIRY_ENDPOINT` is empty so nothing is sent | A form endpoint (HubSpot, or a hosted form service) |
 | **Club Admin / In the News** (`pages/Admin.jsx`) | Edits save to one browser only | Database + real auth — see [IN-THE-NEWS.md](IN-THE-NEWS.md) |
+
+**The member portal is done.** Member Login links to the club's Clubessential
+portal (`members.dutchmanspipeclub.com/login`); the URL lives in
+`DP_MEMBER_PORTAL` at the top of `components/Header.jsx`.
+
+### Turning the inquiry form on
+Set `INQUIRY_ENDPOINT` at the top of `pages/Membership.jsx` to the form
+provider's endpoint. Nothing else needs to change — the form already POSTs JSON,
+handles sending and error states, and drops honeypot submissions. Until it is
+set, the form runs in demo mode: it shows the confirmation panel and sends
+nothing. **Recipient addresses belong in the provider's dashboard, never in this
+repo** — anything in the source ships to the browser in plain text.
 
 **Remove or replace the hardcoded admin passcode** in `pages/Admin.jsx` before
 this is public. It is a demo stub sitting in client-side code, readable by anyone.
