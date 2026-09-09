@@ -153,14 +153,6 @@ function Footer({
       display: 'flex',
       gap: 28
     }
-  }, /*#__PURE__*/React.createElement("span", null, "Privacy"), /*#__PURE__*/React.createElement("span", null, "Terms"), /*#__PURE__*/React.createElement("span", null, "Press"), /*#__PURE__*/React.createElement("a", _extends({
-    className: "footer-link"
-  }, actionProps(() => onNav('admin')), {
-    style: {
-      color: 'inherit',
-      textDecoration: 'none',
-      cursor: 'pointer'
-    }
-  }), "Club Admin")))));
+  }, /*#__PURE__*/React.createElement("span", null, "Privacy"), /*#__PURE__*/React.createElement("span", null, "Terms"), /*#__PURE__*/React.createElement("span", null, "Press")))));
 }
 window.Footer = Footer;

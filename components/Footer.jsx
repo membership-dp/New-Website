@@ -107,7 +107,9 @@ function Footer({ onNav }) {
             <span>Privacy</span>
             <span>Terms</span>
             <span>Press</span>
-            <a className="footer-link" {...actionProps(() => onNav('admin'))} style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Club Admin</a>
+            {/* The Club Admin link was removed for the public launch — the
+                editor now lives at its own /admin URL, unlinked from the site.
+                See app.jsx for the path routing. */}
           </div>
         </div>
       </div>
