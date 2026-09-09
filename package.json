@@ -1,0 +1,13 @@
+{
+  "name": "dutchmans-pipe-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dutchman's Pipe Club — marketing site wireframe. Static React, no bundler.",
+  "scripts": {
+    "build": "node build.cjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "@babel/standalone": "^7.24.0"
+  }
+}
