@@ -3,15 +3,22 @@ const {
   useState: useMemState
 } = React;
 
-// Where membership inquiries are POSTed. Empty string = wireframe demo mode:
-// the confirmation panel shows but nothing is sent. Paste the form provider's
-// endpoint here and submissions go live — nothing else needs to change.
+// Membership inquiries submit straight into the club's own HubSpot (portal
+// 242324318) through the Forms Submission API. That endpoint is public by
+// design — no API key, no server, nothing secret in this file — and it fires
+// HubSpot's own notification settings, so Madison and Shannon manage their own
+// recipient list without us touching the site.
 //
-// RECIPIENTS ARE NOT CONFIGURED HERE. Who receives an inquiry is set in the
-// form provider's dashboard. Never put staff email addresses in this file —
-// it compiles to Membership.js and ships to every visitor's browser in plain
-// text, where scrapers will find them.
-const INQUIRY_ENDPOINT = '';
+// We do NOT use HubSpot's embed code: that renders the form inside a
+// cross-origin iframe with its own styling. The form in HubSpot is only a
+// schema (which fields are accepted, who gets notified); the markup below
+// stays entirely ours.
+//
+// Region matters: this portal is na2, so the host is api-na2, not api.
+// Set to '' to fall back to demo mode (confirmation shown, nothing sent).
+const HS_PORTAL_ID = '242324318';
+const HS_FORM_GUID = 'd8daf1ec-ccff-4e99-8bf2-3ced75d3ec36';
+const INQUIRY_ENDPOINT = `https://api-na2.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${HS_FORM_GUID}`;
 function MembershipPage({
   onNav
 }) {
@@ -48,10 +55,14 @@ function MembershipPage({
     }
     setStatus('sending');
     try {
-      const {
-        company,
-        ...fields
-      } = data;
+      // HubSpot expects a flat `fields` array keyed by contact property name.
+      // Empty values are dropped so optional fields never overwrite good CRM
+      // data with blanks.
+      const hsFields = [['email', data.email], ['firstname', data.firstName], ['lastname', data.lastName], ['phone', data.phone], ['city', data.residence], ['membership_interest', data.interest], ['message', data.message]].filter(([, v]) => v && String(v).trim()).map(([name, value]) => ({
+        objectTypeId: '0-1',
+        name,
+        value: String(value).trim()
+      }));
       const res = await fetch(INQUIRY_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -59,12 +70,11 @@ function MembershipPage({
           Accept: 'application/json'
         },
         body: JSON.stringify({
-          ...fields,
-          // _subject / _replyto are honoured by Formspree and most form
-          // services: the notification lands with a useful subject line, and
-          // hitting Reply goes to the prospective member, not the robot.
-          _subject: `Membership Inquiry — ${fields.firstName} ${fields.lastName}`.trim(),
-          _replyto: fields.email
+          fields: hsFields,
+          context: {
+            pageUri: window.location.href,
+            pageName: "Membership Inquiry — Dutchman's Pipe Club"
+          }
         })
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
