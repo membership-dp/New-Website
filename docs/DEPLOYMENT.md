@@ -5,9 +5,28 @@
 The site is static files. Anything that serves a directory over HTTPS will host
 it: Vercel, Netlify, Cloudflare Pages, S3 + CloudFront, or a plain web server.
 
-There is **no build command**. Point the host at the repository root and serve
-`index.html`. If a host insists on a build step, `npm install && npm run build`
-is safe — it just regenerates the `.js` files that are already committed.
+The compiled `.js` files are committed, so the site works with no build step at
+all — point a host at the repository root and serve `index.html`.
+
+On Vercel there is one wrinkle worth knowing, because it has already broken a
+deploy. Adding `package.json` makes Vercel stop treating this as a plain static
+site: it runs `npm run build` and then looks for a `public/` output directory.
+There isn't one — the site *is* the root — so the deploy fails with
+`No Output Directory named "public" found` even though the build itself
+succeeded. **`vercel.json` fixes this** and must stay in the repo:
+
+```json
+{
+  "framework": null,
+  "buildCommand": "node build.cjs",
+  "outputDirectory": "."
+}
+```
+
+Running the build on deploy is deliberate rather than merely tolerated: it
+regenerates every `.js` from its `.jsx`, so a commit where someone edited a
+`.jsx` and forgot to run `build.cjs` still deploys correctly. Verify a change
+locally with `vercel build` before pushing.
 
 Two things to configure:
 

@@ -23,3 +23,8 @@ package-lock.json
 
 # Internal working handoff doc (Claude session continuity — not for the client repo)
 HANDOFF.md
+
+# Vercel CLI local link
+.vercel/
+.vercel
+.env*
