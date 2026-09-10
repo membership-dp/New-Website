@@ -959,6 +959,12 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .site-header.is-hidden { transform: none; }
 }
+/* On mobile the hamburger is the ONLY way to navigate, so the bar never hides
+   — scrolling down must not strand the reader with no menu (Madison, 9/10).
+   Matches the 1240px breakpoint where the desktop nav becomes the drawer. */
+@media (max-width: 1240px) {
+  .site-header.is-hidden { transform: none; }
+}
 .site-header.is-light { color: var(--color-bone); }
 .site-header.is-scrolled.is-light,
 .site-header.is-scrolled { color: var(--color-club-navy); }
@@ -1587,8 +1593,17 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   .threepanel { grid-template-columns: 1fr; gap: 14px; }
   .tp-cell { aspect-ratio: 4 / 3; }
 
-  /* Home pillars force 4/5 inline; shorten so the stacked column isn't a marathon scroll */
-  .three-up .photo-frame { aspect-ratio: 4 / 3 !important; }
+  /* Was: .three-up .photo-frame { aspect-ratio: 4 / 3 !important } — intended
+     to shorten the Home pillars on a stacked phone column, but .three-up also
+     matches the Instruction coach cards, so it forced PORTRAIT sources into a
+     LANDSCAPE box and centre-cropped the faces straight off (Madison, 9/10:
+     Jesse on the tennis court, Kirk, Cain, Sweeney).
+     Every source already matches its frame exactly — Home pillars 864x1080 in
+     4/5, coach headshots 600x800 in 3/4 — so with no override there is no crop
+     at all. The column is taller on a phone; a longer scroll beats a decapitated
+     portrait. object-position is a safety net: if a future image doesn't match
+     its frame, the crop is taken off the bottom rather than the face. */
+  .three-up .photo-frame img { object-position: center 30%; }
 
   /* Footer collapses to single column on phones */
   .site-footer { padding: 64px var(--gutter) 32px; }
@@ -1609,4 +1624,22 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
 
   /* Instagram grid: 6 → 3 across on phones */
   .ig-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* --- Mobile: stop the parallax drift cropping faces (Madison, 9/10) ---------
+   .img-drift is 116% tall at top:-8% so the image can travel behind the frame.
+   That permanently clips ~7% off the top and bottom — which on a portrait is
+   the top of someone's head. Every portrait source already matches its frame
+   exactly (coach headshots 600x800 in a 3/4 frame, tennis-pillar 864x1080 in
+   4/5), so removing the drift on mobile shows each photo in full and costs
+   nothing but a scroll effect that reads as jitter on a phone anyway.
+   The !important is required: Parallax writes transform to the inline style. */
+@media (max-width: 900px) {
+  .img-drift {
+    top: 0;
+    height: 100%;
+  }
+  .img-drift.parallax {
+    transform: none !important;
+  }
 }

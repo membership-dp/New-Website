@@ -77,7 +77,13 @@ function Header({ route, onNav, lightOnTop = true }) {
 
   const goTo = (id) => { setMenuOpen(false); onNav(id); };
 
+  // The drawer is deliberately a SIBLING of <header>, not a child. .site-header
+  // carries backdrop-filter once scrolled (and a transform while hiding), and
+  // either of those makes the header the containing block for position:fixed
+  // descendants — which collapsed the "full screen" overlay to the 64px header
+  // box as soon as the page was scrolled (Madison, mobile, 9/10).
   return (
+    <>
     <header className={cls}>
       <a {...actionProps(() => goTo('home'))} aria-label="Dutchman's Pipe Club — home" className="site-header-brand" style={{
         display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
@@ -142,42 +148,44 @@ function Header({ route, onNav, lightOnTop = true }) {
         </span>
       </button>
 
-      {/* Mobile menu overlay */}
-      {menuOpen && (
-        <div className="site-header-menu" onClick={() => setMenuOpen(false)}>
-          <div
-            ref={menuRef}
-            className="site-header-menu-inner"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-          >
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-              {[{ id: 'home', label: 'Home' }, ...navItems, ...navStack].map((it) => (
-                it.href ? (
-                  <a key={it.id} className="mobile-nav-link" href={it.href} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
-                    {it.label}
-                  </a>
-                ) : (
-                  <a key={it.id}
-                     className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
-                     aria-current={route === it.id ? 'page' : undefined}
-                     {...actionProps(() => goTo(it.id), 'link')}>
-                    {it.label}
-                  </a>
-                )
-              ))}
-              <a className="mobile-nav-link mobile-nav-login"
-                 href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer"
-                 onClick={() => setMenuOpen(false)}>
-                Member Login
-              </a>
-            </nav>
-          </div>
-        </div>
-      )}
     </header>
+
+    {/* Mobile menu overlay */}
+    {menuOpen && (
+      <div className="site-header-menu" onClick={() => setMenuOpen(false)}>
+        <div
+          ref={menuRef}
+          className="site-header-menu-inner"
+          onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+            {[{ id: 'home', label: 'Home' }, ...navItems, ...navStack].map((it) => (
+              it.href ? (
+                <a key={it.id} className="mobile-nav-link" href={it.href} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
+                  {it.label}
+                </a>
+              ) : (
+                <a key={it.id}
+                   className={`mobile-nav-link ${route === it.id ? 'is-active' : ''}`}
+                   aria-current={route === it.id ? 'page' : undefined}
+                   {...actionProps(() => goTo(it.id), 'link')}>
+                  {it.label}
+                </a>
+              )
+            ))}
+            <a className="mobile-nav-link mobile-nav-login"
+               href={DP_MEMBER_PORTAL} target="_blank" rel="noopener noreferrer"
+               onClick={() => setMenuOpen(false)}>
+              Member Login
+            </a>
+          </nav>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
 

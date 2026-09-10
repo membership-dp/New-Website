@@ -101,7 +101,13 @@ function Header({
     setMenuOpen(false);
     onNav(id);
   };
-  return /*#__PURE__*/React.createElement("header", {
+
+  // The drawer is deliberately a SIBLING of <header>, not a child. .site-header
+  // carries backdrop-filter once scrolled (and a transform while hiding), and
+  // either of those makes the header the containing block for position:fixed
+  // descendants — which collapsed the "full screen" overlay to the 64px header
+  // box as soon as the page was scrolled (Madison, mobile, 9/10).
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
     className: cls
   }, /*#__PURE__*/React.createElement("a", _extends({}, actionProps(() => goTo('home')), {
     "aria-label": "Dutchman's Pipe Club \u2014 home",
@@ -175,7 +181,7 @@ function Header({
     "aria-expanded": menuOpen
   }, /*#__PURE__*/React.createElement("span", {
     className: `hamburger-icon ${menuOpen ? 'is-open' : ''}`
-  }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null))), menuOpen && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null)))), menuOpen && /*#__PURE__*/React.createElement("div", {
     className: "site-header-menu",
     onClick: () => setMenuOpen(false)
   }, /*#__PURE__*/React.createElement("div", {
