@@ -161,6 +161,21 @@ function Header({ route, onNav, lightOnTop = true }) {
           aria-modal="true"
           aria-label="Menu"
         >
+          {/* The drawer covers the whole screen and sits above the header, so
+              the hamburger's own X is buried underneath it — the drawer needs
+              its own close control. Sits in the header band, right-aligned, so
+              it reads as the hamburger having simply turned into an X. */}
+          <button
+            type="button"
+            className="icon-btn menu-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
+              <path d="M3 3l16 16M19 3L3 19" stroke="currentColor" strokeWidth="1.5"
+                    strokeLinecap="square" fill="none" />
+            </svg>
+          </button>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
             {[{ id: 'home', label: 'Home' }, ...navItems, ...navStack].map((it) => (
               it.href ? (

@@ -191,7 +191,24 @@ function Header({
     role: "dialog",
     "aria-modal": "true",
     "aria-label": "Menu"
-  }, /*#__PURE__*/React.createElement("nav", {
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "icon-btn menu-close",
+    onClick: () => setMenuOpen(false),
+    "aria-label": "Close menu"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M3 3l16 16M19 3L3 19",
+    stroke: "currentColor",
+    strokeWidth: "1.5",
+    strokeLinecap: "square",
+    fill: "none"
+  }))), /*#__PURE__*/React.createElement("nav", {
     style: {
       display: 'flex',
       flexDirection: 'column',

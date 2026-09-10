@@ -1166,6 +1166,24 @@ label:has(.field-input:focus)::after { left: 0; right: 0; }
   overflow-y: auto;
   animation: slideInRight 320ms var(--ease-club);
 }
+/* Close control for the mobile drawer. The drawer sits above the header, so
+   the hamburger's own X is unreachable — this replaces it, aligned to the same
+   spot in the header band so the icon appears to have simply turned. */
+.menu-close {
+  position: absolute;
+  top: 0;
+  right: var(--gutter);
+  height: var(--header-height);
+  width: 44px;                     /* full touch target, not just the glyph */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bone);
+  z-index: 1;
+}
+.menu-close:hover { color: var(--color-champagne-bright); }
+.site-header-menu-inner { position: relative; }
+
 @keyframes slideInRight {
   from { transform: translateX(40px); opacity: 0; }
   to   { transform: translateX(0);    opacity: 1; }
