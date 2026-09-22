@@ -36,9 +36,18 @@ function App() {
   }, [stage]);
   useEffect(() => {
     try { sessionStorage.setItem('dp-route', route); } catch (e) {}
+    // Virtual page_view: the site has one real URL, so without this every
+    // visit would report as "/" and per-page traffic would be invisible.
+    if (window.DPAnalytics) window.DPAnalytics.page(route);
   }, [route]);
 
-  const enter = () => { setStage('site'); setRoute('home'); window.scrollTo(0, 0); };
+  const enter = () => {
+    // Measures how many arrivals get past the splash gate at all.
+    if (window.DPAnalytics) window.DPAnalytics.event('enter_site');
+    setStage('site');
+    setRoute('home');
+    window.scrollTo(0, 0);
+  };
 
   // 'login' is no longer routed — Member Login is a real external link to the
   // club's Clubessential portal (see DP_MEMBER_PORTAL in Header.jsx).

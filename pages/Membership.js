@@ -78,6 +78,13 @@ function MembershipPage({
         })
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
+      // generate_lead is GA4's standard lead event, so it works with the
+      // built-in conversion reports without custom configuration.
+      if (window.DPAnalytics) {
+        window.DPAnalytics.event('generate_lead', {
+          membership_interest: data.interest
+        });
+      }
       setStatus('idle');
       setSubmitted(true);
     } catch (err) {
