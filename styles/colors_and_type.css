@@ -62,11 +62,20 @@
      .display-* classes ask for 500, which matches to Book (400) — the right
      weight for a high-contrast display serif at hero sizes. */
   --font-display:  'freight-big-pro', 'Cormorant Garamond', 'Adobe Caslon Pro', Georgia, serif;
-  /* Body face is Sweet Sans Pro (club 7/31), served from the club's own Adobe
-     Fonts kit (bux1rla) — see index.html. HEADS UP: that kit currently ships
-     only weights 600 + 800, so 400/500 text synthesises to 600. Adding the
-     regular weight to the kit in Adobe Fonts will lighten body copy correctly. */
-  --font-body:     'sweet-sans-pro', 'Sweet Sans Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  /* Body face is ARTIFAKT (club 9/22 — supersedes Sweet Sans Pro, which was
+     never the brand face). Served from the club's Adobe kit bux1rla.
+     Artifakt is listed FIRST but is not in the kit yet. A font-family the kit
+     does not serve is simply skipped, so this stack costs nothing today and
+     starts rendering Artifakt the moment it is added to bux1rla — no code
+     change or deploy needed at that point. Both Adobe family names are listed
+     because the club has not confirmed which Artifakt style is the brand one;
+     whichever the kit serves wins, and the other is inert.
+     Sweet Sans is kept one rung down as a deliberate fallback.
+     WEIGHTS: the site asks for 400 and 500. Artifakt is being added as Light /
+     Regular / Heavy, so 400 matches Regular exactly and 500 falls to Regular
+     under normal CSS weight matching — correct face, marginally flatter
+     hierarchy. Adding Medium (500) to the kit would resolve that exactly. */
+  --font-body:     'artifakt-element', 'artifakt-legend', 'sweet-sans-pro', 'Sweet Sans Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --font-mono:     'SFMono-Regular', ui-monospace, 'Menlo', 'Consolas', monospace;
 
   /* ---------- TYPE SCALE (px / line-height / weight / tracking) ---------- */
