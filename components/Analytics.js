@@ -8,7 +8,7 @@
 //
 // TO TURN GA4 ON: paste the Measurement ID below and rebuild. Nothing else.
 // While it is empty no Google script loads and no Google cookie is set.
-const GA4_MEASUREMENT_ID = '';
+const GA4_MEASUREMENT_ID = 'G-00CRXYH6B8';
 
 // route id -> [virtual path, page title] reported to GA4. Keep in step with
 // the routes in app.jsx; an unlisted route still reports, using its own id.
