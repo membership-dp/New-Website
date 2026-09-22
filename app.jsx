@@ -18,10 +18,37 @@ const isAdminPath = () => {
   catch (e) { return false; }
 };
 
+// Visitors arriving from a paid click or a tagged campaign skip the splash
+// gate and land directly on the site.
+//
+// WHY: the gate asks for a second click before anything is visible. Someone
+// who arrived organically is browsing and will tap Enter. Someone who arrived
+// from an ad has ALREADY clicked, and has been paid for — making them click
+// again to see any content costs conversions outright, and Google grades
+// landing page experience as part of Quality Score, so a content-free
+// interstitial raises cost-per-click across the whole campaign.
+//
+// gclid/gbraid/wbraid are Google Ads auto-tagging; msclkid is Microsoft;
+// fbclid is Meta; the utm_* trio covers anything hand-tagged (newsletters,
+// the Instagram bio link, partner placements).
+//
+// The query string is left intact so GA4 and Google Ads attribution still
+// resolve normally.
+const CAMPAIGN_PARAMS = [
+  'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid',
+  'utm_source', 'utm_medium', 'utm_campaign',
+];
+const isCampaignArrival = () => {
+  try {
+    const q = new URLSearchParams(window.location.search);
+    return CAMPAIGN_PARAMS.some((k) => q.has(k));
+  } catch (e) { return false; }
+};
+
 function App() {
   // Stage: 'splash' or 'site'. Persist past entry so refresh keeps you in.
   const [stage, setStage] = useState(() => {
-    if (isAdminPath()) return 'site';
+    if (isAdminPath() || isCampaignArrival()) return 'site';
     try { return sessionStorage.getItem('dp-stage') || 'splash'; }
     catch (e) { return 'splash'; }
   });
