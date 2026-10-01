@@ -28,8 +28,8 @@ render as coverage with no click-through until URLs are supplied.
 ## Reaching the editor
 
 It lives at **`/admin`** and is linked from nowhere on the site — the Club Admin
-footer link was removed for the public launch. `vercel.json` rewrites that path
-to `index.html` and `app.jsx` reads it on boot, skipping the splash gate so
+footer link was removed for the public launch. It is served from the generated
+`admin.html` (`noindex,nofollow`) and `app.jsx` reads it on boot, skipping the splash gate so
 staff land straight on the sign-in. The sign-in is a hardcoded demo
 username and passcode in `pages/Admin.jsx` (`DP_ADMIN_USER` / `DP_ADMIN_PASS`).
 

@@ -30,9 +30,18 @@ page paths. It loads before `Analytics.js` and `app.js`.
 history on navigation, and listens for `popstate` so back/forward work. The URL
 wins over the stored route, so deep links and refreshes are honest.
 
-**Adding a page needs all three:** an entry in `DP_ROUTES`, a rewrite in
-`vercel.json`, and a line in `sitemap.xml`. Miss the rewrite and a refresh on
-that path 404s at the CDN before the app ever boots.
+**Adding a page:** add an entry to `DP_ROUTES`, add a link to the `<nav>` in
+`index.html`'s no-JS fallback, and run `node build.cjs`. The build generates
+`<id>.html` for every route (a copy of `index.html` with that route's title,
+description, canonical and og:* already in the raw HTML) and rewrites
+`sitemap.xml`. `vercel.json` sets `cleanUrls`, so `golf.html` is served at
+`/golf`, and `trailingSlash: false`, so `/golf/` 308s to `/golf`. Skip the build
+and the new path 404s. The generated `.html` files are committed; never edit them
+by hand — edit `index.html` or `Routes.jsx` and rebuild.
+
+`index.html` carries `<base href="/">`, so every relative URL resolves from the
+root whatever path the page is served at. That is safe only while nothing uses
+`href="#..."` or SVG `url(#...)` references; check before adding either.
 
 Internally, `app.jsx` still holds a `route` string in React state and switches
 on it:
@@ -52,8 +61,8 @@ refresh keeps you where you were.
 
 Two things bypass the splash gate deliberately:
 
-- **`/admin`** is a real path. `vercel.json` rewrites it to `index.html` and
-  `app.jsx` reads `window.location.pathname` on boot, so staff land straight on
+- **`/admin`** is a real path, served from the generated `admin.html` (with
+  `noindex,nofollow` in its raw HTML), and `app.jsx` reads `window.location.pathname` on boot, so staff land straight on
   the News editor sign-in. Navigating away drops the path back to `/`.
 - **Campaign arrivals** — anything carrying `gclid`, `gbraid`, `wbraid`,
   `msclkid`, `fbclid` or a `utm_*` parameter goes straight to the site. A paid

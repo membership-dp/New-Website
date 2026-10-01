@@ -3,8 +3,10 @@
 //
 // Loaded before Analytics.js and app.js (see index.html), because both read it.
 //
-// Every entry needs a matching rewrite in vercel.json, otherwise a direct hit
-// or a refresh on that path 404s at the CDN before the app ever boots.
+// build.cjs reads this table to generate one HTML file per route (golf.html,
+// served at /golf by cleanUrls in vercel.json) and sitemap.xml. After adding or
+// changing a route, run `node build.cjs` — a route with no generated file 404s.
+// New indexable routes also belong in the <nav> of index.html's no-JS fallback.
 const DP_ROUTES = [
   {
     id: 'home',

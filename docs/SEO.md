@@ -51,9 +51,17 @@ and so on). `components/Routes.jsx` is the single source of truth: it maps route
 ids to paths and carries the per-page `<title>`, meta description and canonical,
 which `dpApplyHead()` applies on every route change.
 
-**Adding a page means three things, not one:** an entry in `DP_ROUTES`, a
-matching rewrite in `vercel.json` (without it a refresh or a direct hit 404s at
-the CDN before the app boots), and an entry in `sitemap.xml`.
+The tags are also in the **raw HTML** of each URL, not just set by JavaScript:
+`build.cjs` generates `golf.html`, `membership.html` and so on from `index.html`
+and the route table, and Vercel serves them at `/golf` etc. (`cleanUrls`). Before
+this, every path served the home page's canonical and only JS corrected it —
+Google advises against JS moving a canonical away from the served one, so the
+pages risked being folded into the home page. Each generated page also gets its
+own no-JS fallback text and a plain list of links to every page.
+
+**Adding a page:** an entry in `DP_ROUTES`, a link in the fallback `<nav>` in
+`index.html`, then `node build.cjs` (it writes the page file and `sitemap.xml`).
+See [ARCHITECTURE.md](ARCHITECTURE.md).
 
 A deep link also **skips the splash gate** — anyone who asked for a specific
 page gets that page. That is what lets Googlebot index real content rather than
