@@ -65,6 +65,18 @@ Find the text in the page file and edit it in place. Watch for two things:
 - `<br/>` is used to control line breaks in display headlines. Keep it if the
   line break is intentional.
 
+### Change the Instagram feed
+
+The home page strip pulls the club's live feed via Behold. The feed id is
+passed as `feedId` on `<InstagramStrip>` in `pages/Home.jsx`. Change the account
+by changing that id — nothing else. Remove the prop entirely and it falls back
+to the hand-picked `images` array.
+
+We deliberately do **not** use Behold's `<behold-widget>` embed, which ships its
+own markup and stylesheet. We fetch their CORS-enabled JSON and render it
+through the existing `.ig-grid` / `.ig-tile` styles, so the section is
+indistinguishable from the rest of the page.
+
 ### Swap an image
 
 1. Put the new file in `assets/`.

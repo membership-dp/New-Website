@@ -38,6 +38,19 @@ so it can link anywhere. Two special values:
 Route and splash stage persist in `sessionStorage` (`dp-route`, `dp-stage`), so a
 refresh keeps you where you were.
 
+Two things bypass the splash gate deliberately:
+
+- **`/admin`** is a real path. `vercel.json` rewrites it to `index.html` and
+  `app.jsx` reads `window.location.pathname` on boot, so staff land straight on
+  the News editor sign-in. Navigating away drops the path back to `/`.
+- **Campaign arrivals** — anything carrying `gclid`, `gbraid`, `wbraid`,
+  `msclkid`, `fbclid` or a `utm_*` parameter goes straight to the site. A paid
+  click should not have to click again. See [ANALYTICS.md](ANALYTICS.md).
+
+**Member Login is not a route.** It is a real external `<a href>` to the club's
+Clubessential portal, defined once as `DP_MEMBER_PORTAL` at the top of
+`components/Header.jsx` and used by the header, mobile drawer and footer.
+
 **Consequence:** pages have no shareable URLs. `/golf` does not exist; there is
 only `/`. If the club ever needs deep links, share links, or per-page SEO, this
 is the thing that has to change — see [DEPLOYMENT.md](DEPLOYMENT.md).
@@ -60,9 +73,14 @@ assembled almost entirely from these, which is what keeps the pages consistent:
 | `RevealGallery` | Auto-advancing image sequence. |
 | `ThreePanel` | Three-image rotating panel. |
 | `TierColumns` | The membership tier columns (CSS subgrid, so all rows align). |
-| `InstagramStrip` | Homepage social grid — placeholder images today. |
+| `InstagramStrip` | Homepage social grid — fetches the club's live Instagram feed as JSON and renders it in the site's own markup. No third-party widget or stylesheet. Falls back to the hand-picked `images` grid if the fetch fails. |
 | `ZoomHero` | Homepage hero. Supports a still poster or a scrubbed video. |
 | `DP_TIERS` | The canonical membership tier copy, used by the Membership page. |
+
+`components/Analytics.jsx` holds every measurement script and exposes
+`window.DPAnalytics`. `app.jsx` calls it on route change; nothing else talks to
+Google directly. It must load **before** `app.js` in `index.html`. See
+[ANALYTICS.md](ANALYTICS.md).
 
 `components/Motion.jsx` holds `Parallax`, `Tilt`, `InView`, `CountUp`, and
 `actionProps` (which makes a non-`<a>` element behave like a link for keyboard

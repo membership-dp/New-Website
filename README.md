@@ -35,6 +35,8 @@ extra step, and skipping it is the single most common way to get confused.
 | **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | How the site is wired: routing, components, the design system. |
 | **[docs/CONTENT-EDITING.md](docs/CONTENT-EDITING.md)** | Where each piece of copy and each image lives, page by page. |
 | **[docs/IN-THE-NEWS.md](docs/IN-THE-NEWS.md)** | The "In the News" page and its Club Admin editor. |
+| **[docs/ANALYTICS.md](docs/ANALYTICS.md)** | GA4, HubSpot tracking, the events fired, and the traps in reading the data. |
+| **[docs/SEO.md](docs/SEO.md)** | Metadata, structured data, and the two structural limits on search. |
 | **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** | Hosting, the Adobe Fonts kit, and what must be done before launch. |
 | **[docs/STATUS.md](docs/STATUS.md)** | What is finished, what is placeholder, what is still owed. |
 
@@ -52,6 +54,7 @@ components/             Shared pieces used across pages
   Blocks                        the reusable layout blocks (see ARCHITECTURE)
   Reveal, Motion                scroll-reveal and parallax
   NewsStore                     content store for "In the News"
+  Analytics                     GA4 + event tracking (see docs/ANALYTICS.md)
 
 pages/                  One file per route
   Home, Golf, Racquets, Instruction, Location,
@@ -85,8 +88,12 @@ dependency tree to rot, and it can be hosted anywhere that serves files.
 
 ## Status
 
-This is a **design wireframe**, not a production site. Several things are
-intentionally stubbed — the member portal, the membership inquiry form, and the
-Club Admin editor all present their real interface but have no backend behind
-them. See **[docs/STATUS.md](docs/STATUS.md)** for the full list before quoting
-anyone a launch date.
+**The site is live** at `https://www.dutchmanspipeclub.com`.
+
+The membership inquiry form submits into the club's HubSpot, Member Login goes
+to the real Clubessential portal, and the Instagram strip pulls the club's live
+feed. The one piece still stubbed is the Club Admin editor, which saves to the
+editor's own browser rather than a database.
+
+See **[docs/STATUS.md](docs/STATUS.md)** for what is working, what is
+placeholder, and what is still owed.

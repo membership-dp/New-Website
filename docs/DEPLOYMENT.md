@@ -35,6 +35,22 @@ Two things to configure:
 - **Don't cache aggressively at the CDN.** Cache-busting is handled by the `?v=`
   query strings in `index.html`; `index.html` itself should be served fresh.
 
+## Three things that must stay in `index.html`
+
+Removing any of these breaks something silently, with no error anywhere:
+
+- **The Search Console verification `<meta>`** in `<head>`. Google re-checks
+  periodically; if it disappears, or is moved into React-rendered markup, the
+  property un-verifies.
+- **The HubSpot tracking `<script>`** before `</body>`. It is pinned to
+  `https://` and to the `na2` region host — see [ANALYTICS.md](ANALYTICS.md).
+- **`components/Analytics.js` loading before `app.js`.** The app calls
+  `window.DPAnalytics` on mount.
+
+Equally: **never paste Google's stock gtag snippet into the page.** We already
+load the tag with `send_page_view: false`; a second `config` call would double
+every page-view number in the property.
+
 ## Adobe Fonts — do this before launch
 
 The brand typefaces come from the club's own Adobe Fonts kit:

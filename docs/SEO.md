@@ -75,8 +75,11 @@ per-page SEO. Until then the ceiling is fixed no matter how good the tags are.
 - **Geo coordinates** are deliberately absent from the JSON-LD rather than
   guessed. Add `geo` with the club's real latitude and longitude — it measurably
   helps local search.
-- **Google Search Console** is not yet verified (domain property, DNS TXT —
-  add it *alongside* the existing SPF record, never over it).
+- **Google Search Console is verified** — a **URL-prefix** property for
+  `https://www.dutchmanspipeclub.com`, verified by the `<meta>` tag in
+  `index.html` rather than DNS, which avoided a ticket with the club's DNS
+  provider. The sitemap is submitted and reading successfully, and the page is
+  indexed. **That meta tag must never be removed.**
 - **Google Business Profile** is not linked. For a physical club in a specific
   city, that is a bigger local-search lever than anything on the site.
 - **Opening hours** were left out of the schema because they are not published

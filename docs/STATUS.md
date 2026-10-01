@@ -1,61 +1,89 @@
 # Status
 
-Where the site stands as of the last update. Read alongside
-[DEPLOYMENT.md](DEPLOYMENT.md), which covers what has to happen before launch.
+Where the site stands. Read alongside [DEPLOYMENT.md](DEPLOYMENT.md) and
+[SEO.md](SEO.md).
 
-## Complete
+**The site is live** at `https://www.dutchmanspipeclub.com`. The bare domain
+redirects to `www`, SSL is issued, and DNS sits at Cloudflare while the domain
+is registered at GoDaddy.
 
-All nine pages are built, styled, populated with the club's approved copy and
-photography, and have been through several rounds of client review:
+## Working
+
+All nine pages are built, populated with the club's approved copy and
+photography, and have been through many rounds of client review:
 
 Home · Golf · Instruction · Racquet Sports · Location · Guest Information ·
 In the News · Membership · Club Admin
 
-Also done: the splash gate, responsive layouts down to mobile, the scroll-reveal
-and parallax motion system (with `prefers-reduced-motion` respected throughout),
-and the brand type system wired to the club's Adobe Fonts kit.
+Also complete:
 
-## Stubbed — interface only, no backend
+- **Membership inquiry form** submits into the club's own HubSpot (portal
+  `242324318`), creating a contact and triggering HubSpot's own notifications,
+  so the club controls the recipient list without touching the site. Handles
+  sending and error states, and drops honeypot spam.
+- **Member Login** links to the club's Clubessential portal at
+  `members.dutchmanspipeclub.com/login` from the header, mobile drawer and
+  footer.
+- **Instagram** shows the six most recent posts from `@dutchmanspipeclub`,
+  rendered in the site's own markup — no third-party widget or stylesheet.
+- **Analytics** — GA4, HubSpot tracking, and per-page virtual page views. See
+  [ANALYTICS.md](ANALYTICS.md).
+- **SEO** — metadata, structured data, share card, sitemap, robots.txt, and a
+  verified Search Console property. See [SEO.md](SEO.md).
+- Responsive down to mobile, with motion that respects
+  `prefers-reduced-motion` throughout.
+- Brand type wired to the club's Adobe Fonts kit.
 
-| What | Where |
-|---|---|
-| Membership inquiry form — renders and validates, but no endpoint configured yet | `pages/Membership.jsx` |
-| Club Admin editor (saves to one browser) | `pages/Admin.jsx` |
+## Known issues
 
-The **member portal** is no longer a stub: Member Login in the header, mobile
-drawer and footer links straight to the club's Clubessential portal at
-`members.dutchmanspipeclub.com/login`. The URL is defined once as
-`DP_MEMBER_PORTAL` at the top of `components/Header.jsx`.
+**Body copy is not rendering in the brand typeface.** The club's body face is
+Artifakt, which is not in Adobe kit `bux1rla` yet. `--font-body` already lists
+Artifakt first, so it will start rendering the moment the font is added to that
+kit — **no code change or deploy needed at that point**. Until then body text
+falls back to a system sans. Headlines are unaffected.
+
+Also in that kit: Freight Big Pro ships 300/400/600, but the site asks for 500
+and 700 in places. Those headings substitute to the nearest available weight —
+correct typeface, slightly wrong weight.
 
 ## Placeholder content
 
-- **Instagram strip** on the home page — six static images standing in for the
-  live feed. See [DEPLOYMENT.md](DEPLOYMENT.md).
-- **`assets/tennis-rally.jpg`** in the Racquets gallery — a stand-in. The
-  intended photograph (`DSC01870`) arrived as a broken image and has not been
+- **`assets/tennis-rally.jpg`** in the Racquets gallery is a stand-in. The
+  intended photograph (`DSC01870`) arrived as a broken image and was never
   re-sent.
+- **Seven media placements** in "In the News" have no article URL and render
+  without a click-through until the links are supplied.
+
+## Stubbed — interface only
+
+**The Club Admin editor** (`pages/Admin.jsx`) still saves to the editor's own
+browser via `localStorage`, so changes are not shared or published. It lives at
+`/admin`, unlinked from the site. The passcode is client-side and readable —
+this makes it undiscoverable, **not protected**. See
+[IN-THE-NEWS.md](IN-THE-NEWS.md).
 
 ## Outstanding on the club's side
 
-1. **Adobe Fonts kit `bux1rla`** — add the live and preview domains to the
-   allowed-domains list, and add the Sweet Sans Pro **Regular (400)** weight.
-   Details in [DEPLOYMENT.md](DEPLOYMENT.md).
-2. **`DSC01870`** — the missing Racquets photograph.
-3. **Article URLs** — seven media placements in "In the News" have no link
-   and render without a click-through until URLs are supplied.
-4. **Instagram** — confirm which integration route, and provide account access.
+1. **Add Artifakt to Adobe kit `bux1rla`** (Regular 400 + Medium 500), and
+   ideally 500/700 for Freight Big Pro while in there.
+2. **Article URLs** for the seven unlinked placements.
+3. **`DSC01870`** for the Racquets gallery.
+4. Confirm a test inquiry populates **City**, **A Note** and **Membership
+   Interest** in HubSpot — unknown field names are silently ignored, so a
+   mismatch saves the contact but drops the data with no error.
 
 ## Not started
 
-- HubSpot integration for the membership inquiry form.
-- Database and real authentication for the News editor. Supabase was scoped and
-  the schema and setup steps were delivered; the work never began because
-  project credentials were not issued.
-- URL routing, if the club wants shareable page links and per-page SEO. See
-  [DEPLOYMENT.md](DEPLOYMENT.md).
+- **Google Ads** conversion tracking.
+- **Vercel Analytics**, and a **Google Business Profile** — the biggest local
+  search lever for a physical club.
+- **A real backend for the News editor.** Supabase was scoped and the schema
+  delivered; the work never began because credentials were not issued.
+- **URL routing.** This is the root constraint behind the SEO ceiling, the lack
+  of per-page ad landing pages, and Google only ever seeing the splash screen.
+  Everything to date has worked around it. See [SEO.md](SEO.md).
 
-## Unused assets kept in the repository
+## Unused assets
 
-`assets/coach-carter.jpg` is no longer referenced by any page — the coach it
-pictured was replaced during the 8/7 review. It was left in place rather than
-deleted, in case the change is reversed.
+`assets/coach-carter.jpg` is no longer referenced — the coach it pictured was
+replaced in the 8/7 review. Left in place in case the change is reversed.

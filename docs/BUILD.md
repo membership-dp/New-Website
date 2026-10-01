@@ -39,7 +39,7 @@ The output ends with a count:
 ```
   ✓ components/Blocks.jsx -> components/Blocks.js
   ...
-compiled 17 files
+compiled 18 files
 ```
 
 **Check that last line.** If a file has a syntax error, Babel throws — but only
@@ -53,8 +53,8 @@ it worked has cost real time on this project before.
 ```
 
 In `index.html`, every stylesheet and script carries `?v=NN`. Increment all of
-them together — a find-and-replace of `?v=79` → `?v=80` across the file. There
-are 19 of them, and it sits at `?v=79` today.
+them together — a find-and-replace of `?v=93` → `?v=94` across the file. There
+are 20 of them, and it sits at `?v=93` today.
 
 ```bash
 # 4. commit BOTH the .jsx and the generated .js
