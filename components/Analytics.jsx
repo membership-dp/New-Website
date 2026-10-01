@@ -10,20 +10,9 @@
 // While it is empty no Google script loads and no Google cookie is set.
 const GA4_MEASUREMENT_ID = 'G-00CRXYH6B8';
 
-// route id -> [virtual path, page title] reported to GA4. Keep in step with
-// the routes in app.jsx; an unlisted route still reports, using its own id.
-const DP_ROUTE_META = {
-  home:        ['/',            'Home'],
-  golf:        ['/golf',        'Golf'],
-  racquets:    ['/racquets',    'Racquet Sports'],
-  instruction: ['/instruction', 'Instruction'],
-  location:    ['/location',    'Location'],
-  guests:      ['/guests',      'Guest Information'],
-  news:        ['/news',        'In the News'],
-  membership:  ['/membership',  'Membership'],
-  admin:       ['/admin',       'Club Admin'],
-};
-
+// Paths and titles now come from components/Routes.jsx — the same table the
+// router and the <head> updates use, so analytics can never drift from the
+// actual URLs. Routes.js loads before this file (see index.html).
 const DPAnalytics = {
   ready: false,
 
@@ -49,7 +38,9 @@ const DPAnalytics = {
   page(route) {
     if (!GA4_MEASUREMENT_ID) return;
     this.init();
-    const [path, title] = DP_ROUTE_META[route] || [`/${route}`, route];
+    const meta = (window.DP_ROUTES || []).find((r) => r.id === route);
+    const path = meta ? meta.path : `/${route}`;
+    const title = meta ? meta.title : route;
     try {
       window.gtag('event', 'page_view', {
         page_title: title,

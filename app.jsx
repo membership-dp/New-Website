@@ -3,19 +3,18 @@
 // be precompiled to app.js like every other source file.)
 const { useState, useEffect } = React;
 
-// The News editor lives at its own URL (/admin) and is linked from nowhere on
-// the site. Vercel rewrites /admin to index.html — see vercel.json — and this
-// reads the path on boot. Arriving there skips the splash gate, so staff go
-// straight to the sign-in.
+// Every page now has a real URL (see components/Routes.jsx for the table and
+// vercel.json for the matching rewrites). The path is the source of truth on
+// boot; navigation pushes history; back/forward is handled below.
 //
-// NOTE: this makes the editor undiscoverable, not protected. The passcode in
-// pages/Admin.jsx is client-side and readable by anyone who views source. That
-// is tolerable only because the editor writes to the visitor's own browser and
-// there is no real data behind it. Anything more needs a real backend — see
+// The News editor at /admin is unlinked and noindexed. That makes it
+// undiscoverable, NOT protected — the passcode in pages/Admin.jsx is
+// client-side and readable. Tolerable only because the editor writes to the
+// visitor's own browser and no real data sits behind it. See
 // docs/IN-THE-NEWS.md.
-const isAdminPath = () => {
-  try { return /^\/admin\/?$/i.test(window.location.pathname); }
-  catch (e) { return false; }
+const routeFromUrl = () => {
+  try { return window.dpRouteFromPath(window.location.pathname); }
+  catch (e) { return null; }
 };
 
 // Visitors arriving from a paid click or a tagged campaign skip the splash
@@ -46,14 +45,21 @@ const isCampaignArrival = () => {
 };
 
 function App() {
-  // Stage: 'splash' or 'site'. Persist past entry so refresh keeps you in.
+  const urlRoute = routeFromUrl();
+
+  // The splash gate is for the front door only. Anyone who asked for a
+  // specific page — a deep link, a shared URL, an ad landing page, a search
+  // result — gets that page, not a gate. That is also what lets Googlebot
+  // index real content instead of an Enter button.
   const [stage, setStage] = useState(() => {
-    if (isAdminPath() || isCampaignArrival()) return 'site';
+    if ((urlRoute && urlRoute !== 'home') || isCampaignArrival()) return 'site';
     try { return sessionStorage.getItem('dp-stage') || 'splash'; }
     catch (e) { return 'splash'; }
   });
+
+  // The URL wins over the stored route, so refresh and deep links are honest.
   const [route, setRoute] = useState(() => {
-    if (isAdminPath()) return 'admin';
+    if (urlRoute) return urlRoute;
     try { return sessionStorage.getItem('dp-route') || 'home'; }
     catch (e) { return 'home'; }
   });
@@ -61,12 +67,26 @@ function App() {
   useEffect(() => {
     try { sessionStorage.setItem('dp-stage', stage); } catch (e) {}
   }, [stage]);
+
   useEffect(() => {
     try { sessionStorage.setItem('dp-route', route); } catch (e) {}
-    // Virtual page_view: the site has one real URL, so without this every
-    // visit would report as "/" and per-page traffic would be invisible.
+    // Title, description, canonical and og:* follow the route.
+    if (window.dpApplyHead) window.dpApplyHead(route);
     if (window.DPAnalytics) window.DPAnalytics.page(route);
   }, [route]);
+
+  // Browser back/forward. popstate fires only for real history entries, so
+  // this cannot loop with the pushState in onNav.
+  useEffect(() => {
+    const onPop = () => {
+      const r = routeFromUrl() || 'home';
+      setRoute(r);
+      if (r !== 'home') setStage('site');
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   // Bind tel:/mailto: click tracking once, for the life of the page.
   useEffect(() => {
@@ -78,17 +98,26 @@ function App() {
     if (window.DPAnalytics) window.DPAnalytics.event('enter_site');
     setStage('site');
     setRoute('home');
+    try {
+      if (window.location.pathname !== '/') {
+        window.history.replaceState({ route: 'home' }, '', '/' + window.location.search);
+      }
+    } catch (e) {}
     window.scrollTo(0, 0);
   };
 
   // 'login' is no longer routed — Member Login is a real external link to the
   // club's Clubessential portal (see DP_MEMBER_PORTAL in Header.jsx).
   const onNav = (where) => {
-    // Navigating away from /admin drops the path back to the root, so the URL
-    // never disagrees with what is on screen.
-    if (where !== 'admin' && isAdminPath()) {
-      try { window.history.replaceState({}, '', '/'); } catch (e) {}
-    }
+    // Push the real URL so the address bar, back button, sharing and
+    // analytics all agree with what is on screen. The query string is
+    // preserved so campaign attribution survives in-site navigation.
+    try {
+      const path = window.dpPathForRoute(where);
+      if (window.location.pathname !== path) {
+        window.history.pushState({ route: where }, '', path + window.location.search);
+      }
+    } catch (e) { /* navigation must work even if history does not */ }
     setRoute(where);
     window.scrollTo(0, 0);
   };

@@ -2,7 +2,7 @@
 User-agent: *
 Allow: /
 
-# The News editor is not content and should never be indexed.
+# Staff News editor — not content, and never to be indexed.
 Disallow: /admin
 
 Sitemap: https://www.dutchmanspipeclub.com/sitemap.xml

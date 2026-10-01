@@ -44,31 +44,20 @@ sit over it as an overlay, rather than replacing it. Content then exists in the
 DOM for crawlers while the visitor experience is unchanged. This is a change to
 `app.jsx` and worth a deliberate decision, not a silent edit.
 
-## Limit 2 — nine pages share one URL
+## Limit 2 — SOLVED: every page now has a real URL
 
-There is no router. Golf, Racquets, Instruction, Location, Guests, News and
-Membership are all `/`, held in React state (see
-[ARCHITECTURE.md](ARCHITECTURE.md)).
+Each page is now served at its own path (`/golf`, `/membership`, `/instruction`
+and so on). `components/Routes.jsx` is the single source of truth: it maps route
+ids to paths and carries the per-page `<title>`, meta description and canonical,
+which `dpApplyHead()` applies on every route change.
 
-That means:
+**Adding a page means three things, not one:** an entry in `DP_ROUTES`, a
+matching rewrite in `vercel.json` (without it a refresh or a direct hit 404s at
+the CDN before the app boots), and an entry in `sitemap.xml`.
 
-- **No per-page titles or descriptions.** One title and one description have to
-  cover the whole club. Everything in `index.html` today is written to that
-  constraint.
-- **No page can rank for its own topic.** "Private padel West Palm Beach"
-  has no page to land on.
-- **Nothing is shareable.** A link to the membership page cannot be sent.
-- **No per-page analytics**, and no landing pages for paid campaigns.
-- **The sitemap has one entry**, because one URL exists.
-
-**Fix:** sync `route` to `window.history` and read it back on load, with a
-Vercel rewrite per path (the `/admin` rewrite in `vercel.json` is the pattern).
-Then give each route its own title, description, canonical and — where it fits
-— its own schema node: `SportsActivityLocation` for Racquets, `Course` or
-`Service` for Instruction, `FAQPage` for Guest Information.
-
-Doing both fixes is what turns this from "correct metadata on one page" into
-per-page SEO. Until then the ceiling is fixed no matter how good the tags are.
+A deep link also **skips the splash gate** — anyone who asked for a specific
+page gets that page. That is what lets Googlebot index real content rather than
+an Enter button. The gate now only guards the bare `/`.
 
 ## Still outstanding
 

@@ -22,8 +22,20 @@ Adding a component without that line is the usual cause of "X is not defined".
 
 ## Routing
 
-There is no router and no URL routing. `app.jsx` holds a `route` string in React
-state and switches on it:
+`components/Routes.jsx` holds the route table — id, path, title, description —
+and is the single source of truth for URLs, `<head>` metadata and the analytics
+page paths. It loads before `Analytics.js` and `app.js`.
+
+`app.jsx` resolves the route from `window.location.pathname` on boot, pushes
+history on navigation, and listens for `popstate` so back/forward work. The URL
+wins over the stored route, so deep links and refreshes are honest.
+
+**Adding a page needs all three:** an entry in `DP_ROUTES`, a rewrite in
+`vercel.json`, and a line in `sitemap.xml`. Miss the rewrite and a refresh on
+that path 404s at the CDN before the app ever boots.
+
+Internally, `app.jsx` still holds a `route` string in React state and switches
+on it:
 
 ```jsx
 {route === 'golf' && <GolfPage onNav={onNav} />}
@@ -51,9 +63,8 @@ Two things bypass the splash gate deliberately:
 Clubessential portal, defined once as `DP_MEMBER_PORTAL` at the top of
 `components/Header.jsx` and used by the header, mobile drawer and footer.
 
-**Consequence:** pages have no shareable URLs. `/golf` does not exist; there is
-only `/`. If the club ever needs deep links, share links, or per-page SEO, this
-is the thing that has to change — see [DEPLOYMENT.md](DEPLOYMENT.md).
+The splash gate guards only the bare `/`. A deep link, a shared URL, an ad
+landing page or a search result goes straight to that page.
 
 ## The splash gate
 
