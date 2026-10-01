@@ -59,6 +59,28 @@ const DPAnalytics = {
     } catch (e) {}
   },
 
+  // Phone and email taps are the other two real conversions on this site, and
+  // GA4 cannot see them on its own: Enhanced Measurement's "outbound clicks"
+  // only covers http(s) links, so tel: and mailto: are invisible to it.
+  //
+  // One delegated listener in the capture phase rather than handlers on each
+  // anchor — it covers the four links that exist today (footer phone + email,
+  // the Guests page phone, the inquiry form's error fallback) and anything
+  // added later, with no component changes.
+  trackContactLinks() {
+    if (this._linksBound) return;
+    this._linksBound = true;
+    document.addEventListener('click', (e) => {
+      const el = e.target;
+      if (!el || !el.closest) return;
+      const a = el.closest('a[href^="tel:"], a[href^="mailto:"]');
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (href.slice(0, 4) === 'tel:') this.event('phone_click', { link_url: href });
+      else this.event('membership_email_click', { link_url: href });
+    }, true);
+  },
+
   event(name, params) {
     if (!GA4_MEASUREMENT_ID) return;
     this.init();

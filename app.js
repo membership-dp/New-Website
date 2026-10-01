@@ -80,6 +80,11 @@ function App() {
     // visit would report as "/" and per-page traffic would be invisible.
     if (window.DPAnalytics) window.DPAnalytics.page(route);
   }, [route]);
+
+  // Bind tel:/mailto: click tracking once, for the life of the page.
+  useEffect(() => {
+    if (window.DPAnalytics) window.DPAnalytics.trackContactLinks();
+  }, []);
   const enter = () => {
     // Measures how many arrivals get past the splash gate at all.
     if (window.DPAnalytics) window.DPAnalytics.event('enter_site');
