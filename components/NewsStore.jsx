@@ -18,8 +18,13 @@ const DP_NEWS_DEFAULTS = {
     url: 'https://www.forbes.com/sites/erikmatuszewski/2025/10/11/how-the-witkoff-group-built-south-floridas-new-breed-of-private-clubs/',
   },
   articles: [
+    // Added 10/26 at Madison's request (with her photos; the Stenzel image is hers to pair).
+    { img: 'assets/news-fairway-bunkers.jpg', tag: 'Haute Living', date: 'Oct 2026', title: 'The best golf courses in Palm Beach County.', excerpt: '', url: 'https://hauteliving.com/2026/10/the-best-golf-courses-in-palm-beach-county-from-seminole-golf-club-in-juno-beach-to-panther-national-and-pga-national/797906/' },
+    { img: 'assets/news-stenzel.jpg', tag: 'Women’s Golf Magazine', date: 'Oct 2026', title: 'Tech vs. touch, featuring Kellie Stenzel.', excerpt: '', url: 'https://issuu.com/womensgolfmagazineaus/docs/women_s_golf_magazine_americas_fall26/67' },
+    { img: 'assets/news-green-sunset.jpg', tag: 'GOLF', date: 'Sep 2026', title: 'How Stephen Sweeney fixed a putting stroke with two simple changes.', excerpt: '', url: 'https://golf.com/instruction/putting/stephen-sweeney-fixed-putting-two-simple-changes/' },
     // Added 8/27 at Madison's request — AOL/Athlon Sports, 23 Aug 2026.
     { img: 'assets/course-fountain-aerial.jpg', tag: 'AOL', date: 'Aug 2026', title: 'Rare golf access can open doors for golf’s next generation.', excerpt: '', url: 'https://www.aol.com/articles/rare-golf-access-open-doors-005225000.html?guccounter=1' },
+    { img: 'assets/news-cart.jpg', tag: 'GOLF', date: 'Jul 2026', title: 'Inside Cameron Young’s breakthrough.', excerpt: '', url: 'https://golf.com/news/cameron-young-background-breakthrough-story/' },
     { img: 'assets/golf-island.jpg', tag: 'The Golf Wire', date: 'Jul 2026', title: 'Dutchman’s Pipe Club shines as host of the Final Qualifier for the 126th U.S. Amateur Championship.', excerpt: '', url: 'https://thegolfwire.com/dutchmans-pipe-club-us-amateur-championship/' },
     { img: 'assets/practice-cart.jpg', tag: 'Yahoo! Sports', date: 'Jul 2026', title: 'The surprising drawback of driving it longer — and the shot data you’re probably not using.', excerpt: '', url: 'https://sports.yahoo.com/articles/surprising-drawback-driving-longer-piece-165937484.html?guccounter=1' },
     { img: 'assets/golf-aerial.jpg', tag: 'Golf News Net', date: 'Jul 2026', title: 'Course and infrastructure enhancements elevate the member experience.', excerpt: '', url: 'https://clubhouse.thegolfnewsnet.com/2026/07/02/dutchmans-pipe-club-announces-course-and-infrastructure-enhancements-to-further-elevate-member-experience/' },
@@ -57,14 +62,18 @@ const DP_NEWS_IMAGES = [
   'assets/course-fountain-aerial.jpg', 'assets/clubhouse-tacos.jpg',
   'assets/course-golden-hour.jpg', 'assets/jet-arrival.jpg',
   'assets/downtown-plaza.jpg',
+  // added 10/26 with Madison's press batch
+  'assets/news-fairway-bunkers.jpg', 'assets/news-green-sunset.jpg',
+  'assets/news-cart.jpg', 'assets/news-stenzel.jpg',
 ];
 
 window.NewsStore = {
-  // v4 — AOL placement added 8/27, plus four replacement covers (clubhouse
-  // eats, Cognizant Classic, amenities arms race, WPB luxury growth). Bumping
-  // the key makes the new defaults win over anything saved under v3 in a
-  // browser (wireframe edits are per-browser; production moves this to a database).
-  KEY: 'dp-news-v4',
+  // v5 — four placements added 10/26 (Haute Living, Women's Golf Magazine,
+  // two GOLF pieces). v4 — AOL placement added 8/27, plus four replacement
+  // covers. Bumping the key makes the new defaults win over anything saved
+  // under the old key in a browser (wireframe edits are per-browser;
+  // production moves this to a database).
+  KEY: 'dp-news-v5',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
   // stamp a stable per-article id so the Admin editor can key rows by identity

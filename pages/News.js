@@ -26,7 +26,11 @@ function NewsPage({
     style: {
       color: 'var(--color-champagne)'
     }
-  }, tag), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", null, date));
+  }, tag), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      whiteSpace: 'nowrap'
+    }
+  }, date));
   return /*#__PURE__*/React.createElement("div", {
     className: "page-shell"
   }, /*#__PURE__*/React.createElement("section", {

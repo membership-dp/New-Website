@@ -11,7 +11,7 @@ function NewsPage({ onNav }) {
     }}>
       <span style={{ color: 'var(--color-champagne)' }}>{tag}</span>
       <span>·</span>
-      <span>{date}</span>
+      <span style={{ whiteSpace: 'nowrap' }}>{date}</span>
     </div>
   );
 
