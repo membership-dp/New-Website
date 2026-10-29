@@ -7,7 +7,7 @@
        site root, whatever path the page was served at. Must stay above every
        relative URL in <head>. Safe because nothing uses href="#..." or url(#...). -->
   <base href="/">
-  <title>Guest Information | Dutchman's Pipe Club</title>
+  <title>Visiting Dutchman's Pipe Club | Arrival, Dress Code &amp; Directions</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="assets/logo-emblem-color.png">
   <!-- Google Search Console — URL-prefix property verification for
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="Dutchman's Pipe Club">
   <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://www.dutchmanspipeclub.com/guests">
-  <meta property="og:title" content="Guest Information | Dutchman's Pipe Club">
+  <meta property="og:title" content="Visiting Dutchman's Pipe Club | Arrival, Dress Code &amp; Directions">
   <meta property="og:description" content="What guests need to know before visiting Dutchman's Pipe Club in West Palm Beach: arrival, registration, dress code, caddies and finding the Club.">
   <meta property="og:image" content="https://www.dutchmanspipeclub.com/assets/og-share.jpg">
   <meta property="og:image:width" content="1200">
@@ -36,7 +36,7 @@
   <meta property="og:image:alt" content="Aerial view of the Jack Nicklaus Signature course at Dutchman's Pipe Club, with the West Palm Beach skyline beyond.">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Guest Information | Dutchman's Pipe Club">
+  <meta name="twitter:title" content="Visiting Dutchman's Pipe Club | Arrival, Dress Code &amp; Directions">
   <meta name="twitter:description" content="What guests need to know before visiting Dutchman's Pipe Club in West Palm Beach: arrival, registration, dress code, caddies and finding the Club.">
   <meta name="twitter:image" content="https://www.dutchmanspipeclub.com/assets/og-share.jpg">
   <!-- Warm the unpkg connection (React/ReactDOM UMD load from here) -->
@@ -48,8 +48,8 @@
        domains in Adobe Fonts so it keeps serving. -->
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/bux1rla.css">
-  <link rel="stylesheet" href="styles/colors_and_type.css?v=96">
-  <link rel="stylesheet" href="styles/site.css?v=96">
+  <link rel="stylesheet" href="styles/colors_and_type.css?v=97">
+  <link rel="stylesheet" href="styles/site.css?v=97">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -61,6 +61,10 @@
       ],
       "@id": "https://www.dutchmanspipeclub.com/#club",
       "name": "Dutchman's Pipe Club",
+      "alternateName": [
+        "Dutchman's Pipe",
+        "Dutchman's Pipe Golf Club"
+      ],
       "description": "Dutchman's Pipe Club is an invitation-only private club in West Palm Beach, Florida. It features a Jack Nicklaus Signature championship golf course played without tee times, a nationally recognised instruction program, a racquet club with tennis, padel and pickleball, wellness facilities and dining.",
       "url": "https://www.dutchmanspipeclub.com/",
       "logo": "https://www.dutchmanspipeclub.com/assets/logo-emblem-color.png",
@@ -222,6 +226,7 @@
       "@id": "https://www.dutchmanspipeclub.com/#website",
       "url": "https://www.dutchmanspipeclub.com/",
       "name": "Dutchman's Pipe Club",
+      "alternateName": "Dutchman's Pipe",
       "publisher": {
         "@id": "https://www.dutchmanspipeclub.com/#club"
       },
@@ -262,29 +267,29 @@
   <script defer src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 
   <!-- Shared components (compiled from components/*.jsx) -->
-  <script defer src="components/Routes.js?v=96"></script>
-  <script defer src="components/Analytics.js?v=96"></script>
-  <script defer src="components/Reveal.js?v=96"></script>
-  <script defer src="components/Motion.js?v=96"></script>
-  <script defer src="components/Blocks.js?v=96"></script>
-  <script defer src="components/NewsStore.js?v=96"></script>
-  <script defer src="components/Header.js?v=96"></script>
-  <script defer src="components/Footer.js?v=96"></script>
-  <script defer src="components/Splash.js?v=96"></script>
+  <script defer src="components/Routes.js?v=97"></script>
+  <script defer src="components/Analytics.js?v=97"></script>
+  <script defer src="components/Reveal.js?v=97"></script>
+  <script defer src="components/Motion.js?v=97"></script>
+  <script defer src="components/Blocks.js?v=97"></script>
+  <script defer src="components/NewsStore.js?v=97"></script>
+  <script defer src="components/Header.js?v=97"></script>
+  <script defer src="components/Footer.js?v=97"></script>
+  <script defer src="components/Splash.js?v=97"></script>
 
   <!-- Pages (compiled from pages/*.jsx) -->
-  <script defer src="pages/Home.js?v=96"></script>
-  <script defer src="pages/Golf.js?v=96"></script>
-  <script defer src="pages/Racquets.js?v=96"></script>
-  <script defer src="pages/Location.js?v=96"></script>
-  <script defer src="pages/News.js?v=96"></script>
-  <script defer src="pages/Guests.js?v=96"></script>
-  <script defer src="pages/Instruction.js?v=96"></script>
-  <script defer src="pages/Membership.js?v=96"></script>
-  <script defer src="pages/Admin.js?v=96"></script>
+  <script defer src="pages/Home.js?v=97"></script>
+  <script defer src="pages/Golf.js?v=97"></script>
+  <script defer src="pages/Racquets.js?v=97"></script>
+  <script defer src="pages/Location.js?v=97"></script>
+  <script defer src="pages/News.js?v=97"></script>
+  <script defer src="pages/Guests.js?v=97"></script>
+  <script defer src="pages/Instruction.js?v=97"></script>
+  <script defer src="pages/Membership.js?v=97"></script>
+  <script defer src="pages/Admin.js?v=97"></script>
 
   <!-- App shell + bootstrap (compiled from app.jsx) — runs last -->
-  <script defer src="app.js?v=96"></script>
+  <script defer src="app.js?v=97"></script>
 
   <style>
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

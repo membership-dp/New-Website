@@ -38,7 +38,12 @@ const DPAnalytics = {
   page(route) {
     if (!GA4_MEASUREMENT_ID) return;
     this.init();
-    const meta = (window.DP_ROUTES || []).find((r) => r.id === route);
+    // The invitation splash sits at "/" in front of Home but is not Home. It
+    // reports under its own title so Home counts only people who entered, and
+    // gate views vs. enter_site shows how many leave at the gate.
+    const meta = route === 'splash'
+      ? { path: '/', title: "Invitation Gate | Dutchman's Pipe Club" }
+      : (window.DP_ROUTES || []).find((r) => r.id === route);
     const path = meta ? meta.path : `/${route}`;
     const title = meta ? meta.title : route;
     try {

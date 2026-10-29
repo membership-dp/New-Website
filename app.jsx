@@ -72,8 +72,14 @@ function App() {
     try { sessionStorage.setItem('dp-route', route); } catch (e) {}
     // Title, description, canonical and og:* follow the route.
     if (window.dpApplyHead) window.dpApplyHead(route);
-    if (window.DPAnalytics) window.DPAnalytics.page(route);
   }, [route]);
+
+  // One page_view per screen actually shown: the gate while on the splash,
+  // then the route. Entering moves stage to 'site' with route already 'home',
+  // so Home is counted once, on entry.
+  useEffect(() => {
+    if (window.DPAnalytics) window.DPAnalytics.page(stage === 'splash' ? 'splash' : route);
+  }, [route, stage]);
 
   // Browser back/forward. popstate fires only for real history entries, so
   // this cannot loop with the pushState in onNav.

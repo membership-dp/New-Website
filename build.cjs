@@ -62,8 +62,10 @@ function swap(html, re, value, label) {
   return html.replace(re, value);
 }
 
-// "Golf | Jack Nicklaus Signature Course — Dutchman's Pipe Club" -> "Golf"
-const shortName = (r) => (r.id === 'home' ? 'Home' : r.title.split(/\s[|—]\s/)[0]);
+// The page's plain name for its no-JS <h1>: an explicit `name` when the
+// search title doesn't lead with it, else the title's first segment
+// ("Membership | Dutchman's Pipe Club" -> "Membership").
+const shortName = (r) => (r.id === 'home' ? 'Home' : r.name || r.title.split(/\s[|—]\s/)[0]);
 
 const source = fs.readFileSync('index.html', 'utf8');
 const fallbackRe = /<div id="app">[\s\S]*?\n  <\/div>/;

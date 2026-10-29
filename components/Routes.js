@@ -10,12 +10,13 @@
 const DP_ROUTES = [{
   id: 'home',
   path: '/',
-  title: "Dutchman's Pipe Club | Private Golf & Racquets Club, West Palm Beach",
+  title: "Dutchman's Pipe Club | Private Golf Club in West Palm Beach",
   description: "An invitation-only private club in West Palm Beach, Florida, with a Jack Nicklaus Signature golf course, no tee times, Top 100 instruction, and a racquet club."
 }, {
   id: 'golf',
   path: '/golf',
-  title: "Golf | Jack Nicklaus Signature Course — Dutchman's Pipe Club",
+  name: 'Golf',
+  title: "Nicklaus Signature Golf, No Tee Times | Dutchman's Pipe Club",
   description: "A Jack Nicklaus Signature championship course in West Palm Beach, played without tee times. 7,300 yards, a 75.8 rating, caddies on every round, and brand-agnostic club fitting."
 }, {
   id: 'instruction',
@@ -25,7 +26,8 @@ const DP_ROUTES = [{
 }, {
   id: 'racquets',
   path: '/racquets',
-  title: "Racquet Sports | Tennis, Padel & Pickleball — Dutchman's Pipe Club",
+  name: 'Racquet Sports',
+  title: "Padel, Tennis & Pickleball | Dutchman's Pipe Club",
   description: "Tennis, padel and pickleball at a private West Palm Beach club, with clinics, leagues and social play, and one of the area's few private padel programs."
 }, {
   id: 'location',
@@ -40,7 +42,8 @@ const DP_ROUTES = [{
 }, {
   id: 'guests',
   path: '/guests',
-  title: "Guest Information | Dutchman's Pipe Club",
+  name: 'Guest Information',
+  title: "Visiting Dutchman's Pipe Club | Arrival, Dress Code & Directions",
   description: "What guests need to know before visiting Dutchman's Pipe Club in West Palm Beach: arrival, registration, dress code, caddies and finding the Club."
 }, {
   id: 'news',
