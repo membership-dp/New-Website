@@ -19,6 +19,23 @@ const DP_NEWS_DEFAULTS = {
     url: 'https://www.forbes.com/sites/erikmatuszewski/2025/10/11/how-the-witkoff-group-built-south-floridas-new-breed-of-private-clubs/'
   },
   articles: [
+  // Added 11/20 at Madison's request, with her photos. The Palm Beach Post piece is its
+  // weekly "on the move" column (Belgrove hire; the club is named in passing).
+  {
+    img: 'assets/news-caddie-rangefinder.jpg',
+    tag: 'Markets of Tomorrow',
+    date: 'Nov 2026',
+    title: 'The new golf courses fueling Florida’s historic golf boom.',
+    excerpt: '',
+    url: 'https://www.oftmw.com/post/seven-new-golf-courses-have-opened-in-florida-since-2023-and-ten-more-are-on-the-way/'
+  }, {
+    img: 'assets/news-practice-green.jpg',
+    tag: 'The Palm Beach Post',
+    date: 'Nov 2026',
+    title: 'Palm Beach County professionals on the move.',
+    excerpt: '',
+    url: 'https://www.palmbeachpost.com/story/business/names-faces/2026/11/09/best-businesses-professionals-business-people-in-palm-beach-county/92215595007/?gnt-cfr=1'
+  },
   // Added 10/26 at Madison's request (with her photos; the Stenzel image is hers to pair).
   {
     img: 'assets/news-fairway-bunkers.jpg',
@@ -212,14 +229,17 @@ const DP_NEWS_IMAGES = ['assets/course-dusk.jpg', 'assets/golf-island.jpg', 'ass
 // added 8/27 with the news cover refresh
 'assets/course-fountain-aerial.jpg', 'assets/clubhouse-tacos.jpg', 'assets/course-golden-hour.jpg', 'assets/jet-arrival.jpg', 'assets/downtown-plaza.jpg',
 // added 10/26 with Madison's press batch
-'assets/news-fairway-bunkers.jpg', 'assets/news-green-sunset.jpg', 'assets/news-cart.jpg', 'assets/news-stenzel.jpg'];
+'assets/news-fairway-bunkers.jpg', 'assets/news-green-sunset.jpg', 'assets/news-cart.jpg', 'assets/news-stenzel.jpg',
+// added 11/20 with Madison's November additions
+'assets/news-caddie-rangefinder.jpg', 'assets/news-practice-green.jpg'];
 window.NewsStore = {
-  // v5 — four placements added 10/26 (Haute Living, Women's Golf Magazine,
+  // v6 — two placements added 11/20 (Markets of Tomorrow, The Palm Beach
+  // Post). v5 — four placements added 10/26 (Haute Living, Women's Golf Magazine,
   // two GOLF pieces). v4 — AOL placement added 8/27, plus four replacement
   // covers. Bumping the key makes the new defaults win over anything saved
   // under the old key in a browser (wireframe edits are per-browser;
   // production moves this to a database).
-  KEY: 'dp-news-v5',
+  KEY: 'dp-news-v6',
   defaults: DP_NEWS_DEFAULTS,
   images: DP_NEWS_IMAGES,
   // stamp a stable per-article id so the Admin editor can key rows by identity

@@ -40,7 +40,7 @@ data behind it. Anything more needs a real backend.
 
 ## The limitation that matters
 
-Edits save to **`localStorage`**, under the key `dp-news-v3`.
+Edits save to **`localStorage`**, under the key `dp-news-v6` (bumped whenever the defaults change).
 
 That means changes live in **one browser, on one machine**. If Madison adds an
 article on her laptop, nobody else sees it — not the public site, not another

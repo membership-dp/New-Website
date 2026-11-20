@@ -53,8 +53,8 @@ it worked has cost real time on this project before.
 ```
 
 In `index.html`, every stylesheet and script carries `?v=NN`. Increment all of
-them together — a find-and-replace of `?v=93` → `?v=94` across the file. There
-are 20 of them, and it sits at `?v=93` today.
+them together — a find-and-replace of `?v=98` → `?v=99` across the file. There
+are 21 of them, and it sits at `?v=98` as of 11/20.
 
 ```bash
 # 4. commit BOTH the .jsx and the generated .js
